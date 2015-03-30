@@ -1,0 +1,18 @@
+# Site settings
+title: JEFworks
+email: jeanfan@fas.harvard.edu
+description: "Jean Fan works on code and other fun stuff"
+logo_location: "http://jefworks.com/wp-content/uploads/2013/03/jefworks_header_logo.png"
+
+#baseurl: "" # the subpath of your site, e.g. /blog/
+#url: "" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+
+highlighter: pygments
+
+#Other Global Configuration
+exclude: ['README.md']
