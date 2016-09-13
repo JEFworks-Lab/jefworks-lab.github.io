@@ -1,38 +1,28 @@
 ---
 layout: default
 ---
-
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
-    <div class="page">
-
-      <header class="page-header">
-        <h3 class="page-title">{{ page.title }}</h3>
-        <!-- {% if page.subtitle %}
-          <h5 class="page-subtitle"> {{ page.subtitle }} </h5>
-        {% endif %} -->
-        <div class="post-metadata">
-          <div> <i class="fa fa-calendar"></i>
-            <time>
-              {% if page.lastmodified %}
-                {{ page.lastmodified | date:'%A, %B %d, %Y'}}
-              {% else %}
-                {{ page.date | date:'%A, %B %d, %Y'}}
-              {% endif %}
-            </time>
-          </div>
-          <div> <i class="fa fa-tag"></i>
-              {% for tag in page.tags %}
-                <span class="label label-primary">{{tag}}</span>
-              {% endfor %}
-          </div>
-        </div>
-
-      </header>
-
-      <article class="page-content">
-        {{ content }}
-      </article>
+<article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-list__meta">
+      <time datetime="{{ page.date | date: "%b %d, %Y" }}" class="post-list__meta--date date">
+        {{ page.date | date: "%b %d, %Y" }}
+      </time>
+      &#8226;
+      <span class="post-meta__tags">
+        on {% for tag in page.tags %}
+        |
+        <a href="{{ site.baseurl }}tags/#{{ tag }}">
+          {{ tag }}
+        </a> {% endfor %}
+        |
+      </span>
     </div>
-  </div>
-</div>
+    <h1 class="post-list__post-title post-title">{{ page.title }}</h1>
+  </header>
+
+  <section class="post">
+    {{ content }}
+  </section>
+  {% if page.comments != false and site.disqus_shortname %}<section id="disqus_thread"></section><!-- /#disqus_thread -->{% endif %}
+</article>
+{% if page.comments != false %}{% include disqus.html %}{% endif %}

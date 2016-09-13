@@ -1,34 +1,129 @@
-<header>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{{ "/" | prepend: site.baseurl }}">
-          <img src="{{site.logo_location}}"> 
-	  <!---<span class="name-holder">{{ site.title }}</span>--->
+<span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+
+<header class="panel-cover" style="background-image: url({{ "images/cover.jpg" | prepend: site.baseurl }})">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="{{ site.baseurl }}" title="link to home of {{ site.title }}">
+          <img src="{{ "images/profile.jpg" | prepend: site.baseurl }}" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">{{ site.title }}</h1>
         </a>
-      </div>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">{{ site.description }}</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
 
-      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navigation-wrapper">
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item">
+                <a href="{{ site.baseurl }}about" title="link to {{ site.title }} blog" class="blog-button">
+                  <span class="label">About</span>
+                </a>
+              </li>
+              <li class="navigation__item">
+                <a href="{{ site.baseurl }}#blog" title="link to {{ site.title }} blog" class="blog-button">
+                  <span class="label">Blog</span>
+                </a>
+              </li>
 
-        <ul id="main-menu" class="nav navbar-nav navbar-right">
+            </ul>
+          </nav>
 
-          {% for menuItem in site.data.menu.mainmenu %}
-            <li><a href="{{ menuItem[1].url | prepend: site.baseurl }}">
-              <i class="fa {{menuItem[1].icon_class}}"></i> {{menuItem[1].text}}</a>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+            {% if site.author.email %}
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:{{ site.author.email }}" title="Email {{ site.author.email }}" target="_blank">
+                  <i class="svg-icon email"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            {% endif %}
+
+            {% if site.author.github_username %}
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/{{ site.author.github_username }}" title="{{ site.author.github_username }} on GitHub" target="_blank">
+                  <i class="svg-icon github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            {% endif %}
+
+            {% if site.author.stackoverflow_user %}
+              <!-- StackOverflow -->
+              <li class="navigation__item">
+                <a href="{{ site.author.stackoverflow_user }}" title="{{ site.author.name }} on stackoverflow" target="_blank">
+                  <i class="svg-icon stackoverflow"></i>
+                  <span class="label">StackOverflow</span>
+                </a>
+              </li>
+            {% endif %}
+
+            {% if site.author.linkedin_username %}
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/{{ site.author.linkedin_username }}" title="{{ site.author.linkedin_username }} on LinkedIn" target="_blank">
+                  <i class="svg-icon linkedin"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+            {% endif %}
+
+            {% if site.author.twitter_username %}
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/{{ site.author.twitter_username }}" title="@{{ site.author.twitter_username }} on Twitter" target="_blank">
+                  <i class="svg-icon twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            {% endif %}
+
+            {% if site.author.facebook_username %}
+              <!-- Facebook -->
+              <li class="navigation__item">
+                <a href="http://fb.me/{{ site.author.facebook_username }}" title="{{ site.author.name }} on Facebook" target="_blank">
+                  <i class="svg-icon facebook"></i>
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+            {% endif %}
+
+            {% if site.author.ig_username %}
+              <!-- Instagram -->
+              <li class="navigation__item">
+                <a href="http://instagram.com/{{ site.author.ig_username }}" title="{{ site.author.ig_username }} on Instagram" target="_blank">
+                  <i class="svg-icon instagram"></i>
+                  <span class="label">Instagram</span>
+                </a>
+              </li>
+            {% endif %}
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="{{ "feed.xml" | prepend: site.baseurl }}" title="Subscribe" target="_blank">
+                <i class="svg-icon rss"></i>
+                <span class="label">RSS</span>
+              </a>
             </li>
-          {% endfor %}
 
-        </ul>
+            </ul>
+          </nav>
+
+        </div>
+
       </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-  </nav>
 
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
 </header>

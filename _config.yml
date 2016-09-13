@@ -1,18 +1,44 @@
 # Site settings
-title: JEFworks
-email: jeanfan@fas.harvard.edu
-description: "Jean Fan works on code and other fun stuff"
-logo_location: "http://jefworks.com/wp-content/uploads/2013/03/jefworks_header_logo.png"
+title: Jean Fan
+description: "Bioinformatics and Integrative Genomics PhD Student at Harvard University"
+url: 'http://jefworks.github.io'
+baseurl: '/'
+google_analytics: 'UA-35232680-3'
+disqus_shortname: 'jefworks'
+simple_search: https://www.google.com/search
+subscribe_rss: /atom.xml
+excerpt_link: "Continue reading &#8230;"  # "Continue reading" link text at the bottom of excerpted articles
+excerpt_separator: "<!--more-->"
+#titlecase: true       # Converts page and post titles to titlecase
 
-#baseurl: "" # the subpath of your site, e.g. /blog/
-#url: "" # the base hostname & protocol for your site
+author:
+  name: 'Jean Fan'
+  email: jeanfan@fas.harvard.edu
+  github_username: jefworks
+  linkedin_username: jeanfan
+  twitter_username: jefworks
+  ig_username: jefworks
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
 
 # Build settings
+destination: _site
+paginate: 10
+permalink: /blog/:year/:month/:day/:title/
 markdown: kramdown
+highlighter: rouge
+
 kramdown:
+  # use Github Flavored Markdown
   input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
 
-highlighter: pygments
-
-#Other Global Configuration
-exclude: ['README.md']
+gems: ['jekyll-paginate', 'jekyll-compose', 'jemoji']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
