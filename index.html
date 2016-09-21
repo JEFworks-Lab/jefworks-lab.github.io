@@ -27,7 +27,8 @@ layout: default
           </a>
         </h2>
 
-        <p class="excerpt">{{ post.excerpt }}</p>
+        <p class="excerpt">{{ post.excerpt | strip_html | truncatewords:75}}</p>
+	<br>
         <span class="excerpt">
           <a href="{{ site.baseurl }}{{ post.url | remove_first: '/' }}">{{ site.excerpt_link }}</a>
         </class>
