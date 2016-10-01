@@ -21,14 +21,15 @@ permalink: /about/
 - Summer Research Intern, Mentored by Paul Meltzer and Liang Cao, Center for Cancer Research, National Cancer Institute, National Institutes of Health (June 2008 - Oct. 2008)
 
 ## TEACHING EXPERIENCE
-- Lead Instructor, Intro to Computer Programming through Web Development with Social Entrepreneurship (Sept. 2016 - Present)
-- Teaching Assistant, Summer Institute in Biomedical Informatics DBMI/HST (June 2016 - Aug. 2016)
-- Lead Instructor, Intro to Computer Programming for Future Scientists and Engineers The Innovation Institute (Sept. 2015 - June 2016)
-- Teaching Fellow, Single Cell Workshop 2015 Harvard Stem Cell Institute (Nov. 2015)
-- Teaching Fellow, Single Cell Workshop 2014 Harvard Stem Cell Institute (Oct. 2014)
+- Lead Instructor, Intro to Computer Programming through Web Development with Social Entrepreneurship, The Innovation Insitute (Sept. 2016 - Present)
+- Teaching Assistant, Summer Institute in Biomedical Informatics DBMI/HST, Harvard Medical School (June 2016 - Aug. 2016)
+- Lead Instructor, Intro to Computer Programming for Future Scientists and Engineers, The Innovation Institute (Sept. 2015 - June 2016)
+- Teaching Fellow, Single Cell Workshop 2015, Harvard Stem Cell Institute (Nov. 2015)
+- Teaching Fellow, Single Cell Workshop 2014, Harvard Stem Cell Institute (Oct. 2014)
 - Teaching Assistant, Introduction to Optimization 550.361 Johns Hopkins University (Aug. 2012 - Dec. 2012)
 
 ## SELECT INVITED TALKS AND PRESENTATIONS
+- **Fan J**, Lee H, Lee S, Ryu D, Lee S, Kim SJ, Kim K, Park PJ, Park WY, Kharchenko PV. Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq data. Wellcome Genome Campus, Single Cell Genomics Conference, 2016 (Poster)
 - **Fan J.** Applying single cell transcriptomics - unraveling the complexity of the developing human
 brain. Festival of Genomics, Single Cell Genomics, 2016 (Talk)
 - **Fan J.** Do art like a science. Do science like an art. TEDxJHU, Instructions Not Included, 2016
