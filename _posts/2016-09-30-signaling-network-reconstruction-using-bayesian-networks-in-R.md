@@ -81,7 +81,7 @@ graphviz.plot(g)
 ```
 ![]({{ site.url }}/images/bayesnet-unnamed-chunk-4-3.png)
 
-```
+```r
 g <- mmhc(sachs)
 graphviz.plot(g)
 ```
@@ -125,7 +125,7 @@ graphviz.plot(avg.boot)
 ```
 ![]({{ site.url }}/images/bayesnet-unnamed-chunk-5-2.png)
 
-In addition to large number of cells, the original paper suggests that
+The original paper suggests that
 network interventions are needed for accurate inference. So let's use
 the interventional data. The values of INT identifies which node is
 subject to either a stimulatory cue or an inhibitory intervention. Note
@@ -193,7 +193,7 @@ recapitulate the published results.
 ![]({{ site.url }}/images/bayesnet-published-results.png)<!-- -->
 
 
-What happens if we subsample to a smaller number of cells?
+The original paper also suggested that the large number of cells was necessary for accurate network reconstruction. So what happens if we subsample to a smaller number of cells?
 
 ```r
 isachs = read.table("data/sachs.interventional.txt", header = TRUE, colClasses = "factor")
@@ -235,5 +235,5 @@ graphviz.plot(bn.mbde)
 
 As expected, results poorly recapitulate known network structure. Thus,
 consistent with the paper findings, a large number of cells and
-inclusion of interventional data is needed for accurate pathway network
+inclusion of interventional data is needed for accurate network
 reconstruction.
