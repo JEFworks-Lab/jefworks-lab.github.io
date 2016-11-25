@@ -25,9 +25,13 @@ load('../../data/cd.RData')
 
 # how many genes? how many cells?
 dim(cd)
+```
 
+```
 ## [1] 23228   224
+```
 
+```r
 # look at snippet of data
 cd[1:5,1:5]
 ```
@@ -51,9 +55,13 @@ cd <- cd[rowSums(cd>0)>5, ]
 
 # how many genes and cells after filtering?
 dim(cd)
+```
 
+```
 ## [1] 12453   224
+```
 
+```r
 # transform to make more data normal
 mat <- log10(as.matrix(cd)+1)
 # look at snippet of data
@@ -452,9 +460,10 @@ Based on these `PAGODA` results, we can see pathways and biological
 processes driving the main division, which is consistent with previous
 annotations of neurons vs NPCs, but we can also see further
 heterogeneity not visible by PCA or tSNE alone. In this case, prior
-knowledge with known marker genes can allow us to better interpret these
-identified subpopulations as IPCs, RGs, Immature Neurons, and Mature
-Neurons.
+knowledge with [known marker genes](http://www.cell.com/fulltext/S0092-8674(16)30932-1) 
+can allow us to better interpret these
+identified subpopulations as [IPCs, RGs, Immature Neurons, and Mature
+Neurons](https://github.com/JEFworks/figure-code-dump/tree/master/jcell201607025).
 
 ```r
 # visualize a few known markers
@@ -487,7 +496,7 @@ heatmap(mat.sub[,hc$labels], Colv=as.dendrogram(hc), Rowv=NA, scale="none", col=
 
 ![]({{ site.url }}/images/pagoda-marker-2.png)
 
-Differential expression analysis with `SCDE`
+Differential expression analysis with `scde`
 --------------------------------------------
 
 To further characterize identified subpopulations, we can identify
@@ -512,7 +521,7 @@ heatmap(mat.sub[,hc$labels], Colv=as.dendrogram(hc), Rowv=NA, scale="none", col=
 Now, let's use `scde` to identify differentially expressed genes.
 
 ```r
-# SCDE relies on the same error models
+# scde relies on the same error models
 load('../../data/cd.RData')
 load('../../data/knn.RData')
 
@@ -538,7 +547,7 @@ ediff <- scde.expression.difference(knn, cd[vi,], prior, groups = test, n.cores 
 head(ediff[order(abs(ediff$Z), decreasing = TRUE), ])
 ```
 
-```r
+```
 ##                 lb       mle        ub        ce         Z        cZ
 ## STMN2     2.303137  3.207941  7.320687  2.303137  7.160408  6.827743
 ## CDH6      7.567451 10.076226 10.569755  7.567451  7.150820  6.827743
@@ -587,19 +596,19 @@ specific to single cell methods and not included in this session but
 users are encouraged to check out this [light-weight R implementation
 with tutorials](https:/github.com/JEFworks/liger) on their own time.
 
-Pseudo-time trajectory analysis with `Monocle`
+Pseudo-time trajectory analysis with `monocle`
 ----------------------------------------------
 
 Cells may not always fall into distinct subpopulations. Rather, they may
 form a continuous gradient along a pseudo-time trajectory. To order
-cells along their pseudo-time trajectory, we will use `Monocle` from the
+cells along their pseudo-time trajectory, we will use `monocle` from the
 [Trapnell
 lab](http:/www.nature.com/nbt/journal/v32/n4/full/nbt.2859.html).
 
 ```r
 library(monocle)
 
-# Monocle takes as input fpkms
+# monocle takes as input fpkms
 load('../../data/fpm.RData')
 expression.data <- fpm
 
@@ -607,7 +616,7 @@ expression.data <- fpm
 pheno.data.df <- data.frame(type=sg[colnames(fpm)], pagoda=sg2[colnames(fpm)]) 
 pd <- new('AnnotatedDataFrame', data = pheno.data.df) 
 
-# convert data object needed for Monocle
+# convert data object needed for monocle
 data <- newCellDataSet(expression.data, phenoData = pd)
 ```
 
@@ -620,7 +629,7 @@ this example, we will simply choose genes based on prior knowledge.
 ordering.genes <- markers # Select genes used for ordering
 data <- setOrderingFilter(data, ordering.genes) # Set list of genes for ordering
 data <- reduceDimension(data, use_irlba = FALSE) # Reduce dimensionality
-set.seed(0) # Monocle is also stochastic
+set.seed(0) # monocle is also stochastic
 data <- orderCells(data, num_paths = 2, reverse = FALSE) # Order cells
 
 # Plot trajectory with inferred branches
