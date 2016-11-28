@@ -7,7 +7,7 @@ permalink: /talks/
 ## TALKS AND PRESENTATIONS
 - **Fan J**, Lee H, Lee S, Ryu D, Lee S, Kim SJ, Kim K, Park PJ, Park WY, Kharchenko PV. Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq data. Wellcome Genome Campus, Single Cell Genomics Conference, 2016 (Poster)
 - **Fan J.** Applying single cell transcriptomics - unraveling the complexity of the developing human
-brain. Festival of Genomics, Single Cell Genomics, 2016 (Talk)
+brain. Festival of Genomics, Single Cell Genomics, 2016 ([Talk](http://www.slideshare.net/JeanFan1/festival-of-genomics-2016-brain-talk))
 - **Fan J.** Do art like a science. Do science like an art. TEDxJHU, Instructions Not Included, 2016
 ([Talk](https://www.youtube.com/watch?v=MYbfY0Tzc-c)) 
 - **Fan J**, Wang L, Brooks AN, Wan Y, Neuberg D, Rassenti K, Ghia E, Kipps T, Brown JR, Li S,

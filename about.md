@@ -6,7 +6,7 @@ permalink: /about/
 
 # ABOUT JEAN FAN
 
-I am pursuing my PhD in Bioinformatics and Integrative Genomics at Harvard and am a student in Peter Kharchenko's lab at the Department of Biomedical Informatics. I also collaborate closely with Catherine Wu's lab at the Dana-Farber Cancer Institute. My research interests center around developing computational approaches for interpreting heterogeneity in single cell populations, particularly in the context of cancers such as CLL and MM. I am currently working on computational algorithms to identify and characterize subpopulations using single cell data.
+I am pursuing my PhD in Bioinformatics and Integrative Genomics at Harvard and am a student in [Peter Kharchenko's lab](http://pklab.med.harvard.edu/) at the Department of Biomedical Informatics. I also collaborate closely with [Catherine Wu's lab](http://wulab.dfci.harvard.edu/) at the Dana-Farber Cancer Institute. My research interests center around developing computational approaches for interpreting heterogeneity in single cell populations, particularly in the context of cancers such as CLL and MM. I am currently working on computational algorithms to identify and characterize subpopulations using single cell data.
 
 ## EDUCATION
 - PhD Candidate in [Bioinformatics and Integrative Genomics](http://dms.hms.harvard.edu/big/), Harvard University, Division of Medical Science (June 2013 - Present)
