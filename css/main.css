@@ -19,6 +19,11 @@ pre.highlight code,
     background: hsl(30,80%,90%);
 }
 
+.navigation__item span {
+    background-color: transparent;
+    border: 1px solid #999;
+}
+ 
 .btn,
 .navigation__item a {
   margin: 2px 0;
