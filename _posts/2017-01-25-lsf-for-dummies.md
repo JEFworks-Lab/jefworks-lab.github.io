@@ -1,6 +1,12 @@
+---
+layout: post
+comments: true
+tags: [bash, notes]
+---
+
 # LSF for dummies
 
-(Actually, if you've gotten to a point you need to use LSF, you're probably far from a dummy ;P)
+(Actually, if you've gotten to a point you need to use LSF, you're far from a dummy ;P)
 
 LSF (Load Sharing Facility) is a system to manage programs that generally cannot be run interactively on a machine because they require too much CPU-time, memory, or other system resources. For that reason, those large programs have to be run in batch as jobs.
 
