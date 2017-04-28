@@ -1,6 +1,11 @@
+---                                                                                                                                                                                                     layout: post
+comments: true
+tags: [notes, tutorial, bash, analysis]
+---
+
 # How to be a ["research parasite"](http://www.nejm.org/doi/full/10.1056/NEJMe1516564): a guide to analyzing public sequencing data from GEO
 
-In this tutorial, I will take you through my workflow for obtaining public sequencing data available on [NCBI GEO](https://www.ncbi.nlm.nih.gov/geo/). 
+In this tutorial, I will take you through my workflow for obtaining public sequencing data available on [NCBI GEO](https://www.ncbi.nlm.nih.gov/geo/).
 
 Let's say for example, I am interested in analyzing the single cell RNA-seq data found in this paper: [Single-Cell Analysis Reveals a Close Relationship between Differentiating Dopamine and Subthalamic Nucleus Neuronal Lineages](http://www.cell.com/cell-stem-cell/abstract/S1934-5909(16)30343-5)
 
@@ -23,7 +28,7 @@ ascp -i asperaweb_id_dsa.openssh -Q -T -k 2 anonftp@ftp-trace.ncbi.nlm.nih.gov:/
 
 (Of course, this means you'll need to have Aspera installed and the licenses needed to use it. If you are on Harvard Orchestra for example, [here is a tutorial for installing, setting up the software license, setting up the path, and so forth](https://wiki.med.harvard.edu/Orchestra/AsperaToDownloadNcbiSraData))
 
-Now you have a bunch of SRA files named with their SRR run name (ex. SRR4255367.sra). How do you get back the sample name that's often used in GEO to provide metainformation and other annotations?! For that, you will need to use the SRA Run Selector. Again, once you know the URL structure, it's a simple plug and chug: [`http://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP090110`](http://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP090110). You can just download the RunInfo Table as a spreadsheet so you can later map from Run name to Sample name as needed. 
+Now you have a bunch of SRA files named with their SRR run name (ex. SRR4255367.sra). How do you get back the sample name that's often used in GEO to provide metainformation and other annotations?! For that, you will need to use the SRA Run Selector. Again, once you know the URL structure, it's a simple plug and chug: [`http://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP090110`](http://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP090110). You can just download the RunInfo Table as a spreadsheet so you can later map from Run name to Sample name as needed.
 
 Then, to convert .sra files to .fastq files, you can use [SRA toolkit](https://github.com/ncbi/sra-tools). I actually like to wrap everything up into a [snakemake](https://snakemake.readthedocs.io/en/stable/) Python make file to handle job submission.  I can just run the following lines on command line:
 
@@ -71,18 +76,17 @@ rule all:
 
 rule sra2fastq:
      input: join(SRA_DIR, '{sample}.sra')
-     output: 
+     output:
         log = '{sample}.sra2fastq.log',
         r1 = '{sample}_1.fastq',
         r2 = '{sample}_2.fastq',
      shell: 'fastq-dump --split-files {input}; echo {input} > {output.log}'
 
 rule bgzipfastq:
-    input: 
+    input:
         r1 = rules.sra2fastq.output.r1,
         r2 = rules.sra2fastq.output.r2
     output: '{sample}.sra2fastqgz.log',
     shell: '/opt/htslib-1.2.1/bin/bgzip {input.r1}; /opt/htslib-1.2.1/bin/bgzip {input.r2}; echo {input} > {output}'
 ```
-This snakemake file has been design for paired-end RNA-seq and will convert each .sra into two .fastq files and then gzip them. I have additional snakemake files for aligning, calling variants, quantifying to counts, looking for alternative splicing, and so forth. But once you have .fastq files, you're ready to process, reanalyze, and be the best research parasite you can be!
-
+This snakemake file has been design for paired-end RNA-seq and will convert each .sra into two .fastq files and then bgzips them. I have additional snakemake files for aligning, calling variants, quantifying to counts, looking for alternative splicing, and so forth. But once you have .fastq files, you're ready to process, reanalyze, and be the best research parasite you can be!
