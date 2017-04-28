@@ -1,4 +1,5 @@
----                                                                                                                                                                                                     layout: post
+---
+layout: post
 comments: true
 tags: [notes, tutorial, bash, analysis]
 ---
@@ -89,4 +90,4 @@ rule bgzipfastq:
     output: '{sample}.sra2fastqgz.log',
     shell: '/opt/htslib-1.2.1/bin/bgzip {input.r1}; /opt/htslib-1.2.1/bin/bgzip {input.r2}; echo {input} > {output}'
 ```
-This snakemake file has been design for paired-end RNA-seq and will convert each .sra into two .fastq files and then bgzips them. I have additional snakemake files for aligning, calling variants, quantifying to counts, looking for alternative splicing, and so forth. But once you have .fastq files, you're ready to process, reanalyze, and be the best research parasite you can be!
+This snakemake file has been design for paired-end RNA-seq and will convert each .sra into two .fastq files and then bgzips them. I have additional snakemake files for aligning, calling variants, quantifying to counts, looking for alternative splicing, and so forth. For more information about snakemake, check out this [tutorial](http://slowkow.com/notes/snakemake-tutorial/). But once you have .fastq files, you're ready to process, reanalyze, and be the best research parasite you can be!
