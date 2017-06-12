@@ -123,13 +123,13 @@ muts <- do.call(rbind, lapply(1:length(ref), function(i) {
     if(ref[i]!=read[i]) {   
         s = pr$strand       
         if(s=='+'){         
-  r = ref[i]      
-  m = read[i]     
+            r = ref[i]      
+            m = read[i]     
         } else {  
-  r = as.character(complement(DNAString(ref[i])))      
-  m = as.character(complement(DNAString(read[i])))     
+            r = as.character(complement(DNAString(ref[i])))      
+            m = as.character(complement(DNAString(read[i])))     
         }         
-        info <- data.frame('chr'=pr$chr, 'pos'=pr$start+i-1, 'strand'='+', 'ref'=r, 'mut'=m)        
+        info <- data.frame('chr'=pr$chr, 'pos'=start+i-1, 'strand'='+', 'ref'=r, 'mut'=m)        
         return(info)        
     }   
 }))
@@ -138,8 +138,23 @@ muts
 
 ```
      chr     pos strand ref mut     
- 1 chr17 9792843      +   A   C
+ 1 chr17 9792869      +   A   C
 ```
+
+Final double check that that our position is correct.
+
+```r
+align.df <- data.frame(chr=muts$chr, strand=muts$start, start=muts$pos, end=muts$pos) 
+align.gr <- with(align.df, GRanges(chr, IRanges(as.numeric(start), as.numeric(end)), strand=strand)) 
+align.seq <- getSeq(BSgenome.Hsapiens.UCSC.hg19, align.gr)
+align.seq
+```
+
+```
+A DNAStringSet instance of length 1 
+    width seq
+[1]     1 A
+ ```
 
 Since this could be a sequencing error, we can rely on other information such as the read quality or just look at other reads to see if this mutation pops up again. As you can already tell, things become a little more complicated for reverse primer reads since we need to get complements. Similarly for reverse reads, we need to get reverse complement sequences, which can quickly become confusing if you don't double check your work by comparing to references and keeping track of the directionality!
 
