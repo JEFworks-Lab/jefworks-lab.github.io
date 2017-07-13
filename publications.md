@@ -5,6 +5,7 @@ permalink: /publications/
 ---
 
 ## PUBLICATIONS ([ORCID](https://orcid.org/0000-0002-0212-5451))
+- Wang L\*, **Fan J**\*, Zhang CZ, Francis JM, Georghiou G, Hergert S, Shuqiang Li, Gambe R, Zhou CW, Yang C, Xiao S, Cin PD, Bowden M, Kotliar D, Shukla SA, Brown JR, Neuberg D, Alessi DR, Khachenko PV, Livak KJ, Wu CJ. Integrated single-cell genetic and transcriptional analysis suggests novel drivers of chronic lymphocytic leukemia. Genome Research 2017. [doi:10.1101/gr.217331.116](http://genome.cshlp.org/content/early/2017/07/03/gr.217331.116)
 - Wang L\*, Brooks AN\*, **Fan J**\*, Wan Y\*, Gambe R, Li S, Hergert S, Yin S, et al. Transcriptomic characterization of SF3B1 mutation reveals its pleiotropic effects in chronic lymphocytic leukemia. Cancer Cell 2016 [doi:10.1016/j.ccell.2016.10.005](http://www.cell.com/cancer-cell/fulltext/S1535-6108(16)30492-5)
 - **Fan J**, Salathia N, Liu R, Kaeser G, Yung Y, Herman J, Kaper F, Fan JB, Zhang K, Chun J, and
 Kharchenko PV. Characterizing transcriptional heterogeneity through pathway and gene set
