@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-tags: [lists]
+tags: [lists, notes]
 ---
 
 # 5 must-dos for efficient bioinformatics
