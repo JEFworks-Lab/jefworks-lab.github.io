@@ -1,8 +1,8 @@
 # Site settings
 title: Jean Fan
 description: "Bioinformatics and Integrative Genomics PhD Student at Harvard University"
-url: 'http://jefworks.github.io'
-baseurl: '/'
+url: 'http://jefworks.github.io/'
+baseurl: ''
 google_analytics: 'UA-35232680-3'
 disqus_shortname: 'jefworks'
 simple_search: https://www.google.com/search
