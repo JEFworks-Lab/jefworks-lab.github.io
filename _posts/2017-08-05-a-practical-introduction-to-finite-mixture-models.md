@@ -4,6 +4,8 @@ comments: true
 tags: [tutorial, analysis, R]
 ---
 
+# A practical introduction to finite mixture modeling with `flexmix` in `R`
+
 Introduction
 ------------
 
