@@ -4,7 +4,7 @@ comments: true
 tags: [notes]
 ---
 
-# CIGAR (strings) 
+# Smoke and CIGAR (strings) 
 
 The 'CIGAR' (Compact Idiosyncratic Gapped Alignment Report) string is how the SAM/BAM format represents spliced alignments. Understanding the CIGAR string will help you understand how your query sequence aligns to the reference genome. For example, the position stored is the left most coordinate of the alignment. To get to the right coordinate, you have to parse the CIGAR string. 
 
@@ -31,27 +31,30 @@ AAGTCTAGAA (ref)
   GTCTAG (query)
 ```
 
-Second example: The shown alignment will give position=3 (0-based) and CIGAR=3M2I2M: 
+Second example: The shown alignment will give position=2 (0-based) and CIGAR=3M2I3M: 
 
 ```
-AAAGTCGATGAA (ref)
-   GTC  TG (query)
+0123456789
+AAGTC  TAGAA (ref) 
+  GTCGATAG (query)
 ```
 
-Here, two nucleotides ('GA') are inserted into the reference. So if we are starting at position=3, based on the CIGAR string, we have 3 exact matches, 2 insertions, then 2 more exact matches, resulting in an end position of 9. 
+Here, two nucleotides ('GA') are inserted into the query. So if we are starting at position=2, based on the CIGAR string, we have 3 exact matches, 2 insertions, then 3 more exact matches, resulting in an end position of 9. 
 
-Third example: The shown alignment will give position=3 and CIGAR=2M1D3M: 
+Third example: The shown alignment will give position=2 and CIGAR=2M1D3M: 
 
 ```
-AAAGT TAGAA (ref) 
-   GTCTAG (query)
+0123456789
+AAGTCTAGAA (ref) 
+  GT TAG (query)
 ```
 
-Note there is a deletion on the reference. The 'C' in the query sequence has no match. So if we are starting at position=3, based on the CIGAR string, we have 2 exact matches, 1 deletion, then 3 more exact matches, resulting in an end position of 7 relative to the reference. 
+Note there is a deletion on the query. The 'C' in the reference sequence has no match. So if we are starting at position=2, based on the CIGAR string, we have 2 exact matches, 1 deletion, then 3 more exact matches, resulting in an end position of 7 relative to the reference. 
 
 Fourth example: The shown alignment will give position=3 and CIGAR=3M7N4M:
 
 ```
+01234567890123456
 CCCTACGTCCCAGTCAC (ref) 
    TAC       TCAC (query)
 ```
@@ -60,8 +63,8 @@ This is a gapped alignment (due to a splicing event in RNAseq). So if we are sta
 
 ## Additional resources
 - [SAM documentation](https://samtools.github.io/hts-specs/SAMv1.pdf)
+- [UMICH Center for Statistical Genetics](https://genome.sph.umich.edu/wiki/SAM)
 - [Playing With Matches and CIGARs](http://zenfractal.com/2013/06/19/playing-with-matches/)
-- [RBamtools documentation](https://cran.r-project.org/web/packages/rbamtools/vignettes/rbamtools.pdf)
 
 
 
