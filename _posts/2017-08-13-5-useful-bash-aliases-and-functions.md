@@ -111,7 +111,7 @@ Another simple one but very helpful. If I make a directory, I often want to `cd`
 mkcd() { mkdir -p $1; cd $1 }
 ```
 
-And there you have it. Here is my [cat tax](http://imgur.com/gallery/9Ofql) for posting a less-than-professional post: (my dog Foxxy)
+And there you have it. Here is my [cat tax](http://www.urbandictionary.com/define.php?term=cat+tax&defid=10979502) for posting a less-than-professional post: (my dog [Foxxy](https://www.instagram.com/pomdeterrier/))
 ![]({{ site.url }}/images/foxxy.png)
 
 ---
