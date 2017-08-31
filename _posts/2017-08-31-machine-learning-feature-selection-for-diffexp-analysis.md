@@ -73,9 +73,9 @@ heatmap(mat, Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(1
 
 ## Machine learning with `mlr`
 
-[The `mlr` (Machine Learning in R) package](https://github.com/mlr-org/mlr/) very nicely pulls in machine learning approaches from other packages into a single integrated framework for machine learning experiments in R. They also have lots of pgreat tutorials to help you get started\](<https://mlr-org.github.io/mlr-tutorial/release/html/index.html>).
+[The `mlr` (Machine Learning in R) package](https://github.com/mlr-org/mlr/) very nicely pulls in machine learning approaches from other packages into a single integrated framework for machine learning experiments in R. They also have lots of great tutorials to help you get started\](<https://mlr-org.github.io/mlr-tutorial/release/html/index.html>).
 
-First, we can define a classification task as classify cells as group1.
+First, we can define a classification task as classify cells as `group1`.
 
 ``` r
 library(mlr)
@@ -89,9 +89,9 @@ mat.test$celltype <- group[rownames(mat.test)]==ct
 task <- makeClassifTask(data = mat.test, target = "celltype")
 ```
 
-We will use mlr's function generateFilterValuesData to try a few methods for calculating the feature importance. A table showing all available methods can be found [here](https://mlr-org.github.io/mlr-tutorial/release/html/filter_methods/index.html).
+We will use `mlr`'s function `generateFilterValuesData` to perform feature selection. A table showing all available feature selection methods can be found [here](https://mlr-org.github.io/mlr-tutorial/release/html/filter_methods/index.html).
 
-In this example, I will select features based on their [importance in a random forest classifier](http://blog.datadive.net/selecting-good-features-part-iii-random-forests/). Feature selection based on a decision tree-based approach such as with a random forest classifier makes sense intuitively if we wanted to find a set of potential surface markers for FACs and had a matrix of gene expression for cell surface protein encoding genes. We want to build a decision tree or group of decision trees that will tell if that us if we gate cells on expression of X and then Y, we will get our population of interest.
+I will select features based on their [importance in a random forest classifier](http://blog.datadive.net/selecting-good-features-part-iii-random-forests/). Feature selection based on a decision tree-based approach such as with a random forest classifier makes sense intuitively if we wanted to find a set of potential surface markers for FACs and had a matrix of gene expression for cell surface protein encoding genes. We want to build a decision tree or group of decision trees that will tell if that us if we gate cells on expression of X and then Y, we will get our population of interest.
 
 ``` r
 method <- 'cforest.importance'
@@ -238,4 +238,4 @@ smoothScatter(mat[marker[1],], mat[marker[2],],
 
 ![]({{ site.url }}/images/mlr7-1.png)
 
-So it looks like our machine learning approach is better in this simulation. But of course, this is just a simulation. And in real life, we may have practical considerations like translation rate (not all highly expressed genes become highly expressed proteins) so there are likely other important information we currently don't consider in this approach. But consider: how do biologists pick which marker genes to use? Can we formulate that into a kind of machine learning approach? And how can we use machine learning to augment or inform what the biologist is already doing?
+So it looks like our machine learning approach is better in this simulation. But of course, this is just a simulation. And in real life, we may have practical considerations like translation rate (not all highly expressed genes become highly expressed proteins) so there are likely other important information we currently don't integrate in this approach. But consider: how do biologists pick which marker genes to use? Can we formulate that into some kind of machine learning approach? And how can we use machine learning to augment and inform what biologists are already doing?
