@@ -125,7 +125,7 @@ table(ct)
     ##         naivet             nk    regulatoryt        thelper 
     ##             52            769            226            191
 
-Let's clean up this data a little. We'll remove genes seen less fewer than 100 cells (a bit stringent, but it'll speed things up for this demonstration). Then we'll normalize and log transform.
+Let's clean up this data a little. We'll remove genes seen in fewer than 100 cells (a bit stringent, but it'll speed things up for this demonstration). Then we'll normalize and log transform.
 
 ``` r
 vi <- Matrix::rowSums(reference.cd>0)>100
@@ -235,6 +235,6 @@ table(com, ct)
     ##   6           1       4
     ##   7           0       1
 
-And many many more. Check out the `igraph` package for more details on the community detection algorithms available in the package: <https://www.rdocumentation.org/packages/igraph/versions/1.1.2>
+And many many more. Check out the `igraph` package for more community detection algorithms available through the package: <https://www.rdocumentation.org/packages/igraph/>
 
-Now it's time for you to try it out for yourself. What if we change k in the k-nearest neighbor identification? What if we use fewer features/genes? What if we transpose our matrices and try to cluster genes instead of cells?
+Now it's time for you to try it out for yourself. What if we change k in the k-nearest neighbor identification? What if we use fewer features/genes? What if we try a different community detection algorithm? What if we transpose our matrices and try to cluster genes instead of cells?
