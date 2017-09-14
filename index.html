@@ -22,7 +22,7 @@ layout: default
           </span>
         </div>
         <h2 class="post-list__post-title post-title">
-          <a href="{{ site.baseurl }}{{ post.url | remove_first: '/' }}" title="{{ post.title }}">
+          <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">
           {{ post.title }}
           </a>
         </h2>
@@ -30,7 +30,7 @@ layout: default
         <p class="excerpt">{{ post.excerpt | strip_html | truncatewords:75}}</p>
 	<br>
         <span class="excerpt">
-          <a href="{{ site.baseurl }}{{ post.url | remove_first: '/' }}">{{ site.excerpt_link }}</a>
+          <a href="{{ site.baseurl }}{{ post.url }}">{{ site.excerpt_link }}</a>
         </class>
 
         <hr class="post-list__divider">
