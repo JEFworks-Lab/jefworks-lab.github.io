@@ -5,7 +5,8 @@ permalink: /talks/
 ---
 
 ## TALKS AND PRESENTATIONS
-- **Fan J**. Linking genetic and transcriptional intratumoral heterogeneity at the single cell level. Models, Inference, and Algorithms seminar series. Broad Institute, 2017. [Talk](https://www.youtube.com/watch?v=zJEDoBrKVKE)
+- **Fan J**. Classifying and characterizing single cells using transcriptional and epigenetic analysis. Minisymposium - After the Data Deluge: Grappling With Transcriptional Complexity in the Brain. Society for Neuroscience 2017. ([Talk](https://www.slideshare.net/JeanFan1/society-for-neuroscience-november-2017-sndropseq-scthsseq-talk))
+- **Fan J**. Linking genetic and transcriptional intratumoral heterogeneity at the single cell level. Models, Inference, and Algorithms seminar series. Broad Institute, 2017. ([Talk](https://www.youtube.com/watch?v=zJEDoBrKVKE))
 - **Fan J**. Bioinformatics for Single Cell Analysis. Division of Immunology Bioinformatics Seminar, 2017 (Talk)
 - **Fan J**, Lee H, Lee S, Ryu D, Lee S, Kim SJ, Kim K, Park PJ, Park WY, Kharchenko PV. Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq data. Wellcome Genome Campus, Single Cell Genomics Conference, 2016 (Poster)
 - **Fan J.** Applying single cell transcriptomics - unraveling the complexity of the developing human
