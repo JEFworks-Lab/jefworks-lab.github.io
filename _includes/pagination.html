@@ -1,15 +1,24 @@
 <nav class="pagination" role="navigation">
-  {% if paginator.previous_page %}
+    {% if paginator.previous_page %}
     {% if paginator.previous_page == 1 %}
-      <a rel="prev" class="posts newer" href="{{ "/#blog" | prepend: site.baseurl }}" title="Previous Page">← Newer Posts</a>
+    <a rel="prev" class="posts newer" href="{{ "/#blog" | prepend: site.baseurl }}" title="Previous Page">← Newer Posts</a>
     {% else %}
-      <a rel="prev" class="posts newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}/">← Newer Posts</a>
+    <a rel="prev" class="posts newer" href="{{ site.baseurl }}/page{{ paginator.previous_page }}/">← Newer Posts</a>
     {% endif %}
-  {% endif %}
+    {% endif %}
 
-  <span class="pagination__page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    <span class="pagination__page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
 
-  {% if paginator.next_page %}
+    {% if paginator.next_page %}
     <a rel="next" class="posts older" href="{{ site.baseurl }}/page{{ paginator.next_page }}/">Older Posts →</a>
-  {% endif %}
+    {% endif %}
+
+    |
+
+    <a href="/tags">Tags</a>
+
+    |
+    
+    <a href="/archive">Archive</a>
+
 </nav>
