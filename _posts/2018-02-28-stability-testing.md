@@ -93094,15 +93094,15 @@ $('#hc4').highcharts(
 
 This looks much better! Much more like our simulated ground-truth! Sure, you may think that in this particular dummy example, you could've just looked at the tSNE embedding and tell that we've overclustered the data. But with real data, things can often be a lot more ambiguous. 
 
-# 10X PBMC data from Patient A
+# 10X PBMC data from Patient B
 
 So let's test out some real data. We will subsample 1000 cells from the [PBMC dataset from 10X Genomics](https://support.10xgenomics.com/single-cell-gene-expression/datasets/). It is provided as a part of the `MUDAN` package.
 
 ```r
 library(MUDAN)
-data(pbmcA)
+data(pbmcB)
 
-myMudanObject <- Mudan$new('pbmcA', pbmcB[, 1:1000], verbose=FALSE)
+myMudanObject <- Mudan$new('pbmcB', pbmcB[, 1:1000], verbose=FALSE)
 myMudanObject$normalizeCounts() # CPM normalization
 myMudanObject$normalizeVariance() # variance normalization
 myMudanObject$getPcs(nPcs=50, maxit=1000) # dimensionality reduction
