@@ -12,7 +12,7 @@ I'll try to keep to aliases and functions that may be more niche to bioinformati
 	
 ---
 	
-## 1. Tar (and untar) all those fastq, csv, vcf, and other files
+## 1. Tar and compress (and untar) all those fastq, csv, vcf, and other files
 
 I can never remember the flags...so let's just make an easy to understand function called targz to tar.gz a file or folder and likewise for extracting. Note this is a bash function so it should be put into your `.profile` or another dedicated `.bash_functions` file to be sourced from your `.bashrc`. 
 
@@ -20,9 +20,9 @@ I can never remember the flags...so let's just make an easy to understand functi
 
 ```sh
 # create .tar.gz 
-targz() { tar -cvf $1.tar.gz $1; rm -r $1; }
+targz() { tar -zcvf $1.tar.gz $1; rm -r $1; }
 # extra .tar.gz
-untargz() { tar -xvf $1; rm -r $1; }
+untargz() { tar -zxvf $1; rm -r $1; }
 ```
 
 **Usage:**
