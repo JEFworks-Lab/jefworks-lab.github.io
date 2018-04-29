@@ -54,4 +54,4 @@ I am currently an NCI F99/K00 post-doctoral fellow in the lab of [Dr. Xiaowei Zh
 
 <hr>
 
-<div align="center"><img class="img-responsive" src="{{ "/img/pages/about.png" | prepend: site.baseurl }}" alt="NCI F99/K00 fellows"></div>
+<div align="center"><img class="img-responsive" src="{{ "/img/about.png" | prepend: site.baseurl }}" alt="NCI F99/K00 fellows"></div>

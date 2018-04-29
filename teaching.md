@@ -31,4 +31,4 @@ I am a valiant supporter of Albert Einstein's tenet that "If you can't explain i
 
 <hr>
 
-<div align="center"><img class="img-responsive" src="{{ "/img/pages/teaching.png" | prepend: site.baseurl }}" alt="Computer science class at Ti2"></div>
+<div align="center"><img class="img-responsive" src="{{ "/img/teaching.png" | prepend: site.baseurl }}" alt="Computer science class at Ti2"></div>

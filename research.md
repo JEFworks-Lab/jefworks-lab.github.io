@@ -25,5 +25,5 @@ Women remain vastly underrepresented in STEM fields, in particular the computati
 
 <hr>
 
-<div align="center"><img class="img-responsive" src="{{ "/img/pages/research.png" | prepend: site.baseurl }}" alt="Regeneron award winners"></div>
+<div align="center"><img class="img-responsive" src="{{ "/img/research.png" | prepend: site.baseurl }}" alt="Regeneron award winners"></div>
 

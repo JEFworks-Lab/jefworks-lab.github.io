@@ -35,4 +35,4 @@ Genetics/American Society of Human Genetics Conference, 2011 (Poster)
 
 <hr>
 
-<div align="center"><img class="img-responsive" src="{{ "/img/pages/talks.png" | prepend: site.baseurl }}" alt="TEDxJHU talk"></div>
+<div align="center"><img class="img-responsive" src="{{ "/img/talks.png" | prepend: site.baseurl }}" alt="TEDxJHU talk"></div>

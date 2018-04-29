@@ -2,10 +2,12 @@
 layout: default
 ---
 
-<h2>Tags:</h2>
-<div class="tags"> 
+<h1>Tags</h1>
+<div class="tags">
+    |
 {% for tagitem in site.tags  %} 
-  <a href="#{{  tagitem[0] }}">{{  tagitem[0] }}</a>
+    <a href="#{{  tagitem[0] }}">{{  tagitem[0] }}</a>
+    |
 {% endfor %}
 </div>
 
@@ -13,7 +15,7 @@ layout: default
 {% for tagitem in site.tags %} 
   <!-- for each tag, create an anchor by using the tag name as an id --> 
   <div id="{{ tagitem[0] }}">  
-    <h3> {{ tagitem[0] }} </h3>  <!-- for create a heading --> 
+    <h4> {{ tagitem[0] }} </h4>  <!-- for create a heading --> 
 
     <ul> <!-- create the list of posts -->
       <!-- iterate through all the posts on the site --> 

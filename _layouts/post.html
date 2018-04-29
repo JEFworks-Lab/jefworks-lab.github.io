@@ -14,8 +14,8 @@ layout: default
 			{{post.date | date_to_long_string }}: {{ post.title }}
 		    </a></li>
                     {% endfor %}
-                    <li><a href="{{ "/allposts" | prepend: site.baseurl }}">All posts ...</a></li>
                 </ul>
+                <a href="{{ "/allposts" | prepend: site.baseurl }}">All posts ...</a>
             </div>
 	    <div class="well">
 		<h4>TAGS</h4>
@@ -57,13 +57,18 @@ layout: default
 
 		    {% endfor %}
 		</ul>		
-            </div>
-	    
+            </div>	    
+	    <div class="well">
+		<h4>EXPLORE MORE POSTS</h4>
+                <a href="{{ "/tags" | prepend: site.baseurl }}">by Tags</a> | 
+                <a href="{{ "/archive" | prepend: site.baseurl }}">by Date</a>		
+	    </div>
         </div>
 
         <div class="col-md-8">
-            <h1>{{ page.title }}</h1>
+	    <h1>{{ page.title }}</h1>
             <p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+	    <hr>
             <div  id="markdown-content-container">{{ content }}</div>
             <hr>
             <ul class="pager">
