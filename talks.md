@@ -1,10 +1,12 @@
 ---
-layout: default
+layout: main
 title: Talks
 permalink: /talks/
+sectionid: talks
 ---
 
-## TALKS AND PRESENTATIONS
+# INVITED TALKS AND PRESENTATIONS
+- **Fan J**. Computational and Statistical Methods for Characterizing Single-cell Heterogeneity. Research In Progress - Division of Pulmonary and Critical Care Medicine. Northwestern University. 2018. (Talk)
 - **Fan J**. Classifying and characterizing single cells using transcriptional and epigenetic analysis. Minisymposium - After the Data Deluge: Grappling With Transcriptional Complexity in the Brain. Society for Neuroscience 2017. ([Talk](https://www.slideshare.net/JeanFan1/society-for-neuroscience-november-2017-sndropseq-scthsseq-talk))
 - **Fan J**. Linking genetic and transcriptional intratumoral heterogeneity at the single cell level. Models, Inference, and Algorithms seminar series. Broad Institute, 2017. ([Talk](https://www.youtube.com/watch?v=zJEDoBrKVKE))
 - **Fan J**. Bioinformatics for Single Cell Analysis. Division of Immunology Bioinformatics Seminar, 2017 (Talk)
@@ -30,3 +32,7 @@ National Institutes of Health, Single Cell Investigators Meeting, 2014 ([Poster]
 - **Fan J**, Karchin R. Computational Assessment of the Utility of Limiting Orthologous Sequence
 Depth in Mutation Impact Prediction Performance. International Congress of Human
 Genetics/American Society of Human Genetics Conference, 2011 (Poster)
+
+<hr>
+
+<div align="center"><img class="img-responsive" src="{{ "/img/pages/talks.png" | prepend: site.baseurl }}" alt="TEDxJHU talk"></div>

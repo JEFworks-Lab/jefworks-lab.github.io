@@ -2,49 +2,68 @@
 layout: default
 ---
 
-Explore by: <a href="/archive">Date</a> | <a href="/tags">Tags</a>
-<hr class="post-list__divider">
+<div class="header-container jumbotron">
+    <div class="container">
+	<div class="row"> 
+            <h2>JEFworks - where Jean Fan works on stuff</h2>
+	</div>
+    </div>
+</div>
 
-<div class="main-post-list">
+<div class="container">
 
-    <ol class="post-list">
-	{% for post in paginator.posts %}
-	<li>
-            <div class="post-list__meta">
-		<time datetime="{{ post.date | date: "%b %d, %Y" }}" class="post-list__meta--date date">
-		    {{ post.date | date: "%b %d, %Y" }}
-		</time>
-		&#8226;
-		<span class="post-meta__tags">
-		    on {% for tag in post.tags %}
-		    |
-		    <a href="{{ site.baseurl }}/tags/#{{ tag }}">
-			{{ tag }}
-		    </a> {% endfor %}
-		    |
-		</span>
-            </div>
-            <h2 class="post-list__post-title post-title">
-		<a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">
-		    {{ post.title }}
-		</a>
-            </h2>
-
-            <p class="excerpt">{{ post.excerpt | strip_html | truncatewords:75}}</p>
+    <div class="row">
+        <div class="col-md-8">
+	    <h2 class="header-light regular-pad">Jean Fan</h2>
+	    <h4>Bioinformatician. NCI F99/K00 Post-Doctoral Fellow. Harvard University.</h4>
+	    <p>I am currently an NCI F99/K00 post-doctoral fellow in the lab of <a href="http://zhuang.harvard.edu/">Dr. Xiaowei Zhuang</a> at Harvard University. I received my PhD in Bioinformatics and Integrative Genomics at Harvard under the mentorship of <a href="http://pklab.med.harvard.edu/">Dr. Peter Kharchenko</a> at the Department of Biomedical Informatics and in close collaboration with <a href="http://wulab.dfci.harvard.edu/">Dr. Catherine Wu</a> at the Dana-Farber Cancer Institute. My research interests center around developing computational methods for identifying and characterizing heterogeneity at the single cell level, particularly in the context of cancer, using multi-omics approaches.</p>
+	    Find me on:
 	    <br>
-            <span class="excerpt">
-		<a href="{{ site.baseurl }}{{ post.url }}">{{ site.excerpt_link }}</a>
-        </class>
+	    <a href="https://www.twitter.com/jefworks" target="_blank"><li class="fa fa-fw fa-2x fa-twitter"></li></a> 
+	    <a href="https://www.github.com/jefworks" target="_blank"><li class="fa fa-fw fa-2x fa-github"></li></a> 
+	    <a href="https://www.linkedin.com/in/jeanfan" target="_blank"><li class="fa fa-fw fa-2x fa-linkedin"></li></a> 
+	    <a href="https://www.instagram.com/jefworks/" target="_blank"><li class="fa fa-fw fa-2x fa-instagram"></li></a>
+        </div>
+        <div class="col-md-4 text-center">
+	    <br>
+            <img src="{{ "/img/profile.jpg" | prepend: site.baseurl }}" class="img-responsive img-circle" alt="Jean Fan">
+	    <br>
+        </div>
+    </div>
 
-        <hr class="post-list__divider">
-	</li>
-	{% endfor %}
-    </ol>
+    <hr>
 
-    <hr class="post-list__divider">
+    <div class="row">
+        <div class="col-sm-4">
+            <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Latest Blog Posts</h3>
+                <ul class="post-list-container">
+                    {% for post in site.posts limit:5 %}
+                    <li><a href="{{ post.url | prepend: site.baseurl }}" {% if page.title==post.title %} class="active" {% endif %}>{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
+        </div>
+        <div class="col-sm-4">
+            <h1 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Latest Publications</h3>
+            <ul class="post-list-container">
+		{% assign items = site.papers | reverse %}
+                {% for post in items limit:3 %}
+                <li><a href="{{ post.url | prepend: site.baseurl }}" {% if page.title==post.title %} class="active" {% endif %}>{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h1 class="text-center"><i class="fa fa-code-fork" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Latest News</h3>
+            <ul class="post-list-container">
+		{% assign items = site.news | reverse %}
+                {% for post in items limit:5 %}
+                <li><a href="{{ post.url | prepend: site.baseurl }}" {% if page.title==post.title %} class="active" {% endif %}>{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>	    
+        </div>
+    </div>
 
-    {% if paginator.previous_page or paginator.next_page %}
-    {% include pagination.html %}
-    {% endif %}
 
 </div>

@@ -4,9 +4,9 @@ comments: false
 tags: [visualization, javascript, single cell, R, interactive]
 ---
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="//code.highcharts.com/highcharts.js"></script>
+<script src="//code.highcharts.com/highcharts-more.js"></script>
+<script src="//code.highcharts.com/modules/heatmap.js"></script>
 <script type="text/javascript" src="{{ "/js/heatmap1.js" | prepend: site.baseurl }}"></script>
 <script type="text/javascript" src="{{ "/js/heatmap2.js" | prepend: site.baseurl }}"></script>
 

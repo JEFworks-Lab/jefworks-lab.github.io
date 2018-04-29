@@ -1,6 +1,10 @@
 <footer class="footer">
-  <span class="footer__copyright">&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}. All rights reserved.</span>
+    <div class="container">
+	<div class="row">
+	    © {{ site.title }} {{ site.time | date: '%Y' }}
+	    <div class="pull-right">
+		<a href="mailto:jeanfan@fas.harvard.edu"><li class="fa fa-lg fa-envelope"></li></a> 
+	    </div>
+	</div>
+    </div>
 </footer>
-
-<script type="text/javascript" src="{{ "/js/main.js" | prepend: site.baseurl }}"></script>
-{% include analytics.html %}
