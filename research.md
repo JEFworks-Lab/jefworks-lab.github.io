@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: default
 title: Research
 permalink: /research/
 sectionid: research

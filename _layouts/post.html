@@ -8,13 +8,57 @@ layout: default
         <div class="col-md-4">
             <div class="well">
                 <h4>RECENT POSTS</h4>
-                <ul class="list-unstyled post-list-container">
+                <ul class="post-list-container">
                     {% for post in site.posts limit:10 %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}" {% if page.title==post.title %} class="active" {% endif %}>{{ post.title }}</a></li>
+                    <li><a href="{{ post.url | prepend: site.baseurl }}" {% if page.title==post.title %} class="active" {% endif %}>
+			{{post.date | date_to_long_string }}: {{ post.title }}
+		    </a></li>
                     {% endfor %}
                     <li><a href="{{ "/allposts" | prepend: site.baseurl }}">All posts ...</a></li>
                 </ul>
             </div>
+	    <div class="well">
+		<h4>TAGS</h4>
+		<span class="post-meta__tags">
+		    | {% for tag in page.tags %}
+		    <a href="{{ site.baseurl }}/tags/#{{ tag }}">
+			{{ tag }}
+		    </a> |
+		    {% endfor %}
+		</span>
+	    </div>
+            <div class="well">
+                <h4>RELATED POSTS</h4>
+		<ul class="post-list-container">
+		    {% assign maxRelated = 4 %}
+		    {% assign minCommonTags =  2 %}
+		    {% assign maxRelatedCounter = 0 %}
+
+		    {% for post in site.posts %}
+
+		    {% assign sameTagCount = 0 %}
+		    {% assign commonTags = '' %}
+
+		    {% for tag in post.tags %}
+		    {% if post.url != page.url %}
+		    {% if page.tags contains tag %}
+		    {% assign sameTagCount = sameTagCount | plus: 1 %}
+		    {% assign commonTags = commonTags | append: tagmarkup %}
+		    {% endif %}
+		    {% endif %}
+		    {% endfor %}
+		    {% if sameTagCount >= minCommonTags %}
+		    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+		    {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+		    {% if maxRelatedCounter >= maxRelated %}
+		    {% break %}
+		    {% endif %}
+		    {% endif %}
+
+		    {% endfor %}
+		</ul>		
+            </div>
+	    
         </div>
 
         <div class="col-md-8">

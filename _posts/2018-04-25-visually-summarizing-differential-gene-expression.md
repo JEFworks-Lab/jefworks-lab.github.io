@@ -97,7 +97,7 @@ hc = hchart(t(m), "heatmap", hcaes(x = group, y = gene, value = value)) %>%
 export_hc(filename='heatmap1', hc)
 ```
 
-<div id='heatmap1'></div>
+<div id='heatmap1' style="height: 500px"></div>
 
 But when exploring our data, maybe we want to encode in additional levels of information such as the fraction of cells expressing the gene. 
 
@@ -134,7 +134,7 @@ hc = hchart(mm, type="scatter", mapping = hcaes(x=x, y=y, z=fe,
 export_hc(filename='heatmap2', hc)
 ```
 
-<div id='heatmap2'></div>
+<div id='heatmap2' style="height: 500px"></div>
 
 Now we can more easily see which gene may or may not be a better facs marker based on its fractional expression in our cell subpopulation of interest compared to the fractional expression in other subpopulations. 
 
