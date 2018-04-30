@@ -41,7 +41,7 @@ layout: default
             <h3 class="text-center">Latest Blog Posts</h3>
                 <ul class="post-list-container">
                     {% for post in site.posts limit:5 %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.date | date_to_long_string }} : {{ post.title }}</a></li>
+                    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
                     {% endfor %}
                 </ul>
         </div>
@@ -51,7 +51,7 @@ layout: default
             <ul class="post-list-container">
 		{% assign items = site.papers | reverse %}
                 {% for post in items limit:3 %}
-                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.date | date_to_long_string }} : {{ post.title }}</a></li>
+                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -61,7 +61,7 @@ layout: default
             <ul class="post-list-container">
 		{% assign items = site.news | reverse %}
                 {% for post in items limit:5 %}
-                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.date | date_to_long_string}} : {{ post.title }}</a></li>
+                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string}}</li>
                 {% endfor %}
             </ul>	    
         </div>

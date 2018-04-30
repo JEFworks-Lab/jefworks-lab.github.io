@@ -1,6 +1,5 @@
 ---
 layout: post
-comments: true
 tags: [tutorial, analysis, R]
 ---
 
@@ -153,7 +152,7 @@ Based on the ROC curve, it looks like we did pretty well!
 plot.roc(model$pred$obs, model$pred$red)
 ```
 
-![plot of chunk part1-roc]({{ site.url }}/images/part1-roc-1.png)
+<img src="{{ site.url }}/images/part1-roc-1.png" class="img-responsive">
 
 ```r
 ## double check on new data
@@ -208,7 +207,7 @@ library(ggplot2)
 ggplot(data=wine, aes(x=type, y=chlorides)) + geom_boxplot()
 ```
 
-![plot of chunk part1-plot]({{ site.url }}/images/part1-plot-1.png)
+<img src="{{ site.url }}/assets/blog/part1-plot-1.png" class="img-responsive">
 
 ## Regression
 
@@ -268,7 +267,7 @@ If we plot our predictions against the real quality score, we see a general posi
 plot(model$pred$obs, model$pred$pred)
 ```
 
-![plot of chunk part2-plot]({{ site.url }}/images/part2-plot-1.png)
+<img src="{{ site.url }}/assets/blog/part2-plot-1.png" class="img-responsive">
 
 ```r
 ## double check by predicting on white wine data
@@ -276,7 +275,7 @@ p <- predict(model, newdata=wine1[, setdiff(colnames(wine2), trait)])
 plot(wine1$quality, p)
 ```
 
-![plot of chunk part2-plot]({{ site.url }}/images/part2-plot-2.png)
+<img src="{{ site.url }}/assets/blog/part2-plot-2.png" class="img-responsive">
 
 What features did our model find important and useful? 
 
@@ -310,4 +309,4 @@ Alcohol?! Indeed, we see a general correlation between the quality of the wine a
 plot(wine2$quality, wine2$alcohol)
 ```
 
-![plot of chunk part2-quality]({{ site.url }}/images/part2-quality-1.png)
+<img src="{{ site.url }}/assets/blog/part2-quality-1.png" class="img-responsive">

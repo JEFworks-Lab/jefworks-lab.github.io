@@ -111,7 +111,7 @@ base.pca <- prcomp(t(mat))
 plot(base.pca$x[,1], base.pca$x[,2], col=rainbow(2)[sg], pch=16, main='PCA')
 ```
 
-![]({{ site.url }}/images/pca-1.png)
+<img src="{{ site.url }}/assets/blog/pca-1.png" class="img-responsive">
 
 The PCA clearly separates the two annotated subpopulations. However, we
 can see some additional aspects of heterogeneity driving the first
@@ -125,7 +125,7 @@ lib.size <- colSums(mat)
 plot(base.pca$x[,1], base.pca$x[,2], col=colorRampPalette(c("magenta", "yellow"))(100)[round(lib.size/max(lib.size)*100)], pch=16, main='PCA')
 ```
 
-![]({{ site.url }}/images/pca-2-1.png)
+<img src="{{ site.url }}/assets/blog/pca-2-1.png" class="img-responsive">
 
 So we should always double check for obvious, non-biological factors
 (such as library size, batch, patient/mouse, etc), potentially
@@ -183,7 +183,7 @@ tsne_out <- Rtsne(d, is_distance=TRUE, perplexity=10, verbose = TRUE)
 plot(tsne_out$Y, col=rainbow(2)[sg], pch=16, main='tSNE')
 ```
 
-![]({{ site.url }}/images/tsne-1.png)
+<img src="{{ site.url }}/assets/blog/tsne-1.png" class="img-responsive">
 
 Note with tSNE, your results are stochastic. Change the random seed,
 change your results. (If you don't use a random seed at all, your
@@ -230,7 +230,7 @@ tsne_out <- Rtsne(d, is_distance=TRUE, perplexity=10, verbose = TRUE)
 plot(tsne_out$Y, col=rainbow(2)[sg], pch=16, main='tSNE')
 ```
 
-![]({{ site.url }}/images/tsne-2-1.png)
+<img src="{{ site.url }}/assets/blog/tsne-2-1.png" class="img-responsive">
 
 In general, the annotated subpopulations from these tSNE results are not
 particularly clear-cut.
@@ -421,7 +421,7 @@ tamr2 <- pagoda.reduce.redundancy(tamr, plot = FALSE)
 pagoda.view.aspects(tamr2, cell.clustering = hc, box = TRUE, labCol = NA, margins = c(0.5, 20), col.cols = rbind(rainbow(2)[sg]), top=10)
 ```
 
-![]({{ site.url }}/images/pagoda-tam-1.png)
+<img src="{{ site.url }}/assets/blog/pagoda-tam-1.png" class="img-responsive">
 
 We can also use a 2D embedding of the cells to aid visualization.
 
@@ -439,7 +439,7 @@ par(mfrow=c(1,1), mar = rep(5,4))
 plot(tSNE.pagoda$Y, col=rainbow(2)[sg], pch=16, main='PAGODA tSNE')
 ```
 
-![]({{ site.url }}/images/pagoda-tsne-1.png)
+<img src="{{ site.url }}/assets/blog/pagoda-tsne-1.png" class="img-responsive">
 
 By using variance normalization and incorporating pathway-level
 information, our tSNE plot much more cleanly separates the two annotated
@@ -485,7 +485,7 @@ mat.sub[mat.sub > 1] <- 1
 heatmap(mat.sub[,hc$labels], Colv=as.dendrogram(hc), Rowv=NA, scale="none", col=colorRampPalette(c("blue", "white", "red"))(100), ColSideColors=rainbow(2)[sg])
 ```
 
-![]({{ site.url }}/images/pagoda-marker-1.png)
+<img src="{{ site.url }}/assets/blog/pagoda-marker-1.png" class="img-responsive">
 
 ```r
 # Alternatively, define more refined subpopulations
@@ -494,7 +494,7 @@ names(sg2) <- hc$labels
 heatmap(mat.sub[,hc$labels], Colv=as.dendrogram(hc), Rowv=NA, scale="none", col=colorRampPalette(c("blue", "white", "red"))(100), ColSideColors=rainbow(4)[sg2])
 ```
 
-![]({{ site.url }}/images/pagoda-marker-2.png)
+<img src="{{ site.url }}/assets/blog/pagoda-marker-2.png" class="img-responsive">
 
 Differential expression analysis with `scde`
 --------------------------------------------
@@ -516,7 +516,7 @@ names(test) <- names(sg2)
 heatmap(mat.sub[,hc$labels], Colv=as.dendrogram(hc), Rowv=NA, scale="none", col=colorRampPalette(c("blue", "white", "red"))(100), ColSideColors=rainbow(4)[test])
 ```
 
-![]({{ site.url }}/images/scde-1.png)
+<img src="{{ site.url }}/assets/blog/scde-1.png" class="img-responsive">
 
 Now, let's use `scde` to identify differentially expressed genes.
 
@@ -568,7 +568,7 @@ the 95% credible interval by the red shading.
 scde.test.gene.expression.difference("NEUROD6", knn, cd, prior, groups = test)
 ```
 
-![]({{ site.url }}/images/scde-3-1.png)
+<img src="{{ site.url }}/assets/blog/scde-3-1.png" class="img-responsive">
 
 ```
 ##               lb     mle       ub       ce       Z      cZ
@@ -587,7 +587,7 @@ ediff.sig.down <- rownames(ediff.sig[order(ediff.sig$cZ, decreasing = FALSE), ])
 heatmap(mat[c(ediff.sig.up, ediff.sig.down), names(na.omit(test))], Rowv=NA, ColSideColors = rainbow(4)[test[names(na.omit(test))]],  col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none")
 ```
 
-![]({{ site.url }}/images/scde-4-1.png)
+<img src="{{ site.url }}/assets/blog/scde-4-1.png" class="img-responsive">
 
 Once we have a set of differentially expressed genes, we may use
 techniques such as gene set enrichment analysis (GSEA) to determine
@@ -636,21 +636,21 @@ data <- orderCells(data, num_paths = 2, reverse = FALSE) # Order cells
 plot_spanning_tree(data) 
 ```
 
-![]({{ site.url }}/images/monocle-2-1.png)
+<img src="{{ site.url }}/assets/blog/monocle-2-1.png" class="img-responsive">
 
 ```r
 # Compare with previous annotations
 plot_spanning_tree(data, color_by = "type") 
 ```
 
-![]({{ site.url }}/images/monocle-2-2.png)
+<img src="{{ site.url }}/assets/blog/monocle-2-2.png" class="img-responsive">
 
 ```r
 # Compare with PAGODA annotations
 plot_spanning_tree(data, color_by = "pagoda") 
 ```
 
-![]({{ site.url }}/images/monocle-2-3.png)
+<img src="{{ site.url }}/assets/blog/monocle-2-3.png" class="img-responsive">
 
 Indeed, we can see how neuronal maturation from NPCs to neurons spans a
 continuum along a single, non-branching trajectory. So do cells fall

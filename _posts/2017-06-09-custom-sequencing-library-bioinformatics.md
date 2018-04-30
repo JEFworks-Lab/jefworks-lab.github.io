@@ -1,6 +1,5 @@
 ---
 layout: post
-comments: true
 tags: [notes, tutorial, R, analysis]
 ---
 
@@ -9,7 +8,7 @@ tags: [notes, tutorial, R, analysis]
 Sequencing has become so streamlined that we often just use standard library prep kits, made for particular sequencers, followed by proprietary bioinformatics software for demultiplexing and quantification. But, if we want to design custom library structure, perhaps for use in multiplexed droplet-based approaches, we will need to come up with our own bioinformatics pipelines. In this tutorial, I will take you through a recent experience I had analyzing reads from a custom library prep. 
 
 Consider the library structure below:
-![library structure]({{ site.url }}/images/librarystructure.png)
+<img src="{{ site.url }}/assets/blog/librarystructure.png" class="img-responsive">
 
 For this particular library, we've used custom gene specific primers for targeted sequencing of specific genes containing mutations of interest (as opposed to doing a whole exome for example). Let's assume the data has already been demultiplexed and the paired-end reads have been properly split. Thus, what we should have in our FASTQs are a bunch of sequences containing the gene specific primers and our sample DNA fragment of interest. 
 

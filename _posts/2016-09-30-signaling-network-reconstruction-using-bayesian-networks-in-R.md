@@ -1,6 +1,5 @@
 ---
 layout: post
-comments: true
 tags: [tutorial, analysis, R, bayesian, journal club]
 ---
 
@@ -30,7 +29,7 @@ sachs <- as.matrix(sachs)
 ## assess distribution of data
 hist(sachs)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-3-1.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-3-1.png" class="img-responsive">
 
 ```r
 ## standard transformation for flow cytometry data
@@ -39,7 +38,7 @@ sachs <- asinh(sachs)
 ## assess distribution of data
 hist(sachs)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-3-2.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-3-2.png" class="img-responsive">
 
 Note that the data
 appears normally distributed with no obvious zero-inflation or otherwise
@@ -49,12 +48,12 @@ missing data, suggesting good quality. We can already readily see correlation st
 ## assess correlations
 plot(sachs[, 1], sachs[,2])
 ````
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-3-3.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-3-3.png" class="img-responsive">
 
 ```r
 heatmap(t(as.matrix(sachs)), col=colorRampPalette(c("blue", "white", "red"))(100), scale="row")
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-3-4.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-3-4.png" class="img-responsive">
 
 ```
 sachs <- data.frame(sachs)
@@ -67,25 +66,25 @@ these results are highly unstable and do not recapitulate the known network stru
 g <- inter.iamb(sachs, test = "smc-cor", B = 500, alpha = 0.01)
 graphviz.plot(g)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-4-1.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-4-1.png" class="img-responsive">
 
 ```r
 g <- hc(sachs, score = "bge", iss = 3, restart = 5, perturb = 10)
 graphviz.plot(g)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-4-2.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-4-2.png" class="img-responsive">
 
 ```r
 g <- tabu(sachs, tabu = 50)
 graphviz.plot(g)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-4-3.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-4-3.png" class="img-responsive">
 
 ```r
 g <- mmhc(sachs)
 graphviz.plot(g)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-4-4.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-4-4.png" class="img-responsive">
 
 We can apply various techniques such as discretization and model
 averaging to improve stability. However, results still poorly
@@ -117,13 +116,13 @@ boot[(boot$strength >= 0.85) & (boot$direction >= 0.5), ]
 ```r
 plot(boot)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-5-1.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-5-1.png" class="img-responsive">
 
 ```r
 avg.boot = averaged.network(boot, threshold = 0.85)
 graphviz.plot(avg.boot)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-5-2.png)
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-5-2.png" class="img-responsive">
 
 The original paper suggests that
 network interventions are needed for accurate inference. So let's use
@@ -162,7 +161,7 @@ arcs = custom.strength(netlist, nodes = nodes, cpdag = FALSE)
 bn.mbde = averaged.network(arcs, threshold = 0.85)
 graphviz.plot(bn.mbde)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-6-1.png)<!-- -->
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-6-1.png" class="img-responsive">
 
 ```r
 bn.mbde
@@ -190,7 +189,7 @@ bn.mbde
 
 As you can see, with the interventional data, we are generally able to
 recapitulate the published results.
-![]({{ site.url }}/images/bayesnet-published-results.png)<!-- -->
+<img src="{{ site.url }}/assets/blog/bayesnet-published-results.png" class="img-responsive">
 
 
 The original paper also suggested that the large number of cells was necessary for accurate network reconstruction. So what happens if we subsample to a smaller number of cells?
@@ -231,7 +230,7 @@ arcs = custom.strength(netlist, nodes = nodes, cpdag = FALSE)
 bn.mbde = averaged.network(arcs, threshold = 0.85)
 graphviz.plot(bn.mbde)
 ```
-![]({{ site.url }}/images/bayesnet-unnamed-chunk-8-1.png)<!-- -->
+<img src="{{ site.url }}/assets/blog/bayesnet-unnamed-chunk-8-1.png" class="img-responsive">
 
 As expected, results poorly recapitulate known network structure. Thus,
 consistent with the paper findings, a large number of cells and

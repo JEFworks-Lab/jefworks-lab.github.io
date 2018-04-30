@@ -1,6 +1,5 @@
 ---
 layout: post
-comments: true
 tags: [notes, tutorial, R, analysis]
 ---
 
@@ -30,7 +29,7 @@ names(group) <- colnames(mat)
 heatmap(mat, Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk sim1]({{ site.url }}/images/sim1-1.png)
+<img src="{{ site.url }}/assets/blog/sim1-1.png" class="img-responsive">
 
 Now, let's simulate some differentially upregulated genes unique to each group. 
 
@@ -51,7 +50,7 @@ names(diff) <- paste0('group', 1:G)
 heatmap(mat, Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk sim2]({{ site.url }}/images/sim2-1.png)
+<img src="{{ site.url }}/assets/blog/sim2-1.png" class="img-responsive">
 
 Let's also simulate some differentially upregulated genes affecting groups of groups. This is typical of cell differentiation processes. 
 
@@ -67,7 +66,7 @@ diff2 <- lapply(2:(G-1), function(x) {
 heatmap(mat, Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk sim3]({{ site.url }}/images/sim3-1.png)
+<img src="{{ site.url }}/assets/blog/sim3-1.png" class="img-responsive">
 
 Now, we can begin testing different approaches for multi-group differential expression analysis. 
 
@@ -91,7 +90,7 @@ pv.sig <- lapply(levels(group), function(g){
 heatmap(mat[unique(unlist(pv.sig)),], Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk diff1]({{ site.url }}/images/diff1-1.png)
+<img src="({{ site.url }}/assets/blog/diff1-1.png" class="img-responsive">
 
 Indeed, we pick up many of the differentially upregulated genes we simulated that are unique to each group ie. in `diff`. However, we have a much harder time picking up the differentially upregulated genes marking multiple groups, ie. in `diff2` as expected. 
 
@@ -138,7 +137,7 @@ pv.sig <- names(pv)[pv < 0.05/M/G] ## bonferonni
 heatmap(mat[pv.sig,], Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk diff2]({{ site.url }}/images/diff2-1.png)
+<img src="{{ site.url }}/assets/blog/diff2-1.png" class="img-responsive">
 
 Note with ANOVA, we need to do an additional step to then figure out which group the variable gene is marking. But compared to testing each group vs. all others, we do get more genes that are differentially upregulated in multiple groups. 
 
@@ -176,7 +175,7 @@ pv.sig.pair <- lapply(levels(group), function(g1) {
 heatmap(mat[unique(unlist(pv.sig.pair)),], Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk diff3]({{ site.url }}/images/diff3-1.png)
+<img src="{{ site.url }}/assets/blog/diff3-1.png" class="img-responsive">
 
 As expected, we now readily recover the genes upregulated in two groups. 
 
@@ -215,7 +214,7 @@ pv.sig.trip <- lapply(levels(group), function(g1) {
 heatmap(mat[unique(unlist(pv.sig.trip)),], Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk diff4]({{ site.url }}/images/diff4-1.png)
+<img src="{{ site.url }}/assets/blog/diff4-1.png" class="img-responsive">
 
 
 ```r
@@ -243,7 +242,7 @@ hc <- hclust(dist(t(mat.group)), method='complete')
 plot(hc)
 ```
 
-![plot of chunk diff5tree]({{ site.url }}/images/diff5tree-1.png)
+<img src="{{ site.url }}/assets/blog/diff5tree-1.png" class="img-responsive">
 
 
 ```r
@@ -278,7 +277,7 @@ pv.recur(dend)
 heatmap(mat[unique(unlist(pv.sig.all)),], Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![plot of chunk diff5]({{ site.url }}/images/diff5-1.png)
+<img src="{{ site.url }}/assets/blog/diff5-1.png" class="img-responsive">
 
 Of course, the performance of this approach will depend on the initial tree reconstruction. 
 

@@ -1,7 +1,6 @@
 ---
 layout: post
-comments: true
-tags: [tutorial, analysis, R]
+tags: [analysis, R, tutorial]
 ---
 
 # A practical introduction to finite mixture modeling with `flexmix` in `R`
@@ -44,7 +43,7 @@ p <- ggplot(data, aes(x = x)) +
 p
 ```
 
-![]({{ site.url }}/images/mixsim1-1.png)
+![]({{ site.url }}/assets/blog/mixsim1-1.png)
 
 ...and see if we can model our new mixture as two gaussian processes. We expect to be able to fit two gaussians and recover our initial parameters.
 
@@ -124,7 +123,7 @@ stat_function(geom = "line", fun = plot_mix_comps,
 ylab("Density")
 ```
 
-![]({{ site.url }}/images/mixsim5-1.png)
+![]({{ site.url }}/assets/blog/mixsim5-1.png)
 
 Looks like we did pretty well!
 
@@ -152,7 +151,7 @@ p <- ggplot(data, aes(x = x)) +
 p
 ```
 
-![]({{ site.url }}/images/mixsim6-1.png)
+![]({{ site.url }}/assets/blog/mixsim6-1.png)
 
 ``` r
 set.seed(0)
@@ -210,7 +209,7 @@ stat_function(geom = "line", fun = plot_mix_comps,
 ylab("Density")
 ```
 
-![]({{ site.url }}/images/mixsim6-2-1.png)
+![]({{ site.url }}/assets/blog/mixsim6-2-1.png)
 
 Or an even more challenging mixture?
 
@@ -236,7 +235,7 @@ p <- ggplot(data, aes(x = x)) +
 p
 ```
 
-![]({{ site.url }}/images/mixsim7-1.png)
+![]({{ site.url }}/assets/blog/mixsim7-1.png)
 
 ``` r
 set.seed(0)
@@ -294,7 +293,7 @@ stat_function(geom = "line", fun = plot_mix_comps,
 ylab("Density")
 ```
 
-![]({{ site.url }}/images/mixsim7-3-1.png)
+![]({{ site.url }}/assets/blog/mixsim7-3-1.png)
 
 Expectedly, as the simulated distributions become less distinct, we have a harder time modeling them as the correct mixtures.
 
@@ -312,7 +311,7 @@ p <- ggplot(iris, aes(x = Petal.Width)) +
 p
 ```
 
-![]({{ site.url }}/images/mixsim8-1.png)
+![]({{ site.url }}/assets/blog/mixsim8-1.png)
 
 Let's assume they are three normals and see what happens.
 
@@ -354,7 +353,7 @@ stat_function(geom = "line", fun = plot_mix_comps,
 ylab("Density")
 ```
 
-![]({{ site.url }}/images/mixsim9-1.png)
+![]({{ site.url }}/assets/blog/mixsim9-1.png)
 
 Even if we didn't know the underlying species assignments, we would be able to make certain statements about the underlying distribution of petal widths as likely coming from three different groups with distinctly different means and variances for their petal widths.
 

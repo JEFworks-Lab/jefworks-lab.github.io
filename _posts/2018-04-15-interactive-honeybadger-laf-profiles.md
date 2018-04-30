@@ -36,8 +36,8 @@ region=GRanges(seqname='chr10', IRanges(start=0, end=1e9))
 plotAlleleProfile(r.maf, n.sc, l.maf, n.bulk, snps, region)
 ```
 
-<img src="{{ "/images/laf1.png" | prepend: site.baseurl }}">
-<img src="{{ "/images/laf2.png" | prepend: site.baseurl }}">
+<img src="{{ "/assets/blog/laf1.png" | prepend: site.baseurl }}" class="img-responsive">
+<img src="{{ "/assets/blog/laf2.png" | prepend: site.baseurl }}" class="img-responsive">
 
 Each point here represents a heterozygous SNP (column) in a cell (row). The top row corresponds to the composite of all single cells. Coverage is reflected in the dot size and allelic bias in color. Yellow indicates equal expression of both alleles, while blue indicates only expression of the lesser allele and red only expression of the major allele.
 
@@ -110,7 +110,7 @@ I then can take the exported `laf1.js` and include it in this blog post (you can
 
 ## Result
 
-<div id='laf1'></div>
+<div align="center"><span id='laf1'></span></div>
 
 Now, we can easily hover over a particular dot and see which SNP it corresponds to in which cells and exactly how many reads were at this SNP site. We can even add in more information on each SNP into the tooltip like what gene it's in or its known rsIDs. Who knows? Use your imagination. Try it out for yourself with a different chromosome or apply to your own data. 
 

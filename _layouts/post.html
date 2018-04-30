@@ -5,14 +5,38 @@ layout: default
 <div class="container">
     <div class="row">
 
-        <div class="col-md-4">
+
+        <div class="col-md-9">
+	    <h1>{{ page.title }}</h1>
+            <p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+	    <hr>
+            <div  id="markdown-content-container">{{ content }}</div>
+            <hr>
+            <ul class="pager">
+                {% if page.previous %}
+                <li class="previous">
+                    <a href="{{ page.previous.url | prepend: site.baseurl }}">
+                        <span aria-hidden="true">&larr;</span> Older
+                    </a>
+                </li>
+                {% endif %} {% if page.next %}
+                <li class="next">
+                    <a href="{{ page.next.url | prepend: site.baseurl }}">
+                      Newer <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+
+	<div class="col-md-3">
             <div class="well">
                 <h4>RECENT POSTS</h4>
                 <ul class="post-list-container">
                     {% for post in site.posts limit:10 %}
                     <li><a href="{{ post.url | prepend: site.baseurl }}" {% if page.title==post.title %} class="active" {% endif %}>
-			{{post.date | date_to_long_string }}: {{ post.title }}
-		    </a></li>
+			{{ post.title }}
+		    </a> on {{post.date | date_to_long_string }}</li>
                     {% endfor %}
                 </ul>
                 <a href="{{ "/allposts" | prepend: site.baseurl }}">All posts ...</a>
@@ -63,29 +87,6 @@ layout: default
                 <a href="{{ "/tags" | prepend: site.baseurl }}">by Tags</a> | 
                 <a href="{{ "/archive" | prepend: site.baseurl }}">by Date</a>		
 	    </div>
-        </div>
-
-        <div class="col-md-8">
-	    <h1>{{ page.title }}</h1>
-            <p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-	    <hr>
-            <div  id="markdown-content-container">{{ content }}</div>
-            <hr>
-            <ul class="pager">
-                {% if page.previous %}
-                <li class="previous">
-                    <a href="{{ page.previous.url | prepend: site.baseurl }}">
-                        <span aria-hidden="true">&larr;</span> Older
-                    </a>
-                </li>
-                {% endif %} {% if page.next %}
-                <li class="next">
-                    <a href="{{ page.next.url | prepend: site.baseurl }}">
-                      Newer <span aria-hidden="true">&rarr;</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
         </div>
 
     </div>
