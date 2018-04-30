@@ -1,0 +1,14 @@
+---
+title: Publications
+layout: default
+sectionid: publications
+---
+
+<h1>PUBLICATIONS (<a href="https://orcid.org/0000-0002-0212-5451">ORCID</a>)</h1>
+<hr>
+{% for pub in site.papers reversed %}
+<p>
+    {{ pub.content }}
+</p>
+<hr>
+{% endfor %}

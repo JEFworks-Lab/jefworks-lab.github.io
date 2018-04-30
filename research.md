@@ -2,9 +2,10 @@
 layout: default
 title: Research
 permalink: /research/
+sectionid: research
 ---
 
-## RESEARCH STATEMENT 
+# RESEARCH STATEMENT 
 
 My long-term research interests involve the development of a comprehensive understanding of key genetic, epigenetic, and other regulatory mechanisms driving cellular identity and heterogeneity, particularly in the context of cancer and how this heterogeneity shapes tumor progression, therapeutic resistance, and ultimately clinical impact. In order to understand this heterogeneity, novel statistical methods and user-friendly computational software must be developed to enable biologists and researchers to harness the power of big data and other products of future technological advancements. 
 
@@ -21,3 +22,8 @@ Advancements in high-throughput sequencing technologies have uncovered tremendou
 ### Improving the representation of women in STEM
 
 Women remain vastly underrepresented in STEM fields, in particular the computational sciences. Improving the representation of women in STEM is pertinent to workplace diversity, gender equality, and American innovation. This issue can be broadly addressed through increasing the inflow and decreasing the outflow of women into STEM fields. Outreach efforts by those in STEM are needed to help foster a positive STEM identity in girls. Antiquated work-place expectations and policies must also be updated to meet the needs of modern-day working individuals. 
+
+<hr>
+
+<div align="center"><img class="img-responsive" src="{{ "/img/research.png" | prepend: site.baseurl }}" alt="Regeneron award winners"></div>
+

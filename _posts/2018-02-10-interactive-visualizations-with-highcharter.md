@@ -44,7 +44,9 @@ hchart(log10(rowSums(cd)+1)) %>%
   hc_legend(enabled = FALSE)
 ```
 
-<div id='hist1'></div><script> $(function () {
+<span id='hist1'></span>
+
+<script> $(function () {
   $('#hist1').highcharts({
       title: {
         text: "log10(nUMI+1)"
@@ -274,7 +276,10 @@ hchart(log10(rowSums(cd)+1)) %>%
     }
   );
 }); </script>
-<div id='hist2'></div><script> $(function () {
+
+<span id='hist2'></span>
+
+<script> $(function () {
   $('#hist2').highcharts({
       title: {
         text: "log10(nCells+1)"
@@ -562,7 +567,9 @@ df <- data.frame(x=emb[,1], y=emb[,2], group=com, name=rownames(emb))
 hchart(df, "scatter", hcaes(x, y, group=group, name=name)) %>%
   hc_tooltip(headerFormat = "", pointFormat = "<b>group</b>: {series.name} <br> <b>cell</b>: {point.name}")
 ```
-<div id='tsne1'></div><script> $(function () {
+<span id='tsne1'></span>
+
+<script> $(function () {
   $('#tsne1').highcharts({
       title: {
         text: null
@@ -14485,7 +14492,9 @@ hchart(m, "heatmap", hcaes(x = gene, y = group, value = value)) %>%
   hc_plotOptions(series = list(dataLabels = list(enabled = FALSE)))
 ```
 
-<div id='heatmap1'></div><script> $(function () {
+<span id='heatmap1'></span>
+
+<script> $(function () {
   $('#heatmap1').highcharts({
       title: {
         text: "Differentiall Expressed Genes"
@@ -36048,7 +36057,9 @@ hchart(df, "scatter", hcaes(x, y, color=color, value=value, name=name)) %>%
 ```
 
 
-<div id='boxplot1'></div><script> $(function () {
+<span id='boxplot1'></span>
+
+<script> $(function () {
   $('#boxplot1').highcharts({
       title: {
         text: "CD3E Expression"
@@ -36192,7 +36203,11 @@ hchart(df, "scatter", hcaes(x, y, color=color, value=value, name=name)) %>%
       ]
     }
   );
-}); </script><div id='tsne2'></div><script> $(function () {
+}); </script>
+
+<span id='tsne2'></span>
+
+<script> $(function () {
   $('#tsne2').highcharts({
       title: {
         text: null

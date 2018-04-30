@@ -64,7 +64,9 @@ hc1 <- hchart(data$cd, "heatmap", hcaes(x = gene, y = data$group, value = value)
     hc_plotOptions(series = list(dataLabels = list(enabled = FALSE)))
 ```
 
-<div id='hc1'></div><script>$(function () {
+<span id='hc1'></span>
+
+<script>$(function () {
 $('#hc1').highcharts(
 {
   "title": {
@@ -90175,7 +90177,6 @@ $('#hc1').highcharts(
     },
     "opposite": true
   }
-
 });
 });</script>
 
@@ -90210,14 +90211,8 @@ hc3 <- hchart(df, "scatter", hcaes(x, y, group=group, name=name)) %>%
     hc_tooltip(headerFormat = "",
     pointFormat = "<b>group</b>: {series.name} <br> <b>cell</b>: {point.name}")
 ```
-<div style="
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
-">
-<div id='hc2'></div>
-<div id='hc3'></div>
-</div>
+<span id='hc2'></span>
+<span id='hc3'></span>
 
 <script>$(function () {
 $('#hc2').highcharts(
@@ -92260,7 +92255,9 @@ hc4 <- hchart(df, "scatter", hcaes(x, y, group=group, name=name)) %>%
     pointFormat = "<b>group</b>: {series.name} <br> <b>cell</b>: {point.name}")
 ```
 
-<div id='hc4'></div><script>$(function () {
+<span id='hc4'></span>
+
+<script>$(function () {
 $('#hc4').highcharts(
 {
   "title": {
@@ -93088,9 +93085,8 @@ $('#hc4').highcharts(
     "headerFormat": "",
     "pointFormat": "<b>group<\/b>: {series.name} <br> <b>cell<\/b>: {point.name}"
   }
-}
-
-)});</script>
+});
+});</script>
 
 This looks much better! Much more like our simulated ground-truth! Sure, you may think that in this particular dummy example, you could've just looked at the tSNE embedding and tell that we've overclustered the data. But with real data, things can often be a lot more ambiguous. 
 
@@ -93138,14 +93134,8 @@ hc6 <- hchart(df, "scatter", hcaes(x, y, group=group, name=name)) %>%
     pointFormat = "<b>group</b>: {series.name} <br> <b>cell</b>: {point.name}")
 ```
 
-<div style="
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
-">
-<div id='hc5'></div>
-<div id='hc6'></div>
-</div>
+<span id='hc5'></span>
+<span id='hc6'></span>
 
 <script>$(function () {
 $('#hc5').highcharts(
@@ -103416,7 +103406,9 @@ hc7 <- hchart(mn, "heatmap", hcaes(x = gene, y = data$group, value = value)) %>%
     hc_plotOptions(series = list(dataLabels = list(enabled = FALSE)))
 ```
 
-<div id='hc7'></div><script>$(function () {
+<span id='hc7'></span>
+
+<script>$(function () {
 $('#hc7').highcharts(
 {
   "title": {
@@ -112215,9 +112207,8 @@ $('#hc7').highcharts(
     },
     "opposite": true
   }
-}
-
-)});</script>
+});
+});</script>
 
 # Discussion
 

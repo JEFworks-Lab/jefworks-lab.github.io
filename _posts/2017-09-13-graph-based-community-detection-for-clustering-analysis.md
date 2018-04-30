@@ -50,7 +50,7 @@ mat <- log10(mat*1e6+1)
 heatmap(mat, Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![]({{ site.url }}/images/graphsim-1.png)
+![]({{ site.url }}/assets/blog/graphsim-1.png)
 
 To apply graph-based community detection algorithms, we will need to represent our data as a graph. To do this, we will use the `RANN` to identify approximate nearest neighbors.
 
@@ -80,7 +80,7 @@ V(g)$color <- rainbow(G)[group[names(V(g))]] ## color nodes by group
 plot(g, vertex.label=NA)
 ```
 
-![]({{ site.url }}/images/graphigraph-1.png)
+![]({{ site.url }}/assets/blog/graphigraph-1.png)
 
 In visualizing the graph, we can clearly see 5 very distinct communities corresponding to our simulated cell types. If we can see these distinct communities, surely a graph-based community detection method such as the [walktrap algorithm](https://www-complexnetworks.lip6.fr/~latapy/Publis/communities.pdf) can detect them too.
 

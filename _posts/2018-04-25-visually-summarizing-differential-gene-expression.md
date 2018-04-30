@@ -1,12 +1,11 @@
 ---
 layout: post
-comments: false
 tags: [visualization, javascript, single cell, R, interactive]
 ---
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="//code.highcharts.com/highcharts.js"></script>
+<script src="//code.highcharts.com/highcharts-more.js"></script>
+<script src="//code.highcharts.com/modules/heatmap.js"></script>
 <script type="text/javascript" src="{{ "/js/heatmap1.js" | prepend: site.baseurl }}"></script>
 <script type="text/javascript" src="{{ "/js/heatmap2.js" | prepend: site.baseurl }}"></script>
 
@@ -32,7 +31,8 @@ dg <- getDifferentialGenes(cd, com)
 plotEmbedding(emb, com, xlab=NA, ylab=NA, mark.clusters=TRUE, alpha=0.1, mark.cluster.cex=0.5, verbose=FALSE)
 ```
 
-<img src="{{ "/images/pbmcA_cluster.png" | prepend: site.baseurl }}">
+<div align="center"><img src="{{ "/assets/blog/pbmcA_cluster.png" | prepend: site.baseurl }}"></div>
+
 
 Plotting all significantly differentially expressed genes in all cells is too messy. Plus, each cluster may have very different numbers of cells such that plotting all cells visually overwhelms small clusters. We will probably want to summarize the expression of genes within clusters. So let's summarize using the average expression and fraction of cells expressing the gene (ie. non-zero detection) per cluster. 
 
@@ -97,7 +97,7 @@ hc = hchart(t(m), "heatmap", hcaes(x = group, y = gene, value = value)) %>%
 export_hc(filename='heatmap1', hc)
 ```
 
-<div id='heatmap1'></div>
+<div align="center"><span id='heatmap1'></span></div>
 
 But when exploring our data, maybe we want to encode in additional levels of information such as the fraction of cells expressing the gene. 
 
@@ -134,7 +134,7 @@ hc = hchart(mm, type="scatter", mapping = hcaes(x=x, y=y, z=fe,
 export_hc(filename='heatmap2', hc)
 ```
 
-<div id='heatmap2'></div>
+<div align="center"><span id='heatmap2'></span></div>
 
 Now we can more easily see which gene may or may not be a better facs marker based on its fractional expression in our cell subpopulation of interest compared to the fractional expression in other subpopulations. 
 

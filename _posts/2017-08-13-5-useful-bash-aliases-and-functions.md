@@ -1,6 +1,5 @@
 ---
 layout: post
-comments: true
 tags: [lists, notes]
 ---
 

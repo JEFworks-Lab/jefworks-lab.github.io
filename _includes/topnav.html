@@ -1,0 +1,61 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container navbar-container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a class="navbar-brand" href="{{ site.baseurl }}/">
+                <span><img src="{{site.baseurl}}/img/logonav.png"></span> {{ site.title }}
+            </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse pull-right">
+            <ul class="nav navbar-nav">
+		<li {% if page.sectionid=='about' %} class="active" {% endif %}>
+		    <a href="{{ site.baseurl }}/about">
+			CV
+		    </a>
+		</li>
+		<li {% if page.sectionid=='research' %} class="active" {% endif %}>
+		    <a href="{{ site.baseurl }}/research">
+			Research
+		    </a>
+		</li>
+		<li {% if page.sectionid=='teaching' %} class="active" {% endif %}>
+		    <a href="{{ site.baseurl }}/teaching">
+			Teaching
+		    </a>
+		</li>
+		<li {% if page.sectionid=='talks' %} class="active" {% endif %}>
+		    <a href="{{ site.baseurl }}/talks">
+			Talks
+		    </a>
+		</li>
+		<li {% if page.sectionid=='publications' %} class="active" {% endif %}>
+		    <a href="{{ site.baseurl }}/publications">
+			Publications
+		    </a>
+		</li>
+		<li {% if page.sectionid=='software' %} class="active" {% endif %}>
+		    <a href="{{ site.baseurl }}/software">
+			Software
+		    </a>
+		</li>
+		
+                <li {% if page.sectionid=='blog' %} class="active" {% endif %}><a href="{{ site.posts.first.url | prepend: site.baseurl }}">Blog</a></li>
+            </ul>
+	    <!---
+            <div class="navbar-right">
+                <form class="navbar-form navbar-left">
+                    <div class="form-group has-feedback">
+                        <input id="search-box" type="text" class="form-control" placeholder="Search...">
+                        <i class="fa fa-search form-control-feedback"></i>
+                    </div>
+                </form>
+            </div>
+	    --->
+        </div>
+    </div>
+</nav>

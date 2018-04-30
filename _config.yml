@@ -1,44 +1,57 @@
 # Site settings
-title: Jean Fan
+title: JEFworks
+email: jeanfan@fas.harvard.edu
 description: "Bioinformatician. NCI F99/K00 Post-Doctoral Fellow. Harvard University."
+
+baseurl: "" # the subpath of your site, e.g. /blog/
 url: 'http://jefworks.github.io/'
-baseurl: ''
 google_analytics: 'UA-35232680-3'
-disqus_shortname: 'jefworks'
-simple_search: https://www.google.com/search
-subscribe_rss: /atom.xml
-excerpt_link: "Continue reading &#8230;"  # "Continue reading" link text at the bottom of excerpted articles
-excerpt_separator: "<!--more-->"
-#titlecase: true       # Converts page and post titles to titlecase
 
-author:
-  name: 'Jean Fan'
-  email: jeanfan@fas.harvard.edu
-  github_username: jefworks
-  linkedin_username: jeanfan
-  twitter_username: jefworks
-  ig_username: jefworks
-
-defaults:
-  -
-    scope:
-      path: ''
-      type: 'posts'
-    values:
-        layout: 'post'
+# theme options from https://bootswatch.com/
+# comment out this to use default Bootstrap
+bootwatch: custom
 
 # Build settings
-destination: _site
-paginate: 10
-permalink: /blog/:year/:month/:day/:title/
 markdown: kramdown
 highlighter: rouge
+gems:
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
-kramdown:
-  # use Github Flavored Markdown
-  input: GFM
-  # do not replace newlines by <br>s
-  hard_wrap: false
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
+  
+defaults:
+- scope:
+    path: _posts
+    type: posts
+  values:
+    layout: post
+    sectionid: blog
+- scope:
+    path: _papers
+    type: papers
+  values:
+    layout: paper
+    sectionid: publications
+- scope:
+    path: _news
+    type: news
+  values:
+    layout: pages
+    sectionid: announcements
 
-gems: ['jekyll-paginate', 'jekyll-compose', 'jemoji']
-exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
+collections:
+  papers:
+    permalink: /papers/:year/:month/:day/:title/
+    output: true
+  posts:
+    permalink: /blog/:year/:month/:day/:title/
+    output: true
+  news:
+    permalink: /announcements/:year/:month/:day/:title/
+    output: true

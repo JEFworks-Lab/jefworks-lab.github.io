@@ -1,6 +1,5 @@
 ---
 layout: post
-comments: true
 tags: [bash, notes]
 ---
 
@@ -81,7 +80,7 @@ If you messed up and need to kill your jobs:
 
 
 ## Additional resources
-[VUB/ULB Computing Centre Guide](http://www.vub.ac.be/BFUCC/LSF/)  
-[Yale Computing Guide](http://research.computing.yale.edu/support/hpc/user-guide/submitting-jobs-lsf)  
-[Harvard Computing Guide - beginner](https://wiki.med.harvard.edu/Orchestra/IntroductionToLSF)  
-[Harvard Computing Guide - intermediate](https://wiki.med.harvard.edu/Orchestra/IntermediateLSF)  
+- [VUB/ULB Computing Centre Guide](http://www.vub.ac.be/BFUCC/LSF/)  
+- [Yale Computing Guide](http://research.computing.yale.edu/support/hpc/user-guide/submitting-jobs-lsf)  
+- [Harvard Computing Guide - beginner](https://wiki.med.harvard.edu/Orchestra/IntroductionToLSF)  
+- [Harvard Computing Guide - intermediate](https://wiki.med.harvard.edu/Orchestra/IntermediateLSF)  

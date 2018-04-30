@@ -69,7 +69,7 @@ mat[10,] <- mat[10,]*markers2
 heatmap(mat, Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![]({{ site.url }}/images/simall-1.png)
+![]({{ site.url }}/assets/blog/simall-1.png)
 
 ## Machine learning with `mlr`
 
@@ -117,7 +117,7 @@ pv.sig <- na.omit(results$name[results[,3]>t])
 heatmap(mat[pv.sig,], Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![]({{ site.url }}/images/mlr3-1.png)
+![]({{ site.url }}/assets/blog/mlr3-1.png)
 
 Now let's repeat this for each subpopulation.
 
@@ -137,7 +137,7 @@ names(pv.sig) <- levels(group)
 heatmap(mat[unique(unlist(pv.sig)),], Rowv=NA, Colv=NA, col=colorRampPalette(c('blue', 'white', 'red'))(100), scale="none", ColSideColors=rainbow(G)[group], labCol=FALSE, labRow=FALSE)
 ```
 
-![]({{ site.url }}/images/mlr4-1.png)
+![]({{ site.url }}/assets/blog/mlr4-1.png)
 
 We can assess our performance by comparing our identified important genes to those we simulated as important.
 
@@ -199,7 +199,7 @@ smoothScatter(mat[marker[1],], mat[marker[2],],
               xlab=marker[1], ylab=marker[2])
 ```
 
-![]({{ site.url }}/images/mlr6-1.png)
+![]({{ site.url }}/assets/blog/mlr6-1.png)
 
 So for FACs, we would choose high `gene1` or `gene10` to sort for cells in `group1`!
 
@@ -236,6 +236,6 @@ smoothScatter(mat[marker[1],], mat[marker[2],],
               xlab=marker[1], ylab=marker[2])
 ```
 
-![]({{ site.url }}/images/mlr7-1.png)
+![]({{ site.url }}/assets/blog/mlr7-1.png)
 
 So it looks like our machine learning approach is better in this simulation. But of course, this is just a simulation. And in real life, we may have practical considerations like translation rate (not all highly expressed genes become highly expressed proteins) so there are likely other important information we currently don't integrate in this approach. But consider: how do biologists pick which marker genes to use? Can we formulate that into some kind of machine learning approach? And how can we use machine learning to augment and inform what biologists are already doing?
