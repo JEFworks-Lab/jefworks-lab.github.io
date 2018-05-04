@@ -7,7 +7,7 @@ sectionid: research
 
 # RESEARCH STATEMENT 
 
-My long-term research interests involve the development of a comprehensive understanding of key genetic, epigenetic, and other regulatory mechanisms driving cellular identity and heterogeneity, particularly in the context of cancer and how this heterogeneity shapes tumor progression, therapeutic resistance, and ultimately clinical impact. In order to understand this heterogeneity, novel statistical methods and user-friendly computational software must be developed to enable biologists and researchers to harness the power of big data and other products of future technological advancements. 
+My long-term research interests involve the development of a comprehensive understanding of key genetic, epigenetic, and other regulatory mechanisms driving cellular identity and heterogeneity, particularly in the context of cancer and how this heterogeneity shapes tumor progression, therapeutic resistance, and ultimately clinical impact. In order to understand this heterogeneity, novel statistical methods and user-friendly computational software must be developed to enable biologists and researchers to harness the power of multi-omics data and other products of future technological advancements. 
 
 ## CONTRIBUTIONS TO SCIENCE
 
