@@ -35,7 +35,7 @@ x test/
 x test/test.txt
 ```
 
-![]({{ site.url }}/images/compressallthedata.png)
+![]({{ site.url }}/assets/blog/compressallthedata.png)
 
 
 ## 2. Count number of files in a directory
@@ -58,14 +58,14 @@ numfiles() {
        10 files in test
 ```
 
-![]({{ site.url }}/images/doge.png)
+![]({{ site.url }}/assets/blog/doge.png)
 
 
 ## 3. Search through your command history
 
 If I've typed out the same command more than once, then I've typed it out too many times. 
 
-![]({{ site.url }}/images/aintbodygottimeforthat.png)
+![]({{ site.url }}/assets/blog/aintbodygottimeforthat.png)
 
 Note, aliases should be added to your `.bash_aliases` file. 
 
@@ -111,7 +111,7 @@ mkcd() { mkdir -p $1; cd $1 }
 ```
 
 And there you have it. Here is my [cat tax](http://www.urbandictionary.com/define.php?term=cat+tax&defid=10979502) for posting a less-than-professional post: (my dog [Foxxy](https://www.instagram.com/pomdeterrier/))
-![]({{ site.url }}/images/foxxy.png)
+![]({{ site.url }}/assets/blog/foxxy.png)
 
 ---
 

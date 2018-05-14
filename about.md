@@ -16,7 +16,7 @@ sectionid: about
 I am currently an NCI F99/K00 post-doctoral fellow in the lab of [Dr. Xiaowei Zhuang](http://zhuang.harvard.edu/) at Harvard University. I received my PhD in Bioinformatics and Integrative Genomics at Harvard under the mentorship of [Dr. Peter Kharchenko](http://pklab.med.harvard.edu/) at the Department of Biomedical Informatics and in close collaboration with [Dr. Catherine Wu](http://wulab.dfci.harvard.edu/) at the Dana-Farber Cancer Institute. My research interests center around developing computational methods for identifying and characterizing heterogeneity at the single cell level, particularly in the context of cancer, using multi-omics approaches.
 --->
 
-[**Download CV (last updated March 2018)**](/docs/resume/JEAN_FAN_cv.pdf)
+[**Download CV (last updated March 2018)**](/assets/docs/resume/JEAN_FAN_cv.pdf)
 
 ## EDUCATION
 - PhD in [Bioinformatics and Integrative Genomics](http://dms.hms.harvard.edu/big/), Harvard University, Division of Medical Science (June 2013 - Jan 2018)

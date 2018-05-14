@@ -103,11 +103,11 @@ According to the NSF administrative guide for fellows, starting with the 2011 Fe
 Prior to 2011, students who receive multiple fellowships may accept multiple as long as they did not receive multiple sources of funding in the same year. That is, students may take the DoD NDSEG for the first three years, deferring NSF GRFP for two years and forfeiting one year, then using NSF GRFP for the last two years. This is no longer possible!
 
 ## Sample essays and review
-- [NSF Personal Statement](http://jef.works/docs/nsf/NSF_Personal_Statement.pdf)
-- [NSF Previous Research](http://jef.works/docs/nsf/NSF_Previous_Research.pdf)
-- [NSF Proposed Research](http://jef.works/docs/nsf/NSF_Proposed_Research.pdf)
-- [Full Application](http://jef.works/docs/nsf/applicantPDF.pdf)
-- [NSF Application Review (what reviewers said)](http://jef.works/docs/nsf/NSF_ViewApplReview.pdf)
+- [NSF Personal Statement](/assets/docs/nsf/NSF_Personal_Statement.pdf)
+- [NSF Previous Research](/assets/docs/nsf/NSF_Previous_Research.pdf)
+- [NSF Proposed Research](/assets/docs/nsf/NSF_Proposed_Research.pdf)
+- [Full Application](/assets/docs/nsf/applicantPDF.pdf)
+- [NSF Application Review (what reviewers said)](/assets/docs/nsf/NSF_ViewApplReview.pdf)
 
 Rememeber: Do your homework! Google around for more advice, resources, and sample essays/reviews! Below are some other great places to get started:
 

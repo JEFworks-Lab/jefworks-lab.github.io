@@ -39,28 +39,28 @@ In my opinion, if you think you may want a career in academia, a surprising port
 There are A LOT of documents to put together. I personally find it really overwhelming to read the NIH website and prefer to just look at actual examples. Big thanks to my mentor Dr. Peter Kharchenko for sharing his successful R01, to Dr. Nils Gehlenborg for sharing his successful K99, and to Yu-Han Hsu sharing her successful F31! So now I'm passing on their generosity by sharing my successful F31 grant as well.
 
 ### All the documents you need (as of 2015) are as follows:
-- [Cover Letter](http://jef.works/docs/f31/Cover_Letter.pdf)
+- [Cover Letter](/assets/docs/f31/Cover_Letter.pdf)
 
 #### All about your research (what you should spend the most time on)
-- [Project Abstract](http://jef.works/docs/f31/Project_Abstract.pdf)
-- [Project Narrative](http://jef.works/docs/f31/Cover_Letter.pdf)
-- [Specific Aims](http://jef.works/docs/f31/Specific_Aims.pdf)
-- [Research Strategy](http://jef.works/docs/f31/Research_Strategy.pdf)
-- [Resource Sharing Plan](http://jef.works/docs/f31/Resource_Sharing_Plan.pdf)
-- [References](http://jef.works/docs/f31/References.pdf)
+- [Project Abstract](/assets/docs/f31/Project_Abstract.pdf)
+- [Project Narrative](/assets/docs/f31/Cover_Letter.pdf)
+- [Specific Aims](/assets/docs/f31/Specific_Aims.pdf)
+- [Research Strategy](/assets/docs/f31/Research_Strategy.pdf)
+- [Resource Sharing Plan](/assets/docs/f31/Resource_Sharing_Plan.pdf)
+- [References](/assets/docs/f31/References.pdf)
 
 #### All about you (don't be modest)
-- [PI Biosketch](http://jef.works/docs/f31/PI_Biosketch.pdf)
-- [Doctoral Dissertation and Other Research Experience](http://jef.works/docs/f31/Doctoral Dissertation_and_Other_Research_Experience.pdf)
-- [Goals for Fellowship Training and Career](http://jef.works/docs/f31/Goals_for_Fellowship_Training_and_Career.pdf)
+- [PI Biosketch](/assets/docs/f31/PI_Biosketch.pdf)
+- [Doctoral Dissertation and Other Research Experience](/assets/docs/f31/Doctoral Dissertation_and_Other_Research_Experience.pdf)
+- [Goals for Fellowship Training and Career](/assets/docs/f31/Goals_for_Fellowship_Training_and_Career.pdf)
 
 #### All about your training environment (would not recommend spending too much time on these documents)
-- [Selection of Sponsor and Institution](http://jef.works/docs/f31/Selection_of_Sponsor_and_Institution.pdf)
-- [Equipment](http://jef.works/docs/f31/Equipment.pdf)
-- [Facilities and Resources](http://jef.works/docs/f31/Facilities_and_Resources.pdf)
-- [Activities Planned Under This Award](http://jef.works/docs/f31/Activities_Planned_Under_This_Award.pdf)
-- [Responsible Conduct of Research](http://jef.works/docs/f31/Responsible_Conduct_of_Research.pdf)
-- [Respective Contributions](http://jef.works/docs/f31/Respective_Contributions.pdf)
+- [Selection of Sponsor and Institution](/assets/docs/f31/Selection_of_Sponsor_and_Institution.pdf)
+- [Equipment](/assets/docs/f31/Equipment.pdf)
+- [Facilities and Resources](/assets/docs/f31/Facilities_and_Resources.pdf)
+- [Activities Planned Under This Award](/assets/docs/f31/Activities_Planned_Under_This_Award.pdf)
+- [Responsible Conduct of Research](/assets/docs/f31/Responsible_Conduct_of_Research.pdf)
+- [Respective Contributions](/assets/docs/f31/Respective_Contributions.pdf)
 - Sponsor (Dr. Peter Kharchenko) and Co-sponsor (Dr. George Church) biosketches (not provided for their privacy)
 
 The good news is that a lot of these documents are pretty boiler plate. Ask your PI or others at your institution for her/his grants. The Cover letter, Selection of Institution, Facilities and Resources, Equipment, Resource Sharing Plan, and many other text will be nearly the same. 
@@ -72,7 +72,7 @@ The good news is that a lot of these documents are pretty boiler plate. Ask your
 Beyond having a great research topic and strong preliminary data, here are a few tips to improve your grant based on my experience and the criticism I received for my F31. 
 
 ### Tip 1: Start early, especially if you are dealing with human data of any kind
-If you are dealing at all with human data, get your IRB straightened out NOW! Even though I only deal with non-identifiable sequencing data from patients and do not directly interface with patients or even collect data myself, [I still needed an IRB according to this document from the NIH](http://jef.works/docs/f31/HumanSubjectsPrivateInfoOrBioSpecimensDecisionChart.pdf). The NIH only requests for the appropriate IRBs AFTER your grant is awarded; so it would be such a shame if your grant was awarded but you can't accept it because you don't have your IRB!
+If you are dealing at all with human data, get your IRB straightened out NOW! Even though I only deal with non-identifiable sequencing data from patients and do not directly interface with patients or even collect data myself, [I still needed an IRB according to this document from the NIH](/assets/docs/f31/HumanSubjectsPrivateInfoOrBioSpecimensDecisionChart.pdf). The NIH only requests for the appropriate IRBs AFTER your grant is awarded; so it would be such a shame if your grant was awarded but you can't accept it because you don't have your IRB!
 
 ### Tip 2: Choose your co-sponsor wisely especially if your primary sponsor is young or has no track record of funding from the NIH
 I was my advisor's first PhD student. As such, he had no track record of mentoring PhD students. I was advised to choose a co-sponsor with a good track record of mentoring PhD students to counter-balance my advisor's deficits. My advisor's advisor from his PhD training was George Church, who was and is now even moreso a super big shot, for lack of a better word. Hundreds of PhD students have gone through his lab so his track record for mentorship on paper is superb. However, my choice of Dr. Church as a co-sponsor was the primary criticism from almost every reviewer. And in hindsight, they were absolutely right. One reviewer worded things particularly well: "Co-sponsor's letter and offered level of input came across as weak and distant; seemed to be there to prevent criticism of a young sponsor. This is a proposal that could benefit from a co-sponsor bringing some other expertise and with a way to push this young woman's training." The purpose of a co-sponsor is to have someone to mentor you in areas where your primary advisor can not or does not have a track record of doing well. Dr. Church's purpose in my training was to mentor me on how to mentor. Yet, during the duration of my F31, I did not interact at all with Dr. Church. Indeed, he served more for 'inspiration' than actual mentorship. Reviewers knew this would happen. They were right to criticize. 
@@ -97,7 +97,7 @@ So if you don't get the grant the first time, try again! Maybe the funding payli
 
 After you submit your grant, it will be assigned to a study section comprised of senior scientists in your agency's field. Your study section will physically meet together many many months later and judge your grant on its Overall Impact using five criteria: Applicant, Sponsor(s), Research Training Plan, Training Potential, and Institutional Environment & Commitment. Three reviewers will score each aspect on a scale of 1 to 9, where 1 is the best score. The 3 sets of scores are averaged and multiplied by 10 to arrive at a final score that will range from 10 to 90, with 10 being the best score. These scores and comments will be sent to you as your Summary Statements. 
 
-[Here are my Summary Statements for your reference](http://jef.works/docs/f31/F31CA206236-01.PDF)
+[Here are my Summary Statements for your reference](/assets/docs/f31/F31CA206236-01.PDF)
 
 Many many months after your Summary Statements are available, each agency will issue its payline. If you grant falls within the payline ie. lower/better score than the payline, then congrats (but don't celebrate too soon)! If not, depending on how far from the payline your score is, it will be worth discussing with your Program Director as to the best course of action. Maybe transfer to another agency, maybe apply again.
 
