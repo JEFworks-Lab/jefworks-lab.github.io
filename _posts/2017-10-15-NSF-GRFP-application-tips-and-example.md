@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-tags: [grants, advice, notes]
+tags: [grants, advice, notes, career]
 ---
 
 Note: This is a post from my old website that I've since shut down due to moving my website to Github. The original post is from 2013, yet it still seems reasonably relevant today. In this version, I have added a few updates (annotated as UPDATE) based on what I know now as I am nearing the end of my graduate career. Hopefully it will still be a useful resource to young aspiring scientists looking to launch their academic careers :)
