@@ -6,10 +6,11 @@ tags: [visualization, javascript, career, grants, lists]
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
-Continuing on our theme of [click-bait-y Buzz-feed inspired blog
-titles](https://github.com/JEFworks/buzzfeed-title), I am taking a
-data-driven approach to writing my next grant by analyzing 10 years of
-US federal grant data from the Federal RePORTER.
+As mentioned in [my previous blog
+post](https://jef.works/blog/2018/06/07/data-driven-faculty-job-search/),
+the NIH has an excellent database of all the federally funded grants in
+the past decade. This database includes nicely parsed `Project Terms`
+related to every funded project.
 
 While I have my own personal research interests (in computational
 methods development for precision medicine and cancer treatment), I
@@ -19,11 +20,7 @@ have served on study commitees that it is difficult to read all of these
 grants word for word. So are there certain words grant reviewers may
 look for that end up becoming really common in funded grants?
 
-As mentioned in [my previous blog
-post](https://jef.works/blog/2018/06/07/data-driven-faculty-job-search/),
-the NIH has an excellent database of all the federally funded grants in
-the past decade. This database includes nicely parsed `Project Terms`
-related to every funded project! Thanks to this database, we can now
+Thanks to this database, we can now
 take a data driven approach to addressing our questions!
 
 Read in the last 10 years of US federal grant data from Federal RePORTER
