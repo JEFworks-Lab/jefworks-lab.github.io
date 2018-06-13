@@ -43,7 +43,7 @@ There are A LOT of documents to put together. I personally find it really overwh
 
 #### All about your research (what you should spend the most time on)
 - [Project Abstract](/assets/docs/f31/Project_Abstract.pdf)
-- [Project Narrative](/assets/docs/f31/Cover_Letter.pdf)
+- [Project Narrative](/assets/docs/f31/Project_Narrative.pdf)
 - [Specific Aims](/assets/docs/f31/Specific_Aims.pdf)
 - [Research Strategy](/assets/docs/f31/Research_Strategy.pdf)
 - [Resource Sharing Plan](/assets/docs/f31/Resource_Sharing_Plan.pdf)
