@@ -6,6 +6,7 @@ sectionid: talks
 ---
 
 # INVITED TALKS AND PRESENTATIONS
+- **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. SCANGEN. ISMB. 2018. ([Talk](https://www.slideshare.net/JeanFan1/integrated-genetic-and-transcriptional-analysis-at-the-singlecell-level))
 - **Fan J**. Computational and Statistical Methods for Characterizing Single-cell Heterogeneity. Research In Progress - Division of Pulmonary and Critical Care Medicine. Northwestern University. 2018. (Talk)
 - **Fan J**. Classifying and characterizing single cells using transcriptional and epigenetic analysis. Minisymposium - After the Data Deluge: Grappling With Transcriptional Complexity in the Brain. Society for Neuroscience 2017. ([Talk](https://www.slideshare.net/JeanFan1/society-for-neuroscience-november-2017-sndropseq-scthsseq-talk))
 - **Fan J**. Linking genetic and transcriptional intratumoral heterogeneity at the single cell level. Models, Inference, and Algorithms seminar series. Broad Institute, 2017. ([Talk](https://www.youtube.com/watch?v=zJEDoBrKVKE))
