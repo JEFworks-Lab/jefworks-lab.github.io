@@ -6,6 +6,7 @@ sectionid: software
 ---
 
 # SOFTWARE ([Github](https://github.com/JEFworks))
+- [MERmaid](https://github.com/JEFworks/MERmaid) - WebGL-based viewer for MERFISH data
 - [HoneyBADGER](https://github.com/JEFworks/HoneyBADGER) - R package for detecting copy number alteration at the single cell level from single cell RNA-seq data
 - [SCDE/PAGODA](https://github.com/hms-dbmi/scde) - R package for single cell differential expression and pathway and gene set over-dispersion analysis 
 - [brainmapr](https://github.com/hms-dbmi/brainmapr) - R package to infer spatial location of neuronal subpopulations within the developing mouse brain by integrating single cell RNA-seq data with in situ hybridization data from the Allen Developing Mouse Brain Atlas
