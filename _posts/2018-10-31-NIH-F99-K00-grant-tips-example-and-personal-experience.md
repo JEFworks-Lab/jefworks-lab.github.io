@@ -6,7 +6,11 @@ tags: [grants, advice, notes, career]
 
 # NIH F99/K00 Grant Tips, Example, and Personal Experience
 
-In 2017, I applied for and received an NIH Predoctoral to Postdoctoral Fellow Transition Award (F99/K00) from the NCI. I was a 4th year PhD student at the time. I transitioned to the K00 component approximately a year later. I’ve included my F99/K00 grant and full summary statements as an example for those currently applying. Enjoy and good luck!
+In 2017, I applied for and received an NIH Predoctoral to Postdoctoral Fellow Transition Award (F99/K00) from the NCI. I was a 4th year PhD student at the time. I transitioned to the K00 component approximately a year later. I’ve included my F99/K00 grant and full summary statements as an example for those currently applying. 
+
+Please note that, being a very new grant, the application requirements for the F99/K00 changes slightly every year. So READ the instructions on the official RFA for your funding year! Also be on the look-out for informational webinars from the NIH that will be more relevant for your funding year. 
+
+Enjoy and good luck!
 
 ---
 
@@ -40,10 +44,12 @@ Unlike other NIH F-series grants, the F99/K00 grant requires an institutional no
 
 ## My F99/K00 grant as an example
 
-The F99/K00 grant application and process is very very very similar to the [F31](https://grants.nih.gov/grants/guide/pa-files/PA-18-671.html). The only real difference is in the Specific Aims, which must be organized as:  
+The F99/K00 grant application and process is very very very similar to the [F31](https://grants.nih.gov/grants/guide/pa-files/PA-18-671.html). The only real difference (as of 2017) is in the Specific Aims, which must be organized as:  
 - Aim 1: The Dissertation Research Project: progress thus far  
 - Aim 2: The Dissertation Research Project: work to be  
 - Aim 3: The Postdoctoral Research Direction  
+
+Please note that this has changed in 2019 according to the [RFA](https://grants.nih.gov/grants/guide/rfa-files/RFA-CA-19-002.html), which now requires only 2 aims (Specific Aim 1: The Dissertation Research Project; Specific Aim 2: The Postdoctoral Research Direction). So be sure to read the instructions for your year!
 
 I was able to apply many of the lessons I learned from my F31 (like choosing a good co-sponsor!) in my F99 so take a look at the [notes from my F31 as well](https://jef.works/blog/2017/10/19/NIH-F-series-grant-tips-and-example/). Many of the tips for the F99 are the same as for the F31. Same goes for what you can expect after you submit. 
 
