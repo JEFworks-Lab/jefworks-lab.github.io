@@ -1,0 +1,228 @@
+---
+layout: post
+comments: false
+tags: [javascript, interactive, career, advice]
+---
+
+<body onload='updateSalary();'>
+
+    When I was younger, my mom would tell me: "You have to work 110% as hard to as a man to get the same pay." As a young girl, I scoffed at my mom's antiquated views. "I'll never face the same out-dated sexist views and practices she faced. Things are different now," I thought. A recently experience made me think back to her advice. And now that I'm older and more skilled in programming, let's see if we can use some simple mathematical models and Javascript to interactively explore the basis of the gender pay gap. 
+
+    <hr>
+
+    <h2>Does the gender pay gap still exist? Well, it depends on how you look at it. </h2>
+
+    Let's consider a simple mathematical model of a hypothetical scenario. We will have our hypothetical scenario take place in our favorite setting: academia. Consider a scenario where your salary is a direct function of your publication record. Specifically, let's say your salary starts are some baseline and then increases by $cA for every first author paper, $cB for every middle author paper, and $cC for every acknowledgement (with cA > cB > cC generally).
+
+    <hr>
+
+    <div>
+	Base Salary (baseSalary):
+	$<label for="baseSalary" id="baseSalaryAmount">50000</label>
+	<input type="range" id="baseSalary"
+               min=0 max=100000 value=50000 step=1000
+               onchange="updateSlider(this.value, 'baseSalaryAmount'); updateSalary(); ">
+    </div>
+    <br>
+    <div>
+	Number of first author papers (mA):
+	<label for="pA" id="pAAmount">5</label>
+	<input type="range" id="pA"
+               min=0 max=100 value=5 step=1
+               onchange="updateSlider(this.value, 'pAAmount'); updateSalary(); ">
+    </div>
+    <div>
+	Number of middle author papers (mB):
+	<label for="pB" id="pBAmount">10</label>
+	<input type="range" id="pB"
+               min=0 max=100 value=10 step=1
+               onchange="updateSlider(this.value, 'pBAmount'); updateSalary(); ">
+    </div>
+    <div>
+	Number of acknowledgements (mC):
+	<label for="pC" id="pCAmount">20</label>
+	<input type="range" id="pC"
+               min=0 max=100 value=20 step=1
+               onchange="updateSlider(this.value, 'pCAmount'); updateSalary(); ">
+    </div>
+    <br>
+    <div>
+	Salary increase per first author paper (cA):
+	$<label for="cA" id="cAAmount">10000</label>
+	<input type="range" id="cA"
+               min=0 max=10000 value=10000 step=1
+               onchange="updateSlider(this.value, 'cAAmount'); updateSalary(); ">
+    </div>
+    <div>
+	Salary increase per middle author paper (cB):
+	$<label for="cB" id="cBAmount">1000</label>
+	<input type="range" id="cB"
+               min=0 max=10000 value=1000 step=1
+               onchange="updateSlider(this.value, 'cBAmount'); updateSalary(); ">
+    </div>
+    <div>
+	Salary increase per acknowledgement (cC):
+	$<label for="cC" id="cCAmount">5</label>
+	<input type="range" id="cC"
+               min=0 max=10000 value=5 step=1
+               onchange="updateSlider(this.value, 'cCAmount'); updateSalary(); ">
+    </div>
+    <br>
+    <div>
+	Salary = baseSalary + cA*mA + cB*mB + cC*mC = $<label id="salary"> </label>
+    </div>
+
+    <hr>
+
+    When we look at the salaries of faculty men and women, which are both direct functions of the number of papers they have, we may see that women on average have lower salaries. But this can fully be explained by their lower numbers of papers. Therefore, their lower salaries are reflective of their lower productivity. Thus, we can claim there is no true 'gender pay gap'.
+    <br><br>
+    However, based on my own experience, a woman's contributions may be more frequently dismissed as less substantial. Consider what would happen if a man insists his contribution is worthy of first authorship whereas a women's same contribution is regarded as warranting a middle authorship. Or similarly, a man's contribution is considered sufficient for middle authorship whereas a women's same contribution is seen as easy or trivial and thus only gets her an acknowledgement. 
+
+    More concretely, consider that a man makes contributions resulting in mA first author papers, mB middle author papers, and mC acknowledgements as previously. A woman makes the same contributions. But d% of what should have been first author papers result in middle author papers and d% of what should have been middle author papers result only in acknowledgements. 
+
+    Even if such sexist differential assessments of your contribution's worth occurs in only a small fraction of papers i.e. d% is small, such seemingly minor biases could propagate into real-world financial differences. Since salaries are direct functions of publication record, biases in authorship would propagate to result in what we could view as a 'gender pay gap'.
+
+    <hr>
+
+    <div>
+	Percentage of papers where women's contributions are given less credit (d):
+	<label for="discrimRate" id="discrimRateAmount">25</label>%
+	<input type="range" id="discrimRate"
+               min=0 max=100 value=25 step=1
+               onchange="updateSlider(this.value, 'discrimRateAmount'); updateSalary()">
+    </div>
+    <br>
+    <div>
+	wA = mA - d/100*mA<br>
+	wB = mB + d/100*mA - d/100*mB<br>
+	wC = mC + d/100*mB<br>
+	<br>
+	Women's Salary = baseSalary + cA*wA + cB*wB + cC*wC = $<label id="salary2"> </label>
+    </div>
+    <br>
+    <div>
+	"Gender Pay Gap" = $<label id="gpg"> </label>
+	<br><br>
+	ie. a woman doing the same work would earn <label id="cod"> </label> cents to a man's dollar.
+    </div>
+
+    <hr>
+    Such a scenario, if true, would suggest that our previous seemingly logical quantication of "productivity" (publication record) was itself liable to gendered biases and that a 'gender pay gap' does indeed exist but not in an straightforward manner. Unfortunately, this scenario not completely unrealistic. <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30950-4/fulltext">Multiple studies</a> have noted the gendered system of academic publishing at all stages of the publication pipeline (not just with respect to authorship, but also reviewership and editorship) potentially contributing to the likelihood of our hypothetical scenario manifesting in reality. <a href="https://www.bmj.com/content/352/bmj.i847">Another study</a> of high-impact medical journals from 1994 to 2014 found that only 30% of the research papers had female first authors despite women representing closer to 40% of physician researchers, suggesting that women are less likely to be first authors than expected. The <a href="http://www.sciencemag.org/careers/2014/06/want-be-pi-what-are-odds">probability of becoming an academic itself</a> is a function of the number of 1st authors so biases in publication rate and authorship may propagate to influence the number of women faculty. 
+
+    <hr>
+
+    <h2>What we can do?</h2>
+
+    So what is the solution? If say d% of women's efforts are insufficiently credited, then women will need to publish more to make up the resulting wage gap. Consider how many additional first author papers a woman would need to publish in order to make up the gender pay gap. And let's say the additional publications take a certain amount of quantiable 'units' of effort. Let's see if my mom's 110% guess is far off!
+
+    <hr>
+
+    <div>
+	Effort needed to produce a first-author paper (effortA):
+	<label for="effortA" id="effortAAmount">100</label>
+	<input type="range" id="effortA"
+               min=0 max=100 value=100 step=1
+               onchange="updateSlider(this.value, 'effortAAmount'); updateSalary(); ">
+    </div>
+    <div>
+	Effort needed to produce a middle author paper (effortB):
+	<label for="effortB" id="effortBAmount">10</label>
+	<input type="range" id="effortB"
+               min=0 max=100 value=10 stepA=1
+               onchange="updateSlider(this.value, 'effortBAmount'); updateSalary(); ">
+    </div>
+    <div>
+	Effort needed to produce an acknowledgements paper (effortC):
+	<label for="effortC" id="effortCAmount">1</label>
+	<input type="range" id="effortC"
+               min=0 max=100 value=1 step=1
+               onchange="updateSlider(this.value, 'effortCAmount'); updateSalary(); ">
+    </div>
+    <br>
+    <div>
+	additionalPapers = (salary - wSalary)/cA/(1-d) <br>
+	manEffort = mA*effortA + mB+effortB + mC*effortC <br>
+	womanEffort = (mA+additionalPapers)*effortA + mB+effortB + mC*effortC <br>
+	moreEffort = womanEffort / manEffort * 100
+	<br><br>
+	Women need to work <label id="effort"> </label>% as hard!
+    </div>
+
+
+    <hr>
+
+    <h2>Conclusion</h2>
+    Of course this is just an oversimplied mathematical model and simulation. The real world is much more complex and many of the parameters used here are not actually estimated from any real data. But the trends it highlights may not be far off. And the trends that we can see from tinkering with this simulation highlight how seemingly minor inequalities such as not getting the appropriate credit for your contributions on a paper may propagate to have tangible financial and career consequences. Therefore, women in academia must do everything we can to minimize the percentage of our work that's improperly credited in the first place. We must do our best to minimize the d%. But as long as this d% is nonzero, we may still need to work harder to achieve the same outcomes. <br><br>
+    On the flip side, if and when we have the opportunity to establish or influence authorship lists, we must do better to make sure that all of our students, in particular those who are at risk of being marginalized and having their contributions dismissed, are properly credited for their contributions. In this manner, everyone has a role to play in paving the way towards a more equitable future in academia and beyond. 
+
+    <script>
+     function updateSlider(value, id) {
+	 document.getElementById(id).innerHTML = value;
+     }
+     function updateSalary() {
+
+	 baseSalary = parseInt(document.getElementById('baseSalary').value)
+
+	 mA = parseInt(document.getElementById('pA').value)
+	 mB = parseInt(document.getElementById('pB').value)
+	 mC = parseInt(document.getElementById('pC').value)
+
+	 cA = parseInt(document.getElementById('cA').value)
+	 cB = parseInt(document.getElementById('cB').value)
+	 cC = parseInt(document.getElementById('cC').value)
+
+	 salary = 
+	 baseSalary +
+	 cA * mA + 
+	 cB * mB + 
+	 cC * mC 
+
+	 document.getElementById('salary').innerHTML = (salary).toFixed(2);
+
+	 ////////
+
+	 d = parseInt(document.getElementById('discrimRate').value)/100.0
+
+	 // number of papers a woman doing equal work will have
+	 wA = mA - d*mA
+	 wB = mB + d*mA - d*mB
+	 wC = mC + d*mB
+
+	 wSalary = 
+	 baseSalary +
+	 cA * wA + 
+	 cB * wB + 
+	 cC * wC
+	 
+	 // salary difference
+	 gpg = salary - wSalary
+	 cod = wSalary/salary
+	 
+	 document.getElementById('salary2').innerHTML = (wSalary).toFixed(2);
+	 document.getElementById('gpg').innerHTML = (gpg).toFixed(2);
+	 document.getElementById('cod').innerHTML = (cod).toFixed(2);
+
+	 ////////
+
+	 // How much harder women will have to work to make up the difference
+	 // for simplicity, how many more first author papers would a woman have to have
+	 // assuming a consistent rate of d as previously
+	 additionalPapers = (salary - wSalary)/cA/(1-d)
+
+	 // amount of effort per type of paper
+	 effortA = parseInt(document.getElementById('effortA').value)
+	 effortB = parseInt(document.getElementById('effortB').value)
+	 effortC = parseInt(document.getElementById('effortC').value)
+
+	 // how much harder women need to work
+	 totEffort = mA*effortA + mB+effortB + mC*effortC
+	 requiredEffort = (mA+additionalPapers)*effortA + mB+effortB + mC*effortC
+	 pEffort = requiredEffort / totEffort * 100
+
+	 document.getElementById('effort').innerHTML = (pEffort).toFixed(2);
+
+     }
+    </script>
+
+
+</body>
