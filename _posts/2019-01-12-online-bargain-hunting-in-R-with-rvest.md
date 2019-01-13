@@ -65,9 +65,13 @@ results <- do.call(rbind, lapply(1:length(content), function(i) {
 })) 
 ```
 
-Now, using this information, I can further filter out products that I don't want to consider such as products where the original value is unknown, or where the discount is not sufficiently large (in this case, less than $30 or less than 50% off). And this gives us a final set of products that we may be interested in!
+Now, using this information, I can finally sort by best bargain! I can even further filter out products that I don't want to consider such as products where the original value is unknown, or where the discount is not sufficiently large (in this case, less than $30 or less than 50% off). And this gives us a final set of products that we may be interested in!
 
 ```r
+## sort
+results <- results[order(results$discount, decreasing=TRUE),]
+
+## filter
 ## retail price unknown
 vi <- results$value == 0
 results <- results[!vi,]
@@ -77,8 +81,7 @@ results <- results[!vi,]
 ## discount is not sufficient
 vi <- results[,'discount'] < 30 | results[, 'pct'] < 0.5
 results <- results[!vi,]
-## sort
-results <- results[order(results$discount, decreasing=TRUE),]
+
 head(results[,1:5])
 ```
 
