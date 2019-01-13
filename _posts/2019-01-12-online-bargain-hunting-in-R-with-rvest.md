@@ -78,7 +78,7 @@ results <- results[!vi,]
 vi <- results[,'discount'] < 30 | results[, 'pct'] < 0.5
 results <- results[!vi,]
 ## sort
-results <- results[order(results$sale, decreasing=TRUE),]
+results <- results[order(results$discount, decreasing=TRUE),]
 head(results[,1:5])
 ```
 
@@ -109,10 +109,10 @@ par(mfrow=c(n,n), mar=rep(1,4))
 lapply(1:nrow(results), function(i) {
   print(i)
   src <- as.character(results[i,'image'])
-  sale >- results[i, 'sale']
+  discount <- results[i, 'discount']
   download.file(src,'temp.jpg', mode = 'wb')
   jj <- readJPEG("temp.jpg", native = TRUE)
-  plot(0:1,0:1,type="n", axes = FALSE, main = paste0(i, ' : $', sale))
+  plot(0:1,0:1,type="n", axes = FALSE, main = paste0(i, ' : $', discount))
   rasterImage(jj,0,0,1,1)
 })
 ```
