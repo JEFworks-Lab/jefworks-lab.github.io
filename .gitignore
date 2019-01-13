@@ -3,3 +3,4 @@ _site/
 .Rproj.user
 _posts/code/
 .sass-cache/
+Gemfile.lock
