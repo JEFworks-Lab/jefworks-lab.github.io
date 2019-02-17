@@ -73,13 +73,13 @@ results <- results[order(results$discount, decreasing=TRUE),]
 
 ## filter
 ## retail price unknown
-vi <- results$value == 0
+vi <- results$retail == 0
 results <- results[!vi,]
 ## no pictures
-vi <- results[,'image']==''
+vi <- results$image == ''
 results <- results[!vi,]
 ## discount is not sufficient
-vi <- results[,'discount'] < 30 | results[, 'pct'] < 0.5
+vi <- results$discount < 30 | results$pct < 0.5
 results <- results[!vi,]
 
 head(results[,1:5])
@@ -111,11 +111,11 @@ n <- ceiling(sqrt(nrow(results)))
 par(mfrow=c(n,n), mar=rep(1,4))
 lapply(1:nrow(results), function(i) {
   print(i)
-  src <- as.character(results[i,'image'])
+  src <- as.character(results[i, 'image'])
   discount <- results[i, 'discount']
   download.file(src,'temp.jpg', mode = 'wb')
   jj <- readJPEG("temp.jpg", native = TRUE)
-  plot(0:1,0:1,type="n", axes = FALSE, main = paste0(i, ' : $', discount))
+  plot(0:1,0:1,type="n", axes = FALSE, main = paste0(i, ' : $', discount, ' off'))
   rasterImage(jj,0,0,1,1)
 })
 ```
