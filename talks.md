@@ -7,7 +7,7 @@ sectionid: talks
 
 # INVITED TALKS AND PRESENTATIONS
 - **Fan J.** MERmaid - a React WebGL-Based Tool for Exploring Spatially Resolved Single-Cell Transcriptomics Data. Bio-IT World - Data Visualization and Exploration Tools. April 2019. ([Talk](https://www.slideshare.net/JeanFan1/mermaid-a-react-webglbased-tool-for-exploring-spatially-resolved-singlecell-transcriptomics-data))
-- **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. Arizona State University. Molecular, Cellular and Tissue Bioengineering Symposium – Single Cell Technologies from Method Development to Application Bioengineering Symposium. April 2019. (Talk)
+- **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. Arizona State University. Molecular, Cellular and Tissue Bioengineering Symposium – Single Cell Technologies from Method Development to Application. April 2019. (Talk)
 - **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. SCANGEN. ISMB. 2018. ([Talk](https://www.slideshare.net/JeanFan1/integrated-genetic-and-transcriptional-analysis-at-the-singlecell-level))
 - **Fan J**. Computational and Statistical Methods for Characterizing Single-cell Heterogeneity. Research In Progress - Division of Pulmonary and Critical Care Medicine. Northwestern University. 2018. (Talk)
 - **Fan J**. Classifying and characterizing single cells using transcriptional and epigenetic analysis. Minisymposium - After the Data Deluge: Grappling With Transcriptional Complexity in the Brain. Society for Neuroscience 2017. ([Talk](https://www.slideshare.net/JeanFan1/society-for-neuroscience-november-2017-sndropseq-scthsseq-talk))
