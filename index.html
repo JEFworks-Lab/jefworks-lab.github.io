@@ -1,50 +1,11 @@
 ---
 layout: default
+image: /img/bg.png
+desc: Welcome to JEFworks, where Jean Fan works on bioinformatics and other fun stuff at the intersection of biology, statistics, and computer science. 
 ---
 
-<!---
-<div class="header-container jumbotron">
-    <div class="container">
-	<div class="row"> 
-            <h2>JEFworks - where Jean Fan works on stuff</h2>
-	</div>
-    </div>
-</div>
---->
-
 <div class="container">
-
     <div class="row">
-        <div class="col-sm-8">
-	    <h2 class="header-light regular-pad">Jean Fan</h2>
-	    <h4>Bioinformatician. NCI F99/K00 Post-Doctoral Fellow. Harvard University.</h4>
-	    <p>I am currently an NCI F99/K00 post-doctoral fellow in the lab of <a href="http://zhuang.harvard.edu/">Dr. Xiaowei Zhuang</a> at Harvard University. I received my PhD in Bioinformatics and Integrative Genomics at Harvard under the mentorship of <a href="http://pklab.med.harvard.edu/">Dr. Peter Kharchenko</a> at the Department of Biomedical Informatics and in close collaboration with <a href="http://wulab.dfci.harvard.edu/">Dr. Catherine Wu</a> at the Dana-Farber Cancer Institute. My research interests center around developing computational methods for identifying and characterizing heterogeneity at the single cell level, particularly in the context of cancer, using multi-omics approaches.</p>
-	    Find me on:
-	    <br>
-	    <a href="https://www.twitter.com/jefworks" target="_blank"><li class="fa fa-fw fa-2x fa-twitter"></li></a> 
-	    <a href="https://www.github.com/jefworks" target="_blank"><li class="fa fa-fw fa-2x fa-github"></li></a> 
-	    <a href="https://www.linkedin.com/in/jeanfan" target="_blank"><li class="fa fa-fw fa-2x fa-linkedin"></li></a> 
-	    <a href="https://www.instagram.com/jefworks/" target="_blank"><li class="fa fa-fw fa-2x fa-instagram"></li></a>
-        </div>
-        <div class="col-sm-4 text-center">
-	    <br>
-            <img src="{{ "/img/profile.jpg" | prepend: site.baseurl }}" class="img-responsive img-circle" alt="Jean Fan">
-	    <br>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-        <div class="col-sm-4">
-            <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
-            <h3 class="text-center">Latest Blog Posts</h3>
-                <ul class="post-list-container">
-                    {% for post in site.posts limit:5 %}
-                    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
-                    {% endfor %}
-                </ul>
-        </div>
         <div class="col-sm-4">
             <h1 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h1>
             <h3 class="text-center">Latest Publications</h3>
@@ -54,6 +15,11 @@ layout: default
                 <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
                 {% endfor %}
             </ul>
+	    <a href="{{ site.baseurl }}/publications">
+		<button type="button" class="btn btn-primary btn-block">
+		    More Publications
+		</button>
+	    </a>
         </div>
         <div class="col-sm-4">
             <h1 class="text-center"><i class="fa fa-rss-square" aria-hidden="true"></i></h1>
@@ -64,8 +30,26 @@ layout: default
                 <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string}}</li>
                 {% endfor %}
             </ul>	    
+	    <a href="{{ site.baseurl }}/allnews">
+		<button type="button" class="btn btn-primary btn-block">
+		    More News
+		</button>
+	    </a>
+        </div>
+        <div class="col-sm-4">
+            <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
+            <h3 class="text-center">Latest Blog Posts</h3>
+            <ul class="post-list-container">
+                {% for post in site.posts limit:5 %}
+                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
+                {% endfor %}
+            </ul>
+	    <a href="{{ site.baseurl }}/allposts"> 
+		<button type="button" class="btn btn-primary btn-block">
+		    More Blog Posts
+		</button>
+	    </a>
         </div>
     </div>
-
 
 </div>

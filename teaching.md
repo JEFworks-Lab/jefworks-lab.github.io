@@ -3,6 +3,7 @@ layout: default
 title: Teaching
 permalink: /teaching/
 sectionid: teaching
+image: /img/teaching.png
 ---
 
 # COURSES
@@ -28,7 +29,3 @@ All students must develop the capacity for self-generation of ideas, self-direct
 
 3. *Encourage an interdisciplinary perspective and vocabulary.*
 I am a valiant supporter of Albert Einstein's tenet that "If you can't explain it simply, you don't understand it well enough." Indeed, as fields become more interdisciplinary, bioinformaticians must be able to explain their work and ideas not only to other bioinformaticians, but also biologists, statisticians, and even the general public. Thus, students must be able to explain their work and ideas in everyday language and be provided with opportunities to practice through grant-style writing as well as presentations. 
-
-<hr>
-
-<div align="center"><img class="img-responsive" src="{{ "/img/teaching.png" | prepend: site.baseurl }}" alt="Computer science class at Ti2"></div>

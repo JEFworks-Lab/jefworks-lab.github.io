@@ -44,6 +44,12 @@ defaults:
   values:
     layout: pages
     sectionid: announcements
+- scope:
+    path: _team
+    type: team
+  values:
+    layout: pages
+    sectionid: team
 
 collections:
   papers:
@@ -54,4 +60,7 @@ collections:
     output: true
   news:
     permalink: /announcements/:year/:month/:day/:title/
+    output: true
+  team:
+    permalink: /team/:title/
     output: true

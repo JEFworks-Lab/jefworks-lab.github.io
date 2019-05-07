@@ -3,6 +3,7 @@ layout: default
 title: Talks
 permalink: /talks/
 sectionid: talks
+image: /img/talks.png
 ---
 
 # INVITED TALKS AND PRESENTATIONS
@@ -17,7 +18,7 @@ sectionid: talks
 - **Fan J.** Applying single cell transcriptomics - unraveling the complexity of the developing human
 brain. Festival of Genomics, Single Cell Genomics, 2016 ([Talk](http://www.slideshare.net/JeanFan1/festival-of-genomics-2016-brain-talk))
 - **Fan J.** Do art like a science. Do science like an art. TEDxJHU, Instructions Not Included, 2016
-([Talk](https://www.youtube.com/watch?v=MYbfY0Tzc-c)) 
+([Talk](https://www.youtube.com/watch?v=MYbfY0Tzc-c))
 - **Fan J**, Wang L, Brooks AN, Wan Y, Neuberg D, Rassenti K, Ghia E, Kipps T, Brown JR, Li S,
 Livak KJ, Meyerson MM, Kharchenko PV, Wu CJ Comprehensive Bulk and Single Cell
 Transcriptomic Characterization of SF3B1 Mutation Reveals its Pleiotropic Eects in Chronic
@@ -35,7 +36,3 @@ National Institutes of Health, Single Cell Investigators Meeting, 2014 ([Poster]
 - **Fan J**, Karchin R. Computational Assessment of the Utility of Limiting Orthologous Sequence
 Depth in Mutation Impact Prediction Performance. International Congress of Human
 Genetics/American Society of Human Genetics Conference, 2011 (Poster)
-
-<hr>
-
-<div align="center"><img class="img-responsive" src="{{ "/img/talks.png" | prepend: site.baseurl }}" alt="TEDxJHU talk"></div>
