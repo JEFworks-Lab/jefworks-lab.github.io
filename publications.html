@@ -8,10 +8,12 @@ sectionid: publications
 
 We are committed to <a href="https://en.wikipedia.org/wiki/Open_access">open access</a>. If you find a manuscript that we have co-authored but is not available here, please contact us directly and we will be happy to send you an electronic copy.
 
-<hr>
-{% for pub in site.papers reversed %}
-<p>
-    {{ pub.content }}
-</p>
-<hr>
-{% endfor %}
+<div class="container">
+    <hr>
+    {% for pub in site.papers reversed %}
+    <div class="row"><div class="col-md-12">
+	{{ pub }}
+    </div></div>
+    <hr>
+    {% endfor %}
+</div>
