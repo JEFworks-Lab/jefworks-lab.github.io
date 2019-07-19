@@ -1,5 +1,5 @@
 ---
-title: Figure style faux-pas
+title: Figure style faux pas
 layout: post
 comments: false
 tags: [lists, notes, tutorial, advice, visualization]
@@ -9,11 +9,11 @@ tags: [lists, notes, tutorial, advice, visualization]
 
 Recently, I collaborated with a fellow lab member to put together figures for a manuscript. I believe, regardless of whether the figures were made by 1, 2, or 10 people, every figure should look like they were made by the same person. The same principle applies to programming - regardless of whether the code was written by 1, 2, or 10 people, it should look like it was written by the same person. This is typically achieved in programming through the adherence to a [style guide](https://jef.works/R-style-guide/). 
 
-When making figures, I had a hard time communicating what my stylistic preferences were and what style faux-pas drive me absolutely insane. So I made this figure faux-pas style guide along with tips to help lay out what are the stylistic features that distinguish a good, bad, and ugly figure (in my opinion) regardless of the underlying data that's presented. If you notice and are annoyed by these pixel-level imperfections like me, feel free to adapt this style guide for your own collaborations.
+When making figures, I had a hard time communicating what my stylistic preferences were and what style faux pas drive me absolutely insane. So I made this figure faux pas style guide along with tips to help lay out what are the stylistic features that distinguish a good, bad, and ugly figure (in my opinion) regardless of the underlying data that's presented. If you notice and are annoyed by these pixel-level imperfections like me, feel free to adapt this style guide for your own collaborations.
 
-# Style Faux-pas
+# Style faux pas
 
-## Style Faux-pas 1. Inconsistent font
+## Style faux pas 1. Inconsistent font
 
 ![](/assets/blog/figure_faux_pas_1.png)
 
@@ -27,7 +27,7 @@ When making figures, I had a hard time communicating what my stylistic preferenc
 - No font should be smaller than 8pt  
 
 
-## Style Faux-pas 2. Lack of alignment
+## Style faux pas 2. Lack of alignment
 
 ![](/assets/blog/figure_faux_pas_2.png)
 
@@ -37,7 +37,7 @@ When making figures, I had a hard time communicating what my stylistic preferenc
 - All figure panel labels should be consistent in terms of their relative position to figure panels   
 
 
-## Style Faux-pas 3. Insufficient padding
+## Style faux pas 3. Insufficient padding
 
 ![](/assets/blog/figure_faux_pas_3.png)
 
@@ -47,7 +47,7 @@ When making figures, I had a hard time communicating what my stylistic preferenc
 - Maintain at least a 1/2 inch padding around the whole figure  
 
 
-## What it looks like when these style faux-pas are addressed
+## What it looks like when these style faux pas are addressed
 
 ![](/assets/blog/figure_faux_pas_4.png)
 
