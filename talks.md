@@ -6,7 +6,10 @@ sectionid: talks
 image: /img/talks.png
 ---
 
+We are committed to open access. If you know of a talk that we have given but were unable to attend, please [contact us](/contact) directly and we will be happy to send you slides and recordings if available.
+
 # INVITED TALKS AND PRESENTATIONS
+- **Fan J.** Spatial transcriptome profiling by MERFISH reveals sub-cellular RNA compartmentalization and cell-cycle dependent gene expression. KOGO/SGI. September 2019. ([Talk](https://www.slideshare.net/JeanFan1/spatial-transcriptome-profiling-by-merfish-reveals-subcellular-rna-compartmentalization-and-cellcycle-dependent-gene-expression))
 - **Fan J.** MERmaid - a React WebGL-Based Tool for Exploring Spatially Resolved Single-Cell Transcriptomics Data. Bio-IT World - Data Visualization and Exploration Tools. April 2019. ([Talk](https://www.slideshare.net/JeanFan1/mermaid-a-react-webglbased-tool-for-exploring-spatially-resolved-singlecell-transcriptomics-data))
 - **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. Arizona State University. Molecular, Cellular and Tissue Bioengineering Symposium – Single Cell Technologies from Method Development to Application. April 2019. (Talk)
 - **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. SCANGEN. ISMB. 2018. ([Talk](https://www.slideshare.net/JeanFan1/integrated-genetic-and-transcriptional-analysis-at-the-singlecell-level))
