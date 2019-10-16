@@ -7,7 +7,7 @@ layout: default
 jeanfan@fas.harvard.edu  
 https://jef.works
 
-*(Updated May 16, 2019)*
+*(Updated Oct 16, 2019)*
 
 ---
 
@@ -73,7 +73,6 @@ _Dissertation:_ Computational and Statistical Methods for Characterizing Single-
 ## SOFTWARE	
 
 ### Rstats
-- MERingue: R package for spatial correlation analysis for spatially-resolved transcriptomics data. https://jef.works/MERingue/
 - MUDAN: R package for multi-sample unified discriminant analysis. https://jef.works/MUDAN/
 - HoneyBADGER: R package for detecting copy number alteration from single-cell RNA-seq data. https://jef.works/HoneyBADGER/
 - SCDE/PAGODA: R package for single-cell differential expression and pathway over-dispersion analysis. https://bioconductor.org/packages/release/bioc/html/scde.html
@@ -90,6 +89,7 @@ _Dissertation:_ Computational and Statistical Methods for Characterizing Single-
 ## PRESENTATIONS	
 
 ### Invited Talks
+- **Fan J**. Spatial transcriptome profiling by MERFISH reveals sub-cellular RNA compartmentalization and cell-cycle dependent gene expression. KOGO/SGI. September 2019. 
 - **Fan J**. MERmaid - a React WebGL-Based Tool for Exploring Spatially Resolved Single-Cell Transcriptomics Data. Bio-IT World - Data Visualization and Exploration Tools. April 2019. 
 - **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. Arizona State University. Molecular, Cellular and Tissue Bioengineering Symposium – Single Cell Technologies from Method Development to Application Bioengineering Symposium. April 2019. 
 - **Fan J**. Spatial gene expression analysis in non-homogenous tissues. Department of Immunology Bioinformatics seminar. Nov 2018.
@@ -144,8 +144,9 @@ Designed, wrote, and lead lessons on single-cell analyses for ~50 students.
 
 ---
 
-## AWARDS	 & HONORS
+## AWARDS & HONORS
 
+- Nature Research Award Winner (2019)
 - Anita Borg Pass-It-On Award Winner (2017)
 - BU GWISE Advocate of the Year (2017)
 - Regeneron “Dream Proposal” Prize Finalist (2017)
