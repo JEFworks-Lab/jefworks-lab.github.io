@@ -5,7 +5,7 @@ permalink: /software/
 sectionid: software
 ---
 
-# [Github](https://github.com/JEFworks)
+# For a full list of our software, please see our [Github](https://github.com/JEFworks) page
 
 ---
 

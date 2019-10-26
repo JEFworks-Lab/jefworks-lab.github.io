@@ -1,55 +1,110 @@
 ---
 layout: default
 image: /img/bg.png
-desc: Welcome to JEFworks, where Jean Fan works on bioinformatics and other fun stuff at the intersection of biology, statistics, and computer science. 
+sectionid: home
+desc: Welcome to JEFworks, where Prof. Jean Fan and team work to address questions at the intersection of statistics, computer science, biology, and health. 
 ---
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <h1 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h1>
-            <h3 class="text-center">Latest Publications</h3>
-            <ul class="post-list-container">
-		{% assign items = site.papers | reverse %}
-                {% for post in items limit:3 %}
-                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
-                {% endfor %}
-            </ul>
-	    <a href="{{ site.baseurl }}/publications">
-		<button type="button" class="btn btn-primary btn-block">
-		    More Publications
-		</button>
-	    </a>
-        </div>
-        <div class="col-sm-4">
-            <h1 class="text-center"><i class="fa fa-rss-square" aria-hidden="true"></i></h1>
-            <h3 class="text-center">Latest News</h3>
-            <ul class="post-list-container">
-		{% assign items = site.news | reverse %}
-                {% for post in items limit:5 %}
-                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string}}</li>
-                {% endfor %}
-            </ul>	    
-	    <a href="{{ site.baseurl }}/allnews">
-		<button type="button" class="btn btn-primary btn-block">
-		    More News
-		</button>
-	    </a>
-        </div>
-        <div class="col-sm-4">
-            <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
-            <h3 class="text-center">Latest Blog Posts</h3>
-            <ul class="post-list-container">
-                {% for post in site.posts limit:5 %}
-                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
-                {% endfor %}
-            </ul>
-	    <a href="{{ site.baseurl }}/allposts"> 
-		<button type="button" class="btn btn-primary btn-block">
-		    More Blog Posts
-		</button>
-	    </a>
-        </div>
+  <div class="row">
+
+    <h2>We are an incoming academic research lab in the Department of Biomedical Engineering at Johns Hopkins University (launching July 2020). We are interested in understanding the genetic, epigenetic, and other regulatory mechanisms driving cellular identity and heterogeneity, particularly in the context of cancer and how this heterogeneity shapes tumor progression, therapeutic resistance, and ultimately clinical impact. We develop machine learning and other statistical approaches as computational software to enable ourselves and the scientific community to harness the power of large-scale multi-omic and imaging data in addressing these basic science and translational research questions.</h2>
+
+    <hr>
+
+    <h2>Research Synopsis</h2>
+    <i>* Denotes equal contribution</i>
+    
+    <h3>Statistical methods and software for analyses of single cell data</h3>
+    <p>While heterogeneity within cellular systems has long been widely recognized, only recently have technological advances enabled measurements to be made on a single cell level. Applying traditional bulk analysis methods on single cells has met with varied degrees of success due to the high levels of technical as well as biological stochasticity and noise inherent in single cell measurements. Therefore, we develop novel statistical methods to identify and characterize varying aspects of heterogeneity (genomic, transcriptomic, epigenomic) and their interplay in single cells.
+      <ul>
+	<li>
+	  <a href="/publications#/papers/2018/06/13/gr228080117">Jean Fan*, Hae-Ock Lee*, Soohyun Lee, Da-eun Ryu, Semin Lee, et al. Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq. Genome Research. 2018. doi:10.1101/gr.228080.117</a>
+	</li>
+	<li>
+	  <a href="/publications#/papers/2017/12/11/nbt4038">Blue B Lake*, Song Chen*, Brandon C Sos*, Jean Fan*, Gwendolyn E Kaeser, et al. Integrative single-cell analysis by transcriptional and epigenetic states in human adult brain. Nature Biotechnology 2017. doi:10.1038/nbt.4038</a>
+	</li>
+	<li>
+	  <a href="/publications#/papers/2016/01/18/nmeth3734">Jean Fan, Neeraj Salathia, Rui Liu, Gwendolyn E Kaeser, Yun C Yung, et al. Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis. Nature Methods. 2016. doi: 10.1038/nmeth.3734</a>
+	</li>
+      </ul>
+    </p>
+
+    <h3>Role of alternative splicing in development and disease</h3>
+    <p>Alternative splicing governs cell-type transitions and cell fate in a variety of normal developmental processes including the mammalian brain. Aberrations in alternative splicing have also been shown to dysregulate cellular functions and drive cancer pathogenesis. We aim to gain a better understanding of the functional consequences of alternative splicing and dysregulation in normal development and in cancer. 
+      <ul>
+	<li>
+	  <a href="/publications#/papers/2016/11/03/jccell201610005">Lili Wang*, Angela N. Brooks*, Jean Fan*, Youzhong Wan*, Rutendo Gambe, et al. Transcriptomic characterization of SF3B1 mutation reveals its pleiotropic effects in chronic lymphocytic leukemia. Cancer Cell. Nov 3, 2016. doi: 10.1016/j.ccell.2016.10.005</a>
+	</li>
+	<li>
+	  <a href="/publications#/papers/2016/08/25/jcell201607025">Xiaochang Zhang, Ming Hui Chen, Xuebing Wu, Andrew Kodani, Jean Fan, Ryan Doan, et al. Cell-Type-Specific Alternative Splicing Governs Cell Fate in the Developing Cerebral Cortex. Cell. 2016. doi:10.1016/j.cell.2016.07.025</a>
+	</li>
+      </ul>
+    </p>
+
+    <h3>Molecular and spatial-contextual factors impacting cancer progression</h3>
+    <p>Advancements in high-throughput sequencing and imaging technologies have uncovered tremendous genetic, epigenetic, transcriptional, and even spatial heterogeneity in various cancers but their impact on clinical course is not well understood. We aim to establish close collaborations with clinical collaborators to focus on developing and applying bioinformatics methods that contribute to a more complete understanding of cancer pathogenesis, progression, treatment response, and resistance. 
+      <ul>
+	<li>
+	  <a href="/publications#/papers/2019/09/09/pnas1912459116">Chenglong Xia*, Jean Fan*, George Emanuel*, Junjie Hao, and Xiaowei Zhuang. Spatial transcriptome profiling by MERFISH reveals subcellular RNA compartmentalization and cell cycle-dependent gene expression. PNAS. 2019. doi:10.1073/pnas.1912459116</a>
+	</li>
+	<li>
+	  <a href="/publications#/papers/2017/05/22/gr217331116">Lili Wang*, Jean Fan*, Joshua M. Francis, George Georghiou, Sarah Hergert, et al. Integrated single-cell genetic and transcriptional analysis suggests novel drivers of chronic lymphocytic leukemia. Genome Research. 2017. doi:10.1101/gr.217331.116</a>
+	</li>
+      </ul>
+    </p>
+
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h1>
+      <h2 class="text-center">Latest Publications</h2>
+      <ul class="post-list-container">
+	{% assign items = site.papers | reverse %}
+        {% for post in items limit:3 %}
+        <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
+        {% endfor %}
+      </ul>
+      <a href="{{ site.baseurl }}/publications">
+	<button type="button" class="btn btn-primary btn-block">
+	  More Publications
+	</button>
+      </a>
     </div>
+    <div class="col-sm-4">
+      <h1 class="text-center"><i class="fa fa-rss-square" aria-hidden="true"></i></h1>
+      <h2 class="text-center">Latest News</h2>
+      <ul class="post-list-container">
+	{% assign items = site.news | reverse %}
+        {% for post in items limit:5 %}
+        <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string}}</li>
+        {% endfor %}
+      </ul>	    
+      <a href="{{ site.baseurl }}/allnews">
+	<button type="button" class="btn btn-primary btn-block">
+	  More News
+	</button>
+      </a>
+    </div>
+    <div class="col-sm-4">
+      <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
+      <h2 class="text-center">Latest Blog Posts</h2>
+      <ul class="post-list-container">
+        {% for post in site.posts limit:5 %}
+        <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
+        {% endfor %}
+      </ul>
+      <a href="{{ site.baseurl }}/allposts"> 
+	<button type="button" class="btn btn-primary btn-block">
+	  More Blog Posts
+	</button>
+      </a>
+    </div>
+  </div>
 
 </div>

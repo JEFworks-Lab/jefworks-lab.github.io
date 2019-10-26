@@ -1,28 +1,31 @@
-<div class="col-md-2">
-    <div align="center">
-        <img src="{{ page.profile }}" class="img-responsive img-circle" alt="{{ page.name }}">
-	
-	<h2 class="header-light regular-pad"> {{ page.name }}</h2>
-	<h4> {{ page.title }} </h4>
-	<p> {{ page.description }} </p>
-	
-	{% if page.home != null %}
-	<a href=" {{ page.home }} " target="_blank"><li class="fa fa-fw fa-2x fa-home"></li></a>
-	{% endif %}
-	{% if page.twitter != null %}
-	<a href=" {{ page.twitter }} " target="_blank"><li class="fa fa-fw fa-2x fa-twitter"></li></a>
-	{% endif %}
-	{% if page.github != null %}
-	<a href=" {{ page.github }} " target="_blank"><li class="fa fa-fw fa-2x fa-github"></li></a>
-	{% endif %} 
-	{% if page.linkedin != null %}
-	<a href=" {{ page.linkedin }} " target="_blank"><li class="fa fa-fw fa-2x fa-linkedin"></li></a>
-	{% endif %} 
-	{% if page.instagram != null %}
-	<a href=" {{ page.instagram }} " target="_blank"><li class="fa fa-fw fa-2x fa-instagram"></li></a>
-	{% endif %}
-	{% if page.mail != null %}
-	<a href="mailto:{{ page.mail }}"><li class="fa fa-fw fa-2x fa-envelope"></li></a>
-	{% endif %} 
-    </div>
+<div class="col-md-6">
+    <div class="row">
+	<div class="col-md-6">
+            <img src="{{ page.profile }}" class="img-responsive img-circle" alt="{{ page.name }}">
+	</div>
+	<div class="col-md-6">		
+	    <h2 class="header-light regular-pad"> {{ page.name }}</h2>
+	    <h4> {{ page.title }} </h4>
+	    <p> {{ page.description }} </p>
+	    
+	    {% if page.home != null %}
+	    <a href=" {{ page.home }} " target="_blank"><li class="fa fa-fw fa-2x fa-home"></li></a>
+	    {% endif %}
+	    {% if page.twitter != null %}
+	    <a href=" {{ page.twitter }} " target="_blank"><li class="fa fa-fw fa-2x fa-twitter"></li></a>
+	    {% endif %}
+	    {% if page.github != null %}
+	    <a href=" {{ page.github }} " target="_blank"><li class="fa fa-fw fa-2x fa-github"></li></a>
+	    {% endif %} 
+	    {% if page.linkedin != null %}
+	    <a href=" {{ page.linkedin }} " target="_blank"><li class="fa fa-fw fa-2x fa-linkedin"></li></a>
+	    {% endif %} 
+	    {% if page.instagram != null %}
+	    <a href=" {{ page.instagram }} " target="_blank"><li class="fa fa-fw fa-2x fa-instagram"></li></a>
+	    {% endif %}
+	    {% if page.mail != null %}
+	    <a href="mailto:{{ page.mail }}"><li class="fa fa-fw fa-2x fa-envelope"></li></a>
+	    {% endif %}
+	</div>
+    </div>    
 </div>
