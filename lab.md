@@ -7,7 +7,7 @@ sectionid: lab
 
 # Lab guides
 
-- Roles and expectations [work-in-progress]
+- [Code of Conduct](/assets/docs/lab_code_of_conduct)
 - Getting started [private]
 - Onboarding [private]
 - Offboarding [private]

@@ -163,7 +163,7 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome highschool students to volunteer as computational research assistants over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time, to their research projects. If you are interested in applying as a highschool-level computational research assistant, please follow this guide:
+We welcome local highschool students to volunteer as computational research assistants over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time, to their research projects. If you are interested in applying as a highschool-level computational research assistant, please follow this guide:
 
 1. Email Prof. Fan with the subject line “Highschool RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, where you go to school, and why you are interested in this lab. This serves as your ‘cover letter.’
