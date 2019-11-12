@@ -19,7 +19,6 @@ plugins:
   - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-last-modified-at
   
 exclude:
   - Gemfile

@@ -4,7 +4,7 @@ layout: default
 
 # JEFworks Lab Transparency in Resource Allocation
 
-Prof. Fan seeks to provide greater transparency in allocation of lab resources in order to [mitigate gender and race-specific disparities and help ensure that all lab members are treated fairly](https://science.sciencemag.org/content/366/6466/692). This is a living document and subject to modifications. Please feel [free to fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/transparency.md) to introduce new policies or modify old ones. This document was last modified {% last_modified_at %}.
+Prof. Fan seeks to provide greater transparency in allocation of lab resources in order to [mitigate gender and race-specific disparities and help ensure that all lab members are treated fairly](https://science.sciencemag.org/content/366/6466/692). This is a living document and subject to modifications. Please feel [free to fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/transparency.md) to introduce new policies or modify old ones. This document was last modified November 2019.
 
 ---
 
