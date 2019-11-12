@@ -4,7 +4,7 @@ layout: default
 
 # JEFworks Lab Code of Conduct
 
-This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified October 2019.
+This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified {% last_modified_at %}.
 
 ---
 
@@ -36,7 +36,6 @@ Please inform Prof. Fan of holidays or notable absences in advance by marking on
 We strive to respect the ability of fellow lab members to engage in distraction-free deep thinking and long periods of uninterrupted work. 
 
 For all communication methods, please respect people’s working patterns, and remember that other people will have different priorities and focus. Please give consideration to the timing of your correspondence with respect to what the recipient needs to do. No lab members are required nor should feel obliged to reply to messages outside of their typical work hours. 
-
 Seeking out in-person discussions is strongly encouraged for urgent matters requiring immediate attention.
 
 If you experience any challenges related to communication within the lab, please do not hesitate to contact Prof. Fan.

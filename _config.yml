@@ -14,12 +14,13 @@ bootwatch: custom
 # Build settings
 markdown: kramdown
 highlighter: rouge
-gems:
+plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
-
+  - jekyll-last-modified-at
+  
 exclude:
   - Gemfile
   - Gemfile.lock
