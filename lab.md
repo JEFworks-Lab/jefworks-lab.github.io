@@ -8,7 +8,8 @@ sectionid: lab
 # Lab guides
 
 - [Code of Conduct](/assets/docs/lab_code_of_conduct)
-- Getting started [private]
+- [Transparency in Resource Allocation](/assets/docs/transparency)
+- Roles and Expectations [work-in-progress]
 - Onboarding [private]
 - Offboarding [private]
 
@@ -16,9 +17,9 @@ sectionid: lab
 
 # How tos
 - [Request a letter of recommendation from Prof. Fan](/assets/docs/rec_letter_form.docx)
+- Attend a scientific conference [work-in-progress]
 - Give a scientific poster presentation [work-in-progress]
 - Give a scientific talk [work-in-progress]
-- Attend a scientific conference [work-in-progress]
 - Review a paper [work-in-progress]
 - Write a paper [work-in-progress]
 - Write a grant [work-in-progress]
