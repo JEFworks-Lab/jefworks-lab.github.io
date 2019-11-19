@@ -27,7 +27,7 @@ Eligible expenses include:
 
 - Economy flight, train, bus, or mileage if driving. 
 - Economy accommodations for duration of the  conference/event. 
--	Per diem food.    
+- Reasonable food (excluding alcohol due to NIH restrictions).    
 
 Increases in travel allowances will be considered on a case-by-case basis to best ensure that quality career development opportunities are not being missed due to financial constraints.
 
