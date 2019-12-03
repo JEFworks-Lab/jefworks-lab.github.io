@@ -45,25 +45,26 @@ _Dissertation:_ Computational and Statistical Methods for Characterizing Single-
 (* Equal contributions)
 
 ### Selected Peer-reviewed Publications
-1.	**Fan J**\*, Lee H\*, Lee S, Ryu D, Lee S, Kim SJ, Kim K, Barkas N, Park P, Park WY, Kharchenko PV. *Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq.* _Genome Research (2018)_ doi:10.1101/gr.228080.117
+1.  Xia C\*, **Fan J**\*, Emanuel G\*, Hao J, Zhuang X. Spatial transcriptome profiling by MERFISH reveals subcellular RNA compartmentalization and cell cycle-dependent gene expression. PNAS. Sept 9, 2019, doi:10.1073/pnas.1912459116 
+2.	**Fan J**\*, Lee H\*, Lee S, Ryu D, Lee S, Kim SJ, Kim K, Barkas N, Park P, Park WY, Kharchenko PV. *Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq.* _Genome Research (2018)_ doi:10.1101/gr.228080.117
 2.	Lake B\*, Chen S\*, Sos B\*, **Fan J**\*, Yung Y, Kaeser GE, Duong TE, Gao D, Chun J\*, Kharchenko PV\*, Zhang K\*. *Integrative single-cell analysis by transcriptional and epigenetic states in human adult brain.* _Nature Biotechnology (2017)_ doi:10.1038/nbt.4038
 3.	Wang L\*, **Fan J**\*, Zhang CZ, Francis JM, Georghiou G, Hergert S, Shuqiang Li, Gambe R, Zhou CW, Yang C, Xiao S, Cin PD, Bowden M, Kotliar D, Shukla SA, Brown JR, Neuberg D, Alessi DR, Khachenko PV, Livak KJ, Wu CJ. *Integrated single-cell genetic and transcriptional analysis suggests novel drivers of chronic lymphocytic leukemia.* _Genome Research (2017)_ doi:10.1101/gr.217331.116
 4.	Wang L\*, Brooks AN\*, **Fan J**\*, Wan Y\*, Gambe R, Li S, Hergert S, Yin S, Freeman SS, Levin JZ, Fan L, Seiler M, Buonamici S, Smith PG, Chau KF, Cibulskis CL, Zhang W, Rassenti LZ, Ghia EM, Kipps TJ, Fernandes S, Bloch DB, Kotliar D, Landau DA, Shukla SA, Aster JC, Reed R, DeLuca DS, Brown JR, Neuberg D, Getz G, Livak KJ, Meyerson MM, Kharchenko PV, Wu CJ. **Transcriptomic characterization of SF3B1 mutation reveals its pleiotropic effects in chronic lymphocytic leukemia.** _Cancer Cell (2016)_ doi: 10.1016/j.ccell.2016.10.005. 
 5.	**Fan J**, Salathia N, Liu R, Kaeser G, Yung Y, Herman J, Kaper F, Fan JB, Zhang K, Chun J, and Kharchenko PV. *Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis.* _Nature Methods (2016)_ doi: 10.1038/nmeth.3734
 
 ### Additional Peer-Reviewed Publications
-1.	Yin S, Gambe RG, Sun J, Martinez AZ, Cartun ZJ, Regis FFR, Wan Y, **Fan J**, Brooks AN, Herman SEM, Hacken ET, Taylor-Weiner A, Rassenti LZ, Ghia EM, Kipps TJ, Fleming MD, Ebert BL, Wistner A, Leshchiner I, DeCaprio JA, Getz G, Reed R, Carrasco RD, Wu CJ, Wang L. *A Murine Model of Chronic Lymphocytic Leukemia Based on B Cell-Restricted Expression of Sf3b1 Mutation and Atm Deletion.* _Cancer Cell (2019)_ doi:10.1016/j.ccell.2018.12.013
-2.	La manno G, Soldatov R, Zeisel A, Braun E, Hochgerner H, Petukhov V, Lidschreiber K, Kastriti ME, Lönnerberg P, Furlan A, **Fan J**, Borm LE, Liu Z, Bruggen DV, Guo J, He X, Barker R, Sundström S, Castelo-Branco G, Cramer P, Adameyko I, Linnarsson S, Kharchenko PV. RNA velocity of single cells. _Nature (2018)_ doi:10.1038/s41586-018-0414-6
-3.	Zhang X, Chen MH, Wu X, Kodani A, **Fan J**, Doan R, Ozawa M, Ma J, Yoshida N, Reiter JF, Black DL, Kharchenko PV, Sharp PA, Walsh CA. *Cell-Type-Specific Alternative Splicing Governs Cell Fate in the Developing Cerebral Cortex.* _Cell (2016)_ doi:10.1016/j.cell.2016.07.025
-4.	Burger JA\*, Landau DA\*, Taylor-Weiner A\*, Bozic I\*, Zhang H\*, Sarosiek K, Wang L, Stewart C, **Fan J**, Hoellenriegel J, Sivina M, Dubuc AM, Fraser C, Han Y, Li S, Livak KJ, Zou L, Wan Y, Konoplev S, Sougnez C, Brown JR, Abruzzo LV, Carter SL, Keating MJ, Davids MS, Wierda WG, Cibulskis K, Zenz T, Werner L, Dal Cin P, Kharchencko P, Neuberg D, Kantarjian H, Lander E, Gabriel S, O’Brien S, Letai A, Weitz DA, Nowak MA, Getz G, Wu CJ. *Clonal evolution in patients with chronic lymphocytic leukemia developing resistance to BTK inhibition.* _Nature Communications (2016)_ doi: 10.1038/ncomms11589
-5.	**Fan J**, Slowikowski K. *NAMCShiny: an interactive web application to explore health trends in 2003-2010 National Ambulatory Medical Care Survey data.* _HHPR (2015)_
-6.	Landau DA, Clement K, Ziller MJ, Boyle P, **Fan J**, Gu H, Stevenson K, Sougnez C, Wang L, Li S, Kotliar D, Zhang W, Ghandi M, Garraway L, Fernandes SM, Livak KJ, Gabriel S, Gnirke A, Lander ES, Brown JR, Neuberg D, Kharchenko PV, Hacohen N, Getz G, Meissner A and Wu CJ. *Locally disordered methylation forms the basis of intratumor methylome variation in chronic lymphocytic leukemia.* _Cancer Cell (2014)_ doi: 10.1016/j.ccell.2014.10.012. 
-7.	**Fan J**, Yu Y, Meltzer PS, Cao L. *Delineating the Role of BRF2 in Breast Cancer Pathogenesis.* _HURJ (2011)_
+1.  Korsunsky I,  Millard N, *Fan J*,  Slowikowski K,  Zhang F,  Wei K,  Baglaenko Y,  Brenner M,  Loh PR,  Raychaudhuri S. Fast, sensitive, and accurate integration of single cell data with Harmony. Nature Methods. doi:10.1038/s41592-019-0619-0
+2.	Yin S, Gambe RG, Sun J, Martinez AZ, Cartun ZJ, Regis FFR, Wan Y, **Fan J**, Brooks AN, Herman SEM, Hacken ET, Taylor-Weiner A, Rassenti LZ, Ghia EM, Kipps TJ, Fleming MD, Ebert BL, Wistner A, Leshchiner I, DeCaprio JA, Getz G, Reed R, Carrasco RD, Wu CJ, Wang L. *A Murine Model of Chronic Lymphocytic Leukemia Based on B Cell-Restricted Expression of Sf3b1 Mutation and Atm Deletion.* _Cancer Cell (2019)_ doi:10.1016/j.ccell.2018.12.013
+3.	La manno G, Soldatov R, Zeisel A, Braun E, Hochgerner H, Petukhov V, Lidschreiber K, Kastriti ME, Lönnerberg P, Furlan A, **Fan J**, Borm LE, Liu Z, Bruggen DV, Guo J, He X, Barker R, Sundström S, Castelo-Branco G, Cramer P, Adameyko I, Linnarsson S, Kharchenko PV. RNA velocity of single cells. _Nature (2018)_ doi:10.1038/s41586-018-0414-6
+4.	Zhang X, Chen MH, Wu X, Kodani A, **Fan J**, Doan R, Ozawa M, Ma J, Yoshida N, Reiter JF, Black DL, Kharchenko PV, Sharp PA, Walsh CA. *Cell-Type-Specific Alternative Splicing Governs Cell Fate in the Developing Cerebral Cortex.* _Cell (2016)_ doi:10.1016/j.cell.2016.07.025
+5.	Burger JA\*, Landau DA\*, Taylor-Weiner A\*, Bozic I\*, Zhang H\*, Sarosiek K, Wang L, Stewart C, **Fan J**, Hoellenriegel J, Sivina M, Dubuc AM, Fraser C, Han Y, Li S, Livak KJ, Zou L, Wan Y, Konoplev S, Sougnez C, Brown JR, Abruzzo LV, Carter SL, Keating MJ, Davids MS, Wierda WG, Cibulskis K, Zenz T, Werner L, Dal Cin P, Kharchencko P, Neuberg D, Kantarjian H, Lander E, Gabriel S, O’Brien S, Letai A, Weitz DA, Nowak MA, Getz G, Wu CJ. *Clonal evolution in patients with chronic lymphocytic leukemia developing resistance to BTK inhibition.* _Nature Communications (2016)_ doi: 10.1038/ncomms11589
+6.	**Fan J**, Slowikowski K. *NAMCShiny: an interactive web application to explore health trends in 2003-2010 National Ambulatory Medical Care Survey data.* _HHPR (2015)_
+7.	Landau DA, Clement K, Ziller MJ, Boyle P, **Fan J**, Gu H, Stevenson K, Sougnez C, Wang L, Li S, Kotliar D, Zhang W, Ghandi M, Garraway L, Fernandes SM, Livak KJ, Gabriel S, Gnirke A, Lander ES, Brown JR, Neuberg D, Kharchenko PV, Hacohen N, Getz G, Meissner A and Wu CJ. *Locally disordered methylation forms the basis of intratumor methylome variation in chronic lymphocytic leukemia.* _Cancer Cell (2014)_ doi: 10.1016/j.ccell.2014.10.012. 
+8.	**Fan J**, Yu Y, Meltzer PS, Cao L. *Delineating the Role of BRF2 in Breast Cancer Pathogenesis.* _HURJ (2011)_
 
 ### Pre-prints
-1.	Korsunsky I, **Fan J**, Slowikowski K, Zhang F, Wei K, Baglaenko Y, Brenner M, Loh PR, Raychaudhuri S. *Fast, sensitive, and accurate integration of single cell data with Harmony.* https://www.biorxiv.org/content/10.1101/461954v2
-2.	Kwon H, **Fan J**, Kharchenko PV. *Comparison of Principal Component Analysis and t-Stochastic Neighbor Embedding with Distance Metric Modifications for Single-cell RNA-sequencing Data Analysis.* https://www.biorxiv.org/content/early/2017/01/29/102780
-3.	**Fan J**, Fan D, Slowikowski K, Gehlenborg N, Kharchenko PV. *UBiT2: a client-side web-application for gene expression data analysis.* http://biorxiv.org/content/early/2017/03/22/118992
+1.	Kwon H, **Fan J**, Kharchenko PV. *Comparison of Principal Component Analysis and t-Stochastic Neighbor Embedding with Distance Metric Modifications for Single-cell RNA-sequencing Data Analysis.* https://www.biorxiv.org/content/early/2017/01/29/102780
+2.	**Fan J**, Fan D, Slowikowski K, Gehlenborg N, Kharchenko PV. *UBiT2: a client-side web-application for gene expression data analysis.* http://biorxiv.org/content/early/2017/03/22/118992
 
 ### Book Chapters
 1.	**Fan J**. Differential Pathway Analysis. Computational Methods for Single-Cell Data Analysis. Springer. 2019. ISBN 978-1-4939-9057-3.
@@ -73,7 +74,6 @@ _Dissertation:_ Computational and Statistical Methods for Characterizing Single-
 ## SOFTWARE	
 
 ### Rstats
-- MUDAN: R package for multi-sample unified discriminant analysis. https://jef.works/MUDAN/
 - HoneyBADGER: R package for detecting copy number alteration from single-cell RNA-seq data. https://jef.works/HoneyBADGER/
 - SCDE/PAGODA: R package for single-cell differential expression and pathway over-dispersion analysis. https://bioconductor.org/packages/release/bioc/html/scde.html
 - brainmapr: R package to infer spatial location of subpopulations in the developing mouse brain by integrating single cell RNA-seq data with in situ hybridization data from the Allen Developing Atlas. https://github.com/hms-dbmi/brainmapr
@@ -146,6 +146,7 @@ Designed, wrote, and lead lessons on single-cell analyses for ~50 students.
 
 ## AWARDS & HONORS
 
+- Forbes 30 Under 30 Healthcare (2020)
 - Nature Research Award Winner (2019)
 - Anita Borg Pass-It-On Award Winner (2017)
 - BU GWISE Advocate of the Year (2017)
