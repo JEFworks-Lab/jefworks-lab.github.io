@@ -4,3 +4,4 @@ _site/
 _posts/code/
 .sass-cache/
 Gemfile.lock
+*.DS_Store*

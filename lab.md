@@ -29,4 +29,4 @@ sectionid: lab
 - [NSF GRFP Application Tips And Example](https://jef.works/blog/2017/10/15/NSF-GRFP-application-tips-and-example/)
 - [NIH F Series Grant Tips And Example](https://jef.works/blog/2017/10/19/NIH-F-series-grant-tips-and-example/)
 - [NIH F99 K00 Grant Tips Example And Personal Experience](https://jef.works/blog/2018/10/31/NIH-F99-K00-grant-tips-example-and-personal-experience/)
-- For Graduating PhD Students: Tips for Transitioning [work-in-progress]
+- [For Graduating PhD Students: Tips for Transitioning](https://jef.works/blog/2020/01/23/phd-transition-tips/)
