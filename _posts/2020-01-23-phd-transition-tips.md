@@ -7,7 +7,7 @@ tags: [advice, lists, career]
 
 # For Graduating PhD Students: 10 Tips for Transitioning 
 
-It's interview season! And as such, we look forward to welcoming a whole new group of incoming PhD students. Likewise, we say farewell to a number of graduating PhD students, as they transition to the next stages of their careers. When I was nearing the end of my PhD in 2018, I considered both academic and industry options (amenable to my background in bioinformatics). I interviewed with a range of post-doctoral research labs as well as biotech companies and startups. I also recently interviewed a post-doc for lab ([yes, we have many openings!](https://jef.works/join/)) and also mentored a graduating PhD student through her transition. In reflecting, here are 10 tips for transitioning into either a post-doc (staying in academia) or industry for graduating PhD students.
+It's interview season! And as such, we look forward to welcoming a whole new group of incoming PhD students. Likewise, we say farewell to a number of graduating PhD students, as they transition to the next stages of their careers. When I was nearing the end of my PhD in 2018, I considered both academic and industry options (amenable to my background in bioinformatics). I interviewed with a range of post-doctoral research labs as well as biotech companies and startups. I also recently interviewed a post-doc for lab ([yes, we have many openings!](https://jef.works/join/)) and also mentored a few graduating PhD student through their transitions. In reflecting, here are 10 tips for transitioning into either a post-doc (staying in academia) or industry for graduating PhD students.
 
 ---
 
@@ -39,6 +39,8 @@ This is the email I used to reach out to post-doctoral labs that I was intereste
 >
 > All the best,  
 > Jean
+
+If you don't hear back within a few weeks, definitely follow up in case your email was missed! You can also ask your advisor to email on your behalf; this is particularly helpful for very high profile labs that get many applicants. 
 
 ---
 
