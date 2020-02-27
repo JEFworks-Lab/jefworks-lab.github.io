@@ -7,7 +7,7 @@ layout: default
 jeanfan@fas.harvard.edu  
 https://jef.works
 
-*(Updated Oct 16, 2019)*
+*(Updated Feb 27, 2020)*
 
 ---
 
@@ -42,7 +42,7 @@ _Dissertation:_ Computational and Statistical Methods for Characterizing Single-
 ---
 
 ## PUBLICATIONS	
-(* Equal contributions)
+\* Denotes equal contribution
 
 ### Selected Peer-reviewed Publications
 1.  Xia C\*, **Fan J**\*, Emanuel G\*, Hao J, Zhuang X. Spatial transcriptome profiling by MERFISH reveals subcellular RNA compartmentalization and cell cycle-dependent gene expression. PNAS. Sept 9, 2019, doi:10.1073/pnas.1912459116 
@@ -53,7 +53,7 @@ _Dissertation:_ Computational and Statistical Methods for Characterizing Single-
 5.	**Fan J**, Salathia N, Liu R, Kaeser G, Yung Y, Herman J, Kaper F, Fan JB, Zhang K, Chun J, and Kharchenko PV. *Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis.* _Nature Methods (2016)_ doi: 10.1038/nmeth.3734
 
 ### Additional Peer-Reviewed Publications
-1.  Korsunsky I,  Millard N, *Fan J*,  Slowikowski K,  Zhang F,  Wei K,  Baglaenko Y,  Brenner M,  Loh PR,  Raychaudhuri S. Fast, sensitive, and accurate integration of single cell data with Harmony. Nature Methods. doi:10.1038/s41592-019-0619-0
+1.  Korsunsky I,  Millard N, **Fan J**,  Slowikowski K,  Zhang F,  Wei K,  Baglaenko Y,  Brenner M,  Loh PR,  Raychaudhuri S. Fast, sensitive, and accurate integration of single cell data with Harmony. Nature Methods. doi:10.1038/s41592-019-0619-0
 2.	Yin S, Gambe RG, Sun J, Martinez AZ, Cartun ZJ, Regis FFR, Wan Y, **Fan J**, Brooks AN, Herman SEM, Hacken ET, Taylor-Weiner A, Rassenti LZ, Ghia EM, Kipps TJ, Fleming MD, Ebert BL, Wistner A, Leshchiner I, DeCaprio JA, Getz G, Reed R, Carrasco RD, Wu CJ, Wang L. *A Murine Model of Chronic Lymphocytic Leukemia Based on B Cell-Restricted Expression of Sf3b1 Mutation and Atm Deletion.* _Cancer Cell (2019)_ doi:10.1016/j.ccell.2018.12.013
 3.	La manno G, Soldatov R, Zeisel A, Braun E, Hochgerner H, Petukhov V, Lidschreiber K, Kastriti ME, Lönnerberg P, Furlan A, **Fan J**, Borm LE, Liu Z, Bruggen DV, Guo J, He X, Barker R, Sundström S, Castelo-Branco G, Cramer P, Adameyko I, Linnarsson S, Kharchenko PV. RNA velocity of single cells. _Nature (2018)_ doi:10.1038/s41586-018-0414-6
 4.	Zhang X, Chen MH, Wu X, Kodani A, **Fan J**, Doan R, Ozawa M, Ma J, Yoshida N, Reiter JF, Black DL, Kharchenko PV, Sharp PA, Walsh CA. *Cell-Type-Specific Alternative Splicing Governs Cell Fate in the Developing Cerebral Cortex.* _Cell (2016)_ doi:10.1016/j.cell.2016.07.025
@@ -89,15 +89,16 @@ _Dissertation:_ Computational and Statistical Methods for Characterizing Single-
 ## PRESENTATIONS	
 
 ### Invited Talks
+- **Fan J**. Spatially-Resolved Transcriptome-Scale Molecular Profiling by MERFISH Characterizes Sub-Cellular RNA Compartmentalization and RNA Velocity In Situ to Reveal Cell-Cycle Dependent Gene Expression. Gordon Research Conference. February 2020. 
 - **Fan J**. Spatial transcriptome profiling by MERFISH reveals sub-cellular RNA compartmentalization and cell-cycle dependent gene expression. KOGO/SGI. September 2019. 
 - **Fan J**. MERmaid - a React WebGL-Based Tool for Exploring Spatially Resolved Single-Cell Transcriptomics Data. Bio-IT World - Data Visualization and Exploration Tools. April 2019. 
 - **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. Arizona State University. Molecular, Cellular and Tissue Bioengineering Symposium – Single Cell Technologies from Method Development to Application Bioengineering Symposium. April 2019. 
-- **Fan J**. Spatial gene expression analysis in non-homogenous tissues. Department of Immunology Bioinformatics seminar. Nov 2018.
+- **Fan J**. Spatial gene expression analysis in non-homogenous tissues. Department of Immunology Bioinformatics seminar. November 2018.
 - **Fan J**. Integrated genetic and transcriptional analysis at the single-cell level. Scangen. ISMB. July 2018. 
 - **Fan J**. Computational and Statistical Methods for Characterizing Single-cell Heterogeneity. Research In Progress - Division of Pulmonary and Critical Care Medicine. Northwestern University. April 2018.
 - **Fan J**. Classifying and characterizing single cells using transcriptional and epigenetic analysis. Minisymposium - After the Data Deluge: Grappling with Transcriptional Complexity in the Brain. Society for Neuroscience. Nov 2017.
-- **Fan J**. CuSTEMized: Encouraging girls to see themselves in STEM. Pass-It-On Award winners panel. Grace Hopper Celebration. Oct 2017.
-- **Fan J**. Bioinformatics for Single Cell Analysis. Division of Immunology Bioinformatics Seminar. Aug 2017.
+- **Fan J**. CuSTEMized: Encouraging girls to see themselves in STEM. Pass-It-On Award winners panel. Grace Hopper Celebration. October 2017.
+- **Fan J**. Bioinformatics for Single Cell Analysis. Division of Immunology Bioinformatics Seminar. August 2017.
 - **Fan J**. Applying single cell transcriptomics - unraveling the complexity of the developing human brain. Festival of Genomics, Single Cell Genomics session. June 2016.
 - **Fan J**. Do art like a science. Do science like an art. TEDxJHU, Instructions Not Included. April 2016.
 - **Fan J**. JHU Young Alumni Leadership Symposium. March 2016.
@@ -165,6 +166,8 @@ Designed, wrote, and lead lessons on single-cell analyses for ~50 students.
 - Nature Communications
 - Nucleic Acids Research
 - PLOS ONE
+- PLOSE Comp Bio
+- Frontiers in Oncology
 - PeerJ
 - F1000
 - Statistical Applications in Genetics and Molecular Biology 
@@ -181,7 +184,7 @@ Designed, wrote, and lead lessons on single-cell analyses for ~50 students.
 
 **Co-Chair**. Harvard Graduate Women in Science and Engineering HGWISE student group. (2013-2015)	
 
-**Mentor-Scientist**. Science Club for Girls SCFG for 2nd Graders, Boston, MA (2014-2015)
+**Mentor-Scientist**. Science Club for Girls for 2nd Graders, Boston, MA (2014-2015)
 
 **Undergraduate Mentor**. Women in Science at Harvard-Radcliffe WISHR, Harvard College, Cambridge, MA (2013-2014)
 
