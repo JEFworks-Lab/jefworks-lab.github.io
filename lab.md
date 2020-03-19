@@ -40,3 +40,9 @@ sectionid: lab
 
 ### For International Students
 - [JHU Office of International Services](https://ois.jhu.edu/) - info on immigration/Visas, legal assistance, and more
+
+### Other
+- [JHU Offices for Diversity and Inclusion](https://studentaffairs.jhu.edu/student-life/diversity-inclusion/) - includes links and info on The Office of Multicultural Affairs, Religious and Spiritual Life, Womand and Gender Resources, LGBTQ Life, Center for Disability Services, and more
+- [JHU Student Health and Wellness Center](https://studentaffairs.jhu.edu/student-health/) - all our full-time, part-time and visiting undergraduate and graduate students as well as post-docatoral fellows are eligible to receive high quality, confidential health care through the Student Health and Wellness Center
+- [JHU Benefits and Worklife](https://hr.jhu.edu/benefits-worklife/) - resources for family-focused programs, wellness courses, community engagement, and more
+
