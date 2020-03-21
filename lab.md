@@ -5,11 +5,10 @@ permalink: /lab/
 sectionid: lab
 ---
 
-# Lab guides
+# Lab Guides
 
-- [Code of Conduct](/assets/docs/lab_code_of_conduct)
+- [Roles and Expectations, Code of Conduct, etc](/assets/docs/lab_guide)
 - [Transparency in Resource Allocation](/assets/docs/transparency)
-- Roles and Expectations [work-in-progress]
 - Onboarding [private]
 - Offboarding [private]
 
