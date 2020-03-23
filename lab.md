@@ -17,7 +17,7 @@ sectionid: lab
 - Attend a scientific conference [work-in-progress]
 - Give a scientific poster presentation [work-in-progress]
 - Give a scientific talk [work-in-progress]
-- Review a paper [work-in-progress]
+- [Review a paper](/assets/docs/review_paper_form.docx)
 - Write a paper [work-in-progress]
 - Write a grant [work-in-progress]
 
