@@ -1,0 +1,893 @@
+I"<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<p>So you aligned and quantified your single cell RNA-seq data. You QC-ed,
+normalized, and even batch corrected as needed. Now you want to identify
+transcriptional clusters. What clustering algorithm do you use?</p>
+
+<p>Many <a href="https://github.com/seandavi/awesome-single-cell">specialized clustering methods for single cell RNA-seq
+data</a> have been
+developed. Most come with sophisticated error modeling and other
+innovations. Still, they are generally grounded in some type of general
+k-means, graph-based, density-based, or hierarchical clustering.</p>
+
+<p>So in this blog post, I will test out a few different general apporaches
+for identifying clusters in single cell RNA-seq data, namely: k-means,
+graph-based community detection, dbscan, and hierachical clustering. For
+demonstration, we will use the <a href="https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/frozen_pbmc_donor_b">Patient B PBMC single cell RNA-seq data
+from
+10X</a>.
+PBMCs are nice because we have an expectation of what cell-types must be
+present and we know a number of markers for these cell-types (CD3E for
+T-cells, CD19 and CD20 for B-cells, etc). We can then compare the
+different clusters identified by various clustering approaches to
+what we know must be a cluster based on our knowledge of these cell
+markers.</p>
+
+<h2 id="preparing-the-data">Preparing the data</h2>
+
+<p>Let’s first quickly clean, normalize, and perform some dimensionality
+reduction on our PBMCs to get it into shape for clustering detection. We
+can then visualize a few of these known cell markers.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">############# Sample data</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">MUDAN</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">pbmcB</span><span class="p">)</span><span class="w">
+</span><span class="c1">## filter out poor genes and cells</span><span class="w">
+</span><span class="n">cd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cleanCounts</span><span class="p">(</span><span class="n">pbmcB</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">min.reads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">min.detected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="c1">## CPM normalization</span><span class="w">
+</span><span class="n">mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">normalizeCounts</span><span class="p">(</span><span class="n">cd</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+</span><span class="c1">## variance normalize, identify overdispersed genes</span><span class="w">
+</span><span class="n">matnorm.info</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">normalizeVariance</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> 
+                                  </span><span class="n">details</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                                  </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span><span class="w"> 
+</span><span class="c1">## log transform</span><span class="w">
+</span><span class="n">matnorm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log10</span><span class="p">(</span><span class="n">matnorm.info</span><span class="o">$</span><span class="n">mat</span><span class="m">+1</span><span class="p">)</span><span class="w"> 
+</span><span class="c1">## dimensionality reduction on overdispersed genes</span><span class="w">
+</span><span class="n">pcs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getPcs</span><span class="p">(</span><span class="n">matnorm</span><span class="p">[</span><span class="n">matnorm.info</span><span class="o">$</span><span class="n">ods</span><span class="p">,],</span><span class="w"> 
+              </span><span class="n">nGenes</span><span class="o">=</span><span class="nf">length</span><span class="p">(</span><span class="n">matnorm.info</span><span class="o">$</span><span class="n">ods</span><span class="p">),</span><span class="w"> 
+              </span><span class="n">nPcs</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+</span><span class="c1">## get tSNE embedding </span><span class="w">
+</span><span class="n">emb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Rtsne</span><span class="o">::</span><span class="n">Rtsne</span><span class="p">(</span><span class="n">pcs</span><span class="p">,</span><span class="w"> 
+                    </span><span class="n">is_distance</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> 
+                    </span><span class="n">perplexity</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w"> 
+                    </span><span class="n">num_threads</span><span class="o">=</span><span class="n">parallel</span><span class="o">::</span><span class="n">detectCores</span><span class="p">(),</span><span class="w"> 
+                    </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="o">$</span><span class="n">Y</span><span class="w"> 
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">emb</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pcs</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Based on our prior knowledge of marker genes, we can already tell that
+there must be distinct clusters corresponding to B-cells, T-cells
+subtypes, monocytes, and so forth. Indeed, we can see that CD20 (MS4A1)
+expression marks a distinct group of cells, presumably B-cells. And
+similarly, CD3E marks our T-cells, and so forth.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span><span class="n">markers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'MS4A1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'CD3E'</span><span class="p">,</span><span class="w"> </span><span class="s1">'IL7R'</span><span class="p">,</span><span class="w"> </span><span class="s1">'CCR7'</span><span class="p">,</span><span class="w"> </span><span class="s1">'CD8A'</span><span class="p">,</span><span class="w"> </span><span class="s1">'FCGR3A'</span><span class="p">,</span><span class="w"> </span><span class="s1">'CD14'</span><span class="p">,</span><span class="w"> </span><span class="s1">'HLA-DRA'</span><span class="p">,</span><span class="w"> </span><span class="s2">"XCL1"</span><span class="p">)</span><span class="w">
+</span><span class="nf">invisible</span><span class="p">(</span><span class="n">lapply</span><span class="p">(</span><span class="n">markers</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="c1"># plot binarized expression (on or off)</span><span class="w">
+  </span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span><span class="w"> </span><span class="n">colors</span><span class="o">=</span><span class="p">(</span><span class="n">cd</span><span class="p">[</span><span class="n">g</span><span class="p">,]</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span><span class="o">*</span><span class="m">1</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">main</span><span class="o">=</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+</span><span class="p">}))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/markers-1.png" alt="" /></p>
+
+<p>We can now try various cluster detection approaches and see if the
+identified clusters match what we expect based on marker expression.</p>
+
+<h2 id="k-means">K-Means</h2>
+
+<p>First, we will use a simple <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means clustering
+approach</a> on our PCs.
+With k-means clustering, a <code class="highlighter-rouge">k</code> must be provided a-priori to partition
+your cells into k groups. Thus, the results rely heavily on your choice
+of k. To be extra generous in our comparison, I tried a number of ks and
+picked the best (as least visually) one to plot.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## k-means</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">com.km</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kmeans</span><span class="p">(</span><span class="n">pcs</span><span class="p">,</span><span class="w"> </span><span class="n">centers</span><span class="o">=</span><span class="m">10</span><span class="p">)</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span><span class="w"> </span><span class="n">com.km</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">main</span><span class="o">=</span><span class="s1">'K-Means'</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">mark.clusters</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">mark.cluster.cex</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+              </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/kmeans-1.png" alt="" /></p>
+
+<h2 id="graph-based-community-detection">Graph-based community detection</h2>
+
+<p>Next, we will build a graph based on the nearest neighbor relationships
+in PC space. We can then apply graph-based community detection,
+specifically the <a href="http://www.mapequation.org/code.html">Infomap method</a>,
+to identify putative clusters. There are a number of other graph-based
+community detection algorithms you can use (Louvain, Walktrap, etc) but
+all will require building a graph. Here, I elected to build a graph from
+the 30 nearest neighbors in PC space for each cell.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## graph-based community detection</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">com.graph</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">MUDAN</span><span class="o">::</span><span class="n">getComMembership</span><span class="p">(</span><span class="n">pcs</span><span class="p">,</span><span class="w"> 
+                        </span><span class="n">k</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="n">igraph</span><span class="o">::</span><span class="n">cluster_infomap</span><span class="p">,</span><span class="w"> 
+                        </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span><span class="w"> </span><span class="n">com.graph</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">main</span><span class="o">=</span><span class="s1">'Graph-based Community Detection'</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">mark.clusters</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">mark.cluster.cex</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+              </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/graphcom-1.png" alt="" /></p>
+
+<h2 id="hdbscan">HDBSCAN</h2>
+
+<p>DBSCAN (or in this case, the hierarchical version) is nice in that it
+doesn’t require any expected number of clusters, such as k-mean’s k
+parameter, to be specified a priori. But I had a hard time getting
+sensible results using all PCs (too high dimensional) so I tried to
+reduce the dimensions considered to only PCS 1 to 5.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Hierarchical DBSCAN</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dbscan</span><span class="p">)</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">com.db</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hdbscan</span><span class="p">(</span><span class="n">pcs</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="n">minPts</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">com.db</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pcs</span><span class="p">)</span><span class="w">
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span><span class="w"> </span><span class="n">com.db</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">main</span><span class="o">=</span><span class="s1">'HDBSCAN'</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">mark.clusters</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">mark.cluster.cex</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+              </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/hdbscan-1.png" alt="" /></p>
+
+<h2 id="hierarchical-clustering">Hierarchical clustering</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Hierarchical_clustering">Hierarchical
+clustering</a> or,
+alternatively biclustering (not shown) that clusters both cells and
+genes, builds tree relationship among cells that can then be cut at
+various heights to form clusters. Rather than choosing a cut height, I
+will use <a href="https://labs.genetics.ucla.edu/horvath/CoexpressionNetwork/BranchCutting/">dynamic tree
+cutting</a>.
+Of course, the choice of distance metric and agglomeration method for
+hierarchical clustering will still impact results. Here, I am using a 1
+minus correlation in PC space to define the distance between cells and the
+Ward agglomeration method.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Hierarchical clustering with dynamic tree cutting</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dynamicTreeCut</span><span class="p">)</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.dist</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">cor</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">pcs</span><span class="p">)))</span><span class="w">
+</span><span class="n">hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hclust</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s1">'ward.D'</span><span class="p">)</span><span class="w">
+</span><span class="n">com.hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cutreeDynamic</span><span class="p">(</span><span class="n">hc</span><span class="p">,</span><span class="w"> </span><span class="n">distM</span><span class="o">=</span><span class="n">as.matrix</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="w"> </span><span class="n">deepSplit</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">com.hc</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pcs</span><span class="p">)</span><span class="w">
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span><span class="w"> </span><span class="n">com.hc</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">main</span><span class="o">=</span><span class="s1">'Hclust'</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">mark.clusters</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">mark.cluster.cex</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+              </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/hclust-1.png" alt="" /></p>
+
+<p>In my own work, I am reaching the point where I must now consider not
+only the accuracy of a clustering algorithm but also its runtime and
+memory usage (primarily during software testing and development where I
+really value being able to iterate quickly). So we will also benchmark
+the runtime and memory usage of each cluster detection approach to get a
+sense of how well each method may scale as our datasets increase in
+size.</p>
+
+<p>First, let’s benchmark runtime.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## try for different number of cells</span><span class="w">
+</span><span class="n">ncells</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">400</span><span class="p">,</span><span class="w"> </span><span class="m">800</span><span class="p">,</span><span class="w"> </span><span class="m">1600</span><span class="p">,</span><span class="w"> </span><span class="m">3200</span><span class="p">,</span><span class="w"> </span><span class="m">6400</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## k-means</span><span class="w">
+</span><span class="n">rt.km</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="n">kmeans</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,],</span><span class="w"> </span><span class="n">centers</span><span class="o">=</span><span class="m">10</span><span class="p">)</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+  </span><span class="n">end_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">)</span><span class="w">
+</span><span class="p">})</span><span class="w">
+
+</span><span class="c1">## graph-based community detection</span><span class="w">
+</span><span class="n">rt.graph</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="n">getComMembership</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,],</span><span class="w"> 
+                   </span><span class="n">k</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="n">igraph</span><span class="o">::</span><span class="n">cluster_infomap</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+  </span><span class="n">end_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">)</span><span class="w">
+</span><span class="p">})</span><span class="w">
+
+</span><span class="c1">## HDBSCAN</span><span class="w">
+</span><span class="n">rt.db</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="n">hdbscan</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="n">minPts</span><span class="o">=</span><span class="m">10</span><span class="p">)</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+  </span><span class="n">end_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">)</span><span class="w">
+</span><span class="p">})</span><span class="w">
+
+</span><span class="c1">## Hclust w/ dynamic tree cutting</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dynamicTreeCut</span><span class="p">)</span><span class="w">
+</span><span class="n">rt.hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.dist</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">cor</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,])))</span><span class="w">
+  </span><span class="n">hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hclust</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s1">'ward.D'</span><span class="p">)</span><span class="w">
+  </span><span class="n">com.hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cutreeDynamic</span><span class="p">(</span><span class="n">hc</span><span class="p">,</span><span class="w"> </span><span class="n">distM</span><span class="o">=</span><span class="n">as.matrix</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="w"> </span><span class="n">deepSplit</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+  </span><span class="nf">names</span><span class="p">(</span><span class="n">com.hc</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pcs</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">]</span><span class="w">
+  </span><span class="n">end_time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sys.time</span><span class="p">()</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">)</span><span class="w">
+</span><span class="p">})</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We will make an <a href="http://jef.works/blog/2018/02/10/interactive-visualizations-with-highcharter/">interactive plot here using
+<code class="highlighter-rouge">highcharter</code></a>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">############# Highercharter</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">highcharter</span><span class="p">)</span><span class="w">
+</span><span class="c1"># Adapted from highcharter::export_hc() to not write to file</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">jsonlite</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span><span class="w">
+</span><span class="n">write_hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">hc</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">JS_to_json</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"json"</span><span class="w">
+    </span><span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="n">hc</span><span class="o">$</span><span class="n">x</span><span class="o">$</span><span class="n">hc_opts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rapply</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hc</span><span class="o">$</span><span class="n">x</span><span class="o">$</span><span class="n">hc_opts</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JS_to_json</span><span class="p">,</span><span class="w"> 
+                         </span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"JS_EVAL"</span><span class="p">,</span><span class="w"> </span><span class="n">how</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"replace"</span><span class="p">)</span><span class="w">
+  </span><span class="n">js</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">toJSON</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hc</span><span class="o">$</span><span class="n">x</span><span class="o">$</span><span class="n">hc_opts</span><span class="p">,</span><span class="w"> </span><span class="n">pretty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">auto_unbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+               </span><span class="n">json_verbatim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"null"</span><span class="p">,</span><span class="w"> </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"null"</span><span class="p">)</span><span class="w">
+  </span><span class="n">js</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sprintf</span><span class="p">(</span><span class="s2">"$(function(){\n\t$('#%s').highcharts(\n%s\n);\n});"</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">js</span><span class="p">)</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">js</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="c1"># Helper function to write javascript in Rmd</span><span class="w">
+</span><span class="c1"># Thanks so http://livefreeordichotomize.com/2017/01/24/custom-javascript-visualizations-in-rmarkdown/</span><span class="w">
+</span><span class="n">send_hc_to_js</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">hc</span><span class="p">,</span><span class="w"> </span><span class="n">hcid</span><span class="p">){</span><span class="w">
+  </span><span class="n">cat</span><span class="p">(</span><span class="w">
+    </span><span class="n">paste</span><span class="p">(</span><span class="w">
+      </span><span class="s1">'&lt;span id=\"'</span><span class="p">,</span><span class="w"> </span><span class="n">hcid</span><span class="p">,</span><span class="w"> </span><span class="s1">'\"&gt;&lt;/span&gt;'</span><span class="p">,</span><span class="w">
+      </span><span class="s1">'&lt;script&gt;'</span><span class="p">,</span><span class="w">
+      </span><span class="n">write_hc</span><span class="p">(</span><span class="n">hc</span><span class="p">,</span><span class="w"> </span><span class="n">hcid</span><span class="p">),</span><span class="w">
+      </span><span class="s1">'&lt;/script&gt;'</span><span class="p">,</span><span class="w"> 
+      </span><span class="n">sep</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="c1"># Melt into appropriate format</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="s1">'graph'</span><span class="o">=</span><span class="n">rt.graph</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'km'</span><span class="o">=</span><span class="n">rt.km</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'db'</span><span class="o">=</span><span class="n">rt.db</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'hc'</span><span class="o">=</span><span class="n">rt.hc</span><span class="w">
+                 </span><span class="p">)</span><span class="w">
+</span><span class="n">dfm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">reshape2</span><span class="o">::</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span><span class="n">dfm</span><span class="o">$</span><span class="n">ncell</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Plot</span><span class="w">
+</span><span class="n">hcRT</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">highchart</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">hc_add_series</span><span class="p">(</span><span class="n">dfm</span><span class="p">,</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">hcaes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ncell</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">variable</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_title</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Runtime Comparison'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_legend</span><span class="p">(</span><span class="n">align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vertical"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_xAxis</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'number of cells'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_yAxis</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'runtime in seconds'</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send_hc_to_js</span><span class="p">(</span><span class="n">hcRT</span><span class="p">,</span><span class="w"> </span><span class="s1">'hcRT'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><span id="hcRT"></span>
+<script>$(function(){
+    $('#hcRT').highcharts(
+{
+  "title": {
+    "text": "Runtime Comparison"
+  },
+  "yAxis": {
+    "title": {
+      "text": "runtime in seconds"
+    }
+  },
+  "credits": {
+    "enabled": false
+  },
+  "exporting": {
+    "enabled": false
+  },
+  "plotOptions": {
+    "series": {
+      "label": {
+        "enabled": false
+      },
+      "turboThreshold": 0
+    },
+    "treemap": {
+      "layoutAlgorithm": "squarified"
+    }
+  },
+  "series": [
+    {
+      "name": "graph",
+      "data": [
+        {
+          "variable": "graph",
+          "value": 0.03,
+          "ncell": 100,
+          "x": 100,
+          "y": 0.03
+        },
+        {
+          "variable": "graph",
+          "value": 0.0684,
+          "ncell": 200,
+          "x": 200,
+          "y": 0.0684
+        },
+        {
+          "variable": "graph",
+          "value": 0.2209,
+          "ncell": 400,
+          "x": 400,
+          "y": 0.2209
+        },
+        {
+          "variable": "graph",
+          "value": 0.7464,
+          "ncell": 800,
+          "x": 800,
+          "y": 0.7464
+        },
+        {
+          "variable": "graph",
+          "value": 3.0594,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 3.0594
+        },
+        {
+          "variable": "graph",
+          "value": 10.3862,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 10.3862
+        },
+        {
+          "variable": "graph",
+          "value": 40.6416,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 40.6416
+        }
+      ],
+      "type": "line"
+    },
+    {
+      "name": "km",
+      "data": [
+        {
+          "variable": "km",
+          "value": 0.0026,
+          "ncell": 100,
+          "x": 100,
+          "y": 0.0026
+        },
+        {
+          "variable": "km",
+          "value": 0.0021,
+          "ncell": 200,
+          "x": 200,
+          "y": 0.0021
+        },
+        {
+          "variable": "km",
+          "value": 0.0028,
+          "ncell": 400,
+          "x": 400,
+          "y": 0.0028
+        },
+        {
+          "variable": "km",
+          "value": 0.0056,
+          "ncell": 800,
+          "x": 800,
+          "y": 0.0056
+        },
+        {
+          "variable": "km",
+          "value": 0.0103,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 0.0103
+        },
+        {
+          "variable": "km",
+          "value": 0.0455,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 0.0455
+        },
+        {
+          "variable": "km",
+          "value": 0.0351,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 0.0351
+        }
+      ],
+      "type": "line"
+    },
+    {
+      "name": "db",
+      "data": [
+        {
+          "variable": "db",
+          "value": 0.0146,
+          "ncell": 100,
+          "x": 100,
+          "y": 0.0146
+        },
+        {
+          "variable": "db",
+          "value": 0.0299,
+          "ncell": 200,
+          "x": 200,
+          "y": 0.0299
+        },
+        {
+          "variable": "db",
+          "value": 0.0719,
+          "ncell": 400,
+          "x": 400,
+          "y": 0.0719
+        },
+        {
+          "variable": "db",
+          "value": 0.1898,
+          "ncell": 800,
+          "x": 800,
+          "y": 0.1898
+        },
+        {
+          "variable": "db",
+          "value": 0.6742,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 0.6742
+        },
+        {
+          "variable": "db",
+          "value": 3.1616,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 3.1616
+        },
+        {
+          "variable": "db",
+          "value": 4.9644,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 4.9644
+        }
+      ],
+      "type": "line"
+    },
+    {
+      "name": "hc",
+      "data": [
+        {
+          "variable": "hc",
+          "value": 0.0479,
+          "ncell": 100,
+          "x": 100,
+          "y": 0.0479
+        },
+        {
+          "variable": "hc",
+          "value": 0.2309,
+          "ncell": 200,
+          "x": 200,
+          "y": 0.2309
+        },
+        {
+          "variable": "hc",
+          "value": 0.2403,
+          "ncell": 400,
+          "x": 400,
+          "y": 0.2403
+        },
+        {
+          "variable": "hc",
+          "value": 0.5806,
+          "ncell": 800,
+          "x": 800,
+          "y": 0.5806
+        },
+        {
+          "variable": "hc",
+          "value": 1.53,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 1.53
+        },
+        {
+          "variable": "hc",
+          "value": 4.3116,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 4.3116
+        },
+        {
+          "variable": "hc",
+          "value": 13.5932,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 13.5932
+        }
+      ],
+      "type": "line"
+    }
+  ],
+  "legend": {
+    "align": "right",
+    "layout": "vertical"
+  },
+  "xAxis": {
+    "title": {
+      "text": "number of cells"
+    }
+  }
+}
+);
+});</script></p>
+
+<p>K-means is quite fast! Graph-based community detection, which requires building a graph, is currently somewhat slow, though that may just be my poor implementation of the graph-construction approach from nearest neighbors. Similarly for hierarchical clustering, there may be faster C-based algorithms for calculating the distance matrices that could speed things up.</p>
+
+<p>We can do the same for memory usage.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">pryr</span><span class="p">)</span><span class="w">
+</span><span class="c1">## graph-based community detection</span><span class="w">
+</span><span class="n">mem.graph</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">mem_change</span><span class="p">(</span><span class="w">
+  </span><span class="n">com</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getComMembership</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,],</span><span class="w"> 
+                   </span><span class="n">k</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="n">igraph</span><span class="o">::</span><span class="n">cluster_infomap</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> 
+  </span><span class="p">))</span><span class="w">
+</span><span class="p">})</span><span class="w">
+
+</span><span class="c1">## k-means</span><span class="w">
+</span><span class="n">mem.km</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">mem_change</span><span class="p">(</span><span class="w">
+  </span><span class="n">com</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kmeans</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,],</span><span class="w"> </span><span class="n">centers</span><span class="o">=</span><span class="m">10</span><span class="p">)</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+  </span><span class="p">))</span><span class="w">
+</span><span class="p">})</span><span class="w">
+
+</span><span class="c1">## HDBSCAN</span><span class="w">
+</span><span class="n">mem.db</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">mem_change</span><span class="p">(</span><span class="w">
+  </span><span class="n">com</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hdbscan</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="n">minPts</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="o">$</span><span class="n">cluster</span><span class="w">
+  </span><span class="p">))</span><span class="w">
+</span><span class="p">})</span><span class="w">
+
+</span><span class="c1">## Hclust w/ dynamic tree cutting</span><span class="w">
+</span><span class="n">mem.hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">vi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="w">
+    </span><span class="n">mem_change</span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.dist</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">cor</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">pcs</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">vi</span><span class="p">,]))))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">mem_change</span><span class="p">(</span><span class="n">hc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hclust</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s1">'ward.D'</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">mem_change</span><span class="p">(</span><span class="n">com</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cutreeDynamic</span><span class="p">(</span><span class="n">hc</span><span class="p">,</span><span class="w"> </span><span class="n">distM</span><span class="o">=</span><span class="n">as.matrix</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="w"> </span><span class="n">deepSplit</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">})</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Melt into appropriate format</span><span class="w">
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="s1">'graph'</span><span class="o">=</span><span class="n">mem.graph</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'km'</span><span class="o">=</span><span class="n">mem.km</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'db'</span><span class="o">=</span><span class="n">mem.db</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'hc'</span><span class="o">=</span><span class="n">mem.hc</span><span class="w">
+                 </span><span class="p">)</span><span class="w">
+</span><span class="n">dfm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">reshape2</span><span class="o">::</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span><span class="n">dfm</span><span class="o">$</span><span class="n">ncell</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">ncells</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Plot</span><span class="w">
+</span><span class="n">hcMem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">highchart</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">hc_add_series</span><span class="p">(</span><span class="n">dfm</span><span class="p">,</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">hcaes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ncell</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">variable</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_title</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Memory Comparison'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_legend</span><span class="p">(</span><span class="n">align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vertical"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_xAxis</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'number of cells'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">hc_yAxis</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'memory usage (log)'</span><span class="p">),</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"logarithmic"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">send_hc_to_js</span><span class="p">(</span><span class="n">hcMem</span><span class="p">,</span><span class="w"> </span><span class="s1">'hcMem'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><span id="hcMem"></span>
+<script>$(function(){
+    $('#hcMem').highcharts(
+{
+  "title": {
+    "text": "Memory Comparison"
+  },
+  "yAxis": {
+    "title": {
+      "text": "memory usage (log)"
+    },
+    "type": "logarithmic"
+  },
+  "credits": {
+    "enabled": false
+  },
+  "exporting": {
+    "enabled": false
+  },
+  "plotOptions": {
+    "series": {
+      "label": {
+        "enabled": false
+      },
+      "turboThreshold": 0
+    },
+    "treemap": {
+      "layoutAlgorithm": "squarified"
+    }
+  },
+  "series": [
+    {
+      "name": "graph",
+      "data": [
+        {
+          "variable": "graph",
+          "value": 132016,
+          "ncell": 100,
+          "x": 100,
+          "y": 132016
+        },
+        {
+          "variable": "graph",
+          "value": 268328,
+          "ncell": 200,
+          "x": 200,
+          "y": 268328
+        },
+        {
+          "variable": "graph",
+          "value": 551912,
+          "ncell": 400,
+          "x": 400,
+          "y": 551912
+        },
+        {
+          "variable": "graph",
+          "value": 1153000,
+          "ncell": 800,
+          "x": 800,
+          "y": 1153000
+        },
+        {
+          "variable": "graph",
+          "value": 2369704,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 2369704
+        },
+        {
+          "variable": "graph",
+          "value": 4861992,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 4861992
+        },
+        {
+          "variable": "graph",
+          "value": 9876992,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 9876992
+        }
+      ],
+      "type": "line"
+    },
+    {
+      "name": "km",
+      "data": [
+        {
+          "variable": "km",
+          "value": 2728,
+          "ncell": 100,
+          "x": 100,
+          "y": 2728
+        },
+        {
+          "variable": "km",
+          "value": 4136,
+          "ncell": 200,
+          "x": 200,
+          "y": 4136
+        },
+        {
+          "variable": "km",
+          "value": 6536,
+          "ncell": 400,
+          "x": 400,
+          "y": 6536
+        },
+        {
+          "variable": "km",
+          "value": 11336,
+          "ncell": 800,
+          "x": 800,
+          "y": 11336
+        },
+        {
+          "variable": "km",
+          "value": 20936,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 20936
+        },
+        {
+          "variable": "km",
+          "value": 40136,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 40136
+        },
+        {
+          "variable": "km",
+          "value": 78536,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 78536
+        }
+      ],
+      "type": "line"
+    },
+    {
+      "name": "db",
+      "data": [
+        {
+          "variable": "db",
+          "value": 2216,
+          "ncell": 100,
+          "x": 100,
+          "y": 2216
+        },
+        {
+          "variable": "db",
+          "value": 3224,
+          "ncell": 200,
+          "x": 200,
+          "y": 3224
+        },
+        {
+          "variable": "db",
+          "value": 4824,
+          "ncell": 400,
+          "x": 400,
+          "y": 4824
+        },
+        {
+          "variable": "db",
+          "value": 8024,
+          "ncell": 800,
+          "x": 800,
+          "y": 8024
+        },
+        {
+          "variable": "db",
+          "value": 14424,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 14424
+        },
+        {
+          "variable": "db",
+          "value": 27224,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 27224
+        },
+        {
+          "variable": "db",
+          "value": 52824,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 52824
+        }
+      ],
+      "type": "line"
+    },
+    {
+      "name": "hc",
+      "data": [
+        {
+          "variable": "hc",
+          "value": 50576,
+          "ncell": 100,
+          "x": 100,
+          "y": 50576
+        },
+        {
+          "variable": "hc",
+          "value": 174384,
+          "ncell": 200,
+          "x": 200,
+          "y": 174384
+        },
+        {
+          "variable": "hc",
+          "value": 661584,
+          "ncell": 400,
+          "x": 400,
+          "y": 661584
+        },
+        {
+          "variable": "hc",
+          "value": 2595984,
+          "ncell": 800,
+          "x": 800,
+          "y": 2595984
+        },
+        {
+          "variable": "hc",
+          "value": 10304784,
+          "ncell": 1600,
+          "x": 1600,
+          "y": 10304784
+        },
+        {
+          "variable": "hc",
+          "value": 41082384,
+          "ncell": 3200,
+          "x": 3200,
+          "y": 41082384
+        },
+        {
+          "variable": "hc",
+          "value": 164077584,
+          "ncell": 6400,
+          "x": 6400,
+          "y": 164077584
+        }
+      ],
+      "type": "line"
+    }
+  ],
+  "legend": {
+    "align": "right",
+    "layout": "vertical"
+  },
+  "xAxis": {
+    "title": {
+      "text": "number of cells"
+    }
+  }
+}
+);
+});</script></p>
+
+<p>Note that the y-axis is on the log scale! You definitely wouldn’t want to use hierachical clustering if you have millions of cells!</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Judge for yourself! Which method did ‘better’? To really judge,
+we would want to check which method is better at identifying
+<a href="https://jef.works/blog/2018/02/28/stability-testing/">‘stable’</a>
+clusters with truely differentially expressed genes. Only by looking for differentially expressed genes distinguishing each cluster would we be able to clarify which method properly split up the monocytes (marked by CD14) into putative subtypes. While k-means split monocytes into groups annotated 4, 6, and 7, graph-based community detection split into groups annotated as 4 and 5 which are not consistent with k-means, while the other methods did not identify any subtypes. DBSCAN appears to be better suited for identifying super small/rare populations such as groups marked 1, 8, and 9 as subtypes of B-cells (marked by CD20/MS4A1) but fails to distinguish between the large known T-cell subtypes (CD4, CD8 for example) at least using current settings. Hiearchical clustering is just too slow and memory intensive to be worthwhile in my opinion moving forward unless cells are downsampled or merged prior to clustering to reduce N.</p>
+
+<p>What happens if we use different <code class="highlighter-rouge">k</code>s in our various cluster detection
+approaches? Are some approaches more sensitive to parameter choices than
+others? What if instead of PC space, we do our community detection in
+the original expression space (using the entire normalized expression
+matrix instead of PCs)? Try it out for yourself!</p>
+:ET

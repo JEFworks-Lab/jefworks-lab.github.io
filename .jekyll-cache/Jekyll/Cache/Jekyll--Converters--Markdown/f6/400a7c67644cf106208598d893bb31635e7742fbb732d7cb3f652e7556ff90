@@ -1,0 +1,80 @@
+I"�<h1 id="lsf-for-dummies">LSF for dummies</h1>
+
+<p>(Actually, if you’ve gotten to a point you need to use LSF, you’re far from a dummy ;P)</p>
+
+<p>LSF (Load Sharing Facility) is a system to manage programs that generally cannot be run interactively on a machine because they require too much CPU-time, memory, or other system resources. For that reason, those large programs have to be run in batch as jobs.</p>
+
+<p>LSF takes care of that batch management. Based on the job specifications, LSF will start execution of jobs when there are enough system resources available for the job to complete. Until that time, a job request will be queued in a queue.</p>
+
+<h2 id="what-is-a-queue-and-what-queues-are-available-to-me">What is a queue and what queues are available to me?</h2>
+
+<p>The queue is the basic container for jobs in the LSF system. Queues can have access controls placed on them (so only users in a certain group can use a certain queue, for example), and once a job is submitted, its queue determines how it is scheduled and where it is executed.</p>
+
+<p><code class="highlighter-rouge">bqueues</code> displays a list of queues</p>
+
+<p><code class="highlighter-rouge">bqueues -u all</code> shows the list of queues that all users can submit to</p>
+
+<h2 id="how-do-i-submit-a-job-to-a-queue">How do I submit a job to a queue?</h2>
+
+<p><code class="highlighter-rouge">bsub</code> submits a job to the LSF system</p>
+
+<p>There are a number of options you can use (with examples):</p>
+
+<p><code class="highlighter-rouge">-n</code> 4<br />
+Run on four cores (Some programs use “processors” or “threads” for this idea)</p>
+
+<p><code class="highlighter-rouge">-e</code> errfile<br />
+Send errors (stderr) to file errfile. If file exists, add to it.</p>
+
+<p><code class="highlighter-rouge">-N</code> notify<br />
+Send email when job finishes</p>
+
+<p><code class="highlighter-rouge">-o</code> outfile<br />
+Send screen output (stdout) to file outfile. If file exists, add to it.</p>
+
+<p><code class="highlighter-rouge">-R "rusage[mem=10000]"</code><br />
+Resource request. Reserve 10,000 MB of memory</p>
+
+<p><code class="highlighter-rouge">-R "select[transfer]"</code><br />
+Resource request. Only run on “transfer” computers</p>
+
+<p><code class="highlighter-rouge">-W 30</code><br />
+Runlimit. Job will be killed if it runs longer than 30 minutes (30:00 means 30 hours)</p>
+
+<p>Using the trivial example of running the program test.sh in the short queue with a runtime limit of 5 minutes<br />
+<code class="highlighter-rouge">bsub -q short -W 5 test.sh</code></p>
+
+<p>Note we can also use bsub commands in combination with workflow management systems such as snakemake:<br />
+<code class="highlighter-rouge">snakemake --snakefile tophat.snakefile --jobs 999 --cluster 'bsub -o "tophat.snakemake.out" -q short -W 12:00 -R "rusage[mem=4000]"'</code></p>
+
+<h2 id="common-issues">Common issues</h2>
+
+<p>It’s generally better to over-estimate than under-estimate run time and memory usage otherwise you may get errors such as ‘TERM_MEMLIMIT: job killed after reaching LSF memory usage limit’, etc.</p>
+
+<h2 id="useful-tips">Useful tips</h2>
+
+<p>If you submit to the wrong queue and would like to switch, try:</p>
+
+<p><code class="highlighter-rouge">bswitch -q long mcore 0</code></p>
+
+<p>This switches all pending jobs from the long to mcore queue.</p>
+
+<p>Another approach to give you more control is to use bmod:<br />
+<code class="highlighter-rouge">bmod -q mcore &lt;JOBID&gt;</code></p>
+
+<p>Thus the following will give the same result as bswitch:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pend=$(bjobs | grep ‘PEND’ | awk ‘{ print $1 }’)
+for i in $pend; do bmod -q mcore $i; done;
+</code></pre></div></div>
+
+<p>If you messed up and need to kill your jobs:<br />
+<code class="highlighter-rouge">bkill &lt;JOBID&gt;</code> or <code class="highlighter-rouge">bkill 0</code> to kill all jobs</p>
+
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+  <li><a href="http://www.vub.ac.be/BFUCC/LSF/">VUB/ULB Computing Centre Guide</a></li>
+  <li><a href="http://research.computing.yale.edu/support/hpc/user-guide/submitting-jobs-lsf">Yale Computing Guide</a></li>
+  <li><a href="https://wiki.med.harvard.edu/Orchestra/IntroductionToLSF">Harvard Computing Guide - beginner</a></li>
+  <li><a href="https://wiki.med.harvard.edu/Orchestra/IntermediateLSF">Harvard Computing Guide - intermediate</a></li>
+</ul>
+:ET

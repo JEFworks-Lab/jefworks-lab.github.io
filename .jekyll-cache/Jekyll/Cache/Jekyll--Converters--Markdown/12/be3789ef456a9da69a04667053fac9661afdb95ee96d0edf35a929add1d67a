@@ -1,0 +1,647 @@
+I"?<h2 id="introduction">Introduction</h2>
+
+<p>RNA velocity, the time derivative of the gene expression state, can be
+used to predict the future transcriptional state of cells. RNA velocity
+analysis, particularly in combination with single-cell trajectory
+analyses, can provide us with insights into the transcriptional dynamics
+of cells in development and evolution. In this tutorial, I use data from
+our latest publication <a href="https://www.pnas.org/content/116/39/19490">Xia, Fan, Emanuel et al
+(2019)</a> to illustrate an
+example of RNA velocity analysis in situ and provide tips for doing RNA
+velocity analysis for your own single-cell transcriptomics data.</p>
+
+<h3 id="suggested-reading-and-resources">Suggested reading and resources</h3>
+
+<ul>
+  <li>Background: <a href="https://www.embopress.org/doi/full/10.1038/msb.2011.62">Zeisel et
+al. (2011)</a></li>
+  <li>RNA velocity paper: <a href="https://www.nature.com/articles/s41586-018-0414-6">La Manno et
+al. (2018)</a></li>
+  <li>RNA velocity theory: <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-018-0414-6/MediaObjects/41586_2018_414_MOESM1_ESM.pdf">Supplementary Note 1 of La Manno et
+al (2018)</a></li>
+  <li>RNA velocity limitations: <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-018-0414-6/MediaObjects/41586_2018_414_MOESM3_ESM.pdf">Supplementary Note 2 of La Manno et
+al (2018)</a></li>
+  <li>RNA velocity review: <a href="https://www.sciencedirect.com/science/article/pii/S1097276518307974">Svensson and
+Pachter (2018)</a></li>
+  <li>RNA velocity in situ paper: <a href="https://www.pnas.org/content/116/39/19490">Xia, Fan, Emanuel et
+al (2019)</a></li>
+  <li>RNA velocity software documentation: <a href="http://velocyto.org/">http://velocyto.org/</a></li>
+</ul>
+
+<hr />
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>We will first read in the single-cell expression count matrices
+available as Supplementary Table 12 of <a href="https://www.pnas.org/content/116/39/19490">Xia, Fan, Emanuel et al
+(2019)</a>. Here, each row is a
+gene (or blank) assayed by MERFISH, and each column is a cell. Analogous
+data can be used from single-cell RNA-seq data. Here, cell names include
+both the batch identifier following by the cell identifier.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Read in single-cell expression data</span><span class="w">
+</span><span class="n">cell_gexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"pnas201912459_s12_pv0i72.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="m">1</span><span class="p">))</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">cell_gexp</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##        B1_cell1 B1_cell2 B1_cell3 B1_cell4 B1_cell5
+## A1CF          0        0        1        1        0
+## A2M           4        2        1        1        1
+## A2ML1         0        0        0        0        0
+## A4GALT        6        3        4        2        3
+## AACS         36       28       14       11       10
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Parse out batch info</span><span class="w">
+</span><span class="n">batch</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">cell_gexp</span><span class="p">),</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s1">'_'</span><span class="p">)[[</span><span class="m">1</span><span class="p">]][</span><span class="m">1</span><span class="p">])</span><span class="w">
+</span><span class="n">batch</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">batch</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## batch
+##  B1  B2  B3 
+## 645 400 323
+</code></pre></div></div>
+
+<p>In this MERFISH library, 9,050 genes that were labeled with the
+non-overlapping encoding probe strategy (rows 2 to 9,051) and the 1,000
+genes were labeled with the overlapping encoding probe strategy (rows
+9,280 to 10,279). The remaining are used as blank controls. Here, we
+will omit blank controls and use all 10050 genes for downstream
+analyses.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">genes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">cell_gexp</span><span class="p">)</span><span class="w">
+</span><span class="n">bad.genes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genes</span><span class="p">[</span><span class="n">grepl</span><span class="p">(</span><span class="s1">'Blank'</span><span class="p">,</span><span class="w"> </span><span class="n">genes</span><span class="p">)]</span><span class="w">
+</span><span class="n">good.genes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setdiff</span><span class="p">(</span><span class="n">genes</span><span class="p">,</span><span class="w"> </span><span class="n">bad.genes</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">bad.genes</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 2853
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">good.genes</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 10050
+</code></pre></div></div>
+
+<h2 id="single-cell-clustering-analysis">Single-cell clustering analysis</h2>
+
+<p>Single-cell transcriptomic analysis enables the identification of novel
+cell types and cell states in a systematic and quantitative manner. To
+illustrate this, we will perform single-cell clustering analysis to
+identify cell populations based on the gene expression profiles of
+individual cells. Briefly, we will subset the data to one batch, perform
+CPM and variance normalization, identify over-dispersed genes, and
+applied principal components (PC) analysis to identify 30 PCs that
+capture the greatest variance, apply graph-based Louvain clustering in
+high-dimensional PC space to identify cell clusters, and finally project
+into 2D using tSNE for visualization. It will be left as an exercise to
+the reader to perform a single analysis with the appropriate batch
+corrections.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Remove blanks</span><span class="w">
+</span><span class="n">cd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cell_gexp</span><span class="p">[</span><span class="n">good.genes</span><span class="p">,]</span><span class="w">
+        
+</span><span class="c1">## Restrict to one batch in this tutorial</span><span class="w">
+</span><span class="n">subcells</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">batch</span><span class="p">)[</span><span class="n">batch</span><span class="o">==</span><span class="s1">'B1'</span><span class="p">]</span><span class="w">
+</span><span class="n">cd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cd</span><span class="p">[,</span><span class="w"> </span><span class="n">subcells</span><span class="p">]</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">cd</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 10050   645
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">MUDAN</span><span class="p">)</span><span class="w">
+</span><span class="c1">## CPM normalize</span><span class="w">
+</span><span class="n">mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">MUDAN</span><span class="o">::</span><span class="n">normalizeCounts</span><span class="p">(</span><span class="n">cd</span><span class="p">)</span><span class="w">
+</span><span class="c1">## Variance normalize and log transform</span><span class="w">
+</span><span class="n">matnorm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">MUDAN</span><span class="o">::</span><span class="n">normalizeVariance</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">details</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] "Calculating variance fit ..."
+## [1] "Using gam with k=5..."
+## [1] "1828 overdispersed genes ... "
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Restrict to overdispersed genes</span><span class="w">
+</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log10</span><span class="p">(</span><span class="n">matnorm</span><span class="o">$</span><span class="n">mat</span><span class="p">[</span><span class="n">matnorm</span><span class="o">$</span><span class="n">ods</span><span class="p">,]</span><span class="m">+1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Fast PCA, return 100 PCs</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">irlba</span><span class="p">)</span><span class="w">
+</span><span class="n">pcs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">irlba</span><span class="o">::</span><span class="n">prcomp_irlba</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">as.matrix</span><span class="p">(</span><span class="n">m</span><span class="p">)),</span><span class="w"> </span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">)</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">pcs</span><span class="o">$</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">
+</span><span class="c1">## Elbow plot to help choose number of PCs</span><span class="w">
+</span><span class="c1">#plot(pcs$sdev, type="l")</span><span class="w">
+</span><span class="n">nPCs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">30</span><span class="w">
+</span><span class="c1">#abline(v=nPCs, col='red')</span><span class="w">
+
+</span><span class="c1">## Use first 30 PCs for 2D tSNE</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">Rtsne</span><span class="p">)</span><span class="w">
+</span><span class="n">emb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Rtsne</span><span class="o">::</span><span class="n">Rtsne</span><span class="p">(</span><span class="n">pcs</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">],</span><span class="w">
+    </span><span class="n">is_distance</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                   </span><span class="n">perplexity</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w">
+                   </span><span class="n">num_threads</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+                   </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="o">$</span><span class="n">Y</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">emb</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">
+</span><span class="c1">#plot(emb)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Construct graph using KNN</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">RANN</span><span class="p">)</span><span class="w">
+</span><span class="n">knn.info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RANN</span><span class="o">::</span><span class="n">nn2</span><span class="p">(</span><span class="n">pcs</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">],</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="m">50</span><span class="p">)</span><span class="w">
+</span><span class="n">knn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">knn.info</span><span class="o">$</span><span class="n">nn.idx</span><span class="w">
+</span><span class="n">adj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="p">(</span><span class="n">mat</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">adj</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">adj</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w">
+</span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nf">seq_len</span><span class="p">(</span><span class="n">ncol</span><span class="p">(</span><span class="n">mat</span><span class="p">))){</span><span class="w">
+  </span><span class="n">adj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)[</span><span class="n">knn</span><span class="p">[</span><span class="n">i</span><span class="p">,]]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="c1">## Louvain clustering</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">graph.adjacency</span><span class="p">(</span><span class="n">adj</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="o">=</span><span class="s1">'undirected'</span><span class="p">)</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simplify</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="w">
+</span><span class="n">km</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">cluster_louvain</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="w">
+</span><span class="n">com</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">km</span><span class="o">$</span><span class="n">membership</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">com</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">km</span><span class="o">$</span><span class="n">names</span><span class="w">
+
+</span><span class="c1">## Rotate tSNE embedding as needed </span><span class="w">
+</span><span class="c1">## for reasons that will become evident later</span><span class="w">
+</span><span class="n">emb.test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">emb</span><span class="w">
+</span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="nb">pi</span><span class="o">*</span><span class="m">0.25</span><span class="w"> </span><span class="c1"># adjust as needed</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emb.test</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="w">
+</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emb.test</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="w">
+</span><span class="n">emb.test</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="nf">cos</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="nf">sin</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w">
+</span><span class="n">emb.test</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="nf">cos</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="nf">sin</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w">
+</span><span class="c1">#emb.test[,2] = -emb.test[,2] # flip as needed</span><span class="w">
+
+</span><span class="c1">## Plot results</span><span class="w">
+</span><span class="n">MUDAN</span><span class="o">::</span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">emb.test</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">groups</span><span class="o">=</span><span class="n">com</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">mark.clusters</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">show.legend</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">xlab</span><span class="o">=</span><span class="s1">'tSNE-1'</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s1">'tSNE-2'</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">main</span><span class="o">=</span><span class="s1">'tSNE'</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-cluster3-1.png" alt="" /></p>
+
+<p>Here, we identify 5 transcriptionally distinct populations of cells.
+Given that our measurements were performed on a single cell type
+(cultured U2-OS cells), these clusters are likely to represent distinct
+cell states at different stages of the cell cycle. We can visualize
+expression of known cell-cycle markers to confirm this hypothesis.
+<em>MCM5</em> and <em>MCM6</em> are G1/S markers, while <em>CCNF</em> and <em>KIF2C</em> are G2/M
+markers.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span><span class="n">gs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'MCM5'</span><span class="p">,</span><span class="s1">'MCM6'</span><span class="p">,</span><span class="s1">'CCNF'</span><span class="p">,</span><span class="s1">'KIF2C'</span><span class="p">)</span><span class="w">
+</span><span class="nf">invisible</span><span class="p">(</span><span class="n">lapply</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">g</span><span class="p">){</span><span class="w">
+  </span><span class="n">gexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scale</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">g</span><span class="p">,])[,</span><span class="m">1</span><span class="p">]</span><span class="w">
+  </span><span class="n">gexp</span><span class="p">[</span><span class="n">gexp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w">
+  </span><span class="n">gexp</span><span class="p">[</span><span class="n">gexp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">-2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-2</span><span class="w">
+  </span><span class="n">MUDAN</span><span class="o">::</span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">emb.test</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">main</span><span class="o">=</span><span class="n">g</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">col</span><span class="o">=</span><span class="n">gexp</span><span class="p">,</span><span class="w">
+                       </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="p">}))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-cellcycle-1.png" alt="" /></p>
+
+<h2 id="rna-velocity-analysis">RNA velocity analysis</h2>
+
+<p>In the original implementation by <a href="https://www.nature.com/articles/s41586-018-0414-6">La Manno et al
+(2019)</a>, RNA velocity
+leveraged the relative ratio between intronic (unspliced) and exonic
+(spliced) mRNAs in scRNA-seq data to infer the rate of change in
+transcript abundance in order to estimate the future transcriptional
+state for a cell. The underlying assumption in this model is that genes
+are initially transcribed in an unspliced manner and then spliced, such
+that observed intronic reads can be interpreted as corresponding to
+nascently transcribed mRNAs.</p>
+
+<p>In the in situ analogue, <a href="https://www.pnas.org/content/116/39/19490">Xia, Fan, Emanuel et al
+(2019)</a> reasoned that RNA
+velocity could be inferred by distinguishing between nuclear and
+cytoplasmic mRNAs, leveraging the spatial information of transcripts
+obtained in MERFISH and other spatially-resolved transcriptomic imaging
+measurements. The underlying assumption in this analogue is therefore
+that transcription occurs within the nucleus followed by export into the
+cytoplasm. Therefore, in the in situ analogue, we can substitute the
+intronic gene expression with the nuclear gene expression matrix (nmat)
+and the exonic gene expression matrix with the cytoplasmic gene
+expression matrix (emat) and take advantage of existing implementations
+of RNA velocity analysis through the <a href="http://velocyto.org/">velocyto software
+package</a>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">velocyto.R</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## Read in nuclear expression data</span><span class="w">
+</span><span class="c1">## Supplementary Table 14 in Xia, Fan, Emanuel et al (2019)</span><span class="w">
+</span><span class="n">nuc_gexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"pnas201912459_s14_pv0i72.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="m">1</span><span class="p">))</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">nuc_gexp</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##        B1_cell1 B1_cell2 B1_cell3 B1_cell4 B1_cell5
+## A1CF          0        0        0        1        0
+## A2M           1        1        0        0        0
+## A2ML1         0        0        0        0        0
+## A4GALT        0        1        1        1        0
+## AACS          3        8        3        1        2
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Derive cytoplasmic expression</span><span class="w">
+</span><span class="n">cyto_gexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cell_gexp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">nuc_gexp</span><span class="w">
+
+</span><span class="c1">## Keep cluster labels from previously</span><span class="w">
+</span><span class="n">cluster.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">com</span><span class="p">)</span><span class="w">
+</span><span class="n">cell.colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MUDAN</span><span class="o">:::</span><span class="n">fac2col</span><span class="p">(</span><span class="n">cluster.label</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## Limit to same batch of cells as previously</span><span class="w">
+</span><span class="n">emat0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cyto_gexp</span><span class="p">[,</span><span class="w"> </span><span class="n">subcells</span><span class="p">]</span><span class="w">
+</span><span class="n">nmat0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nuc_gexp</span><span class="p">[,</span><span class="w"> </span><span class="n">subcells</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that noncoding RNAs may be retained within the nucleus for other
+functional reasons such that the assumptions for RNA velocity in situ
+analysis are not applicable. Therefore, we can limit analysis to only
+protein-coding genes. However, we will see later that the RNA Velocity
+analysis process can also filter out genes that are not useful.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## mRNA only</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">biomaRt</span><span class="p">)</span><span class="w">
+</span><span class="c1"># mart &lt;- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl") # latest version was crashing Rmd build</span><span class="w">
+</span><span class="n">mart</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">useMart</span><span class="p">(</span><span class="n">biomart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENSEMBL_MART_ENSEMBL"</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'hsapiens_gene_ensembl'</span><span class="p">,</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"jul2015.archive.ensembl.org"</span><span class="p">)</span><span class="w"> 
+</span><span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getBM</span><span class="p">(</span><span class="n">attributes</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s1">'hgnc_symbol'</span><span class="p">,</span><span class="w"> </span><span class="s2">"transcript_biotype"</span><span class="p">),</span><span class="w">
+                </span><span class="n">filters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'hgnc_symbol'</span><span class="p">,</span><span class="w">
+                </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">cd</span><span class="p">),</span><span class="w">
+                </span><span class="n">mart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mart</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##   hgnc_symbol      transcript_biotype
+## 1        A1CF          protein_coding
+## 2        A1CF    processed_transcript
+## 3         A2M    processed_transcript
+## 4         A2M         retained_intron
+## 5         A2M          protein_coding
+## 6         A2M nonsense_mediated_decay
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">table</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">transcript_biotype</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## 
+##                          antisense                            lincRNA 
+##                                 39                                 80 
+##                           LRG_gene                       macro_lncRNA 
+##                                298                                  1 
+##                           misc_RNA                     non_stop_decay 
+##                                  3                                 35 
+##            nonsense_mediated_decay             polymorphic_pseudogene 
+##                               3300                                  6 
+##               processed_pseudogene               processed_transcript 
+##                                255                               5674 
+##                     protein_coding                         pseudogene 
+##                               9432                                  6 
+##                    retained_intron                     sense_intronic 
+##                               4871                                  2 
+##                  sense_overlapping                                TEC 
+##                                  1                                 47 
+##                          TR_V_gene   transcribed_processed_pseudogene 
+##                                  1                                 43 
+##     transcribed_unitary_pseudogene transcribed_unprocessed_pseudogene 
+##                                  1                                105 
+##  translated_unprocessed_pseudogene                 unitary_pseudogene 
+##                                  1                                 27 
+##             unprocessed_pseudogene 
+##                                 36
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mrnas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">hgnc_symbol</span><span class="p">[</span><span class="n">results</span><span class="o">$</span><span class="n">transcript_biotype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'protein_coding'</span><span class="p">]</span><span class="w">
+</span><span class="n">mrnas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">intersect</span><span class="p">(</span><span class="n">good.genes</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">unique</span><span class="p">(</span><span class="n">mrnas</span><span class="p">))</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">mrnas</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 9432
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">emat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">emat0</span><span class="p">[</span><span class="n">mrnas</span><span class="p">,]</span><span class="w">
+</span><span class="n">nmat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nmat0</span><span class="p">[</span><span class="n">mrnas</span><span class="p">,]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>RNA velocity modeling depends on a number of parameters. Accurate
+evaluation of RNA velocity requires the estimation of a gene-specific
+steady-state coefficient (e.g. the expected ratio of nuclear to
+cytoplasmic expression levels when the cell is in steady-state) for each
+gene included in the model. Intuitively, for cells actively upregulating
+a gene, we anticipate a relative increase in nuclear expression in these
+cells compared to cells at steady-state. Likewise, for cells actively
+downregulating a gene, we ancitipate a relative reduction in nuclear
+expression in these cells compared to cells in steady-state. The
+estimation of these gene-specific steady-state coefficients can be
+performed using regression on cells found in the extreme quantiles of
+expression for that gene. Here, we estimate the gene-specific
+steady-state coefficient using regression on cells in the extreme upper
+and lower 5% quantiles of expression using <code class="highlighter-rouge">fit.quantile</code> = 0.05. Note,
+for scRNA-seq data, alternative non-regression-based estimation of these
+gene-specific steady-state coefficients based on structural parameters
+of the genes, such as the number of expressed exons, internal priming
+sites, or intronic length is also available.</p>
+
+<p>However, not every gene will have useful velocity information and thus
+be useful in predicting changes in future transcriptional states of
+cells. We can filter genes based on our prior knowledge about
+suitability of model assumptions as mentioned previously, such as for
+non-coding genes. Or we can filter in a more data-driven manner.
+Generally, we expect nuclear expression to be generally positively
+correlated with cytoplasmic expression across a population of cells.
+Negative correlation, that is higher nuclear expression is associated
+with lower cytoplasmic expression, could be indicative of nuclear
+retention. In scRNA-seq data, poor correlation could also be indicative
+of differentially regulated extraneous transcripts within intronic
+regions. Here, we will require a minimum correlation between nuclear and
+cytoplasmic expression levels and a positive slope using
+<code class="highlighter-rouge">min.nmat.emat.correlation</code> = 0.2 and <code class="highlighter-rouge">min.nmat.emat.slope</code> = 0.2. It
+will be left as an exercise to the reader to try different parameters.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## RNA velocity model without pooling</span><span class="w">
+</span><span class="n">rvel.cd.unpooled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gene.relative.velocity.estimates</span><span class="p">(</span><span class="n">emat</span><span class="p">,</span><span class="w"> </span><span class="n">nmat</span><span class="p">,</span><span class="w">
+                                           </span><span class="n">fit.quantile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w">
+                                           </span><span class="n">min.nmat.emat.correlation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> 
+                                           </span><span class="n">min.nmat.emat.slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> 
+                                           </span><span class="n">kCells</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## fitting gamma coefficients ... done. succesfful fit for 9432 genes
+## filtered out 7659 out of 9432 genes due to low nmat-emat correlation
+## filtered out 171 out of 1773 genes due to low nmat-emat slope
+## calculating RNA velocity shift ... done
+## calculating extrapolated cell state ... done
+</code></pre></div></div>
+
+<p>Estimation of the gene-specific steady-state coefficient can be further
+improved by pooling of transcript counts across similar cells via cell
+kNN pooling. For cell kNN pooling, a k-nearest neighbor graph (here
+k=10) can be constructed based on Euclidean distance in the space of the
+top 30 principal components. Note that alternative cell-cell similarity
+metrics may be used where appropriate.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## RNA velocity model with pooling</span><span class="w">
+</span><span class="n">rvel.cd.pooled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gene.relative.velocity.estimates</span><span class="p">(</span><span class="n">emat</span><span class="p">,</span><span class="w"> </span><span class="n">nmat</span><span class="p">,</span><span class="w">
+                                           </span><span class="n">fit.quantile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w">
+                                           </span><span class="n">min.nmat.emat.correlation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> 
+                                           </span><span class="n">min.nmat.emat.slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> 
+                                           </span><span class="n">kCells</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w">
+                                           </span><span class="n">cell.dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.dist</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">cor</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">pcs</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">]))))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## calculating cell knn ... done
+## calculating convolved matrices ... done
+## fitting gamma coefficients ... done. succesfful fit for 9432 genes
+## filtered out 4802 out of 9432 genes due to low nmat-emat correlation
+## filtered out 263 out of 4630 genes due to low nmat-emat slope
+## calculating RNA velocity shift ... done
+## calculating extrapolated cell state ... done
+</code></pre></div></div>
+
+<p>Note that noncoding RNAs including <em>MALAT1</em> would have been filtered out
+by the <code class="highlighter-rouge">min.nmat.emat.correlation</code> and <code class="highlighter-rouge">min.nmat.emat.slope</code> parameters,
+as they generally exhibit either poor correlation between nuclear and
+cytoplasmic expression levels and/or low or negative slopes. However,
+both RNA velocity models still include a large number of genes.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Correlation</span><span class="w">
+</span><span class="n">cor</span><span class="p">(</span><span class="n">nmat0</span><span class="p">[</span><span class="s1">'MALAT1'</span><span class="p">,],</span><span class="w"> </span><span class="n">emat0</span><span class="p">[</span><span class="s1">'MALAT1'</span><span class="p">,],</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"spearman"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 0.1638377
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Slope</span><span class="w">
+</span><span class="n">coef</span><span class="p">(</span><span class="n">lm</span><span class="p">(</span><span class="n">emat0</span><span class="p">[</span><span class="s1">'MALAT1'</span><span class="p">,]</span><span class="o">~</span><span class="n">nmat0</span><span class="p">[</span><span class="s1">'MALAT1'</span><span class="p">,]</span><span class="m">+0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## nmat0["MALAT1", ] 
+##        0.02873651
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Number of gene-specific steady-state coefficients estimated</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">rvel.cd.unpooled</span><span class="o">$</span><span class="n">gamma</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 1602
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">rvel.cd.pooled</span><span class="o">$</span><span class="n">gamma</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 4367
+</code></pre></div></div>
+
+<p>To compare our two RNA velocity models, with and without cell kNN
+pooling, we can look at the phase plots for a cell-cycle gene, <em>KIF2C</em>.
+The first plot shows our tSNE embedding colored by the cytoplasmic (or
+spliced in scRNA-seq) expression level of <em>KIF2C</em>. The second plot shows
+our tSNE embedding colored by the nuclear (or unspliced in scRNA-seq)
+expression level for <em>KIF2C</em>. The third plot is a phase diagram that
+plots the cytoplasmic versus the nuclear expression levels. The diagonal
+line represents our expected ratio of nuclear to cytoplasmic expression
+levels when the cell is in steady-state (e.g. the slope is our derived
+gene-specific steady-state coefficient for <em>KIF2C</em>). And the final
+fourth plot shows our tSNE embedding colored by the residual expression
+of <em>KIF2C</em> where red indicates upregulation and blue indicates
+downregulation of <em>KIF2C</em>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gene.relative.velocity.estimates</span><span class="p">(</span><span class="n">emat</span><span class="p">,</span><span class="w"> </span><span class="n">nmat</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">old.fit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rvel.cd.unpooled</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">show.gene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'KIF2C'</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">cell.emb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emb.test</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">cell.colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cell.colors</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-example-1.png" alt="" /></p>
+
+<p>In the RNA velocity model with cell kNN pooling, expression levels for
+each cell are convolved with its 10 nearest neighbors. The results may
+look smoother but should show the same trends.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gene.relative.velocity.estimates</span><span class="p">(</span><span class="n">emat</span><span class="p">,</span><span class="w"> </span><span class="n">nmat</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">old.fit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rvel.cd.pooled</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">show.gene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'KIF2C'</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">cell.emb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emb.test</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">cell.colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cell.colors</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-example2-1.png" alt="" /></p>
+
+<p>We thus can use our RNA velocity model to project the future
+transcriptional state for each cell based on all the genes in our model.
+We can then visualize this as a velocity arrow for each cell from its
+observed current state to its projected future state on linear reduced
+dimensionality representations such as PCA.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="nf">dim</span><span class="p">(</span><span class="n">rvel.cd.pooled</span><span class="o">$</span><span class="n">current</span><span class="p">))</span><span class="w"> </span><span class="c1">## current gene by cell info </span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 4367  645
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="nf">dim</span><span class="p">(</span><span class="n">rvel.cd.pooled</span><span class="o">$</span><span class="n">projected</span><span class="p">))</span><span class="w"> </span><span class="c1">## projected gene by cell based on RNA velocity modeling</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 4367  645
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## plot onto PCA</span><span class="w">
+</span><span class="n">pca.velocity.plot</span><span class="p">(</span><span class="n">rvel.cd.pooled</span><span class="p">,</span><span class="w">
+                  </span><span class="n">nPcs</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w">
+                  </span><span class="n">plot.cols</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+                  </span><span class="n">cell.colors</span><span class="o">=</span><span class="n">cell.colors</span><span class="p">,</span><span class="w">
+                  </span><span class="n">pc.multipliers</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="c1">## adjust as needed to orient pcs</span><span class="w">
+                  </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## log ... pca ... pc multipliers ... delta norm ... done
+</code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-pca-1.png" alt="" /></p>
+
+<p>Visualization of individual cell velocity arrows can be quite messy for
+large numbers of cells. As such, RNA velocity can be visualized as a
+vector field showing local group velocity evaluated on a regular grid.
+The grid density can be adjusted depending on the visual scale of the
+figure using the <code class="highlighter-rouge">grid.n</code> parameter.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pca.velocity.plot</span><span class="p">(</span><span class="n">rvel.cd.pooled</span><span class="p">,</span><span class="w">
+                  </span><span class="n">nPcs</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w">
+                  </span><span class="n">plot.cols</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+                  </span><span class="n">cell.colors</span><span class="o">=</span><span class="n">cell.colors</span><span class="p">,</span><span class="w">
+                  </span><span class="n">pc.multipliers</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">-1</span><span class="p">),</span><span class="w"> </span><span class="c1">## adjust as needed to orient pcs</span><span class="w">
+                  </span><span class="n">show.grid.flow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">grid.n</span><span class="o">=</span><span class="m">20</span><span class="w"> </span><span class="c1">## adjust as needed</span><span class="w">
+                  </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## log ... pca ... pc multipliers ... delta norm ... done
+</code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-pca2-1.png" alt="" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## grid.sd= 0.4012699
+</code></pre></div></div>
+
+<p>For non-linear, non-parametric embeddings such as tSNE, an alternative
+approach is used to place the velocity arrow in the direction in which
+expression difference is best correlated with the estimated velocity
+vector. This is done by looking at a neighborhood around each cell,
+examining the expression state (nuclear and cytoplasmic expression)
+differences with different cells in the neighborhood, and drawing a
+velocity arrow in the direction of the expected cell shfit after
+accounting for cell density. We use a neighborhood size here of <code class="highlighter-rouge">n</code>=100.
+The scale of the arrows used can be adjusted depending on the visual
+scale of the figure using the <code class="highlighter-rouge">arrow.scale</code> parameter.</p>
+
+<p>However, because tSNE is inherently stochastic and may produce different
+embeddings every run, checking for concordance between PCA and tSNE is
+strongly recommended. For example, the directional flow of the velocity
+arrows between cell clusters should be consistent in the PCA and tSNE
+representations. Likewise, the neighborhood-based approach for placing
+velocity arrows can be quite sensitive to the <code class="highlighter-rouge">n</code> parameter with
+unintuitive effects, particularly for extremely large or small choices
+of <code class="highlighter-rouge">n</code>. So comparing with PCA and checking a range of parameters will be
+helpful for evaluating stability.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">show.velocity.on.embedding.cor</span><span class="p">(</span><span class="n">emb.test</span><span class="p">,</span><span class="w"> 
+                               </span><span class="n">rvel.cd.pooled</span><span class="p">,</span><span class="w"> 
+                               </span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> 
+                               </span><span class="n">cell.colors</span><span class="o">=</span><span class="n">cell.colors</span><span class="p">,</span><span class="w">
+                               </span><span class="n">show.grid.flow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                               </span><span class="n">grid.n</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="c1">## adjust as needed</span><span class="w">
+                               </span><span class="n">arrow.scale</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="c1">## adjust as needed</span><span class="w">
+                               </span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-plots-1.png" alt="" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## delta projections ... log knn ... transition probs ... done
+## calculating arrows ... grid estimates ... grid.sd= 0.7897987  min.arrow.size= 0.01579597  max.grid.arrow.length= 0.1249018  done
+</code></pre></div></div>
+
+<h2 id="pseudotime-trajectory-analysis">Pseudotime trajectory analysis</h2>
+
+<p>In this example, we observe a cyclical trajectory informed by the RNA
+velocity arrows. We can interpret the cell ordering along the circle as
+the pseudotime. Principal curve, minimum spanning tree, and other trajectory inference
+approaches can also be applied, particularly for more complex, branching
+trajectories. Examination of gene expression of known cell-cycle
+markers across pseudotime can further validate our pseudotime ordering.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">median</span><span class="p">(</span><span class="n">emb.test</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span><span class="w">
+</span><span class="n">yi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">median</span><span class="p">(</span><span class="n">emb.test</span><span class="p">[,</span><span class="m">2</span><span class="p">])</span><span class="w">
+</span><span class="n">pseudotime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">atan2</span><span class="p">(</span><span class="n">emb.test</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="o">-</span><span class="n">yi</span><span class="p">,</span><span class="w"> </span><span class="n">emb.test</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">-</span><span class="n">xi</span><span class="p">)</span><span class="o">/</span><span class="nb">pi</span><span class="o">*</span><span class="m">180</span><span class="w"> </span><span class="c1">## along circle</span><span class="w">
+</span><span class="n">pseudotime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pseudotime</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">pseudotime</span><span class="p">)</span><span class="w"> </span><span class="c1">## shift to positive</span><span class="w">
+
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">mar</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span><span class="nf">invisible</span><span class="p">(</span><span class="n">lapply</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">g</span><span class="p">){</span><span class="w">
+  </span><span class="n">gexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mat</span><span class="p">[</span><span class="n">g</span><span class="p">,]</span><span class="w">
+  </span><span class="n">fit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm</span><span class="p">(</span><span class="n">gexp</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">pseudotime</span><span class="p">)</span><span class="w">
+  
+  </span><span class="c1">## fit smooth curve</span><span class="w">
+  </span><span class="n">lo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">smooth.spline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pseudotime</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">gexp</span><span class="p">,</span><span class="w"> </span><span class="n">spar</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w">
+  </span><span class="n">plo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="n">seq</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">pseudotime</span><span class="p">),</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">pseudotime</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="m">1</span><span class="p">))</span><span class="w">
+  </span><span class="n">mode_plo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plo</span><span class="o">$</span><span class="n">x</span><span class="p">[</span><span class="n">which.max</span><span class="p">(</span><span class="n">plo</span><span class="o">$</span><span class="n">y</span><span class="p">)]</span><span class="w"> </span><span class="c1">## maximum point</span><span class="w">
+  
+  </span><span class="n">MUDAN</span><span class="o">::</span><span class="n">plotEmbedding</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">pseudotime</span><span class="p">,</span><span class="w"> </span><span class="n">gexp</span><span class="p">),</span><span class="w"> 
+                       </span><span class="n">groups</span><span class="o">=</span><span class="n">com</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">main</span><span class="o">=</span><span class="n">g</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">xlab</span><span class="o">=</span><span class="s1">'pseudotime'</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="o">=</span><span class="s1">'expression magnitude'</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">verbose</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+  </span><span class="n">points</span><span class="p">(</span><span class="n">plo</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"l"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s1">'darkgrey'</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
+  </span><span class="n">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="n">mode_plo</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s1">'darkgrey'</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="p">}))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-pseudotime-1.png" alt="" /></p>
+
+<p>We can also visualize the velocity arrows in this embedding as a sanity
+check to show that the direction of the velocity arrows is as expected.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'KIF2C'</span><span class="w">
+</span><span class="n">gexp.emb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">scale</span><span class="p">(</span><span class="n">pseudotime</span><span class="p">)[,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">scale</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">g</span><span class="p">,])[,</span><span class="m">1</span><span class="p">])</span><span class="w">
+</span><span class="n">show.velocity.on.embedding.cor</span><span class="p">(</span><span class="n">gexp.emb</span><span class="p">,</span><span class="w"> 
+                               </span><span class="n">rvel.cd.pooled</span><span class="p">,</span><span class="w"> 
+                               </span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> 
+                               </span><span class="n">cell.colors</span><span class="o">=</span><span class="n">cell.colors</span><span class="p">,</span><span class="w">
+                               </span><span class="n">show.grid.flow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                               </span><span class="n">grid.n</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="c1">## adjust as needed</span><span class="w">
+                               </span><span class="n">arrow.scale</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="c1">## adjust as needed</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/velocity-plots2-1.png" alt="" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## delta projections ... log knn ... transition probs ... done
+## calculating arrows ... grid estimates ... grid.sd= 0.1776234  min.arrow.size= 0.003552468  max.grid.arrow.length= 0.09682692  done
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="try-it-out-for-yourself">Try it out for yourself!</h2>
+
+<ul>
+  <li>Repeat this analysis using a different batch of cells or even all
+cells with batch correction</li>
+  <li>Try out different embedding approaches like UMAP</li>
+  <li>Use more stringent gene filtering or restrict RNA velocity modeling
+to a specific set of genes such as known cell-cycle genes</li>
+  <li>Download a publically available scRNA-seq dataset and run RNA
+velocity analysis yourself from the start</li>
+</ul>
+:ET

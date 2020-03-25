@@ -1,0 +1,139 @@
+I"[e<h1 id="bioinformatics-for-custom-sequencing-library-constructions">Bioinformatics for custom sequencing library constructions</h1>
+
+<p>Sequencing has become so streamlined that we often just use standard library prep kits, made for particular sequencers, followed by proprietary bioinformatics software for demultiplexing and quantification. But, if we want to design custom library structure, perhaps for use in multiplexed droplet-based approaches, we will need to come up with our own bioinformatics pipelines. In this tutorial, I will take you through a recent experience I had analyzing reads from a custom library prep.</p>
+
+<p>Consider the library structure below:
+<img src="http://localhost:4000/assets/blog/librarystructure.png" class="img-responsive" /></p>
+
+<p>For this particular library, we’ve used custom gene specific primers for targeted sequencing of specific genes containing mutations of interest (as opposed to doing a whole exome for example). Let’s assume the data has already been demultiplexed and the paired-end reads have been properly split. Thus, what we should have in our FASTQs are a bunch of sequences containing the gene specific primers and our sample DNA fragment of interest.</p>
+
+<p>For simplicity, let’s just look at one forward read.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ShortRead</span><span class="p">)</span><span class="w">
+</span><span class="n">file1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"../data-raw/N706_S1_L001_R1_001.fastq.gz"</span><span class="w">  
+</span><span class="n">fastq1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readFastq</span><span class="p">(</span><span class="n">file1</span><span class="p">)</span><span class="w">
+</span><span class="n">r1trim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fastq1</span><span class="o">@</span><span class="n">sread</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> 
+</span><span class="nf">as.character</span><span class="p">(</span><span class="n">r1trim</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GGAAGCTGCAGCCCTCACTTAACAGTGGGCGGCTCCTCCATCTAGCCATGCGAGGTCTTGGGGAGCTGGGCGCCCAGCCCCAACAGGACCATGCACGCTGGCCCCGGGGCAGCAGCCTGTCCGAGTGCA
+</code></pre></div></div>
+
+<p>Our first goal is to figure out which gene specific primer is being used for this read. Since we know the sequences for all our gene specific primers, we can just try to align each to our read. Because of potential sequencing errors in the primer itself and since each primer may be a different length, using a simple Needleman–Wunsch alignment algorithm will likely save more reads than just simple string matching.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## primers.valid is a DNAStringSet containing our primer sequences</span><span class="w">
+</span><span class="c1">## so we can assess how well each primer matches our sequence</span><span class="w">
+</span><span class="n">scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">primers.valid</span><span class="p">),</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    
+   </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">primers.valid</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w">       
+   </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DNAStringSet</span><span class="p">(</span><span class="n">substring</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">r1trim</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span><span class="w">  
+   </span><span class="n">mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nucleotideSubstitutionMatrix</span><span class="p">(</span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">mismatch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="n">baseOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">     
+   </span><span class="n">align</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pairwiseAlignment</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">substitutionMatrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">gapOpening</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="n">gapExtension</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">)</span><span class="w"> 
+   </span><span class="c1">## divide by theoretical max</span><span class="w">
+   </span><span class="n">score</span><span class="p">(</span><span class="n">align</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">width</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="w"> 
+</span><span class="p">})</span><span class="w"> 
+</span><span class="n">j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="n">scores</span><span class="o">==</span><span class="nf">max</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span><span class="w"> </span><span class="c1">## the theoretical max should be 1</span><span class="w">
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">primers.valid</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="c1">## DNAString of the sequence</span><span class="w">
+</span><span class="n">pr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">primers.valid.info</span><span class="p">[</span><span class="n">j</span><span class="p">,]</span><span class="w"> </span><span class="c1">## information about the primer</span><span class="w">
+</span><span class="n">pr</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       chr     pos strand width   start     end  width seq       
+ 397 chr17 9792856      +    26 9792832 9792857     26 GGAAGCTGCAGCCCTCACTTAACAGT
+</code></pre></div></div>
+
+<p>So let’s look more closely at the gene specific primer that this sequence matched with. Indeed, we can visually/manually confirm that this is the correct primer:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GGAAGCTGCAGCCCTCACTTAACAGTGGGCGGCTCCTCCATCTAGCCATGCGAGGTCTTGGGGAGCTGGGCGCCCAGCCCCAACAGGACCATGCACGCTGGCCCCGGGGCAGCAGCCTGTCCGAGTGCA
+GGAAGCTGCAGCCCTCACTTAACAGT
+</code></pre></div></div>
+
+<p>Or just quickly realign to double check.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DNAStringSet</span><span class="p">(</span><span class="n">substring</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">r1trim</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span><span class="w">   
+</span><span class="n">mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nucleotideSubstitutionMatrix</span><span class="p">(</span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">mismatch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="n">baseOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">      
+</span><span class="n">align</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pairwiseAlignment</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">substitutionMatrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">gapOpening</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="n">gapExtension</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">)</span><span class="w">  
+</span><span class="n">align</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Global PairwiseAlignmentsSingleSubject (1 of 1)     
+ pattern: [1] GGAAGCTGCAGCCCTCACTTAACAGT   
+ subject: [1] GGAAGCTGCAGCCCTCACTTAACAGT   
+ score: 2600 
+</code></pre></div></div>
+
+<p>Yay it’s a perfect match! And we can trim off this gene specific primer to get just the target DNA sequence.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r1final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DNAStringSet</span><span class="p">(</span><span class="n">substring</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">r1trim</span><span class="p">),</span><span class="w"> </span><span class="n">width</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="m">+1</span><span class="p">))</span><span class="w">
+</span><span class="nf">as.character</span><span class="p">(</span><span class="n">r1final</span><span class="p">)</span><span class="w">
+
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GGGCGGCTCCTCCATCTAGCCATGCGAGGTCTTGGGGAGCTGGGCGCCCAGCCCCAACAGGACCATGCACGCTGGCCCCGGGGCAGCAGCCTGTCCGAGTGCA
+</code></pre></div></div>
+
+<p>Hurray! But now we need to align it to the reference genome. We could take these trimmed reads and run an aligner, but since we know where our gene specific primer is located, we can just look at the upstream or downstream DNA sequence. Note, depending on the strand of the primer (forward vs. reverse), the start and end positions of the DNA sequence that will be sequenced will be different. And always double check for those off-by-one errors!</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="n">pr</span><span class="o">$</span><span class="n">strand</span><span class="o">==</span><span class="s1">'+'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+    </span><span class="n">start</span><span class="o">=</span><span class="n">pr</span><span class="o">$</span><span class="n">end</span><span class="m">+1</span><span class="w">      
+    </span><span class="n">end</span><span class="o">=</span><span class="n">pr</span><span class="o">$</span><span class="n">end</span><span class="o">+</span><span class="n">width</span><span class="p">(</span><span class="n">r1final</span><span class="p">)</span><span class="w"> 
+</span><span class="p">}</span><span class="w"> 
+</span><span class="k">if</span><span class="p">(</span><span class="n">pr</span><span class="o">$</span><span class="n">strand</span><span class="o">==</span><span class="s1">'-'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
+    </span><span class="n">start</span><span class="o">=</span><span class="n">pr</span><span class="o">$</span><span class="n">start</span><span class="o">-</span><span class="n">width</span><span class="p">(</span><span class="n">r1final</span><span class="p">)</span><span class="m">+1</span><span class="w">    
+    </span><span class="n">end</span><span class="o">=</span><span class="n">pr</span><span class="o">$</span><span class="n">start</span><span class="w">      
+</span><span class="p">}</span><span class="w">
+</span><span class="n">align.df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">chr</span><span class="o">=</span><span class="n">pr</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">strand</span><span class="o">=</span><span class="n">pr</span><span class="o">$</span><span class="n">strand</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">GenomicRanges</span><span class="p">)</span><span class="w">  
+</span><span class="n">align.gr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">with</span><span class="p">(</span><span class="n">align.df</span><span class="p">,</span><span class="w"> </span><span class="n">GRanges</span><span class="p">(</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">IRanges</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">start</span><span class="p">),</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">end</span><span class="p">)),</span><span class="w"> </span><span class="n">strand</span><span class="o">=</span><span class="n">strand</span><span class="p">))</span><span class="w"> 
+</span><span class="n">library</span><span class="p">(</span><span class="n">BSgenome.Hsapiens.UCSC.hg19</span><span class="p">)</span><span class="w">         
+</span><span class="n">align.seq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getSeq</span><span class="p">(</span><span class="n">BSgenome.Hsapiens.UCSC.hg19</span><span class="p">,</span><span class="w"> </span><span class="n">align.gr</span><span class="p">)</span><span class="w">       
+</span><span class="nf">as.character</span><span class="p">(</span><span class="n">align.seq</span><span class="p">)</span><span class="w">        
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GGGCGGCTCCTACATCTAGCCATGCGAGGTCTTGGGGAGCTGGGCGCCCAGCCCCAACAGGACCATGCACGCTGGCCCCGGGGCAGCAGCCTGTCCGAGTGCA
+</code></pre></div></div>
+
+<p>Visually/manually checking how well our sequenced read (top) matches the reference (bottom), we see a very good match!</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GGGCGGCTCCTCCATCTAGCCATGCGAGGTCTTGGGGAGCTGGGCGCCCAGCCCCAACAGGACCATGCACGCTGGCCCCGGGGCAGCAGCCTGTCCGAGTGCA
+GGGCGGCTCCTACATCTAGCCATGCGAGGTCTTGGGGAGCTGGGCGCCCAGCCCCAACAGGACCATGCACGCTGGCCCCGGGGCAGCAGCCTGTCCGAGTGCA
+</code></pre></div></div>
+
+<p>Now we can find mutation using simple string comparison.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ref</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">strsplit</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">align.seq</span><span class="p">),</span><span class="w"> </span><span class="n">split</span><span class="o">=</span><span class="s2">""</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">read</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">strsplit</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">r1final</span><span class="p">),</span><span class="w"> </span><span class="n">split</span><span class="o">=</span><span class="s2">""</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">muts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span><span class="w"> </span><span class="n">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">ref</span><span class="p">),</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">       
+    </span><span class="k">if</span><span class="p">(</span><span class="n">ref</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="n">read</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w">   
+        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pr</span><span class="o">$</span><span class="n">strand</span><span class="w">       
+        </span><span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s1">'+'</span><span class="p">){</span><span class="w">         
+            </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ref</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">      
+            </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">     
+        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">  
+            </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="n">DNAString</span><span class="p">(</span><span class="n">ref</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span><span class="w">      
+            </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="n">DNAString</span><span class="p">(</span><span class="n">read</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span><span class="w">     
+        </span><span class="p">}</span><span class="w">         
+        </span><span class="n">info</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="s1">'chr'</span><span class="o">=</span><span class="n">pr</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="s1">'pos'</span><span class="o">=</span><span class="n">start</span><span class="o">+</span><span class="n">i</span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="s1">'strand'</span><span class="o">=</span><span class="s1">'+'</span><span class="p">,</span><span class="w"> </span><span class="s1">'ref'</span><span class="o">=</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="s1">'mut'</span><span class="o">=</span><span class="n">m</span><span class="p">)</span><span class="w">        
+        </span><span class="nf">return</span><span class="p">(</span><span class="n">info</span><span class="p">)</span><span class="w">        
+    </span><span class="p">}</span><span class="w">   
+</span><span class="p">}))</span><span class="w">
+</span><span class="n">muts</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     chr     pos strand ref mut     
+ 1 chr17 9792869      +   A   C
+</code></pre></div></div>
+
+<p>Final double check that that our position is correct.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">align.df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">chr</span><span class="o">=</span><span class="n">muts</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">strand</span><span class="o">=</span><span class="n">muts</span><span class="o">$</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="o">=</span><span class="n">muts</span><span class="o">$</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="o">=</span><span class="n">muts</span><span class="o">$</span><span class="n">pos</span><span class="p">)</span><span class="w"> 
+</span><span class="n">align.gr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">with</span><span class="p">(</span><span class="n">align.df</span><span class="p">,</span><span class="w"> </span><span class="n">GRanges</span><span class="p">(</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">IRanges</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">start</span><span class="p">),</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">end</span><span class="p">)),</span><span class="w"> </span><span class="n">strand</span><span class="o">=</span><span class="n">strand</span><span class="p">))</span><span class="w"> 
+</span><span class="n">align.seq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getSeq</span><span class="p">(</span><span class="n">BSgenome.Hsapiens.UCSC.hg19</span><span class="p">,</span><span class="w"> </span><span class="n">align.gr</span><span class="p">)</span><span class="w">
+</span><span class="n">align.seq</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A DNAStringSet instance of length 1 
+    width seq
+[1]     1 A
+</code></pre></div></div>
+
+<p>Since this could be a sequencing error, we can rely on other information such as the read quality or just look at other reads to see if this mutation pops up again. As you can already tell, things become a little more complicated for reverse primer reads since we need to get complements. Similarly for reverse reads, we need to get reverse complement sequences, which can quickly become confusing if you don’t double check your work by comparing to references and keeping track of the directionality!</p>
+
+:ET

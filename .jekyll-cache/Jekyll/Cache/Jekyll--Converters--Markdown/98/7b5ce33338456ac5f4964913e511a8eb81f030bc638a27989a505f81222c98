@@ -1,0 +1,103 @@
+I"�<h1 id="5-useful-bash-aliases-and-functions-for-lazy-bioinformaticians">5 Useful Bash Aliases and Functions For Lazy Bioinformaticians</h1>
+
+<p>Continuing on our theme of <a href="http://jef.works/blog/2017/08/03/5-must-dos-for-efficient-bioinformatics/">making bioinformatics more sexy with buzzfeed-esque blog post titles</a>, here are 5 useful bash aliases and functions so you can remember fewer non-intuitive options, type fewer keys for the same output, and overall be more productive and efficient in your bioinformatics analysis :D ie. have more time to look at <a href="http://knowyourmeme.com/memes/dank-memes">dank memes</a>.</p>
+
+<p>I’ll try to keep to aliases and functions that may be more niche to bioinformatics and ones I haven’t seen frequently included in other “useful bash aliases and functions” lists such as <code class="highlighter-rouge">alias ..='cd ..'</code>. There are many more general lists of useful bash aliases and functions such as this one by <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions">Justin Ellingwood</a> and this one by <a href="https://www.gulshansingh.com/posts/useful-bash-aliases/">Gulshan Singh</a>.</p>
+
+<hr />
+
+<h2 id="1-tar-and-compress-and-untar-all-those-fastq-csv-vcf-and-other-files">1. Tar and compress (and untar) all those fastq, csv, vcf, and other files</h2>
+
+<p>I can never remember the flags…so let’s just make an easy to understand function called targz to tar.gz a file or folder and likewise for extracting. Note this is a bash function so it should be put into your <code class="highlighter-rouge">.profile</code> or another dedicated <code class="highlighter-rouge">.bash_functions</code> file to be sourced from your <code class="highlighter-rouge">.bashrc</code>.</p>
+
+<p><strong>Functions:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># create .tar.gz </span>
+targz<span class="o">()</span> <span class="o">{</span> <span class="nb">tar</span> <span class="nt">-zcvf</span> <span class="nv">$1</span>.tar.gz <span class="nv">$1</span><span class="p">;</span> <span class="nb">rm</span> <span class="nt">-r</span> <span class="nv">$1</span><span class="p">;</span> <span class="o">}</span>
+<span class="c"># extra .tar.gz</span>
+untargz<span class="o">()</span> <span class="o">{</span> <span class="nb">tar</span> <span class="nt">-zxvf</span> <span class="nv">$1</span><span class="p">;</span> <span class="nb">rm</span> <span class="nt">-r</span> <span class="nv">$1</span><span class="p">;</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Usage:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> targz <span class="nb">test
+</span>a <span class="nb">test
+</span>a <span class="nb">test</span>/test.txt
+untargz test.tar.gz 
+x <span class="nb">test</span>/
+x <span class="nb">test</span>/test.txt
+</code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/compressallthedata.png" alt="" /></p>
+
+<h2 id="2-count-number-of-files-in-a-directory">2. Count number of files in a directory</h2>
+
+<p>This is very useful for counting the number of fastq or other dataset files you have.</p>
+
+<p><strong>Function:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>numfiles<span class="o">()</span> <span class="o">{</span> 
+    <span class="nv">N</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">ls</span> <span class="nv">$1</span> | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span><span class="s2">"</span><span class="p">;</span> 
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$N</span><span class="s2"> files in </span><span class="nv">$1</span><span class="s2">"</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Usage:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> numfiles <span class="nb">test
+       </span>10 files <span class="k">in </span><span class="nb">test</span>
+</code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/doge.png" alt="" /></p>
+
+<h2 id="3-search-through-your-command-history">3. Search through your command history</h2>
+
+<p>If I’ve typed out the same command more than once, then I’ve typed it out too many times.</p>
+
+<p><img src="http://localhost:4000/assets/blog/aintbodygottimeforthat.png" alt="" /></p>
+
+<p>Note, aliases should be added to your <code class="highlighter-rouge">.bash_aliases</code> file.</p>
+
+<p><strong>Alias:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">hs</span><span class="o">=</span><span class="s1">'history | grep'</span>
+</code></pre></div></div>
+
+<p><strong>Usage:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> hs <span class="nb">test
+ </span>1883  emacs test.R
+ 1900  less test.R
+ 2003  <span class="nb">history</span> | <span class="nb">grep test
+ </span>2008  hs <span class="nb">test</span>
+</code></pre></div></div>
+
+<p>(now you can use <code class="highlighter-rouge">!2008</code> to repeat command #2008)</p>
+
+<h2 id="4-navigate-more-easily">4. Navigate more easily</h2>
+
+<p>This is a simply one, but I use it very frequently. If you work on a shared cluster, your group will likely have a group directory at some obscure path. You will essentially be cd-ing to it all the time. So why not just make a fast alias.</p>
+
+<p><strong>Alias:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># navigation</span>
+<span class="nb">alias </span><span class="nv">2pklab</span><span class="o">=</span><span class="s1">'cd /groups/pklab/jfan/'</span>
+</code></pre></div></div>
+
+<h2 id="5-make-a-folder-and-go-into-it">5. Make a folder and go into it</h2>
+
+<p>Another simple one but very helpful. If I make a directory, I often want to <code class="highlighter-rouge">cd</code> into it. So why not just make one command for that?</p>
+
+<p><strong>Function:</strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkcd<span class="o">()</span> <span class="o">{</span> <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$1</span><span class="p">;</span> <span class="nb">cd</span> <span class="nv">$1</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p>And there you have it. Here is my <a href="http://www.urbandictionary.com/define.php?term=cat+tax&amp;defid=10979502">cat tax</a> for posting a less-than-professional post: (my dog <a href="https://www.instagram.com/pomdeterrier/">Foxxy</a>)
+<img src="http://localhost:4000/assets/blog/foxxy.png" alt="" /></p>
+
+<hr />
+
+<p>Want to join in on the fun but don’t know what to blog about? Get inspired with my <a href="http://jef.works/buzzfeed-title/">random buzzfeed-inspired title generator (bioinformatics grad student edition)</a>. With inspirational creations like “The 12 Most Beloved Nature Papers Of Your Childhood” and “40 Figures That Will Make Your Skin Crawl”, your next big hit is waiting to be generated.</p>
+
+:ET

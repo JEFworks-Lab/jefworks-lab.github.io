@@ -1,0 +1,314 @@
+I"��<h2 id="overview">Overview</h2>
+
+<p>In this tutorial, I walk through how to use the <code class="highlighter-rouge">Keras</code> package in <code class="highlighter-rouge">R</code>
+to do dimensionality reduction via autoencoders, focusing on single-cell
+RNA-seq data. I compare these results with dimensionality reduction
+achieved by more conventional approaches such as principal components
+analysis (PCA) and comment on the pros and cons of each.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Single-cell RNA-seq data is highly dimensional; we are often looking at
+1000s of genes and 100s to now millions of cells. In order to make sense
+of this high dimensional data, it often helps to project the data into a
+dimension we can visualize such as 2D or 3D. In such a 2D or 3D setting,
+as cells that are transcriptionally more similar to each other should be
+closer together, we should be able to better visualize transcriptionally
+distinct cell-types as distinguihable clusters. A number of single-cell
+RNA-seq dimensionality reduction and clustering approaches have been
+developed.</p>
+
+<h2 id="the-problem">The problem</h2>
+
+<p>A hallmark of many of these current single-cell RNA-seq dimensionality
+reduction and clustering approaches is the reliance on variance.
+Specifically, methods will often first variance-normalize, select for
+genes that are more variable than expected, and apply prinicipal
+components analysis to extract the components of greatest variance,
+prior to finally embedding the data into a 2D or 3D visualization.</p>
+
+<p>These steps are intended to improve signal and minimize noise. Indeed,
+for two large transcriptionally distinct cell-types, the genes that
+capture the most variance and likewise the prinicipal components that
+seek to maximize variance will best separate these two groups.</p>
+
+<p>Consider the following simulation (adapted from our previous in-depth
+look on <a href="https://jef.works/blog/2017/05/31/multiclass-diffential-expression-analysis/">differential expression
+analysis</a>)</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Simulate differentially expressed genes</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">G</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="n">N</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">30</span><span class="w">
+</span><span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span><span class="w">
+</span><span class="n">initmean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">initvar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">initmean</span><span class="p">,</span><span class="w"> </span><span class="n">initvar</span><span class="p">),</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="n">G</span><span class="p">)</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s1">'gene'</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">M</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s1">'cell'</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">G</span><span class="p">))</span><span class="w">
+</span><span class="n">group</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+  </span><span class="nf">rep</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s1">'group'</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w">
+</span><span class="p">}))</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">upreg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="n">upregvar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">ng</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">
+</span><span class="n">diff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">diff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">mat</span><span class="p">)[(((</span><span class="n">x</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="n">ng</span><span class="p">)</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="p">(((</span><span class="n">x</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="n">ng</span><span class="p">)</span><span class="o">+</span><span class="n">ng</span><span class="p">)]</span><span class="w">
+  </span><span class="n">mat</span><span class="p">[</span><span class="n">diff</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="o">==</span><span class="n">paste0</span><span class="p">(</span><span class="s1">'group'</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;&lt;-</span><span class="w"> 
+    </span><span class="n">mat</span><span class="p">[</span><span class="n">diff</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="o">==</span><span class="n">paste0</span><span class="p">(</span><span class="s1">'group'</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)]</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">rnorm</span><span class="p">(</span><span class="n">ng</span><span class="p">,</span><span class="w"> </span><span class="n">upreg</span><span class="p">,</span><span class="w"> </span><span class="n">upregvar</span><span class="p">)</span><span class="w">
+  </span><span class="nf">return</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span><span class="w">
+</span><span class="p">})</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s1">'group'</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">G</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## Positive expression only</span><span class="w">
+</span><span class="n">mat</span><span class="p">[</span><span class="n">mat</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
+
+</span><span class="c1">## Visualize heatmap where each row is a gene, each column is a cell</span><span class="w">
+</span><span class="c1">## Column side color notes the cell-type</span><span class="w">
+</span><span class="n">heatmap</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">Rowv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">Colv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">col</span><span class="o">=</span><span class="n">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s1">'blue'</span><span class="p">,</span><span class="w"> </span><span class="s1">'white'</span><span class="p">,</span><span class="w"> </span><span class="s1">'red'</span><span class="p">))(</span><span class="m">100</span><span class="p">),</span><span class="w"> 
+        </span><span class="n">scale</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">ColSideColors</span><span class="o">=</span><span class="n">rainbow</span><span class="p">(</span><span class="n">G</span><span class="p">)[</span><span class="n">group</span><span class="p">],</span><span class="w"> 
+        </span><span class="n">labCol</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">labRow</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-1-1.png" alt="" /></p>
+
+<p>In this very simple simulation, we have 3 equally sized,
+transcriptionally distinct cell-types, each marked by the same number of
+uniquely upregulated genes. Now, we can see if PCA is able to project
+this high dimensional data into a lower number of dimensions for
+visualization.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pcs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prcomp</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">pcs</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span><span class="w"> 
+     </span><span class="n">col</span><span class="o">=</span><span class="n">rainbow</span><span class="p">(</span><span class="n">G</span><span class="p">)[</span><span class="n">group</span><span class="p">],</span><span class="w"> 
+     </span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">main</span><span class="o">=</span><span class="s1">'PCA: PC1 vs. PC2'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-2-1.png" alt="" /></p>
+
+<p>Indeed, PCA captures components of greatest variance that accurately
+separates the three populations of cells.</p>
+
+<p>Now, let’s make things a little harder. Let’s add a population of 5
+cells that are transcriptionally distinct but rare.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mat2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mat</span><span class="w">
+</span><span class="n">mat2</span><span class="p">[(</span><span class="n">M</span><span class="o">-</span><span class="n">ng</span><span class="p">)</span><span class="o">:</span><span class="n">M</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mat</span><span class="p">[(</span><span class="n">M</span><span class="o">-</span><span class="n">ng</span><span class="p">)</span><span class="o">:</span><span class="n">M</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span><span class="o">+</span><span class="n">upreg</span><span class="w">
+</span><span class="n">diff</span><span class="o">$</span><span class="n">group4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">mat2</span><span class="p">)[(</span><span class="n">M</span><span class="o">-</span><span class="n">ng</span><span class="p">)</span><span class="o">:</span><span class="n">M</span><span class="p">]</span><span class="w">
+
+</span><span class="n">group2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="w">
+</span><span class="n">group2</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'groupX'</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">group2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span><span class="w">
+</span><span class="n">group2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">group2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">heatmap</span><span class="p">(</span><span class="n">mat2</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">Rowv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">Colv</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">col</span><span class="o">=</span><span class="n">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s1">'blue'</span><span class="p">,</span><span class="w"> </span><span class="s1">'white'</span><span class="p">,</span><span class="w"> </span><span class="s1">'red'</span><span class="p">))(</span><span class="m">100</span><span class="p">),</span><span class="w"> 
+        </span><span class="n">scale</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span><span class="w"> 
+        </span><span class="n">ColSideColors</span><span class="o">=</span><span class="n">rainbow</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">group2</span><span class="p">)))[</span><span class="n">group2</span><span class="p">],</span><span class="w"> 
+        </span><span class="n">labCol</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">labRow</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-3-1.png" alt="" /></p>
+
+<p>Keep in mind that PCA seeks to maximize global variance. Let’s look at
+the distirbution of variances for each set of differentially upregulated
+genes for each group. Group 4 is our rare cell-type.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">genevar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">mat2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">var</span><span class="p">)</span><span class="w">
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">genevar</span><span class="p">[</span><span class="n">diff</span><span class="o">$</span><span class="n">group1</span><span class="p">],</span><span class="w"> </span><span class="n">breaks</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">150</span><span class="p">))</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">genevar</span><span class="p">[</span><span class="n">diff</span><span class="o">$</span><span class="n">group2</span><span class="p">],</span><span class="w"> </span><span class="n">breaks</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">150</span><span class="p">))</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">genevar</span><span class="p">[</span><span class="n">diff</span><span class="o">$</span><span class="n">group3</span><span class="p">],</span><span class="w"> </span><span class="n">breaks</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">150</span><span class="p">))</span><span class="w">
+</span><span class="n">hist</span><span class="p">(</span><span class="n">genevar</span><span class="p">[</span><span class="n">diff</span><span class="o">$</span><span class="n">group4</span><span class="p">],</span><span class="w"> </span><span class="n">breaks</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">150</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-4-1.png" alt="" /></p>
+
+<p>As expected, the genes driving the rare population are not as globally
+variable. As a result, the rare population is not apparent in the
+resulting dimensionality reduction visualization from the first 2 PCs.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pcs2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prcomp</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">mat2</span><span class="p">))</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">pcs2</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)],</span><span class="w"> 
+     </span><span class="n">col</span><span class="o">=</span><span class="n">rainbow</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">group2</span><span class="p">)))[</span><span class="n">group2</span><span class="p">],</span><span class="w"> 
+     </span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="w">
+     </span><span class="n">main</span><span class="o">=</span><span class="s1">'PCA: PC1 vs. PC2'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-5-1.png" alt="" /></p>
+
+<h2 id="deep-learning">Deep Learning</h2>
+
+<p>Now, let’s use deep learning instead. Specifically, we will use an autoencoder, a type of artificial neural network that we can use to learn a 2D representation (encoding) for our high dimensional single cell expression data. Specifically, the autoencoder will try to generate from the 2D reduced encoding a representation as close as possible to its original input. We can take advantage of this property to reason that the encoding layer must contain all the essential features (beyond just highly variable genes) that is important.</p>
+
+<p>We will use the <code class="highlighter-rouge">Keras</code> package in R to train and test our autoencoder. For information on how to install <code class="highlighter-rouge">Keras</code> in R, see <a href="https://keras.rstudio.com/">https://keras.rstudio.com/</a>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">mat2</span><span class="p">))</span><span class="w"> 
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]   90 1000
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## scale from 0 to 1</span><span class="w">
+</span><span class="n">range01</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){(</span><span class="n">x</span><span class="o">-</span><span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">))}</span><span class="w">
+</span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">range01</span><span class="p">)</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">
+</span><span class="nf">range</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 0 1
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">dim</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]   90 1000
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## train and test data are the same here</span><span class="w">
+</span><span class="c1">## ideally should split into separate train and test sets</span><span class="w">
+</span><span class="c1">## to avoid overfitting</span><span class="w">
+</span><span class="n">x_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span><span class="w">
+
+</span><span class="c1">## Load Keras (https://keras.rstudio.com/)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">keras</span><span class="p">)</span><span class="w">
+</span><span class="n">K</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keras</span><span class="o">::</span><span class="n">backend</span><span class="p">()</span><span class="w">
+
+</span><span class="c1">## Deep learning model</span><span class="w">
+</span><span class="n">input_size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ncol</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span><span class="w"> </span><span class="c1">## 1000 genes</span><span class="w">
+</span><span class="n">hidden_size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="c1">## 10 dimensional hidden layer</span><span class="w">
+</span><span class="n">code_size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">## 2 dimensional encoding</span><span class="w">
+</span><span class="n">input</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">layer_input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">input_size</span><span class="p">))</span><span class="w">
+</span><span class="n">hidden_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">hidden_size</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">layer_activation_leaky_relu</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">layer_dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="m">0.1</span><span class="p">)</span><span class="w">
+</span><span class="n">code</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">hidden_1</span><span class="p">,</span><span class="w"> </span><span class="n">code_size</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">layer_activation_leaky_relu</span><span class="p">()</span><span class="w">
+</span><span class="n">hidden_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">layer_activation_leaky_relu</span><span class="p">()</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">layer_dense</span><span class="p">(</span><span class="n">hidden_2</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="n">input_size</span><span class="p">,</span><span class="w"> </span><span class="n">activation</span><span class="o">=</span><span class="s2">"sigmoid"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## input and output should be the same</span><span class="w">
+</span><span class="n">autoencoder</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keras_model</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">)</span><span class="w">
+</span><span class="c1">## encoder from input to code space</span><span class="w">
+</span><span class="n">encoder</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keras_model</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## Learn</span><span class="w">
+</span><span class="n">autoencoder</span><span class="w">  </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span><span class="w"> 
+                         </span><span class="n">loss</span><span class="o">=</span><span class="s1">'cosine_proximity'</span><span class="p">,</span><span class="w">
+                         </span><span class="n">metrics</span><span class="o">=</span><span class="s1">'mae'</span><span class="p">)</span><span class="w">
+</span><span class="n">autoencoder</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">fit</span><span class="p">(</span><span class="w">
+  </span><span class="n">x_train</span><span class="p">,</span><span class="w"> </span><span class="n">x_train</span><span class="p">,</span><span class="w"> 
+  </span><span class="n">shuffle</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+  </span><span class="n">epochs</span><span class="o">=</span><span class="m">1000</span><span class="p">,</span><span class="w"> 
+  </span><span class="n">batch_size</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> 
+  </span><span class="n">validation_data</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span><span class="w"> </span><span class="n">x_test</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">############### Plot</span><span class="w">
+
+</span><span class="c1">## predict code space using deep learning  model</span><span class="w">
+</span><span class="n">x_test_encoded</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">encoder</span><span class="p">,</span><span class="w"> 
+                          </span><span class="n">x_test</span><span class="p">,</span><span class="w"> 
+                          </span><span class="n">batch_size</span><span class="o">=</span><span class="m">100</span><span class="p">)</span><span class="w">
+</span><span class="n">emb2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x_test_encoded</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">emb2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">emb2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'latent 1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'latent 2'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## plot</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">emb2</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">col</span><span class="o">=</span><span class="n">rainbow</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">group2</span><span class="p">)))[</span><span class="n">group2</span><span class="p">],</span><span class="w"> 
+     </span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="w">
+     </span><span class="n">main</span><span class="o">=</span><span class="s1">'Autoencoder: 2D code layer'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-6-1.png" alt="" /></p>
+
+<p>The autoencoder, given a sufficient number of epochs, does tease out the
+rare subpopulation.</p>
+
+<h2 id="discussion">Discussion</h2>
+
+<p>So are autoencoders inherently better for this
+problem then? Actually, if we just looked at more PCs, we would probably
+eventually find one that separates the rare subpopulation as well.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">pcs2</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)],</span><span class="w"> 
+     </span><span class="n">col</span><span class="o">=</span><span class="n">rainbow</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">group2</span><span class="p">)))[</span><span class="n">group2</span><span class="p">],</span><span class="w"> 
+     </span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="w">
+     </span><span class="n">main</span><span class="o">=</span><span class="s1">'PCA: PC2 vs. PC3'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-7-1.png" alt="" /></p>
+
+<p>And likewise, had we introduced some variance normalization prior to
+PCA, we would have been able to tease out the rare subpopulations even
+in the first 2 PCs.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">MUDAN</span><span class="p">)</span><span class="w">
+</span><span class="c1">## use all genes, not just significantly overdispersed</span><span class="w">
+</span><span class="n">mat2norm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">normalizeVariance</span><span class="p">(</span><span class="n">mat2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Converting to sparse matrix ...
+
+## [1] "Calculating variance fit ..."
+## [1] "Using gam with k=5..."
+## [1] "1000 overdispersed genes ... "
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pcs3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prcomp</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">mat2norm</span><span class="p">))</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">pcs3</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span><span class="w"> 
+     </span><span class="n">col</span><span class="o">=</span><span class="n">rainbow</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">group2</span><span class="p">)))[</span><span class="n">group2</span><span class="p">],</span><span class="w"> 
+     </span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">,</span><span class="w">
+     </span><span class="n">main</span><span class="o">=</span><span class="s1">'Variance Normalization + PCA: PC1 vs. PC2'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/assets/blog/deeplearning-8-1.png" alt="" /></p>
+
+<p>However, in real life, it is often not clear how many PCs we should look
+at. Additional technical artifacts may actually contribute more variance than genes driving a rare subpopulation. So a
+deep-learning-based approach in theory could provide a more unbiased
+(rather than being biased by variance) way to look for an underlying,
+representative 2D manifold that represents our data. But an unbiased approach may also pick on more technical variation that’s not biological interesting.</p>
+
+<p>Still, the code or latent spaces derived by autoencoders are very
+difficult to interpret. A number of approaches have been developed to
+interactively explore and interpret these spaces; I really enjoyed
+tinkers with <a href="https://github.com/SummitKwan/transparent_latent_gan">TL-GAN (transparent latent-space GAN) by Shaobo
+Guan</a>. 
+In contrast, for PCA, the loading values gives us interpretable
+information on the genes that contribute to each PC and are thus
+relevant for separating the cell-types.</p>
+
+<p>Designing autoencoders is also an art in itself. Here, I only used one
+hidden layer, but I could have used as many as I wanted. I also used a
+particular loss function, activation function, and introduced dropout in
+each layer. These are all design choices that will dramatically impact
+your encoding and results!</p>
+
+<h2 id="so-try-it-out-for-yourself">So try it out for yourself!</h2>
+
+<ul>
+  <li>What happens if you include more hidden layers?</li>
+  <li>What if you use a different loss function? Or different activation
+function?</li>
+  <li>Does this work on real single-cell RNA-seq as opposed to simulated
+data?</li>
+  <li>Alternatively, what if we use other non-variance based
+dimensionality reduction approaches like non-negative matrix
+factorization (NMF)? How does it compare?</li>
+  <li>What if we use autoencoders to do dimensionality reduction into a 30
+dimensional space instead of just 2D prior to using something like
+tSNE or UMAP to visualize a 2D space?</li>
+</ul>
+:ET

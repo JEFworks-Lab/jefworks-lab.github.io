@@ -1,0 +1,213 @@
+I".,<h1 id="introduction">Introduction</h1>
+
+<p>I made <a href="https://github.com/hms-dbmi/scde">my first R package</a> during my PhD. And since then, I’ve made <a href="https://github.com/JEFworks/">a few more</a>. Over the years, I’ve learned a lot more about R package development and have really appreciated the importance of <em>continuous integration</em> and <em>unit testing</em>: development practices to help sure that your package will install and run as expected across multiple systems. I’ve also encountered many wonderful tools to help with continuous integration and unit testing of R packages that are hosted on software development platforms such as Github. I find these tools particularly helpful for collaborations, since when a collaborator makes a pull request on Github, their pull will be automatically subjected to the same tests to quickly give both you and the collaborator a sense for whether their pull should be considered for merging.</p>
+
+<p>Here are just a few tools for continuous integration and unit testing of R packages on Github along with sample configuration files to use them.</p>
+
+<hr />
+
+<h1 id="our-tools">Our tools</h1>
+
+<p><a href="https://docs.travis-ci.com/user/for-beginners/">Travis CI</a> is a continuous integration platform that automatically builds and tests code changes, providing immediate feedback on the success of the change. It’s free for open source packages.</p>
+
+<p><a href="https://codecov.io/">Codecov</a> is a reporting tool that checks what percentage of your software’s functions are being properly tested through unit tests. It’s free for open source packages.</p>
+
+<p><a href="http://r-pkgs.had.co.nz/tests.html">testthat</a> is an R package that allows you to make unit tests that will run automatically through a continuous integration platform.</p>
+
+<hr />
+
+<h1 id="getting-started-with-travis-ci">Getting started with <code class="highlighter-rouge">Travis CI</code></h1>
+
+<p>To use <code class="highlighter-rouge">Travis CI</code>, you will need to sign in to <a href="https://travis-ci.org/">travis-ci.org</a> using your Github account. You should then be able to see all your public Github repositories in your account settings and “turn on” the ones you would like to do <code class="highlighter-rouge">travis</code> testing for.</p>
+
+<p>You will then need to include a <code class="highlighter-rouge">.travis.yml</code> configuration file in your R package’s Github repo. The <code class="highlighter-rouge">.travis.yml</code> configuration file should specify the language as <code class="highlighter-rouge">R</code>, which version of your R package to test, and other preferences (ex. I prefer to set <code class="highlighter-rouge">warnings_are_errors</code> as <code class="highlighter-rouge">false</code>). I also like to get emails notifying me when the build status of my package has changed (either from success to failure or failure to success; I don’t really care if the last build was successful and the new build is still successful for example).</p>
+
+<p>So at a most basic level, your <code class="highlighter-rouge">.travis.yml</code> configuration file will probably look like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>language: r
+cache: packages
+warnings_are_errors: false
+
+r:
+  - oldrel
+  - release
+  - devel
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+</code></pre></div></div>
+
+<p>Some times, my R packages have external (non-R) dependencies such as <code class="highlighter-rouge">jags</code> for Bayesian hierarchical modeling, so I need to install these dependencies before I attempt to install the R package.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## dependencies that need to be installed beforehand if any
+sudo: true
+before_install:
+  - sudo apt-get install jags
+  - sudo apt-get install r-cran-rjags
+</code></pre></div></div>
+
+<p>Some times, my R packages depend on packages available on Bioconductor (and not CRAN), so I need to specify that as well.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># environment variables set for all builds
+env:
+  global:
+    - BIOC_USE_DEVEL="FALSE"  ## Use the current release version
+
+# we need to install BiocInstaller for testing Bioconductor packages
+bioc_required: true
+</code></pre></div></div>
+
+<p>Now, every time you push to your R package’s Github repo, <code class="highlighter-rouge">travis</code> will automatically attempt to build and install your R package, as if to run <code class="highlighter-rouge">devtools::install_github</code>,  on multiple systems. If your push some how broke your package, you will get notified! You also get a cool badge to add to your package’s <code class="highlighter-rouge">README.md</code> file: <a href="https://travis-ci.org/JEFworks/MERingue"><img src="https://travis-ci.org/JEFworks/MERingue.svg?branch=master" alt="Build Status" /></a></p>
+
+<p>For more details, check out: <a href="https://docs.travis-ci.com/user/languages/r/">https://docs.travis-ci.com/user/languages/r/</a></p>
+
+<hr />
+
+<h1 id="getting-started-with-codecov">Getting started with <code class="highlighter-rouge">Codecov</code></h1>
+
+<p>To use <code class="highlighter-rouge">Codecov</code>, you will need to add the following to your <code class="highlighter-rouge">.travis.yml</code> file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># for codecov
+r_packages:
+  - covr
+
+# only report coverage after build is successful
+after_success:
+  - Rscript -e 'covr::codecov()'
+</code></pre></div></div>
+
+<p>To access the resulting coverage reports after every successful <code class="highlighter-rouge">travis</code> build, you will need to sign in to <a href="https://codecov.io/">codecov.io</a> using your Github account. You also get a cool badge to add to your package’s <code class="highlighter-rouge">README.md</code> file: <a href="https://codecov.io/github/JEFworks/MERingue?branch=master"><img src="https://codecov.io/github/JEFworks/MERingue/coverage.svg?branch=master" alt="codecov.io" /></a></p>
+
+<hr />
+
+<h1 id="getting-started-with-testthat">Getting started with <code class="highlighter-rouge">testthat</code></h1>
+
+<p>Of course, just because you’ve installed <code class="highlighter-rouge">Codecov</code>, doesn’t mean it has anything to test. To give <code class="highlighter-rouge">Codecov</code> something tests, I generally follow <a href="http://r-pkgs.had.co.nz/tests.html">Hadley Wickham’s R package testing guide</a>, which uses the <code class="highlighter-rouge">testthat</code> R package. These tests will also be run on <code class="highlighter-rouge">travis</code>.</p>
+
+<p>To set up your R package to use testthat, run:</p>
+
+<pre><code class="language-{r}">devtools::use_testthat() 
+</code></pre>
+
+<p>This will create a <code class="highlighter-rouge">tests/testthat</code> directory. You can then add R scripts (that must have names starting with <code class="highlighter-rouge">test</code>) to the directory.</p>
+
+<p>For example, consider my package has the following function for generating normally distributed randomly numbers using the <a href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box-Muller transform</a>:</p>
+
+<pre><code class="language-{r}">boxMuller &lt;- function(size) {
+    
+    # generate uniform random variables
+    u &lt;- runif(size)
+    v &lt;- runif(size)
+    
+    # transform into gaussian random variables
+    x &lt;- rep(0,size)
+    for (i in 1:size){
+        x[i] = sqrt(-2*log(u[i]))*cos(2*pi*v[i])
+    }
+    
+    return(x) 
+}
+
+</code></pre>
+
+<p>I am interested to see if the distribution I’ve generated is comparable to the normal distribution provided by R’s built in <code class="highlighter-rouge">rnorm()</code>. I will generate 10000 random numbers using both approaches and then use a <a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">Kolmogorov-Smirnov test</a> to determine whether the distribution of these two sets of numbers are the same.</p>
+
+<pre><code class="language-{r}">test_that(context("Correct distribution of random numbers", {
+    x &lt;- boxMuller(10000)
+    y &lt;- rnorm(10000)
+    pv &lt;- ks.test(x,y)$p.value
+    # fail to reject null hypothesis 
+    expect_equal(pv &gt; 0.05, TRUE)
+})
+</code></pre>
+
+<p>The function works as expected and nothing is outputted.</p>
+
+<p>Alternatively, consider what will happen if I mess up my Box-Muller transform function by changing from a natural <code class="highlighter-rouge">log</code> to a <code class="highlighter-rouge">log10</code>:</p>
+
+<pre><code class="language-{r}">boxMullerWrong &lt;- function(size) {
+    
+    # generate uniform random variables
+    u &lt;- runif(size)
+    v &lt;- runif(size)
+    
+    # transform into gaussian random variables
+    x &lt;- rep(0,size)
+    for (i in 1:size){
+        x[i] = sqrt(-2*log10(u[i]))*cos(2*pi*v[i])
+    }
+    
+    return(x) 
+}
+</code></pre>
+
+<p>Now, when I try to test:</p>
+
+<pre><code class="language-{r}">test_that(context("Correct distribution of random numbers", {
+    x &lt;- boxMullerWrong(10000)
+    y &lt;- rnorm(10000)
+    pv &lt;- ks.test(x,y)$p.value
+    # fail to reject null hypothesis 
+    expect_equal(pv &gt; 0.05, TRUE)
+})
+</code></pre>
+
+<p>An error is returned as expected.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: pv &gt; 0.05 not equal to TRUE.
+1 element mismatch
+</code></pre></div></div>
+
+<p>This error will be reported on <code class="highlighter-rouge">travis</code> and I will be notified. The system works!</p>
+
+<hr />
+
+<h1 id="sample-travisyml">Sample <code class="highlighter-rouge">.travis.yml</code></h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Use R
+language: r
+sudo: true
+cache: packages
+warnings_are_errors: false
+
+# environment variables set for all builds
+env:
+  global:
+    - BIOC_USE_DEVEL="FALSE"  ## Use the current release version
+    - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+    - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings"  ## do not build vignettes or manual
+    - _R_CHECK_TIMINGS_="0"  ## get the timing information for the examples for all of your functions
+
+r:
+ - release
+
+# do not build vignettes...takes too long and times out on travis
+r_build_args: --no-build-vignettes --no-manual
+r_check_args: --no-build-vignettes --no-manual --timings
+
+# for codecov
+r_packages:
+  - covr
+  
+# we need to install BiocInstaller for testing Bioconductor packages
+bioc_required: true
+
+# only report coverage for the release version
+after_success:
+  - test $TRAVIS_R_VERSION_STRING = 'release' &amp;&amp; Rscript -e 'covr::codecov()'
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Rigorous and continuous testing is an important part of package development. It does require more effort and adds more steps to your development workflow. But in the long run it will help ensure that your package works as expected and ultimately provide a better experience for users (even those using Windows &gt;_&lt;). Happy testing!</p>
+
+:ET

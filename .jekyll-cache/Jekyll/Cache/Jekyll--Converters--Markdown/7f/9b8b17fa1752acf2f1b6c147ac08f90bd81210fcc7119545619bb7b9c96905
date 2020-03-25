@@ -1,0 +1,11 @@
+I"m<p>In in landmark paper <a href="http://science.sciencemag.org/content/308/5721/523">“Causal Protein-Signaling Networks Derived from
+Multiparameter Single-Cell
+Data”</a>, Sachs et al.
+applied Bayesian Networks on multi-parameter flow cytometry data to
+reconstruct signaling relationships and predict novel interpathway
+network causalities. Following a <a href="http://www.edii.uclm.es/~useR-2013/Tutorials/Scutari.html">tutorial by Marco
+Scutari</a>, I
+attempt to reproduce to the best of my abilities the statistical
+analysis of the paper using Marco’s <a href="http://www.bnlearn.com/">bnlearn R
+package</a>.</p>
+:ET

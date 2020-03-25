@@ -1,0 +1,61 @@
+I"�<h1 id="about-jean-fan">ABOUT JEAN FAN</h1>
+
+<!---
+<div class="col-sm-4 pull-right">
+<img src="/img/profile.jpg" class="img-responsive img-circle" alt="Jean Fan">
+<br><br>
+</div>
+
+I am currently an NCI F99/K00 post-doctoral fellow in the lab of [Dr. Xiaowei Zhuang](http://zhuang.harvard.edu/) at Harvard University. I received my PhD in Bioinformatics and Integrative Genomics at Harvard under the mentorship of [Dr. Peter Kharchenko](http://pklab.med.harvard.edu/) at the Department of Biomedical Informatics and in close collaboration with [Dr. Catherine Wu](http://wulab.dfci.harvard.edu/) at the Dana-Farber Cancer Institute. My research interests center around developing computational methods for identifying and characterizing heterogeneity at the single cell level, particularly in the context of cancer, using multi-omics approaches.
+--->
+
+<p><a href="/assets/docs/resume/JEAN_FAN_cv.pdf"><strong>Download CV (last updated March 2018)</strong></a></p>
+
+<h2 id="education">EDUCATION</h2>
+<ul>
+  <li>PhD in <a href="http://dms.hms.harvard.edu/big/">Bioinformatics and Integrative Genomics</a>, Harvard University, Division of Medical Science (June 2013 - Jan 2018)</li>
+  <li>Bachelors of Science in <a href="http://www.bme.jhu.edu/">Biomedical Engineering</a> and <a href="http://engineering.jhu.edu/ams/">Applied Math</a>, Johns Hopkins University, Whiting School of Engineering (Aug. 2009 - May 2013)</li>
+  <li>High School Diploma, <a href="https://mbhs.edu/departments/magnet/">Magnet Program, Montgomery Blair High School</a> (Aug. 2005 - May 2009)</li>
+</ul>
+
+<h2 id="grants">GRANTS</h2>
+<ul>
+  <li><a href="https://grants.uberresearch.com/100000054/F99CA222750/Statistical-Methods-for-Characterizing-Tumor-Heterogeneity-at-the-Single-Cell-Level">NIH NCI F99/K00 F99CA222750, Statistical Methods for Characterizing Tumor Heterogeneity at the Single Cell Level</a> (2017 - Present)</li>
+  <li><a href="https://grants.uberresearch.com/100000054/F31CA206236/Computational-Analysis-of-Subclonal-Evolution-in-Chronic-Lymphocytic-Leukemia">NIH NCI F31 F31CA206236, Computational Analysis of Subclonal Evolution in Chronic Lymphocytic Leukemia</a> (2016 - 2017)</li>
+  <li>NSF GRFP DGE144152 (2013 - 2016)</li>
+</ul>
+
+<h2 id="work-and-research-experience">WORK AND RESEARCH EXPERIENCE</h2>
+<ul>
+  <li>Post-doctoral Fellow, Mentored by <a href="http://zhuang.harvard.edu/">Xiaowei Zhuang</a>, Department of Chemistry and Chemical Biology, Harvard University (March 2018 - Present)</li>
+  <li>Graduate Student, Mentored by <a href="http://pklab.med.harvard.edu/">Peter Kharchenko</a>, <a href="https://dbmi.hms.harvard.edu/">Department of Biomedical Informatics</a>, Harvard Medical School (July 2013 - Feb. 2018)</li>
+  <li>Rotation Student, Mentored by Nir Hacohen and Catherine Wu, Broad Institute (Sep. 2013 - Nov. 2013)</li>
+  <li>Summer Research Intern, Mentored by Shamil Sunyaev, Bioinformatics and Integrative Genomics Program, Harvard-MIT HST and i2b2 (June 2012 - Aug. 2012)</li>
+  <li>Research Intern, Mentored by <a href="http://karchinlab.org/">Rachel Karchin</a>, <a href="https://icm.jhu.edu">Institute of Computational Medicine</a>, Johns Hopkins University (Aug. 2009 - May 2013)</li>
+  <li>Summer Research Intern, Mentored by Paul Meltzer and Liang Cao, Center for Cancer Research, National Cancer Institute, National Institutes of Health (June 2008 - Oct. 2008)</li>
+</ul>
+
+<h2 id="select-awards-and-honors">SELECT AWARDS AND HONORS</h2>
+<ul>
+  <li>Anita Borg Pass-It-On Award Winner (2017)</li>
+  <li>BU GWISE Advocate of the Year (2017)</li>
+  <li>Regeneron “Dream Proposal” Prize Finalist (2017)</li>
+  <li>NSF MRS Outreach Award Recipient (2016)</li>
+  <li>ASH Abstract Achievement Award Recipient (2015)</li>
+  <li>Provost’s Undergraduate Research Award Winner (2012)</li>
+  <li>Intel Science Talent Search Semi-Finalist (2009)</li>
+  <li>Siemens Competition in Math, Science and Technology Semi-Finalist (2008)</li>
+</ul>
+
+<h2 id="mentoring-and-outreach">MENTORING AND OUTREACH</h2>
+<ul>
+  <li>Founder, Director, and Lead Developer, <a href="https://custemized.org">CuSTEMized</a> - personalized STEM picture storybooks for girls (Jan. 2014 - Present)</li>
+  <li>Co-chair, <a href="http://projects.iq.harvard.edu/hgwise/">Harvard Graduate Women in Science and Engineering</a> (Aug. 2013 - Aug. 2015)</li>
+  <li>Mentor-Scientist for 2nd grade girls, <a href="http://www.scienceclubforgirls.org/">Science Club for Girls</a> (Aug. 2014 - May 2015)</li>
+  <li>Mentor for Undergraduates at Harvard College, <a href="http://wishr.weebly.com/">Women in Science at Harvard-Radcliffe</a> (Aug. 2013 - Aug. 2014)</li>
+</ul>
+
+<hr />
+
+<div align="center"><img class="img-responsive" src="/img/about.png" alt="NCI F99/K00 fellows" /></div>
+:ET

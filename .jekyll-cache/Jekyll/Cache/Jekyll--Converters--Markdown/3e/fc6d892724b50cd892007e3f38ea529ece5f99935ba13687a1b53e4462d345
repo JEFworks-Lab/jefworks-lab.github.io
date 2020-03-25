@@ -1,0 +1,121 @@
+I".<p>I recently got my first R package on CRAN! For those who don’t know, <a href="https://cran.r-project.org/">the Comprehensive R Archive Network (CRAN)</a> is the main repository for R packages. The packages on CRAN are the ones available to install via <code class="highlighter-rouge">install.packages</code> in R.</p>
+
+<p>The package that just got accepted is called <a href="https://cran.r-project.org/web/packages/liger/"><code class="highlighter-rouge">liger</code> for Lightweight Iterative Geneset Enrichment in R</a>. A little back story: <code class="highlighter-rouge">liger</code> was actually the first R package I made back when I first started grad school and was learning R. My PI at the time <a href="http://pklab.med.harvard.edu/">Peter Kharchenko</a> had written this C++ code to do gene set enrichment testing, which I was using a lot. So to make things more convenient for myself, and to take advantage of the opportunity to learn how to make R packages, I packaged up his code into <code class="highlighter-rouge">liger</code>.</p>
+
+<p>So <code class="highlighter-rouge">liger</code> has been around for awhile in some packaged form. I put all my software, including <code class="highlighter-rouge">liger</code>, on <a href="https://github.com/JEFworks/">Github</a> so that they may be more accessible and potentially useful to the broader scientific community. But I’ve admittedly procrastinated putting anything on CRAN because of its reputation for being unnecessarily hostile. As <a href="http://kbroman.org/pkg_primer/pages/cran.html">Karl Broman recommends to those submitting to CRAN: “put on your armor.”</a> Personally, my experience with submitting to CRAN was quite smooth. Maybe I’m an outlier! But keep in mind that CRAN is run by volunteers, and a large part of your experience will depend on which volunteer(s) you end up working with.</p>
+
+<p>Based on my experience, I’ve put together these 10 steps to help make my (and your) next CRAN package submission go a little more smoothly and to remind myself of what to expect.</p>
+
+<h2 id="1-organize-your-r-package-following-hadleys-guide">1. Organize your R package following <a href="http://r-pkgs.had.co.nz/">Hadley’s guide</a></h2>
+
+<p>This step is a long one. Luckily, <a href="https://www.rstudio.com/products/rpackages/devtools/"><code class="highlighter-rouge">devtools</code></a> really helps (it’s an R package for making R packages; how meta!)</p>
+
+<p>Hadley’s guide basically covers everything from documenting functions using <code class="highlighter-rouge">Roxygen</code> to preparing your NEWS for release. So check it out.</p>
+
+<p>By the end of this step, you should be able to put your package on Github and have people install your package via <code class="highlighter-rouge">devtools::install_github</code>. So at this stage, people are already able to use your package. <a href="https://github.com/JEFworks/liger"><code class="highlighter-rouge">liger</code> was on Github for many years</a> before CRAN.</p>
+
+<p>However, to get into a repository like CRAN, additional steps are needed to make your package pass their quality inspection.</p>
+
+<h2 id="2-make-your-package-examples-and-vignettes-as-small-as-possible">2. Make your package, examples, and vignettes as small as possible</h2>
+
+<p>CRAN tests all its packages <em>daily</em>. This means that all submitted packages must be small in terms of data that comes with the package and especially its documentation so that CRAN can actually run. Each executable function in your R package should come with an example of how to use the function. However, the time it takes to run the function should not exceed 10 seconds!</p>
+
+<p>The function example doesn’t have to make sense. It just has to show users how to use the function and allow the function to be tested. For example, <code class="highlighter-rouge">liger</code> is an iterative test and typically runs for over 10,000 iterations in order to achieve the desired bounds for significant p-values. But to minimize runtime, documentation examples only run for 100 iterations.</p>
+
+<p>You can check <a href="https://cran.r-project.org/web/packages/policies.html">CRAN’s latest policies for more specifics</a>.</p>
+
+<h2 id="3-set-up-your-rbuildignore-file">3. Set up your .Rbuildignore file</h2>
+
+<p>When you build your source package (either using <code class="highlighter-rouge">devtools</code>, RStudio, or just <code class="highlighter-rouge">R CMD build .</code>), you end up with a <code class="highlighter-rouge">.tar.gz</code> file that you will eventually upload to CRAN through their web portal. However, CRAN is not happy if you accidentally include your <code class="highlighter-rouge">.git</code> folder or other files not relevant to your package in this <code class="highlighter-rouge">.tar.gz</code> file. To avoid this, set up your <code class="highlighter-rouge">.Rbuildignore</code> file to omit these folders and files not relevant to your package.</p>
+
+<p>You can always check what’s in your <code class="highlighter-rouge">.tar.gz</code> file using</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tar tvf YOURPACKAGE.tar.gz
+</code></pre></div></div>
+
+<p>to confirm that it doesn’t contain spurious files and folders. You will know which files are spurious in Step 4 because a <code class="highlighter-rouge">"Non-standard file/directory found at top level"</code> warning will be thrown.</p>
+
+<h2 id="4-check-your-r-package">4. Check your R package</h2>
+
+<p>Run</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>R CMD check --as-cran YOURPACKAGE.tar.gz
+</code></pre></div></div>
+
+<p>If there are <em>any</em> errors, warnings, or even notes, your package will be automatically rejected!</p>
+
+<p>The official CRAN policy says that your package will be rejected if there are any “substantial notes” but it seems like their notion of “substantial” is quite different from mine. <code class="highlighter-rouge">liger</code> was automatically rejected (more on this later) once for a note that examples took &gt;10 seconds to run and another time for this cryptic C++ note that had to do with something internal to Rcpp. Basically, the only notes that will be tolerated are “possible mis-spelled words in DESCRIPTION.”</p>
+
+<h2 id="5-set-up-travis-testing-if-possible-to-check-your-package-on-multiple-systems">5. Set up travis testing if possible to check your package on multiple systems</h2>
+
+<p>CRAN will re-build your package daily on <em>multiple systems</em>. So your package must be installable on <em>all systems</em>. If you’re like me and only have access to Unix/Linux systems, trying to test your package on a Windows machine may be difficult. Luckily, <a href="https://travis-ci.org/">travis</a> can help. Refer to the travis documentation for usage instructions.</p>
+
+<p>However, even with travis testing, <code class="highlighter-rouge">liger</code> initially failed CRAN’s automated testing (more on this later), due to a multi-core threading issue specific to Windows. So it’s a good check but not perfect.</p>
+
+<h2 id="6-submit-your-package-via-the-web-portal">6. Submit your package via the <a href="https://cran.r-project.org/submit.html">web portal</a></h2>
+
+<p>Again, if you package has any errors, warnings, or notes, you will get an automated email reply (within a few hours of submission) that says something along the lines of:</p>
+
+<blockquote>
+  <p>“Dear maintainer,</p>
+
+  <p>package [your package] does not pass the incoming checks automatically, please see the following pre-tests:</p>
+
+  <p>[your errors, warnings, or notes]</p>
+
+  <p>Please fix all problems and resubmit a fixed version via the webform.</p>
+
+  <p>[additional details]”</p>
+</blockquote>
+
+<p>Just fix and resubmit.</p>
+
+<h2 id="7-pass-the-automated-checks-and-wait">7. Pass the automated checks and wait</h2>
+
+<p>If you manage to pass the automated checks, you will get an email (again within a few hours of submission) that says:</p>
+
+<blockquote>
+  <p>“Dear maintainer,</p>
+
+  <p>package [your package] has been auto-processed and is pending a manual inspection. A CRAN team member will typically respond to you within the next 5 working days. For technical reasons you may receive a second copy of this message when a team member triggers a new check. “</p>
+
+</blockquote>
+
+<p>Now, you just have to wait for a CRAN member to check your package and write back with a list of comments/requests. Fingers crossed you get someone reasonable!</p>
+
+<p>For me, <code class="highlighter-rouge">liger</code> passed automated checks Saturday. Volunteer <a href="https://www.statistik.tu-dortmund.de/herbrandt_eng.html">Swetlana Herbrandt</a> replied Tuesday. So pretty quick turn-around!</p>
+
+<h2 id="8-address-comments-and-resubmit-with-message-detailing-how-comments-have-been-addressed">8. Address comments and resubmit with message detailing how comments have been addressed</h2>
+
+<p>The volunteer who reviews your package will most likely have a few requests for you. Just fix your package and resubmit via the web portal again. This time, you can include information about your resubmission in the “optional comments” section.</p>
+
+<p>For me, the only requests for <code class="highlighter-rouge">liger</code> was to update the DESCRIPTION file to include a few DOIs and put a few words in quotes. I was able to resubmit the package the same day on a Tuesday and the package was accepted and online by Thursday. Again, pretty quick turn-around.</p>
+
+<h2 id="9-get-congrats-email">9. Get congrats email</h2>
+
+<p>Eventually, you will get an email that your package is on its way to CRAN! Congrats! Your package will then appear a few hours later on CRAN: https://cran.r-project.org/web/packages/YOURPACKAGE</p>
+
+<p>There does not appear to be any notification when the web page becomes available or when people can start installing your package using <code class="highlighter-rouge">install.packages</code> but my guess is that it shouldn’t be more than 1 day after your congrats email.</p>
+
+<h2 id="10-wait-for-binaries-to-build">10. Wait for binaries to build</h2>
+
+<p>Again, once your package is accepted into CRAN, it shouldn’t be more than a day before people can start installing your package from source. It will take a few additional days for CRAN to build the Windows and OS X binaries. You will receive a notification via email once the binaries are built:</p>
+
+<blockquote>
+  <p>“Dear package maintainer,</p>
+
+  <p>this notification has been generated automatically.
+Your package [your package] has been built for Windows and
+will be published within 24 hours in the corresponding CRAN directory.</p>
+</blockquote>
+
+<p>So good luck and thanks for your contribution to publically accessible open-source software! If you end up with a pedantic and hostile reviewer, remember that they are volunteers and volunteers are people too! Don’t let one cranky volunteer who may be having a bad day discourage you from participating in the broader open-source software community!</p>
+
+<h1 id="additional-more-comprehensive-guides-on-r-package-development-and-cran-submission">Additional, more comprehensive guides on R package development and CRAN submission</h1>
+
+<ul>
+  <li><a href="http://kbroman.org/pkg_primer/pages/cran.html">http://kbroman.org/pkg_primer/pages/cran.html</a></li>
+  <li><a href="http://johnmuschelli.com/neuroc/getting_ready_for_submission/index.html">http://johnmuschelli.com/neuroc/getting_ready_for_submission/index.html</a></li>
+  <li><a href="http://www.deanbodenham.com/learn/r-package-submission-to-cran.html">http://www.deanbodenham.com/learn/r-package-submission-to-cran.html</a></li>
+</ul>
+:ET

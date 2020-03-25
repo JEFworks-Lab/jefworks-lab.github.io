@@ -1,0 +1,344 @@
+I"N
+<h1 id="a-practical-introduction-to-finite-mixture-modeling-with-flexmix-in-r">A practical introduction to finite mixture modeling with <code class="highlighter-rouge">flexmix</code> in <code class="highlighter-rouge">R</code></h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Finite mixture models are very useful when applied to data where observations originate from various groups and the group affiliations are not known. For example, in single cell RNA-seq data, transcripts in each cell can be modeled as a mixture of two probabilistic processes: 1) a negative binomial process for when a transcript is amplified and detected at a level correlating with its abundance and 2) a low-magnitude Poisson process for when drop-outs occur. These error model can be then used to provide a basis for further statistical analysis including those described in <a href="http://www.nature.com/nmeth/journal/v13/n3/full/nmeth.3734.html">Fan et al</a>.</p>
+
+<p>In this tutorial, we will use simulations and sample data to learn about finite mixture models using the <code class="highlighter-rouge">flexmix</code> package in <code class="highlighter-rouge">R</code>.</p>
+
+<h2 id="simulated-data">Simulated data</h2>
+
+<p>First, we will simulate some data. Let’s simulate two normal distributions - one with a mean of 0, another with a mean of 50, both with standard deviation of 5.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="n">m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">50</span><span class="w">
+</span><span class="n">sd1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sd2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">N1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">
+</span><span class="n">N2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w">
+
+</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sd1</span><span class="p">)</span><span class="w">
+</span><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N2</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sd2</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Now let’s ‘mix’ the data together…</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w">
+</span><span class="n">class</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span><span class="w"> </span><span class="n">N1</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s1">'b'</span><span class="p">,</span><span class="w"> </span><span class="n">N2</span><span class="p">))</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">class</span><span class="p">)))</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim1-1.png" alt="" /></p>
+
+<p>…and see if we can model our new mixture as two gaussian processes. We expect to be able to fit two gaussians and recover our initial parameters.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">flexmix</span><span class="p">)</span><span class="w">
+    
+</span><span class="n">mo1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">mo2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">flexfit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">flexmix</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span><span class="w"> </span><span class="n">mo2</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>So how did we do? It looks like we got class assignments perfectly.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">class</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##    
+##       1   2
+##   1 100   0
+##   2   0  10
+</code></pre></div></div>
+
+<p>What about the parameters?</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">1</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">c2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">2</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">sd1</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">sd2</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## pred: -0.5613484 
+## true: 0 
+## 
+## pred: 4.799484 
+## true: 5 
+## 
+## pred: 52.86911 
+## true: 50 
+## 
+## pred: 6.89413 
+## true: 5
+</code></pre></div></div>
+
+<p>Let’s visualize the real data and our fitted mixture models.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cd">#' Source: http://tinyheero.github.io/2015/10/13/mixture-model.html</span><span class="w">
+</span><span class="cd">#' Plot a Mixture Component</span><span class="w">
+</span><span class="cd">#' </span><span class="w">
+</span><span class="cd">#' @param x Input data</span><span class="w">
+</span><span class="cd">#' @param mu Mean of component</span><span class="w">
+</span><span class="cd">#' @param sigma Standard deviation of component</span><span class="w">
+</span><span class="cd">#' @param lam Mixture weight of component</span><span class="w">
+</span><span class="n">plot_mix_comps</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">lam</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">lam</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">lam</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">))</span><span class="w">
+  
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim5-1.png" alt="" /></p>
+
+<p>Looks like we did pretty well!</p>
+
+<p>What if we have a more challenging mixture?</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span><span class="w">
+</span><span class="n">m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">40</span><span class="w">
+</span><span class="n">sd1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">sd2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="n">N1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">
+</span><span class="n">N2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">
+
+</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sd1</span><span class="p">)</span><span class="w">
+</span><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N2</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sd2</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w">
+</span><span class="n">class</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span><span class="w"> </span><span class="n">N1</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s1">'b'</span><span class="p">,</span><span class="w"> </span><span class="n">N2</span><span class="p">))</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">class</span><span class="p">)))</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim6-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">flexmix</span><span class="p">)</span><span class="w">
+    
+</span><span class="n">mo1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">mo2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">flexfit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">flexmix</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span><span class="w"> </span><span class="n">mo2</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">class</span><span class="p">))</span><span class="w">
+
+</span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">1</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">c2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">2</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">sd1</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">sd2</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##    
+##      1  2
+##   1 99  8
+##   2  1 92
+## 
+## pred: 19.79264 
+## true: 20 
+## 
+## pred: 4.589394 
+## true: 5 
+## 
+## pred: 42.00423 
+## true: 40 
+## 
+## pred: 9.298677 
+## true: 10
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lam</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">))</span><span class="w">
+  
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim6-2-1.png" alt="" /></p>
+
+<p>Or an even more challenging mixture?</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">21</span><span class="w">
+</span><span class="n">m2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">22</span><span class="w">
+</span><span class="n">sd1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">sd2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="n">N1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">
+</span><span class="n">N2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w">
+
+</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N1</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sd1</span><span class="p">)</span><span class="w">
+</span><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N2</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sd2</span><span class="p">)</span><span class="w">
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w">
+</span><span class="n">class</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span><span class="w"> </span><span class="n">N1</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s1">'b'</span><span class="p">,</span><span class="w"> </span><span class="n">N2</span><span class="p">))</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="n">as.factor</span><span class="p">(</span><span class="n">class</span><span class="p">)))</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim7-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">flexmix</span><span class="p">)</span><span class="w">
+    
+</span><span class="n">mo1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">mo2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">flexfit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">flexmix</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span><span class="w"> </span><span class="n">mo2</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="o">$</span><span class="n">class</span><span class="p">))</span><span class="w">
+
+</span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">1</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">c2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">2</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">sd1</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">m2</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'pred:'</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="s1">'\n'</span><span class="p">)</span><span class="w">
+</span><span class="n">cat</span><span class="p">(</span><span class="s1">'true:'</span><span class="p">,</span><span class="w"> </span><span class="n">sd2</span><span class="p">,</span><span class="w"> </span><span class="s1">'\n\n'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##    
+##      1  2
+##   1 34 73
+##   2 66 27
+## 
+## pred: 23.88684 
+## true: 21 
+## 
+## pred: 10.06901 
+## true: 5 
+## 
+## pred: 18.75294 
+## true: 22 
+## 
+## pred: 2.421945 
+## true: 10
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lam</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">))</span><span class="w">
+  
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim7-3-1.png" alt="" /></p>
+
+<p>Expectedly, as the simulated distributions become less distinct, we have a harder time modeling them as the correct mixtures.</p>
+
+<h2 id="iris-example">Iris example</h2>
+
+<p>Now, let’s consider a real example with petal widths of iris flowers. Indeed, this distribution looks a little like a finite mixture of distributions.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Width</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Width</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w">
+</span><span class="n">p</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim8-1.png" alt="" /></p>
+
+<p>Let’s assume they are three normals and see what happens.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">flexmix</span><span class="p">)</span><span class="w">
+    
+</span><span class="n">mo1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">mo2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">mo3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">FLXMRglm</span><span class="p">(</span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gaussian"</span><span class="p">)</span><span class="w">
+</span><span class="n">flexfit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">flexmix</span><span class="p">(</span><span class="n">Petal.Width</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">mo1</span><span class="p">,</span><span class="w"> </span><span class="n">mo2</span><span class="p">,</span><span class="w"> </span><span class="n">mo3</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">),</span><span class="w"> </span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##    
+##     setosa versicolor virginica
+##   1      0          2        46
+##   2      0         48         4
+##   3     50          0         0
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">1</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">c2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">2</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">c3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="o">=</span><span class="m">3</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">lam</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="n">clusters</span><span class="p">(</span><span class="n">flexfit</span><span class="p">))</span><span class="w">
+  
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Width</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c1</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c1</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c2</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c2</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">c3</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">c3</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="p">[</span><span class="m">3</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">lam</span><span class="p">)),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/blog/mixsim9-1.png" alt="" /></p>
+
+<p>Even if we didn’t know the underlying species assignments, we would be able to make certain statements about the underlying distribution of petal widths as likely coming from three different groups with distinctly different means and variances for their petal widths.</p>
+
+<p>What happens if we try to model petal width as only 2 normal processes? What if we use a Poisson and a negative binomial to categorize iris flowers as those with few petals (dead? damaged? ugly?) and some detectable number of petals (count-based processes)?</p>
+:ET
