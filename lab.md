@@ -13,7 +13,7 @@ sectionid: lab
 - Offboarding [private]
 
 # Lab How Tos
-- [Request a letter of recommendation from Prof. Fan](/assets/docs/rec_letter_form.docx)
+- [Request a letter of recommendation](/assets/docs/rec_letter_form.docx)
 - Attend a scientific conference [work-in-progress]
 - Give a scientific poster presentation [work-in-progress]
 - Give a scientific talk [work-in-progress]

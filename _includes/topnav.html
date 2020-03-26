@@ -17,19 +17,19 @@
 		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			About Us
 		    </a>
-		    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+		    <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDropdown">
 			<li {% if page.sectionid=='mission' %} class="active" {% endif %}>
-			    <a href="{{ site.baseurl }}/mission">
+			    <a class="dropdown-item" href="{{ site.baseurl }}/mission">
 				Our Mission
 			    </a>
 			</li>
 			<li {% if page.sectionid=='team' %} class="active" {% endif %}>
-			    <a href="{{ site.baseurl }}/team">
+			    <a class="dropdown-item" href="{{ site.baseurl }}/team">
 				Our Team
 			    </a>
 			</li>
 			<li {% if page.sectionid=='lab' %} class="active" {% endif %}>
-			    <a href="{{ site.baseurl }}/lab">
+			    <a class="dropdown-item" href="{{ site.baseurl }}/lab">
 				Our Lab
 			    </a>
 			</li>			   
@@ -46,19 +46,19 @@
 		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			Our Contributions
 		    </a>
-		    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+		    <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDropdown">
 			<li {% if page.sectionid=='software' %} class="active" {% endif %}>
-			    <a href="{{ site.baseurl }}/software">
+			    <a class="dropdown-item" href="{{ site.baseurl }}/software">
 				Our Software
 			    </a>
 			</li>
 			<li {% if page.sectionid=='teaching' %} class="active" {% endif %}>
-			    <a href="{{ site.baseurl }}/teaching">
+			    <a class="dropdown-item" href="{{ site.baseurl }}/teaching">
 				Our Courses
 			    </a>
 			</li>
 			<li {% if page.sectionid=='talks' %} class="active" {% endif %}>
-			    <a href="{{ site.baseurl }}/talks">
+			    <a class="dropdown-item" href="{{ site.baseurl }}/talks">
 				Our Talks
 			    </a>
 			</li>

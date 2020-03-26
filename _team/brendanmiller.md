@@ -9,4 +9,4 @@ linkedin: https://www.linkedin.com/in/brendan-f-miller
 profile: /img/brendanprofile.jpg
 ---
 
-Additional info for indexing
+
