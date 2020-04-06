@@ -18,9 +18,9 @@ expression profile for all cells in each cluster. I find pseudobulks
 really helpful in heatmap visualizations to look at top marker or
 differentially expressed genes, particularly if you have cell-types or
 cell-states across many patients or conditions. Here, I will compare the
-runtimes of two different ways to create these pseudobulks using
-simulated data that I recently learned from [Kamil
-Slowikowski](https://slowkow.com/).
+runtimes of two different ways to create these pseudobulks that I recently learned from [Kamil
+Slowikowski](https://slowkow.com/) using
+simulated data.
 
 The comparison
 --------------
@@ -36,7 +36,7 @@ set.seed(0) ## enable reproducibility
 nrow <- 5000
 ## 10000 cells
 ncol <- 10000
-## simulate sparse matrix with 0.01% of values as 1s
+## simulate sparse matrix with ~0.01% of values as 1s and rest as 0s
 mat <- matrix(round(rbinom(nrow*ncol, 1, 0.01/100)), nrow, ncol)
 dim(mat)
 ```
@@ -44,6 +44,7 @@ dim(mat)
     ## [1]  5000 10000
 
 ``` r
+## how many 1s (rest are 0s)
 sum(mat)
 ```
 
