@@ -4,6 +4,8 @@ comments: false
 tags: [single cell, tutorial, R]
 ---
 
+# Quickly Creating Pseudobulks from Single Cell Gene Expression Data with Linear Algebra
+
 Introduction
 ------------
 
