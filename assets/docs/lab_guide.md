@@ -4,7 +4,21 @@ layout: default
 
 # JEFworks Lab Guide
 
-This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified March 2020.
+This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified April 2020.
+
+---
+
+# COVID-19 Preparation 
+
+In order to accommodate the developing public health crisis and better ensure the health and safety of all lab members, a number of precautionary measures will be taken until further notice.
+
+First, remote working options will be available to all lab members. Lab members working remotely will still be expected to participate in regular one-on-one and lab meetings via Zoom teleconference. In addition, all lab members working remotely will be expected to participate in daily 9am group checkins where they will engage in brief 15 to 30 minute Zoom teleconference discussions over coffee/tea about what challenges they may have faced the day prior, what they are planning to do today, general life events, and set up additional one-on-one meetings as needed. The goal of these checkins is to identify shared challenges, build camaraderie, and generally provide an alternative for typical in-person encounters amongst lab members. 
+
+Second, lab members who need to access on-campus facilities will be provided with proper PPE (reusable masks, hand sanitizer, disinfectant wipes/sprays) and/or have expenses associated with acquiring such proper PPE be covered in full. Lab members will be asked to coordinate with each other via the Lab Calendar to minimize lab density and ensure adherence to social distancing guidelines. Please see the Lab Onboarding documents for more information. 
+
+Third, the lab will be actively using Slack chats to facilitate interactions and communication. Please see the Lab Onboarding documents for more information. 
+
+Lastly, my role as your mentor and advisor will be to participate in discussions with the broader JHU leadership and communicate new developments and emerging policies to you promptly. We anticipate that a full re-opening of the lab will be taken in a stage-wise and phased format. 
 
 ---
 
