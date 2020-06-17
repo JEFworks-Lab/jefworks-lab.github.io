@@ -18,7 +18,9 @@ sectionid: lab
 - Give a scientific poster presentation [work-in-progress]
 - Give a scientific talk [work-in-progress]
 - [Review a paper](/assets/docs/review_paper_form.docx)
+  - Related resource: [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
 - Write a paper [work-in-progress]
+  - Related resource: [A Guide to Responding to Scientific Peer Review](/blog/2020/06/17/responding-to-scientific-peer-review/)
 - Write a grant [work-in-progress]
 
 # Lab Tips
