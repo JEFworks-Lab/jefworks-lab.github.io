@@ -1,7 +1,7 @@
 # Site settings
 title: JEFworks
 email: jeanfan@fas.harvard.edu
-description: "Bioinformatician. NCI F99/K00 Post-Doctoral Fellow. Harvard University."
+description: "Lab website of Prof. Jean Fan and team work at Johns Hopkins University"
 
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: 'http://jefworks.github.io/'
