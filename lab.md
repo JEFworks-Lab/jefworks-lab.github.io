@@ -16,11 +16,15 @@ sectionid: lab
 - [Request a letter of recommendation](/assets/docs/rec_letter_form.docx)
 - Attend a scientific conference [work-in-progress]
 - Give a scientific poster presentation [work-in-progress]
+  - Poster template (horizontal)
+  - Poster template (vertical)
 - Give a scientific talk [work-in-progress]
+  - Presentation template
 - [Review a paper](/assets/docs/review_paper_form.docx)
-  - Related resource: [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
+  - [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
 - Write a paper [work-in-progress]
-  - Related resource: [A Guide to Responding to Scientific Peer Review](/blog/2020/06/17/responding-to-scientific-peer-review/)
+  - [How to write an abstract](/blog/2019/09/24/how-to-write-an-abstract/)
+  - [A Guide to Responding to Scientific Peer Review](/blog/2020/06/17/responding-to-scientific-peer-review/)
 - Write a grant [work-in-progress]
 
 # Lab Tips
