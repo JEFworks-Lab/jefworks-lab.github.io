@@ -156,33 +156,34 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
   <div class="card">
     <div class="card-header" id="headingFive">
       <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-      For highschool students
+      For highschool students (telework opportunities available)
       </button>
     </div>
 
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome local highschool students to volunteer as computational research assistants over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time, to their research projects. If you are interested in applying as a highschool-level computational research assistant, please follow this guide:
+We welcome local highschool students to volunteer as computational research assistants over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time, to their research projects. Teleworking (work from home) opportunities are also available to accomodate highschool students who are unable to access transportation to come onto campus. If you are interested in applying as a highschool-level computational research assistant, please follow this guide:
 
 1. Email Prof. Fan with the subject line “Highschool RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, where you go to school, and why you are interested in this lab. This serves as your ‘cover letter.’
+- Whether you are interested in the on-campus experience or a telework experience.
 - Your proposed start and end dates (as well as any other factors related to your time commitment)
-- A copy of your resume. This should include your work experience if any, relevant courses with grades, overall GPA, awards, and relevant skills. 
+- A copy of your resume. This should include your work experience (if any), courses with grades, hobbies or extracurricular activities, and any potentially relevant skills. 
 - Contact information (both email and phone number) for 2 to 4 references, including at least one parent or gaurdian for students under the age of 18.
 <br><br>
 2. If we like your application, Prof. Fan will reach out directly to your references.
 
-3. If we like your references, we will reach out and set up a time for a video conference call. This will take 10 to 30 minutes. It will involve discussing items in your resume as well as your educational goals and interests. 
+3. If we like your references, we will reach out and set up a time for a video conference call. This will take 10 to 30 minutes for those interested in the on-campus experience and 45 minutes to 1 hour for those interested in the telework experience. It will involve discussing items in your resume as well as your educational goals and interests. 
 
-4. If we think you are a good fit, we will invite you to an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
+4. If we think you are a good fit and you are interested in the on-campus experience, we will invite you to an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with. If we think you are a good fit and you are interested in the telework experience, we will set up additional video conference calls between you and others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
 
-5. After your on-site visit, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with a proposed project, background reading, and start-date/timeline so that you can hit the ground running.
+6. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with a proposed project, background reading, and start-date/timeline so that you can hit the ground running.
 
 Successful applicants will have:
-- Taken AP or honors-level courses in computer science, statistics, and biology
+- Taken courses in computer science, statistics, and biology
 - Familiarity with at least one of the following programming languages: Javascript, HTML, CSS, R, Python
-- Strong interest in applying to The Regeneron Science Talent Search (Regeneron STS) or other competitions
+- Interest in applying to The Regeneron Science Talent Search (Regeneron STS) or other competitions
 
 Exceptions are always considered for highly motivated and phenomenal applicants!
 </div>
