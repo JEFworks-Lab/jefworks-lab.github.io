@@ -13,14 +13,13 @@ sectionid: lab
 - Offboarding [private]
 
 # Lab How Tos
-- [Request a letter of recommendation](/assets/docs/rec_letter_form.docx)
-- Attend a scientific conference [work-in-progress]
-- Give a scientific poster presentation [work-in-progress]
-  - Poster template (horizontal)
-  - Poster template (vertical)
+- [Request a letter of recommendation](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EYN1gCrqAC1Ek_0lMkb74tcB5UhWs-HXx5XKGkXR4R4sbg?e=BSUZ1D)
+- [Attend a scientific conference](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EdVRK3qdKMJJlDL57aoggnwB_QOrsr4a3mjFmRv4zghqFQ?e=JQfMOj)
+- [Give a scientific poster presentation](/assets/docs/give_a_scientific_poster_presentation)
+  - [Poster template](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/jfan9_jh_edu/EQW2PwxG9C9DqWmFdkGvJXkBUqTDYxxzQo6m3Kz-QgBxoQ?e=ArjEXo)
 - Give a scientific talk [work-in-progress]
-  - Presentation template
-- [Review a paper](/assets/docs/review_paper_form.docx)
+  - Presentation theme
+- [Review a paper](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EQw6uaR_5TJAiCSRwQdjhB4BUoEDCJvRJxCWH0u152wLHg?e=cPqKtV)
   - [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
 - Write a paper [work-in-progress]
   - [How to write an abstract](/blog/2019/09/24/how-to-write-an-abstract/)
