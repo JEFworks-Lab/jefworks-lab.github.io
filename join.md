@@ -24,12 +24,12 @@ We are actively looking for team members at all levels. If you are interested in
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We are always looking for highly motivated and independent post-docs interested in furthering their careers in academia as well as developing new skills for transition into industry. If you are interested in a post-doc position, please follow this guide:
+We are always looking for highly motivated and independent post-docs interested in furthering their careers in academia as well as developing new skills for transition into industry. If you are interested in a post-doc position, we recommend this guide:
 	
 1. Email Prof. Fan with the subject line “Post-doc Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, where you are currently studying / what you are currently working on, and why you are interested in this lab. This serves as your ‘cover letter.’
 - A copy of your CV
-- The following filled out [Individual Development Plan (IDP) interview form](/assets/docs/interview_form.docx) (optional)
+- Optional: The following filled out [Individual Development Plan (IDP) interview form](/assets/docs/interview_form.docx) 
 - Contact information (both email and phone number) for 2 to 4 references  
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again.
 <br><br>  
@@ -37,7 +37,9 @@ If Prof. Fan does not respond within a week, candidates are highly encouraged to
 
 3. If we think you may be a good fit, we will invite you out for an on-site interview. The on-site interview will likely take up an entire day. It will involve an hour presentation in addition to one-on-one discussions with Prof. Fan as well as others in the department, including faculty, post-docs, as well as graduate students and even undergraduate students. The purpose of this visit is to assess fit. Not every post-doc, no matter how talented, will be the best fit in every lab. You should also take this visit as an opportunity to assess whether you will be able to be happy and productive in this lab for the next few years of your life. 
 
-4. After your on-site interview, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. We will work with you to discuss the terms of your hire, including salary, benefits, professional development opportunities, and anything else you may need to be successful here and through your career trajectory. 
+	*COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, we will reach out and set up a time for Zoom teleconferences that will likely take up an entire day. It will involve an hour presentation in addition to one-on-one discussions with Prof. Fan as well as others in the department, including faculty, post-docs, as well as graduate students and even undergraduate students.
+
+4. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. We will work with you to discuss the terms of your hire, including salary, benefits, professional development opportunities, and anything else you may need to be successful here and through your career trajectory. 
 
 Successful computational post-doc applicants will have:
 - a PhD in a biological, computational, or statistics-related field
@@ -72,17 +74,19 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We accept current graduate-level rotation students in Biomedical Engineering at Johns Hopkins University. We also accept current graduate-level rotation students from other departments at Johns Hopkins University on a case-by-case basis. If you are interested in rotating in this lab, please following this guide:
+We accept current graduate-level rotation students in Biomedical Engineering at Johns Hopkins University. We also accept current graduate-level rotation students from other departments at Johns Hopkins University on a case-by-case basis. If you are interested in rotating in this lab, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Graduate Rotation Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are and why you are interested in this lab. This serves as your ‘cover letter.’
 - A copy of your CV
-- Contact information (both email and phone number) for 2 to 4 references  
+- Optional: Contact information (both email and phone number) for 2 to 4 references  
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again. 
 <br><br>
 2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
 
-3. After your on-site visit, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with a proposed rotation project and background reading so that you can hit the ground running.
+   *COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, we will reach out and set up a time for a Zoom teleconference. The Zoom teleconference will take 30 minutes to 1 hour and will allow you to have one-on-one discussions with Prof. Fan. Additional Zoom teleconferences may also be set up with others in the lab. 
+
+3. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
 4. Successful rotation students will be formally hired at the end of their rotation to continue in the lab as graduate students. We will work with you to discuss the terms of your hire, including benefits, professional development opportunities, and anything else you may need to be successful here and through your career trajectory. 
 
@@ -129,16 +133,18 @@ We are unable to accept prospective graduate students directly. Prospective grad
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, or volunteer research experiences. If you are interested in applying as an undergraduate research assistant, please follow this guide:
+We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, or volunteer research experiences. If you are interested in applying as an undergraduate research assistant, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Undergrad RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, your major, your intended level of time commitment, and why you are interested in this lab. This serves as your ‘cover letter.’
 - A copy of your resume. This should include your work experience if any, relevant courses with grades, overall GPA, awards, and relevant skills. 
-- Contact information (both email and phone number) for 2 to 4 references (ideally other professors at Johns Hopkins University)
+- Contact information (both email and phone number) for 2 to 4 references (such as other professors at Johns Hopkins University)
 <br><br>
 2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
 
-3. After your on-site visit, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with a proposed project, background reading, and an on-boarding plan so that you can hit the ground running.
+   *COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, we will reach out and set up a time for a Zoom teleconference. The Zoom teleconference will take 30 minutes to 1 hour and will allow you to have one-on-one discussions with Prof. Fan. Additional Zoom teleconferences may also be set up with others in the lab. 
+
+3. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
 Successful applicants will have:
 - Taken courses in computer science, statistics, and biology
@@ -163,22 +169,22 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome local highschool students to volunteer as computational research assistants over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time, to their research projects. Teleworking (work from home) opportunities are also available to accomodate highschool students who are unable to access transportation to come onto campus. If you are interested in applying as a highschool-level computational research assistant, please follow this guide:
+We welcome local highschool students to volunteer as computational research assistants over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time, to their research projects. Teleworking (work from home) opportunities are also available to accomodate highschool students who are unable to access transportation to come onto campus. If you are interested in applying as a highschool-level computational research assistant, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Highschool RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, where you go to school, and why you are interested in this lab. This serves as your ‘cover letter.’
 - Whether you are interested in the on-campus experience or a telework experience.
 - Your proposed start and end dates (as well as any other factors related to your time commitment)
 - A copy of your resume. This should include your work experience (if any), courses with grades, hobbies or extracurricular activities, and any potentially relevant skills. 
-- Contact information (both email and phone number) for 2 to 4 references, including at least one parent or gaurdian for students under the age of 18.
+- Contact information (both email and phone number) for 2 to 4 references (such as teachers), including at least one parent or gaurdian for students under the age of 18.
 <br><br>
-2. If we like your application, Prof. Fan will reach out directly to your references.
+2. If we like your application, we will reach out and set up a time for a video conference call. This will take 10 to 30 minutes for those interested in the on-campus experience and 45 minutes to 1 hour for those interested in the telework experience. It will involve discussing items in your resume as well as your educational goals and interests. 
 
-3. If we like your references, we will reach out and set up a time for a video conference call. This will take 10 to 30 minutes for those interested in the on-campus experience and 45 minutes to 1 hour for those interested in the telework experience. It will involve discussing items in your resume as well as your educational goals and interests. 
+3. If we think you are a good fit and you are interested in the on-campus experience, we will invite you to an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with. If we think you are a good fit and you are interested in the telework experience, we will set up additional video conference calls between you and others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
 
-4. If we think you are a good fit and you are interested in the on-campus experience, we will invite you to an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with. If we think you are a good fit and you are interested in the telework experience, we will set up additional video conference calls between you and others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
+   *COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, additional Zoom teleconferences will be set up with others in the lab to give you a better sense of who you may be working with.  
 
-6. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with a proposed project, background reading, and start-date/timeline so that you can hit the ground running.
+4. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
 Successful applicants will have:
 - Taken courses in computer science, statistics, and biology
