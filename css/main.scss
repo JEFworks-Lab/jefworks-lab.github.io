@@ -28,8 +28,7 @@ html {
 }
 body {
    //padding-top: $navbar-height + $navbar-margin-bottom;
-   padding-top: $navbar-height;
-   margin-bottom: 60px;
+    padding-top: $navbar-height;
 }
 .banner {
     list-style: none;
@@ -38,7 +37,8 @@ body {
     float: left;
     display: inline-block;
     height: 50vh;
-    width: 100vw;
+    //width: 100vw;
+    width: 100%;
     overflow: hidden;
     text-decoration: none;
 }
@@ -71,13 +71,20 @@ body {
   padding: 20px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
+  //position: absolute;
+  //bottom: 0;
   width: 100%;
-  height: 46px;
+  //height: 46px;
   padding: 10px 15px 10px 15px;
   background-color: $gray-lighter;
   color: $gray-dark;
+  margin-top:30px;
+  border-top: 1px solid $gray-dark;
+}
+.navbar {
+    background-color: $gray-lighter;
+    color: $gray-dark;
+    border-bottom: 1px solid $gray-dark;
 }
 
 .post-list-container {
