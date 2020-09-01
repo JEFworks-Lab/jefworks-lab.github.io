@@ -4,7 +4,7 @@ layout: default
 
 # JEFworks Lab Guide
 
-This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified April 2020.
+This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified August 2020.
 
 ---
 
@@ -12,7 +12,7 @@ This is a living document and subject to modifications. Please feel free to [for
 
 In order to accommodate the developing public health crisis and better ensure the health and safety of all lab members, a number of precautionary measures will be taken until further notice.
 
-First, remote working options will be available to all lab members. Lab members working remotely will still be expected to participate in regular one-on-one and lab meetings via Zoom teleconference. In addition, all lab members working remotely will be expected to participate in daily 9am group checkins where they will engage in brief 15 to 30 minute Zoom teleconference discussions over coffee/tea about what challenges they may have faced the day prior, what they are planning to do today, general life events, and set up additional one-on-one meetings as needed. The goal of these checkins is to identify shared challenges, build camaraderie, and generally provide an alternative for typical in-person encounters amongst lab members. 
+First, remote working options will be available to all lab members. Lab members working remotely will still be expected to participate in regular one-on-one and lab meetings via Zoom teleconference. 
 
 Second, lab members who need to access on-campus facilities will be provided with proper PPE (reusable masks, hand sanitizer, disinfectant wipes/sprays) and/or have expenses associated with acquiring such proper PPE be covered in full. Lab members will be asked to coordinate with each other via the Lab Calendar to minimize lab density and ensure adherence to social distancing guidelines. Please see the Lab Onboarding documents for more information. 
 
@@ -46,12 +46,12 @@ Permission for holiday or other notable absenses is rarely required, but please 
 For all communication methods, please respect people’s working patterns, and remember that other people will have different priorities and focus. Please give consideration to the timing of your correspondence with respect to what the recipient needs to do. No lab members are required nor should feel obliged to reply to messages outside of their typical work hours. Seeking out in-person discussions is strongly encouraged for urgent matters requiring immediate attention.
 
 ## Group meetings
-Weekly lab meetings will be held on Fridays (Reflection days) with specific timing to be determined to best accomodate the schedules of the majority of current lab members. We expect all lab members to attend and contribute to group meeting and journal club discussions if they are not otherwise engaged in research business (e.g. at conference, attending training or a lecture, or using a core facility). 
+Weekly lab meetings will be held on either at the beginning or at the end of the work day with the specific day of the week to be determined to best accomodate the schedules of the majority of current lab members. We expect all lab members to attend and contribute to group meeting and journal club discussions if they are not otherwise engaged in research business (e.g. at conference, attending training or a lecture, or using a core facility). 
 
 ## One-on-one meetings
-Weekly one-on-one meetings will be held on Mondays (Interaction days) with specific timing to be established for each member when they join the lab and modified as needed. Lab members are expected to be proactive in requesting additional one-on-one beyond typically scheduled meetings as needed by marking on the group scheduling calendar. 
+Weekly one-on-one meetings will be held on Fridays (Interaction days) with specific timing to be established for each member when they join the lab and modified as needed. Lab members are expected to be proactive in requesting additional one-on-one beyond typically scheduled meetings as needed by marking on the group scheduling calendar. 
 
-We strive to respect the ability of fellow lab members to engage in distraction-free deep thinking and long periods of uninterrupted work. As such, please limit requests for meetings to urgent matters on Wednesdays (Deepwork days). 
+We strive to respect the ability of fellow lab members to engage in distraction-free deep thinking and long periods of uninterrupted work. 
 
 ---
 
