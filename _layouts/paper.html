@@ -10,9 +10,13 @@
 
     <b>Abstract:</b> {{ page.abstract }}
     <br><br>
-    <b>Paper:</b> <a href="{{ page.journalurl }}" target="_blank"> {{ page.journal }} </a> |
-    <a href="{{ page.pubmedurl }}" target="_blank"> Pubmed </a> |
-    <a href="{{ page.pdfurl }}" target="_blank"> PDF </a>
+    <b>Paper:</b> <a href="{{ page.journalurl }}" target="_blank"> {{ page.journal }} </a>
+    {% if page.pubmedurl != null %}    
+    | <a href="{{ page.pubmedurl }}" target="_blank"> Pubmed </a>
+    {% endif %} 
+    {% if page.pdfurl != null %}    
+    | <a href="{{ page.pdfurl }}" target="_blank"> PDF </a>
+    {% endif %} 
     <br><br>
     {% if page.code != null %}    
     <b>Relevant code:</b> <a href="{{ page.code }}" target="_blank"> <i class="fa fa-lg fa-github"></i> </a>
