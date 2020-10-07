@@ -40,3 +40,9 @@ National Institutes of Health, Single Cell Investigators Meeting, 2014 ([Poster]
 - **Fan J**, Karchin R. Computational Assessment of the Utility of Limiting Orthologous Sequence
 Depth in Mutation Impact Prediction Performance. International Congress of Human
 Genetics/American Society of Human Genetics Conference, 2011 (Poster)
+
+# VIDEOS
+<div align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WoHjby1a8Cg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MYbfY0Tzc-c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
