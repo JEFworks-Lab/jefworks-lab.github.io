@@ -27,5 +27,18 @@ sectionid: team
 <h1 align="center">Meet the Team</h1>
 <br>
 {% for pub in site.team %}
-    {{ pub }}
+    {% if pub.alumni == null %}
+        {{ pub }}
+    {% endif %}
 {% endfor %}
+
+<hr>
+
+<h1 align="center">Alumni</h1>
+<br>
+{% for pub in site.team %}
+    {% if pub.alumni != null %}
+        {{ pub }}
+    {% endif %} 
+{% endfor %}
+

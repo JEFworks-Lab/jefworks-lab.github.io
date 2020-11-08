@@ -66,7 +66,7 @@ desc: Welcome to JEFworks,<br> where Prof. Jean Fan and team work on computation
       <h2 class="text-center">Latest Publications</h2>
       <ul class="post-list-container">
 	{% assign items = site.papers | reverse %}
-        {% for post in items limit:3 %}
+        {% for post in items limit:5 %}
         <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
         {% endfor %}
       </ul>
@@ -95,7 +95,7 @@ desc: Welcome to JEFworks,<br> where Prof. Jean Fan and team work on computation
       <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
       <h2 class="text-center">Latest Blog Posts</h2>
       <ul class="post-list-container">
-        {% for post in site.posts limit:5 %}
+        {% for post in site.posts limit:10 %}
         <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
         {% endfor %}
       </ul>
