@@ -3,7 +3,7 @@ layout: default
 title: Talks
 permalink: /talks/
 sectionid: talks
-image: /img/talks.png
+image: /img/talks.jpg
 ---
 
 We are committed to open access. If you know of a talk that we have given but were unable to attend, please [contact us](/contact) directly and we will be happy to send you slides and recordings if available.

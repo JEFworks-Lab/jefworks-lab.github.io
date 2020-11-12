@@ -3,7 +3,7 @@ layout: default
 title: Teaching
 permalink: /teaching/
 sectionid: teaching
-image: /img/teaching.png
+image: /img/teaching.jpg
 ---
 
 # COURSES

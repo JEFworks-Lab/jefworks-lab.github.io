@@ -3,7 +3,7 @@ layout: default
 title: Mission
 permalink: /mission/
 sectionid: mission
-image: /img/nih.png
+image: /img/nih.jpg
 ---
 
 # What do we do?

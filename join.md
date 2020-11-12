@@ -3,7 +3,7 @@ layout: default
 title: Join Us
 permalink: /join/
 sectionid: join
-image: /img/hopkins.png
+image: /img/hopkins.jpg
 ---
 
 <h2>We are focused on creating computational and statistical approaches that help broaden our understanding of cellular development and disease. Our team members share a drive to deliver innovative open-source software solutions that enable discoveries in biology and medicine. Our culture is fast-paced, rigorous, pedagogical, and highly collaborative. We are committed to attracting and nurturing the best aspiring scientists, who will in turn drive our collective growth and further our scientific mission.</h2>
