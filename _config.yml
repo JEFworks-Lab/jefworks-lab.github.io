@@ -4,7 +4,7 @@ email: jeanfan@jhu.edu
 description: "Lab website of Prof. Jean Fan and team work at Johns Hopkins University"
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: 'http://jefworks.github.io/'
+url: 'http://jefworks-lab.github.io/'
 google_analytics: 'UA-35232680-3'
 
 # theme options from https://bootswatch.com/
