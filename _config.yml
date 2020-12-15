@@ -1,6 +1,6 @@
 # Site settings
-title: JEFworks
-email: jeanfan@fas.harvard.edu
+title: JEFworks Lab
+email: jeanfan@jhu.edu
 description: "Lab website of Prof. Jean Fan and team work at Johns Hopkins University"
 
 baseurl: "" # the subpath of your site, e.g. /blog/
