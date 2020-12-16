@@ -20,5 +20,5 @@ sectionid: software
 ---
 
 # FUN STUFF
-- [aRt with code](https://jef.works/art-with-code/) - generate custom art using R
+- [aRt with code](https://jean.fan/art-with-code/) - generate custom art using R
 - [cuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
