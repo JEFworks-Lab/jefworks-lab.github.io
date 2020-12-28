@@ -91,7 +91,7 @@ Excluding emeritus professors, who are among primary faculty but not included am
 
 <div class="row">
 <div class="col-md-3">
-<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/08/Alison-Hill.jpg" class="img-responsive img-circle">
+<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/09/Alison-Hill.jpg" class="img-responsive img-circle">
 </div>
 <div class="col-md-9">
 <h3><a href="https://www.bme.jhu.edu/faculty_staff/alison-hill-phd/" title="View profile -  Alison Hill, PhD" data-wpel-link="internal">Alison Hill, PhD</a></h3>
@@ -103,7 +103,7 @@ Excluding emeritus professors, who are among primary faculty but not included am
 
 <div class="row">
 <div class="col-md-3">
-<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/04/OVERBY-casey.jpg" class="img-responsive img-circle">
+<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/03/Casey-Overby-Taylor.jpg" class="img-responsive img-circle">
 </div>
 <div class="col-md-9">
 <h3><a href="https://www.bme.jhu.edu/faculty_staff/casey-overby-taylor-phd/" title="View profile -  Casey Overby Taylor, PhD" data-wpel-link="internal">Casey Overby Taylor, PhD</a></h3>
@@ -127,7 +127,7 @@ Excluding emeritus professors, who are among primary faculty but not included am
 
 <div class="row">
 <div class="col-md-3">
-<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/06/JHU1193-scaled-e1598364791956.jpg" class="img-responsive img-circle">
+<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/06/Jude-Phillip-2.jpg" class="img-responsive img-circle">
 </div>
 <div class="col-md-9">
 <h3><a href="https://www.bme.jhu.edu/faculty_staff/jude-m-phillip-phd/" title="View profile -  Jude M. Phillip, PhD" data-wpel-link="internal">Jude M. Phillip, PhD</a></h3>
@@ -139,7 +139,7 @@ Excluding emeritus professors, who are among primary faculty but not included am
 
 <div class="row">
 <div class="col-md-3">
-<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/01/Unknown-scaled.jpeg" class="img-responsive img-circle">
+<img src="https://www.bme.jhu.edu/wp-content/uploads/2020/01/Scott-Wilson.jpg" class="img-responsive img-circle">
 </div>
 <div class="col-md-9">
 <h3><a href="https://www.bme.jhu.edu/faculty_staff/scott-wilson-phd/" title="View profile -  Scott Wilson, PhD" data-wpel-link="internal">Scott Wilson, PhD</a></h3>
