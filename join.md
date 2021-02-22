@@ -74,12 +74,12 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We accept current graduate-level rotation students in Biomedical Engineering at Johns Hopkins University. We also accept current graduate-level rotation students from other departments at Johns Hopkins University on a case-by-case basis. If you are interested in rotating in this lab, we recommend this guide:
+We accept current PhD and Master's rotation students in Biomedical Engineering at Johns Hopkins University. We also accept current PhD rotation students from other departments at Johns Hopkins University. If you are interested in rotating in this lab, we recommend this guide:
 
-1. Email Prof. Fan with the subject line “Graduate Rotation Application: [your name]”. Include in the body of the email: 
+1. Email Prof. Fan with the subject line “[PhD or Master's] Rotation Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are and why you are interested in this lab. This serves as your ‘cover letter.’
 - A copy of your CV
-- Optional: Contact information (both email and phone number) for 2 to 4 references  
+- Optional: Contact information (both email and phone number) for 2 to 4 references
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again. 
 <br><br>
 2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
