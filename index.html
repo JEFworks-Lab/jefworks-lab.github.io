@@ -9,12 +9,27 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
     <div class="row">
 
 	<h2>We are a bioinformatics research lab in the <a href="https://www.bme.jhu.edu/">Department of Biomedical Engineering</a> at Johns Hopkins University. We are also a part of the <a href="https://ccb.jhu.edu/">Center for Computational Biology</a> and <a href="https://www.cs.jhu.edu/">Department of Computer Science</a>.</h2>
-	<div class="row">
-	    <div class="col-md-1"></div>
-	    <div class="col-md-10">
-		<a href="team"><img src="img/team.jpg" width="100%"></a>
+	<div class="row" style="padding: 15px">
+	    <!--- <a href="team"><img src="img/team.jpg" width="100%"></a> --->
+	    <div class="col-md-2">
+		<a href="team"><img src="/img/profile.jpg" class="img-responsive img-circle" alt="Jean Fan"></a>
 	    </div>
-	    <div class="col-md-1"></div>
+	    <div id="my-team">
+		{% for pub in site.team limit:6 %}
+		{% if pub.alumni == null %}
+		<div class="col-md-2">
+		    <a href="team"><img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}"></a>
+		</div>
+		{% endif %}
+		{% endfor %}
+	    </div>
+	    <script>
+	     var myList = document.querySelector('#my-team');
+	     for (var i = myList.children.length; i >= 0; i--) {
+		 myList.appendChild(myList.children[Math.random() * i | 0]);
+	     }
+	    </script>
+	    
 	</div>
 	<h2>We develop methods for analyzing single cell multi-omic sequencing and imaging data.</h2>
 	<div class="row">
@@ -22,13 +37,13 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
 		<p>While heterogeneity within cellular systems has long been widely recognized, only recently have technological advances enabled measurements to be made on a single cell level. We develop machine learning and other statistical approaches as open-source computational software to analyze such high-throughput single-cell resolution multi-omic and imaging data in order to identify and characterize varying aspects of heterogeneity (transcriptomic, epigenomic, spatial/contextual) and their interplay.</p>
 		<ul>
 		    <li>
-			<a href="/publications#/papers/2020/09/15/natureemm101038">Jean Fan^, Kamil Slowkikowski, Fan Zhang. Single-cell transcriptomics in cancer - computational challenges and opportunities. Nature Experimental and Molecular Medicine. Sept 15, 2020, doi.org:10.1038/s12276-020-0422-0</a>
+			<a href="/publications#/papers/2021/01/28/biorxiv425293"><u>Lyla Atta</u>, <u>Jean Fan^</u>. VeloViz: RNA-velocity informed 2D embeddings for visualizing cellular trajectories. BioRxiv. 2021. doi: 10.1101/2021.01.28.425293</a>
 		    </li>
 		    <li>
-			<a href="/publications#/papers/2019/09/09/pnas1912459116">Chenglong Xia*, Jean Fan*, George Emanuel*, Junjie Hao, and Xiaowei Zhuang. Spatial transcriptome profiling by MERFISH reveals subcellular RNA compartmentalization and cell cycle-dependent gene expression. PNAS. 2019. doi:10.1073/pnas.1912459116</a>
+			<a href="/publications#/papers/2019/09/09/pnas1912459116">Chenglong Xia*, <u>Jean Fan*</u>, George Emanuel*, Junjie Hao, and Xiaowei Zhuang. Spatial transcriptome profiling by MERFISH reveals subcellular RNA compartmentalization and cell cycle-dependent gene expression. PNAS. 2019. doi:10.1073/pnas.1912459116</a>
 		    </li>
 		    <li>
-			<a href="/publications#/papers/2016/01/18/nmeth3734">Jean Fan, Neeraj Salathia, Rui Liu, Gwendolyn E Kaeser, Yun C Yung, et al. Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis. Nature Methods. 2016. doi: 10.1038/nmeth.3734</a>
+			<a href="/publications#/papers/2016/01/18/nmeth3734"><u>Jean Fan</u>, Neeraj Salathia, Rui Liu, Gwendolyn E Kaeser, Yun C Yung, et al. Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis. Nature Methods. 2016. doi: 10.1038/nmeth.3734</a>
 		    </li>
 		</ul>
 	    </div>
@@ -46,13 +61,13 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
 		<p>Advancements in high-throughput sequencing and imaging technologies have uncovered tremendous genetic, epigenetic, transcriptional, and spatial heterogeneity in various cancers but their impact on clinical outcomes is not well understood. We establish close collaborations with clinical collaborators to develop and apply bioinformatics methods that contribute to a more complete understanding of how cellular heterogeneity impacts tumor progression, therapeutic resistance, and ultimately clinical prognosis. We are particularly interested in pediatric gliomas.</p>
 		<ul>
 		    <li>
-			<a href="/publications#/papers/2018/06/13/gr228080117">Jean Fan*, Hae-Ock Lee*, Soohyun Lee, Da-eun Ryu, Semin Lee, et al. Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq. Genome Research. 2018. doi:10.1101/gr.228080.117</a>
+			<a href="/publications#/papers/2020/09/15/natureemm101038"><u>Jean Fan^</u>, Kamil Slowkikowski, Fan Zhang. Single-cell transcriptomics in cancer - computational challenges and opportunities. Nature Experimental and Molecular Medicine. Sept 15, 2020, doi.org:10.1038/s12276-020-0422-0</a>
 		    </li>
 		    <li>
-			<a href="/publications#/papers/2017/05/22/gr217331116">Lili Wang*, Jean Fan*, Joshua M. Francis, George Georghiou, Sarah Hergert, et al. Integrated single-cell genetic and transcriptional analysis suggests novel drivers of chronic lymphocytic leukemia. Genome Research. 2017. doi:10.1101/gr.217331.116</a>
+			<a href="/publications#/papers/2018/06/13/gr228080117"><u>Jean Fan*</u>, Hae-Ock Lee*, Soohyun Lee, Da-eun Ryu, Semin Lee, et al. Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq. Genome Research. 2018. doi:10.1101/gr.228080.117</a>
 		    </li>
 		    <li>
-			<a href="/publications#/papers/2016/11/03/jccell201610005">Lili Wang*, Angela N. Brooks*, Jean Fan*, Youzhong Wan*, Rutendo Gambe, et al. Transcriptomic characterization of SF3B1 mutation reveals its pleiotropic effects in chronic lymphocytic leukemia. Cancer Cell. Nov 3, 2016. doi: 10.1016/j.ccell.2016.10.005</a>
+			<a href="/publications#/papers/2017/05/22/gr217331116">Lili Wang*, <u>Jean Fan*</u>, Joshua M. Francis, George Georghiou, Sarah Hergert, et al. Integrated single-cell genetic and transcriptional analysis suggests novel drivers of chronic lymphocytic leukemia. Genome Research. 2017. doi:10.1101/gr.217331.116</a>
 		    </li>
 		</ul>
 	    </div>

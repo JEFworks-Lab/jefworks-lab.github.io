@@ -24,12 +24,19 @@ sectionid: team
 <hr>
 
 <h1 align="center">Meet the Team</h1>
-<br>
+<div id="my-team">
 {% for pub in site.team %}
     {% if pub.alumni == null %}
-        {{ pub }}
+    <p>{{ pub }}</p>
     {% endif %}
 {% endfor %}
+</div>
+<script>
+ var myList = document.querySelector('#my-team');
+ for (var i = myList.children.length; i >= 0; i--) {
+     myList.appendChild(myList.children[Math.random() * i | 0]);
+ }
+</script>
 
 <hr>
 
