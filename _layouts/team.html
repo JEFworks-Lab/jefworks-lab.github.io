@@ -5,10 +5,12 @@
     <div class="col-sm-6 col-md-8">  
 	<h2 class="header-light regular-pad"> {{ page.name }}</h2>
 	<h4> {{ page.title }} </h4>
-	{{ page.description }}
+	{{ page.description }}	
+	<br><br>
 	
 	{% if page.alumni != null %}
 	Lab Member: {{ page.alumni }}
+	<br><br>
 	{% endif %}
 	
 	{% if page.home != null %}
