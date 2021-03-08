@@ -27,7 +27,9 @@ sectionid: team
 <div id="my-team">
 {% for pub in site.team %}
     {% if pub.alumni == null %}
+    {% if pub.name != "You!"%}
     <p>{{ pub }}</p>
+    {% endif %}
     {% endif %}
 {% endfor %}
 </div>
@@ -37,6 +39,15 @@ sectionid: team
      myList.appendChild(myList.children[Math.random() * i | 0]);
  }
 </script>
+
+<div id="join_you">
+{% for pub in site.team %}
+    {% if pub.name == "You!" %}
+    <p>{{ pub }}</p>
+    {% endif %}
+{% endfor %}
+</div>
+
 
 <hr>
 
