@@ -2,10 +2,12 @@
 title: Randomly Generating Music with R
 layout: post
 comments: false
-tags: [R, tutorial, fun]
+tags: [fun, R, computer-aided discovery, tutorial]
 ---
 
-Just for fun, I use the `R` package [`gm` by Renfei Mao](https://cran.r-project.org/web/packages/gm/index.html) to generate a random song.
+Beyond single-cell analysis, coding in `R` is a useful skill for lots of other fun things too :D
+
+Here, I use the `R` package [`gm` by Renfei Mao](https://cran.r-project.org/web/packages/gm/index.html) to generate a random song.
 
 ```{r}
 ## install.packages("gm")
@@ -84,7 +86,7 @@ Try it out for yourself and see what you can come up with!
 
 For more creative coding, check out of some my other fun products:
 - [aRt with code](https://jean.fan/art-with-code/) - generate custom art using R
-- [cuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
+- [CuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
 
 
 

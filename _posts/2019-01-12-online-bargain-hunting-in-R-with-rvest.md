@@ -128,7 +128,7 @@ Ok, all joking aside, doing this in `R` may not be the most convenient solution 
 
 For more creative coding, check out of some my other fun products:
 - [aRt with code](https://jean.fan/art-with-code/) - generate custom art using R
-- [cuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
+- [CuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
 
 
 
