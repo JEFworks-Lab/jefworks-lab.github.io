@@ -127,7 +127,7 @@ And that's how you can use `R` and `rvest` to do web scraping to find the best o
 Ok, all joking aside, doing this in `R` may not be the most convenient solution since I have to bounce back and forth between my `R` terminal and my web browser (a Chrome extension would be better in that sense). But this is just to show how `R` and `rvest` can be used for web-scraping and how programming can be used for more than just data analysis. 
 
 For more creative coding, check out of some my other fun products:
-- [aRt with code](https://jef.works/art-with-code/) - generate custom art using R
+- [aRt with code](https://jean.fan/art-with-code/) - generate custom art using R
 - [cuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
 
 
