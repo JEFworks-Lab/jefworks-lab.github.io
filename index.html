@@ -37,7 +37,7 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
 		<p>While heterogeneity within cellular systems has long been widely recognized, only recently have technological advances enabled measurements to be made on a single cell level. We develop machine learning and other statistical approaches as open-source computational software to analyze such high-throughput single-cell resolution multi-omic and imaging data in order to identify and characterize varying aspects of heterogeneity (transcriptomic, epigenomic, spatial/contextual) and their interplay.</p>
 		<ul>
 		    <li>
-			<a href="/publications#/papers/2021/01/28/biorxiv425293"><u>Lyla Atta</u>, <u>Jean Fan^</u>. VeloViz: RNA-velocity informed 2D embeddings for visualizing cellular trajectories. BioRxiv. 2021. doi: 10.1101/2021.01.28.425293</a>
+			<a href="/publications#/papers/2021/01/28/biorxiv425293"><u>Lyla Atta</u>, <u>Arpan Sahoo</u>, <u>Jean Fan^</u>. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. BioRxiv. 2021. doi: 10.1101/2021.01.28.425293</a>
 		    </li>
 		    <li>
 			<a href="/publications#/papers/2019/09/09/pnas1912459116">Chenglong Xia*, <u>Jean Fan*</u>, George Emanuel*, Junjie Hao, and Xiaowei Zhuang. Spatial transcriptome profiling by MERFISH reveals subcellular RNA compartmentalization and cell cycle-dependent gene expression. PNAS. 2019. doi:10.1073/pnas.1912459116</a>
@@ -85,7 +85,7 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
 	    <ul class="post-list-container">
 		{% assign items = site.papers | reverse %}
 		{% for post in items limit:5 %}
-		<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
+		<li><a href="{{ site.baseurl }}/publications#{{ post.url }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
 		{% endfor %}
 	    </ul>
 	    <a href="{{ site.baseurl }}/publications">
