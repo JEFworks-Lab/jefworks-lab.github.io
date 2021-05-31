@@ -9,6 +9,8 @@ image: /img/talks.jpg
 We are committed to open access. If you know of a talk that we have given but were unable to attend, please [contact us](/contact) directly and we will be happy to send you slides and recordings if available.
 
 # INVITED TALKS AND PRESENTATIONS
+- **Jean Fan**. Modeling and Visualizing RNA Velocity of Single Cells. Pfizer Single Cell Working Group. April 2021. (Talk)
+- **Lyla Atta**. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. Broad Single Cell Workshop. April 2021. (Talk)
 - **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed 2D embeddings for visualizing cellular trajectories. Women of Whiting Symposium Women in STEM Symposium. April 2021. ([Poster](/assets/posters/20210308_WoW_poster.pdf))
 - **Jean Fan**. Modeling and Visualizing RNA Velocity of Single Cells. Single Cell Biology Keystone eSymposium. March 2021. (Talk)
 - **Jean Fan**. Modeling and Visualizing RNA Velocity of Single Cells. Brigham and Women's Hospital Channing Division of Network Medicine. March 2021. (Talk)
