@@ -58,7 +58,7 @@ counts <- MERINGUE::cleanCounts(counts, verbose = FALSE)
 
 <img src="/assets/blog/vizgen_S2R1_qc.png" width="100%">
 
-There are many ways to identify cell-types via different types of single-cell clustering analysis. Here, we will just do a quick and dirty CPM normalization, followed by PCA dimensionality reduction, and graph based clustering. This allows us to identify approximately 20 transcriptionally distinct cell clusters that are spatially organized within the brain. We can visualize the results using UMAP as well as on our original spatial coordinates. 
+There are many ways to identify cell-types via different types of single-cell clustering analysis. Here, we will just do a quick and dirty CPM normalization, followed by PCA dimensionality reduction, and graph based clustering. We can visualize the results using UMAP as well as on our original spatial coordinates. 
 
 ```r
 ## CPM normalize, log transform
@@ -97,7 +97,7 @@ MERINGUE::plotEmbedding(pos, groups=com,
 
 So it looks like we can identify 20 transcriptionally distinct clusters or cell-types here. And they have seem to have pretty distinct spatial organizations. Neat!
 
-Let's focus on the cells of cluster 12. Based on its spatial organization, perhaps this cluster corresponds to pyramidal neurons. 
+Let's focus on the cells of cluster 12 for now. Based on its spatial organization, perhaps this cluster corresponds to pyramidal neurons. 
 
 ```r
 ct = 12 ## pyrimidal layer
