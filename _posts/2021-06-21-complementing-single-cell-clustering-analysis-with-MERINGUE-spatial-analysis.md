@@ -199,11 +199,16 @@ lapply(levels(ggroup$groups), function(gr) {
   ## select few driven by most cells
   gs <- gs[order(results.filter[gs,]$minPercentCells, decreasing=TRUE)][1:3]
   lapply(gs, function(g) {
+    ## z-score expression within cluster 12 cells
     gexp <- math[g,]
     gexp <- scale(gexp)[,1]
     gexp[gexp > 1.5] <- 1.5
     gexp[gexp < -1.5] <- -1.5
-    MERINGUE::plotEmbedding(posh, col=gexp, main=g)
+    ## set as NAs for rest
+    gexpall <- rep(NA, nrow(pos))
+    names(gexpall) <- rownames(pos)
+    gexpall[names(gexp)] <- gexp
+    MERINGUE::plotEmbedding(pos, col=gexpall, main=g, cex=0.05)
   })
 })
 ```
