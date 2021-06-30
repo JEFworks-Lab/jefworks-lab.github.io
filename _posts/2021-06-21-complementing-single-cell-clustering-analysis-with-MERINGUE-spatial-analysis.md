@@ -104,13 +104,13 @@ ct = 12 ## pyrimidal layer
 cells <- names(com)[com == ct]
 
 par(mfrow=c(1,1))
-MERINGUE::plotEmbedding(emb[cells,], groups=com,
+MERINGUE::plotEmbedding(emb, groups=com[cells],
                         show.legend = TRUE, legend.x = "topleft",
                         mark.clusters = TRUE,
                         cex = 0.1, main = 'UMAP cluster 12 only')
-MERINGUE::plotEmbedding(pos[cells,], groups=com,
+MERINGUE::plotEmbedding(pos, groups=com[cells],
                         cex = 0.2, main = 'Spatial cluster 12 only')
-
+			
 posh <- pos[cells,]
 dim(posh)
 math <- mat[, cells]
