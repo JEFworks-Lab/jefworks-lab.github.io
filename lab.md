@@ -21,8 +21,9 @@ sectionid: lab
   - Presentation theme
 - [Review a paper](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EQw6uaR_5TJAiCSRwQdjhB4BUoEDCJvRJxCWH0u152wLHg?e=cPqKtV)
   - [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
-- Write a paper [work-in-progress]
+- [Write a paper](/assets/docs/write_a_paper)
   - [How to write an abstract](/blog/2019/09/24/how-to-write-an-abstract/)
+- [Revise a paper](/assets/docs/revise_a_paper)
   - [A Guide to Responding to Scientific Peer Review](/blog/2020/06/17/responding-to-scientific-peer-review/)
 - Write a grant [work-in-progress]
 
