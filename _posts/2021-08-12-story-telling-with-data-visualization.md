@@ -2,7 +2,7 @@
 title: "Story-telling with Data Visualization"
 layout: post
 comments: false
-tags: [R, tutorial, single cell, spatial transcriptomics]
+tags: [R, tutorial, single cell, spatial transcriptomics, dataviz, bioinformatics]
 ---
 
 ## Introduction
