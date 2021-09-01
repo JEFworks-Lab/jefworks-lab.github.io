@@ -7,7 +7,7 @@ sectionid: about
 
 # JEAN FAN
 
-(last updated April 2021)
+(last updated September 2021)
 
 <!---
 <div class="col-sm-4 pull-right">
@@ -25,7 +25,8 @@ I am currently an NCI F99/K00 post-doctoral fellow in the lab of [Dr. Xiaowei Zh
 - Bachelors of Science in [Biomedical Engineering](http://www.bme.jhu.edu/) and [Applied Math](http://engineering.jhu.edu/ams/), Johns Hopkins University, Whiting School of Engineering (Aug 2009 - May 2013)
 - High School Diploma, [Magnet Program, Montgomery Blair High School](https://mbhs.edu/departments/magnet/) (Aug 2005 - May 2009)
 
-## GRANTS
+## GRANTS (PI)
+- NIH NIGMS MIRA R35GM142889, Computational methods for delineating subcellular and cellular spatial transcriptional heterogeneity along developmental trajectories. (September 2021 - Present)
 - [NSF CAREER #2047611, Statistical approaches and computational tools for analyzing spatially-resolved single-cell transcriptomics data](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2047611) (July 2021 - Present)
 - [NIH NCI F99/K00 F99CA222750, Statistical Methods for Characterizing Tumor Heterogeneity at the Single Cell Level](https://grants.uberresearch.com/100000054/F99CA222750/Statistical-Methods-for-Characterizing-Tumor-Heterogeneity-at-the-Single-Cell-Level) (July 2017 - June 2020)
 - [NIH NCI F31 F31CA206236, Computational Analysis of Subclonal Evolution in Chronic Lymphocytic Leukemia](https://grants.uberresearch.com/100000054/F31CA206236/Computational-Analysis-of-Subclonal-Evolution-in-Chronic-Lymphocytic-Leukemia) (Sept 2016 - July 2017)
@@ -54,6 +55,7 @@ I am currently an NCI F99/K00 post-doctoral fellow in the lab of [Dr. Xiaowei Zh
 
 ## MENTORING AND OUTREACH
 - Founder, Director, and Lead Developer, [CuSTEMized](https://custemized.org) - personalized STEM picture storybooks for girls (Jan 2014 - Present)
+- Instructor for Computer Science without Intimidation, [The Innovation Institute](https://theinnovationinstitute.org/) (Sept. 2015 - June 2017)
 - Co-chair, [Harvard Graduate Women in Science and Engineering](http://projects.iq.harvard.edu/hgwise/) (Aug 2013 - Aug 2015)
 - Mentor-Scientist for 2nd grade girls, [Science Club for Girls](http://www.scienceclubforgirls.org/) (Aug 2014 - May 2015)
 - Mentor for Undergraduates at Harvard College, [Women in Science at Harvard-Radcliffe](http://wishr.weebly.com/) (Aug 2013 - Aug 2014)
