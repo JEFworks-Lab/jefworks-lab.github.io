@@ -1,0 +1,10 @@
+---
+layout: paper
+title: Rewiring of human neurodevelopmental gene regulatory programs by human accelerated regions
+authors: Kelly M. Girskis*, Andrew B. Stergachis*, Ellen M. DeGennaro*, Ryan N. Doan, Xuyu Qian, Matthew B. Johnson, Peter P. Wang, Gabrielle M. Sejourne, M. Aurel Nagy, Elizabeth A. Pollina, André M. M. Sousa, Taehwan Shin, Connor J. Kenny, Julia L. Scotellaro, Brian M. Debo, Dilenny M. Gonzalez, Lariza M. Rento, Rebecca C. Yeh, Janet H. T. Song, Marc Beaudin, <b>Jean Fan</b>, Peter V. Kharchenko, Nenad Sestan, Michael E. Greenberg, Christopher A. Walsh^
+abstract: Human accelerated regions (HARs) are the fastest-evolving regions of the human genome, and many are hypothesized to function as regulatory elements that drive human-specific gene regulatory programs. We interrogate the in vitro enhancer activity and in vivo epigenetic landscape of more than 3,100 HARs during human neurodevelopment, demonstrating that many HARs appear to act as neurodevelopmental enhancers and that sequence divergence at HARs has largely augmented their neuronal enhancer activity. Furthermore, we demonstrate PPP1R17 to be a putative HAR-regulated gene that has undergone remarkable rewiring of its cell type and developmental expression patterns between non-primates and primates and between non-human primates and humans. Finally, we show that PPP1R17 slows neural progenitor cell cycle progression, paralleling the cell cycle length increase seen predominantly in primate and especially human neurodevelopment. Our findings establish HARs as key components in rewiring human-specific neurodevelopmental gene regulatory programs and provide an integrated resource to study enhancer activity of specific HARs.
+journal: Neuron. September 2, 2021. doi.org/10.1016/j.neuron.2021.08.005
+journalurl: https://www.sciencedirect.com/science/article/pii/S0896627321005808
+pubmedurl: https://pubmed.ncbi.nlm.nih.gov/34478631/
+pdfurl: /assets/papers/Girskis_Stergachis_DeGennaro_et_al-2021-Neuron.pdf
+---
