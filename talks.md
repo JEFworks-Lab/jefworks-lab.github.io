@@ -9,8 +9,13 @@ image: /img/talks.jpg
 We are committed to open access. If you know of a talk that we have given but were unable to attend, please [contact us](/contact) directly and we will be happy to send you slides and recordings if available.
 
 # INVITED TALKS AND PRESENTATIONS
+- **Brendan F Miller**, Lyla Atta, Arpan Sahoo, Feiyang Huang, Jean Fan. Reference-free cell-type deconvolution of pixel-resolution spatially resolved transcriptomics data. University of Sydney Statistical Bioinformatics Seminar series. Sept 2021. (Talk)
+- **Jean Fan**. A guide to the academic job search: research intensive STEM positions. Sept 2021. ([Talk](https://www.youtube.com/watch?v=YMSAB4p_rsw))
+- Michael I Miller, **Jean Fan**, Daniel Tward. Multi-scale representations of the molecular and tissue continuum. BICCN morphology working group meeting. Sept 2021. (Talk)
+- **Jean Fan**. Statistical approaches and computational tools for analyzing spatially resolved transcriptomics data. Spatial Omics Seminar Series. June 2021. (Talk) 
+- **Jean Fan**. Modeling and Visualizing RNA Velocity of Single Cells. USC Biostatistics Division. May 2021. ([Talk](https://www.youtube.com/watch?v=xytwHzVnxio))
 - **Jean Fan**. Modeling and Visualizing RNA Velocity of Single Cells. Pfizer Single Cell Working Group. April 2021. (Talk)
-- **Lyla Atta**. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. Broad Single Cell Workshop. April 2021. (Talk)
+- **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. Broad Single Cell Workshop. April 2021. (Talk)
 - **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed 2D embeddings for visualizing cellular trajectories. Women of Whiting Symposium Women in STEM Symposium. April 2021. ([Poster](/assets/posters/20210308_WoW_poster.pdf))
 - **Jean Fan**. Modeling and Visualizing RNA Velocity of Single Cells. Single Cell Biology Keystone eSymposium. March 2021. (Talk)
 - **Jean Fan**. Modeling and Visualizing RNA Velocity of Single Cells. Brigham and Women's Hospital Channing Division of Network Medicine. March 2021. (Talk)
@@ -53,9 +58,22 @@ National Institutes of Health, Single Cell Investigators Meeting, 2014 ([Poster]
 Depth in Mutation Impact Prediction Performance. International Congress of Human
 Genetics/American Society of Human Genetics Conference, 2011 (Poster)
 
+---
+
 # VIDEOS ([Youtube](https://www.youtube.com/channel/UCFrwIRJvLGp631o9Bo_BtYw))
 <div align="center">
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/G7vy2W5mQnA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/WoHjby1a8Cg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br><br>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DChvnCJQ0YU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xytwHzVnxio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UfO_yxcpwRA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br><br>
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MYbfY0Tzc-c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YMSAB4p_rsw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
