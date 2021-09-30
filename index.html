@@ -15,20 +15,14 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
 		<a href="team"><img src="/img/profile.jpg" class="img-responsive img-circle" alt="Jean Fan"></a>
 	    </div>
 	    <div id="my-team">
-		{% for pub in site.team limit:7 %}
-		{% if pub.alumni == null %}
+		{% for pub in site.team %}
 		<div class="col-xs-4 col-md-2">
-		    <a href="team"><img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}"></a>
+		    <a href="team">
+			<img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}" style="padding: 15px 5px">
+		    </a>
 		</div>
-		{% endif %}
 		{% endfor %}
 	    </div>
-	    <script>
-	     var myList = document.querySelector('#my-team');
-	     for (var i = myList.children.length; i >= 0; i--) {
-		 myList.appendChild(myList.children[Math.random() * i | 0]);
-	     }
-	    </script>
 	    
 	</div>
 	<h2>We develop methods for analyzing single-cell spatially resolved transcriptomic sequencing and imaging data.</h2>
