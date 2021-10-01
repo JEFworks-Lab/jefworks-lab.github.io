@@ -9,6 +9,7 @@ image: /img/talks.jpg
 We are committed to open access. If you know of a talk that we have given but were unable to attend, please [contact us](/contact) directly and we will be happy to send you slides and recordings if available.
 
 # INVITED TALKS AND PRESENTATIONS
+- **Jean Fan**. Computational Tools forSpatially Resolved Transcriptomic Data Analysis. Next Generation Genomics 2021. (Talk)
 - **Brendan F Miller**, Lyla Atta, Arpan Sahoo, Feiyang Huang, Jean Fan. Reference-free cell-type deconvolution of pixel-resolution spatially resolved transcriptomics data. University of Sydney Statistical Bioinformatics Seminar series. Sept 2021. (Talk)
 - **Jean Fan**. A guide to the academic job search: research intensive STEM positions. Sept 2021. ([Talk](https://www.youtube.com/watch?v=YMSAB4p_rsw))
 - Michael I Miller, **Jean Fan**, Daniel Tward. Multi-scale representations of the molecular and tissue continuum. BICCN morphology working group meeting. Sept 2021. (Talk)
