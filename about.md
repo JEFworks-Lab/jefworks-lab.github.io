@@ -9,6 +9,12 @@ sectionid: about
 
 (last updated September 2021)
 
+## Bio
+
+Jean Fan is a member of the faculty of Biomedical Engineering in the Center for Computational Biology at Johns Hopkins University. Her research team, the JEFworks lab, is interested in understanding the molecular and spatial-contextual factors shaping cellular identity and heterogeneity, particularly in the context of cancer and how this heterogeneity impacts tumor progression, therapeutic resistance, and ultimately clinical prognosis. She develops new open-source computational software for analyzing single-cell multi-omic and imaging data that can be tailored and applied to diverse cancer types and biological systems. Dr. Fan is also the founder, director, and lead software developer for the non-profit organization CuSTEMized, which provides personalized STEM picture storybooks to encourage young girls to see themselves as scientists.
+
+Dr. Fan was previously an NCI F99/K00 post-doctoral fellow in the lab of Dr. Xiaowei Zhuang at Harvard University where she developed computational methods for analyzing spatially resolved transcriptomics data and applied MERFISH to characterize cellular and subcellular heterogeneity. She received her PhD in Bioinformatics and Integrative Genomics at Harvard under the mentorship of Dr. Peter Kharchenko at the Department of Biomedical Informatics and in close collaboration with Dr. Catherine Wu at the Dana-Farber Cancer Institute where she developed computational methods for analyzing single-cell omics data to better understand the disease pathogenesis and progression of chronic lymphocytic leukemia. The impact of Dr. Fan's work has been recognized by several awards and honors, including the Forbes 30 Under 30, the Nature Research Award for Inspiring Science, and the NSF CAREER Award. 
+
 <!---
 <div class="col-sm-4 pull-right">
 <img src="{{ "/img/profile.jpg" | prepend: site.baseurl }}" class="img-responsive img-circle" alt="Jean Fan">
