@@ -1,0 +1,8 @@
+---
+layout: paper
+title: Multi Scale Diffeomorphic Metric Mapping of Spatial Transcriptomics Datasets
+authors: Michael I. Miller, <b>Jean Fan</b>, Daniel J. Tward
+abstract: Spatially resolved transcriptomic imaging is a family of promising new technologies that can produce a series of images that quantify gene expression at every pixel. These technologies, such as multiplex error-robust fluorescence in situ hybridization (MERFISH) which is the focus of this work, produce data that is inherently multi scale. They describe molecules at nanometer resolution, cell types at micron resolution, and tissue types at millimeter resolution. To harness the potential of these techniques, new mathematical and computational tools are required to quantify similarities and differences between images across experimental conditions. In this work we demonstrate the application of multi scale diffeomorphic metric mapping to MERFISH images. This recently developed framework uses varifold measures on reproducing kernel Hilbert spaces to describe shape and signal across spatial scales, and computes distances between samples in a Riemannian setting. Using experimental data from serial sections of the mouse preoptic hypothalamus, we use this technique to compute optimal nonrigid alignments between neighboring sections. This approach will ultimately be extended to 3D reconstruction and alignment to common coordinates of a brain atlas.
+journal: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops
+journalurl: https://openaccess.thecvf.com/content/CVPR2021W/DiffCVML/html/Miller_Multi_Scale_Diffeomorphic_Metric_Mapping_of_Spatial_Transcriptomics_Datasets_CVPRW_2021_paper.html
+---
