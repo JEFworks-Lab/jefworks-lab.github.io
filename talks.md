@@ -8,7 +8,12 @@ image: /img/talks.jpg
 
 We are committed to open access. If you know of a talk that we have given but were unable to attend, please [contact us](/contact) directly and we will be happy to send you slides and recordings if available.
 
-# INVITED TALKS AND PRESENTATIONS
+# TALKS AND PRESENTATIONS
+
+- **Jean Fan**. Computational Methods for Analyzing Spatial Transcriptomic Data. Worcester Polytechnic Institute Bioinformatics and Computational Biology Research Seminar series. Nov 2021. (talk)
+- **Jean Fan**. Computational Approaches for Spatial Transcriptomic Data Analysis. Cold Spring Harbor Single Cell Analysis. Nov 2021.(talk)
+- **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. Cold Spring Harbor Single Cell Analysis. Nov 2021. ([Lightning Talk](https://youtu.be/JePjSpzI-2o))
+- **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. JHU Symposium on Genomics and Bioinformatics. Oct 2021. (Poster)
 - **Jean Fan**. Computational Tools for Spatially Resolved Transcriptomic Data Analysis. C3 Single Cell Space Force seminar series. SBP Medical Discovery Institute. Oct 2021. ([Talk](https://www.youtube.com/watch?v=quxACqMy6kY))
 - **Jean Fan**. Computational Tools for Spatially Resolved Transcriptomic Data Analysis. Next Generation Genomics. Sept 2021. (Talk)
 - **Brendan F Miller**, Lyla Atta, Arpan Sahoo, Feiyang Huang, Jean Fan. Reference-free cell-type deconvolution of pixel-resolution spatially resolved transcriptomics data. University of Sydney Statistical Bioinformatics Seminar series. Sept 2021. (Talk)
