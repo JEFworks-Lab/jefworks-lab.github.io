@@ -15,7 +15,7 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
 		<a href="team"><img src="/img/profile.jpg" class="img-responsive img-circle" alt="Jean Fan" style="padding: 15px 5px"></a>
 	    </div>
 	    <div id="my-team">
-		{% for pub in site.team %}
+		{% for pub in site.team limit: 10 %}
 		<div class="col-xs-4 col-md-2">
 		    <a href="team">
 			<img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}" style="padding: 15px 5px">
