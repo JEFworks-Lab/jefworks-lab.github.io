@@ -10,6 +10,8 @@ We are committed to open access. If you know of a talk that we have given but we
 
 # TALKS AND PRESENTATIONS
 
+- **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. Learning Meaningful Representations of Life (LMRL). NeurIPS. Dec 2021. ([Talk](https://nips.cc/Conferences/2021/ScheduleMultitrack?event=21870#wse-detail-48759))
+- **Jean Fan**. Computational Methods for Analyzing Spatial Transcriptomic Data. Department of Pathology Grand Round. Weill Cornell Medicine. Dec 2021. (talk)
 - **Jean Fan**. Computational Methods for Analyzing Spatial Transcriptomic Data. Worcester Polytechnic Institute Bioinformatics and Computational Biology Research Seminar series. Nov 2021. (talk)
 - **Jean Fan**. Computational Approaches for Spatial Transcriptomic Data Analysis. Cold Spring Harbor Single Cell Analysis. Nov 2021.(talk)
 - **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. Cold Spring Harbor Single Cell Analysis. Nov 2021. ([Lightning Talk](https://youtu.be/JePjSpzI-2o))
