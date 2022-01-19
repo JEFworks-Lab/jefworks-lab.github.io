@@ -126,8 +126,8 @@ Just for fun, let's take what we learned from [Story-telling with Data Visualiza
 
 ```r
 ## animation
-a <- data.frame(umaps[[2]], com, 'umap (min_dist: 0.01, spread: 1)')
-b <- data.frame(umaps[[7]], com, 'umap (min_dist: 0.75, spread: 0.5)')
+a <- data.frame(umaps[[1]], com, 'umap (min_dist: 0.01, spread: 0.5)')
+b <- data.frame(umaps[[9]], com, 'umap (min_dist: 0.75, spread: 4)')
 colnames(a) <- colnames(b) <- c('x', 'y', 'group', 'type')
 df.trans <- rbind(a, b)
 
