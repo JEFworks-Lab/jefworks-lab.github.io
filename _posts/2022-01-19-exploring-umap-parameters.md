@@ -155,5 +155,6 @@ anim + theme_minimal() +
 A good reminder to always follow up on the hunches a visualization gives you and dig into what are the genes driving these different cell clusters. Ultimately, we should do our best in interpreting these visualizations in the context of the underlying data!
 
 ## Try it out for yourself!
+- What are some other parameters we can toggle? Check out the [original UMAP paper](https://arxiv.org/abs/1802.03426) or [documentation](https://umap-learn.readthedocs.io/en/latest/parameters.html) for ideas.
 - Try out a different dimensionality reduction approach like tSNE
 - What if we vary other things the number of PCs?
