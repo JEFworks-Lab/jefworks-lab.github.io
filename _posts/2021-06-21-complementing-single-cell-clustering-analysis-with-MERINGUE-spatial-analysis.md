@@ -66,12 +66,14 @@ mat <- MERINGUE::normalizeCounts(counts, log = TRUE)
 dim(mat)
 ## pca, take top 30 PCs
 ## note to self: slow, need to find faster pca
-pcs <- irlba::prcomp_irlba(mat, n=30) 
-names(pcs)
+#pcs <- irlba::prcomp_irlba(mat, n=30) 
+## update: RSpectra svds is much faster so switch to that
+pca <- RSpectra::svds(A = t(mat), k=30,
+                      opts = list(center = TRUE, scale = FALSE, maxitr = 2000, tol = 1e-10))
+foo <- as.matrix(t(mat) %*% pca$v[,1:30])
+rownames(foo) <- colnames(mat)
 ## graphic based clustering on PC loadings
 ## subsample down to 10% of cells and infer rest to speed up
-foo <- pcs$rotation
-rownames(foo) <- colnames(mat)
 com <- MUDAN::getApproxComMembership(foo, k=10,
                                      nsubsample = nrow(foo)*0.1,
                                      method=igraph::cluster_louvain)
