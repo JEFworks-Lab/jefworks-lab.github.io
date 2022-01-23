@@ -10,6 +10,7 @@ We are committed to open access. If you know of a talk that we have given but we
 
 # TALKS AND PRESENTATIONS
 
+- **Jean Fan**. Computational Tools For Spatial Transcriptomic Data Analysis. North West Seminar Series of Mathematical Biology and Data Science. University of Manchester. Jan 2022. ([Talk](https://www.youtube.com/watch?v=oleQSesLldQ))
 - **Lyla Atta**, Arpan Sahoo, Jean Fan. VeloViz: RNA-velocity informed embeddings for visualizing cellular trajectories. Learning Meaningful Representations of Life (LMRL). NeurIPS. Dec 2021. ([Talk](https://nips.cc/Conferences/2021/ScheduleMultitrack?event=21870#wse-detail-48759))
 - **Jean Fan**. Computational Methods for Analyzing Spatial Transcriptomic Data. Department of Pathology Grand Round. Weill Cornell Medicine. Dec 2021. (talk)
 - **Jean Fan**. Computational Methods for Analyzing Spatial Transcriptomic Data. Worcester Polytechnic Institute Bioinformatics and Computational Biology Research Seminar series. Nov 2021. (talk)
@@ -79,13 +80,13 @@ Genetics/American Society of Human Genetics Conference, 2011 (Poster)
 
 <br><br>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oleQSesLldQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/quxACqMy6kY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DChvnCJQ0YU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xytwHzVnxio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UfO_yxcpwRA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<br><br>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M6RoGaxXyX8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MYbfY0Tzc-c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YMSAB4p_rsw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
