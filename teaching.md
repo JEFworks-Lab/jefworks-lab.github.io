@@ -6,7 +6,12 @@ sectionid: teaching
 image: /img/teaching.jpg
 ---
 
-# COURSES
+# COURSES AT JHU
+- [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization/) Spring 2022
+
+<hr>
+
+# FORMER TEACHING
 - Teaching Assistant, [Summer Institute in Biomedical Informatics DBMI/HST](https://dbmi.hms.harvard.edu/education/dbmi/hst-summer-institute-biomedical-informatics), Harvard Medical School (June 2017 - Aug. 2017)
 - Lead Instructor, Intro to Computer Programming through Web Development with Social Entrepreneurship, [The Innovation Insitute](http://theinnovationinstitute.org/) (Sept. 2016 - June 2017)
 - Teaching Fellow, [Single Cell Workshop 2016](http://hms-dbmi.github.io/scw/), Harvard Stem Cell Institute (Nov. 2016)
