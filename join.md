@@ -37,8 +37,6 @@ If Prof. Fan does not respond within a week, candidates are highly encouraged to
 
 3. If we think you may be a good fit, we will invite you out for an on-site interview. The on-site interview will likely take up an entire day. It will involve an hour presentation in addition to one-on-one discussions with Prof. Fan as well as others in the department, including faculty, post-docs, as well as graduate students and even undergraduate students. The purpose of this visit is to assess fit. Not every post-doc, no matter how talented, will be the best fit in every lab. You should also take this visit as an opportunity to assess whether you will be able to be happy and productive in this lab for the next few years of your life. 
 
-	*COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, we will reach out and set up a time for Zoom teleconferences that will likely take up an entire day. It will involve an hour presentation in addition to one-on-one discussions with Prof. Fan as well as others in the department, including faculty, post-docs, as well as graduate students and even undergraduate students.
-
 4. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. We will work with you to discuss the terms of your hire, including salary, benefits, professional development opportunities, and anything else you may need to be successful here and through your career trajectory. 
 
 Successful computational post-doc applicants will have:
@@ -67,34 +65,29 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
   <div class="card">
     <div class="card-header" id="headingTwo">
       <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      For current PhD and Masters students
+      For current PhD students
       </button>
     </div>
 
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We accept current PhD and Master's rotation students in Biomedical Engineering at Johns Hopkins University. We also accept current PhD rotation students from other departments at Johns Hopkins University. If you are interested in rotating in this lab, we recommend this guide:
+We accept current PhD rotation students in Biomedical Engineering, Computer Science, and Neuroscience at Johns Hopkins University. We also accept current PhD rotation students from other departments at Johns Hopkins University. If you are interested in rotating in this lab, we recommend this guide:
 
-1. Email Prof. Fan with the subject line “[PhD or Master's] Rotation Application: [your name]”. Include in the body of the email: 
+1. Email Prof. Fan with the subject line “PhD Rotation Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are and why you are interested in this lab. This serves as your ‘cover letter.’
-- A copy of your CV
-- Optional: Contact information (both email and phone number) for 2 to 4 references
+- A copy of your CV  
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again. 
 <br><br>
 2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
 
-   *COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, we will reach out and set up a time for a Zoom teleconference. The Zoom teleconference will take 30 minutes to 1 hour and will allow you to have one-on-one discussions with Prof. Fan. Additional Zoom teleconferences may also be set up with others in the lab. 
-
 3. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
-4. Successful rotation students will be formally hired at the end of their rotation to continue in the lab as graduate students. We will work with you to discuss the terms of your hire, including benefits, professional development opportunities, and anything else you may need to be successful here and through your career trajectory. 
+4. Successful rotation students will be formally hired at the end of their rotation to continue in the lab as graduate students. We will work with you to discuss thesis projects, professional development opportunities, and anything else you may need to be successful here and through your career trajectory. 
 
 Successful applicants will have:
 - a BS or BA in a biological, computational, or statistics-related field
 - Experience with at least one of the following programming languages: R, Python, C++, Javascript
-- Strong interest in applying to the NSF Graduate Research Fellowships Program (GRFP)
-- Some level of undergraduate research experience is preferred
 
 Exceptions are always considered for highly motivated and phenomenal applicants!
 
@@ -106,16 +99,35 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
 <br>
 
   <div class="card">
+    <div class="card-header" id="headingTest">
+      <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTest" aria-expanded="true" aria-controls="collapseTest">
+      For current Master's students
+      </button>
+    </div>
+
+    <div id="collapseTest" class="collapse" aria-labelledby="headingTest" data-parent="#accordionExample">
+      <div class="card-body"><p>
+<div markdown="1">
+We currently do not have the bandwidth to mentor Master's rotation students. 
+
+</div>
+      </p></div>
+    </div>
+  </div>
+
+<br>
+
+  <div class="card">
     <div class="card-header" id="headingThree">
       <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-      For prospective PhD and Masters students
+      For prospective PhD and Master's students
       </button>
     </div>
 
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We are unable to accept prospective graduate students directly. Prospective graduate students should apply formally through [the Johns Hopkins University graduate admissions portal](https://engineering.jhu.edu/graduate-admissions/). Prospective graduate student are encouraged to email Prof. Fan with the subject line “Prospective Graduate RA: [your name]” along with a their CV to help increase the likelihood that the appropriate recruitment commitee members will see your application. 
+We are unable to accept prospective PhD or Master's students directly. Prospective PhD and Master's students should apply formally through [the Johns Hopkins University graduate admissions portal](https://engineering.jhu.edu/graduate-admissions/). Prospective PhD and Master's student are encouraged to email Prof. Fan with the subject line “Prospective PhD student: [your name]” or "Prospective Master's student: [your name]" along with a their CV to help increase the likelihood that the appropriate recruitment commitee members will see your application. 
 </div>
       </p></div>
     </div>
@@ -138,11 +150,8 @@ We welcome current undergraduate students at Johns Hopkins University throughout
 1. Email Prof. Fan with the subject line “Undergrad RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, your major, your intended level of time commitment, and why you are interested in this lab. This serves as your ‘cover letter.’
 - A copy of your resume. This should include your work experience if any, relevant courses with grades, overall GPA, awards, and relevant skills. 
-- Contact information (both email and phone number) for 2 to 4 references (such as other professors at Johns Hopkins University)
 <br><br>
-2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
-
-   *COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, we will reach out and set up a time for a Zoom teleconference. The Zoom teleconference will take 30 minutes to 1 hour and will allow you to have one-on-one discussions with Prof. Fan. Additional Zoom teleconferences may also be set up with others in the lab. 
+2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with. 
 
 3. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
@@ -176,9 +185,9 @@ We welcome local highschool students to volunteer as computational research assi
 - Whether you are interested in the on-campus experience or a telework experience.
 - Your proposed start and end dates (as well as any other factors related to your time commitment)
 - A copy of your resume. This should include your work experience (if any), courses with grades, hobbies or extracurricular activities, and any potentially relevant skills. 
-- Contact information (both email and phone number) for 2 to 4 references (such as teachers), including at least one parent or gaurdian for students under the age of 18.
+- Contact information (email) for 2 to 4 references (such as teachers), including at least one parent or gaurdian for students under the age of 18. <i>(Note no reference letters are needed)</i>
 <br><br>
-2. If we like your application, we will reach out and set up a time for a video conference call. This will take 10 to 30 minutes for those interested in the on-campus experience and 45 minutes to 1 hour for those interested in the telework experience. It will involve discussing items in your resume as well as your educational goals and interests. 
+2. If we like your application, we will reach out and set up a time for a video conference call. This will take 10 to 30 minutes for those interested in the on-campus experience and 45 minutes to 1 hour for those interested in the telework experience. It will involve discussing items in your resume as well as your educational goals and interests. At this stage, Prof. Fan will also reach out directly to your references.
 
 3. If we think you are a good fit and you are interested in the on-campus experience, we will invite you to an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with. If we think you are a good fit and you are interested in the telework experience, we will set up additional video conference calls between you and others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
 
