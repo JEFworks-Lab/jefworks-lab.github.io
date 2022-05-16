@@ -22,4 +22,4 @@ We aim to minimize reimbursements for major travel expenses often associated wit
    - Has a hotel been contracted for this event? (Do you need one?)
    - Estimate travel cost 
    - Any additional comments/questions for the World Travel agent. (list the info for your preferred flights.)  
-3. Save your smaller receipts such as for meals and ground transportation for reimbursement after your trip by emailing BMEPayMeBack <BMEPayMeBack@jhu.edu>. Please organize a shared OneDrive folder with these receipts to help our admins process your reimbursements more efficiently. 
+3. Save your smaller receipts such as for meals and ground transportation for reimbursement after your trip by emailing our admin. Please cc Prof. Fan so she can provide the appropriate budget account numbers. Please organize a shared OneDrive folder with these receipts to help our admins process your reimbursements more efficiently. 
