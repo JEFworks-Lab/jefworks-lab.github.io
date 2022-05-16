@@ -29,3 +29,6 @@ Please follow this checklist in preparing to give your scientific poster present
 10. When you return, please give your poster to Prof. Fan to hang up in the lab!
 
 
+## Additional resources
+
+- [JHU logos](https://brand.jhu.edu/)
