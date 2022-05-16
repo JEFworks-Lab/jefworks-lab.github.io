@@ -17,8 +17,7 @@ sectionid: lab
 - [Attend a scientific conference](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EdVRK3qdKMJJlDL57aoggnwB_QOrsr4a3mjFmRv4zghqFQ?e=JQfMOj)
 - [Give a scientific poster presentation](/assets/docs/give_a_scientific_poster_presentation)
   - [Poster template](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/jfan9_jh_edu/EQW2PwxG9C9DqWmFdkGvJXkBUqTDYxxzQo6m3Kz-QgBxoQ?e=ArjEXo)
-- Give a scientific talk [work-in-progress]
-  - Presentation theme
+- [Give a scientific talk](/assets/docs/give_a_scientific_talk)
 - [Review a paper](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EQw6uaR_5TJAiCSRwQdjhB4BUoEDCJvRJxCWH0u152wLHg?e=cPqKtV)
   - [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
 - [Write a paper](/assets/docs/write_a_paper)

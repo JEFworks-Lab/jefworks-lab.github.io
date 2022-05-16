@@ -20,7 +20,7 @@ Please follow this checklist in preparing to give your scientific poster present
 
 6. Share your poster (as a PDF via OneDrive) with Prof. Fan for final approval.
 
-7. Print your poster on fabric. Please save receipts for reimbursement.
+7. Print your poster on fabric. Please save receipts for reimbursement or coordinate with Prof. Fan to pay using the lab credit card (PCard).
 
 8. Schedule a time to practice presenting your poster to the lab.
 
