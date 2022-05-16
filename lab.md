@@ -15,6 +15,7 @@ sectionid: lab
 # Lab How Tos
 - [Request a letter of recommendation](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EYN1gCrqAC1Ek_0lMkb74tcB5UhWs-HXx5XKGkXR4R4sbg?e=BSUZ1D)
 - [Attend a scientific conference](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EdVRK3qdKMJJlDL57aoggnwB_QOrsr4a3mjFmRv4zghqFQ?e=JQfMOj)
+  - [Booking your travel](/assets/docs/booking_travel)
 - [Give a scientific poster presentation](/assets/docs/give_a_scientific_poster_presentation)
   - [Poster template](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/jfan9_jh_edu/EQW2PwxG9C9DqWmFdkGvJXkBUqTDYxxzQo6m3Kz-QgBxoQ?e=ArjEXo)
 - [Give a scientific talk](/assets/docs/give_a_scientific_talk)
