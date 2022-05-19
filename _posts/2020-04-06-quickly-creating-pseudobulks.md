@@ -138,7 +138,7 @@ getPseudobulk <- function(mat, celltype) {
 ## test runtime
 start_time1 <- Sys.time()
 ## call function
-mat.summary <- getPseudobulk(mat, celltype)
+mat.summary <- getPseudobulk(mat.sparse, celltype)
 end_time1 <- Sys.time()
 
 ## take a look
