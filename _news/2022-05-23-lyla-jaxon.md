@@ -1,6 +1,6 @@
 ---
 layout: news
-title: Lyla gives an invited talk for the virtual forum on Understanding Cells in Context: Spatial Transcriptomics organized by The Jackson Laboratory.
+title: Lyla gives an invited talk for the virtual forum on Understanding Cells in Context - Spatial Transcriptomics organized by The Jackson Laboratory.
 ---
 
 ![](/assets/news/lyla_jaxon.png)
