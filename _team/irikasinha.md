@@ -8,5 +8,6 @@ github: https://github.com/irikas
 twitter: https://twitter.com/irikasinha
 mail: isinha1@jhmi.edu
 profile: /img/irikasinhaprofile.JPG
-alumni: December 7, 2021 -  March 10, 2021
+alumni: December 7, 2021 -  March 10, 2022
+alumni-date: 2022-03-10
 ---
