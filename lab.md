@@ -25,7 +25,7 @@ sectionid: lab
   - [How to write an abstract](/blog/2019/09/24/how-to-write-an-abstract/)
 - [Revise a paper](/assets/docs/revise_a_paper)
   - [A Guide to Responding to Scientific Peer Review](/blog/2020/06/17/responding-to-scientific-peer-review/)
-- Write a grant [work-in-progress]
+- [Write a grant](/assets/docs/write_a_grant)
 
 # Lab Tips
 - [PhD Program Interview And Application Tips And Advice](https://jef.works/blog/2018/02/26/phd-program-interview-and-application-tips-and-advice/)
