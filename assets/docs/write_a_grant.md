@@ -6,9 +6,9 @@ layout: default
 
 Please follow this checklist in preparing to write your own grant under the mentorship of Prof. Fan.
 
-TODO List
+## TODO List
 
-1. Create a OneDrive folder with the [GrantName]_[YourName]_[CurrentYear] and share with Prof. Fan
+1. Create a OneDrive folder with the [CurrentYear]\_[YourName]\_[GrantName] and share with Prof. Fan
 
 2. Add to the Lab Calendar the grant deadline as "Hard Deadline: [GrantName] for [YourName]". Add to the Lab Calendar a set of soft deadlines for yourself as "Soft Deadline X: [GrantName] for [YourName]". Prof. Fan recommends setting soft deadlines for 3 weeks prior to the hard deadline and addition soft deadlines as needed based on your working style (be honest with yourself!) 
 
