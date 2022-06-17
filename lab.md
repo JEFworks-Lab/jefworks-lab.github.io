@@ -15,17 +15,17 @@ sectionid: lab
 # Lab How Tos
 - [Request a letter of recommendation](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EYN1gCrqAC1Ek_0lMkb74tcB5UhWs-HXx5XKGkXR4R4sbg?e=BSUZ1D)
 - [Attend a scientific conference](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EdVRK3qdKMJJlDL57aoggnwB_QOrsr4a3mjFmRv4zghqFQ?e=JQfMOj)
-- [Give a scientific poster presentation](/assets/docs/give_a_scientific_poster_presentation)
-  - [Poster template](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/jfan9_jh_edu/EQW2PwxG9C9DqWmFdkGvJXkBUqTDYxxzQo6m3Kz-QgBxoQ?e=ArjEXo)
-- Give a scientific talk [work-in-progress]
-  - Presentation theme
+  - [Booking your travel](/assets/docs/booking_travel)
+  - [Give a scientific talk](/assets/docs/give_a_scientific_talk)
+  - [Give a scientific poster presentation](/assets/docs/give_a_scientific_poster_presentation)
+    - [Poster template](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/jfan9_jh_edu/EQW2PwxG9C9DqWmFdkGvJXkBUqTDYxxzQo6m3Kz-QgBxoQ?e=ArjEXo)
 - [Review a paper](https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfan9_jh_edu/EQw6uaR_5TJAiCSRwQdjhB4BUoEDCJvRJxCWH0u152wLHg?e=cPqKtV)
   - [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
 - [Write a paper](/assets/docs/write_a_paper)
   - [How to write an abstract](/blog/2019/09/24/how-to-write-an-abstract/)
 - [Revise a paper](/assets/docs/revise_a_paper)
   - [A Guide to Responding to Scientific Peer Review](/blog/2020/06/17/responding-to-scientific-peer-review/)
-- Write a grant [work-in-progress]
+- [Write a grant](/assets/docs/write_a_grant)
 
 # Lab Tips
 - [PhD Program Interview And Application Tips And Advice](https://jef.works/blog/2018/02/26/phd-program-interview-and-application-tips-and-advice/)

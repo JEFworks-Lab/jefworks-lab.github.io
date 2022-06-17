@@ -128,7 +128,7 @@ comparative purposes later.
 getPseudobulk <- function(mat, celltype) {
    mat.summary <- do.call(cbind, lapply(levels(celltype), function(ct) {
      cells <- names(celltype)[celltype==ct]
-     pseudobulk <- rowSums(mat.sparse[, cells])
+     pseudobulk <- rowSums(mat[, cells])
      return(pseudobulk)
    }))
    colnames(mat.summary) <- levels(celltype)
@@ -138,7 +138,7 @@ getPseudobulk <- function(mat, celltype) {
 ## test runtime
 start_time1 <- Sys.time()
 ## call function
-mat.summary <- getPseudobulk(mat, celltype)
+mat.summary <- getPseudobulk(mat.sparse, celltype)
 end_time1 <- Sys.time()
 
 ## take a look

@@ -1,18 +1,29 @@
+{% if page.alumni == null %}
 <div class="row" style="padding: 15px">
+{% endif %}
+    {% if page.alumni == null %}
     <div class="col-sm-6 col-md-4" align="center"> 
+    {% elsif page.alumni != null %}
+    <div class="col-sm-3 col-md-3" align="center"> 
+    {% endif %}
         <img src="{{ page.profile }}" class="img-responsive img-circle" alt="{{ page.name }}">
+    {% if page.alumni == null %}
     </div>
-    <div class="col-sm-6 col-md-8">  
+    <div class="col-sm-6 col-md-8">
+    {% endif %}	
 	<h2 class="header-light regular-pad"> {{ page.name }}</h2>
 	<h4> {{ page.title }} </h4>
+	{% if page.alumni == null %}
 	{{ page.description }}	
 	<br><br>
+	{% endif %}
 	
 	{% if page.alumni != null %}
 	Lab Member: {{ page.alumni }}
 	<br><br>
 	{% endif %}
 	
+	{% if page.alumni == null %}
 	{% if page.home != null %}
 	<a href=" {{ page.home }} " target="_blank"><li class="fa fa-fw fa-2x fa-home"></li></a>
 	{% endif %}
@@ -31,5 +42,8 @@
 	{% if page.mail != null %}
 	<a href="mailto:{{ page.mail }}"><li class="fa fa-fw fa-2x fa-envelope"></li></a>
 	{% endif %}
+	{% endif %}
     </div>
-</div>    
+{% if page.alumni == null %}
+</div>
+{% endif %} 
