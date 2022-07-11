@@ -24,11 +24,11 @@ We are actively looking for team members at all levels. If you are interested in
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We are always looking for highly motivated and independent post-docs interested in furthering their careers in academia as well as developing new skills for transition into industry. If you are interested in a post-doc position, we recommend this guide:
+We are always looking for highly motivated post-docs interested in furthering their careers in academia as well as developing new skills for transition into industry. If you are interested in a post-doc position, we recommend this guide:
 	
 1. Email Prof. Fan with the subject line “Post-doc Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, where you are currently studying / what you are currently working on, and why you are interested in this lab. This serves as your ‘cover letter.’
-- A copy of your CV
+- A copy of your CV (with the filename as [your last name]\_[your first name]\_CV.pdf)
 - Optional: The following filled out [Individual Development Plan (IDP) interview form](/assets/docs/interview_form.docx) 
 - Contact information (both email and phone number) for 2 to 4 references  
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again.
@@ -54,6 +54,8 @@ Successful experimental post-doc applicants will have:
 
 Exceptions are always considered for highly motivated and phenomenal applicants!
 
+<i>Please see our Lab Policy page on [Transparency in Resource Allocation](/assets/docs/transparency) regarding compensation and benefits.</i>
+
 </div>
 
       </p></div>
@@ -76,7 +78,7 @@ We accept current PhD rotation students in Biomedical Engineering, Computer Scie
 
 1. Email Prof. Fan with the subject line “PhD Rotation Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are and why you are interested in this lab. This serves as your ‘cover letter.’
-- A copy of your CV  
+- A copy of your CV (with the filename as [your last name]\_[your first name]\_CV.pdf)
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again. 
 <br><br>
 2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
@@ -108,7 +110,7 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseTest" class="collapse" aria-labelledby="headingTest" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We currently do not have the bandwidth to mentor Master's rotation students. 
+We currently do not have the bandwidth to mentor Master's students. 
 
 </div>
       </p></div>
@@ -127,7 +129,7 @@ We currently do not have the bandwidth to mentor Master's rotation students.
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We are unable to accept prospective PhD or Master's students directly. Prospective PhD and Master's students should apply formally through [the Johns Hopkins University graduate admissions portal](https://engineering.jhu.edu/graduate-admissions/). Prospective PhD and Master's student are encouraged to email Prof. Fan with the subject line “Prospective PhD student: [your name]” or "Prospective Master's student: [your name]" along with a their CV to help increase the likelihood that the appropriate recruitment commitee members will see your application. 
+We are unable to accept prospective PhD or Master's students directly. Prospective PhD and Master's students should apply formally through [the Johns Hopkins University graduate admissions portal](https://engineering.jhu.edu/graduate-admissions/). Prospective PhD and Master's student are encouraged to email Prof. Fan with the subject line “Prospective PhD student: [your name]” or "Prospective Master's student: [your name]" along with a copy of your CV (with the filename as [your last name]\_[your first name]\_CV.pdf) to help increase the likelihood that the appropriate recruitment commitee members will see your application. 
 </div>
       </p></div>
     </div>
@@ -149,7 +151,7 @@ We welcome current undergraduate students at Johns Hopkins University throughout
 
 1. Email Prof. Fan with the subject line “Undergrad RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, your major, your intended level of time commitment, and why you are interested in this lab. This serves as your ‘cover letter.’
-- A copy of your resume. This should include your work experience if any, relevant courses with grades, overall GPA, awards, and relevant skills. 
+- A copy of your CV (with file name as [your last name]_[your first name]_CV.pdf). This should include your work experience if any, relevant courses with grades, overall GPA, awards, extracurriculars/hobbies, and other skills. 
 <br><br>
 2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with. 
 
@@ -184,7 +186,7 @@ We welcome local highschool students to volunteer as computational research assi
 - A few sentences about who you are, where you go to school, and why you are interested in this lab. This serves as your ‘cover letter.’
 - Whether you are interested in the on-campus experience or a telework experience.
 - Your proposed start and end dates (as well as any other factors related to your time commitment)
-- A copy of your resume. This should include your work experience (if any), courses with grades, hobbies or extracurricular activities, and any potentially relevant skills. 
+- A copy of your CV (with file name as [your last name]_[your first name]_CV.pdf). This should include your work experience if any, relevant courses with grades, overall GPA, awards, extracurriculars/hobbies, and other skills. 
 - Contact information (email) for 2 to 4 references (such as teachers), including at least one parent or gaurdian for students under the age of 18. <i>(Note no reference letters are needed)</i>
 <br><br>
 2. If we like your application, we will reach out and set up a time for a video conference call. This will take 10 to 30 minutes for those interested in the on-campus experience and 45 minutes to 1 hour for those interested in the telework experience. It will involve discussing items in your resume as well as your educational goals and interests. At this stage, Prof. Fan will also reach out directly to your references.
