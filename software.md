@@ -20,7 +20,7 @@ sectionid: software
 - [SCDE/PAGODA](http://hms-dbmi.github.io/scde/index.html) - R package for single cell differential expression and pathway and gene set over-dispersion analysis 
 - [brainmapr](http://hms-dbmi.github.io/brainmapr/) - R package to infer spatial location of neuronal subpopulations within the developing mouse brain by integrating single cell RNA-seq data with in situ hybridization data from the Allen Developing Mouse Brain Atlas
 - [LIGER](https://cran.r-project.org/web/packages/liger/) - a light-weight R implementation of the Broad Gene Set Enrichment Analysis algorithm
-- [UBIT2](http://ubit2.com/) - user-friendly bioinformatics webtool for analyzing single cell transcriptomic data
+- [UBIT2](http://pklab.med.harvard.edu/jean/ubit2/index.html) - user-friendly bioinformatics webtool for analyzing single cell transcriptomic data
 
 ---
 
