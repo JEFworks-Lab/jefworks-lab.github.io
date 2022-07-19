@@ -173,7 +173,7 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
   <div class="card">
     <div class="card-header" id="headingFive">
       <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-      For highschool students (telework opportunities available)
+      For highschool students 
       </button>
     </div>
 
