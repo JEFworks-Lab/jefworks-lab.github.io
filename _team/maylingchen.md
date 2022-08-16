@@ -7,7 +7,6 @@ instagram: https://instagram.com/mayling_54/
 github: https://github.com/M8ling 
 linkedin: https://www.linkedin.com/in/mayling-chen-418b4b200
 profile: /img/maylingchen.png
+alumni: June 20, 2022 - August 19, 2022
+alumni-date: 2022-08-19
 ---
-
-Additional info for indexing
-
