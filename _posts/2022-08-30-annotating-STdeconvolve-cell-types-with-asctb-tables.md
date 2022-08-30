@@ -322,12 +322,12 @@ head(asctblist2)
     ## $`trabecula of lymph node\npericyte cell`
     ## [1] "PDGFRA" "PDGFRB"
 
-So now we have list of genes biomarkers or marker gene sets for each
+So now we have list of gene biomarkers or marker gene sets for each
 cell type from the ASCT+B table for the lymph node. And we can use these
 lists of gene biomarkers for gene set enrichment analysis (GSEA) as a
 means to annotated our deconvolved cell types. That is, if the ranking
 of the gene expression profile inferred by `STdeconvolve` for a particular
-deconvolved cell type is significantly enriched for genes biomarkers of
+deconvolved cell type is significantly enriched for gene biomarkers of
 a particular cell type in our ASCT+B table list, we will annotate that
 deconvolved cell type based on the corresponding `AS.3.LABEL` and
 `CT.1.LABEL` name.
@@ -363,10 +363,10 @@ cell types), then we may need to go back to the drawing board and
 re-evaluate our underlying model assumptions and analysis approach.
 
 Here, we do find that our deconvolved cell types’ gene
-expression profiles are significantly enriched for genes biomarkers of
+expression profiles are significantly enriched for gene biomarkers of
 various cell types from the ASCT+B table. For example, deconvolved cell
 types 1's gene expression profile is significantly enriched for
-genes biomarkers of centroblasts.
+gene biomarkers of centroblasts.
 
 We can further visualize the deconvolved proportion of centroblasts
 across pixels overlaid on top of the pathology image to see that pixels
@@ -482,6 +482,6 @@ In this manner, we have taken a data-driven approach to make a first pass at ann
 - There are many public multi-cellular pixel-resolution spatially resolved transcriptomics datasets available. Try out deconvolution analysis and annotation using ASCT+B Tables on your own.
 
 ## Additional resources
-- STdeconvolve tutorials: [https://jef.works/STdeconvolve/](https://jef.works/STdeconvolve/)
-- STdeconvolve on Github: [https://github.com/JEFworks-Lab/STdeconvolve](https://github.com/JEFworks-Lab/STdeconvolve)
-- STdeconvolve on Bioconductor: [https://bioconductor.org/packages/devel/bioc/html/STdeconvolve.html](https://bioconductor.org/packages/devel/bioc/html/STdeconvolve.html)
+- `STdeconvolve` tutorials: [https://jef.works/STdeconvolve/](https://jef.works/STdeconvolve/)
+- `STdeconvolve` on Github: [https://github.com/JEFworks-Lab/STdeconvolve](https://github.com/JEFworks-Lab/STdeconvolve)
+- `STdeconvolve` on Bioconductor: [https://bioconductor.org/packages/devel/bioc/html/STdeconvolve.html](https://bioconductor.org/packages/devel/bioc/html/STdeconvolve.html)
