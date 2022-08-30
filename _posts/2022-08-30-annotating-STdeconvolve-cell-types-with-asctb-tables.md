@@ -21,9 +21,8 @@ A common question I’ve encountered from students is: “without an
 annotated reference single-cell RNA-seq dataset, how do I annotate the
 deconvolved cell types?” While I generally recommend consulting a
 biological domain expert (or referencing primary literature 
-to become a biological domain expert yourself!) for annotating 
-cell-types (both for both deconvolution as well as for clustering analysis), 
-in this blog post, I will demonstrate how we can take a data-driven approach 
+towards become a biological domain expert yourself!) for annotating 
+cell-types, in this blog post, I will demonstrate how we can take a data-driven approach 
 using biological domain expert curated genesets from 
 [HuBMAP's ASCT+B Tables](https://www.nature.com/articles/s41556-021-00788-6) as a first pass.
 
