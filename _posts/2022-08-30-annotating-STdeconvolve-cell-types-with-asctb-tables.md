@@ -1,4 +1,9 @@
-# Annotating STdeconvolve Cell-Types with ASCT+B Tables
+---
+title: "Annotating STdeconvolve Cell-Types with ASCT+B Tables"
+layout: post
+comments: false
+tags: [R, tutorial, spatial transcriptomics]
+---
 
 ## Introduction
 
