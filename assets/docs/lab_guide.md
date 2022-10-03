@@ -4,21 +4,30 @@ layout: default
 
 # JEFworks Lab Guide
 
-This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified August 2020.
+This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified Sept 2022.
 
 ---
 
-# COVID-19 Preparation 
+# Lab policy regarding COVID-19 
 
-In order to accommodate the developing public health crisis and better ensure the health and safety of all lab members, a number of precautionary measures will be taken until further notice.
+(as of Sept 2022)
 
-First, remote working options will be available to all lab members. Lab members working remotely will still be expected to participate in regular one-on-one and lab meetings via Zoom teleconference. 
+Dear lab,
 
-Second, lab members who need to access on-campus facilities will be provided with proper PPE (reusable masks, hand sanitizer, disinfectant wipes/sprays) and/or have expenses associated with acquiring such proper PPE be covered in full. Lab members will be asked to coordinate with each other via the Lab Calendar to minimize lab density and ensure adherence to social distancing guidelines. Please see the Lab Onboarding documents for more information. 
+I wanted to clarify our lab's policy regarding COVID-19 since it appears to have deviated from the university's policies and may be causing some confusion. 
 
-Third, the lab will be actively using Slack chats to facilitate interactions and communication. Please see the Lab Onboarding documents for more information. 
+First and foremost, I agree with the official university statement in that "We are pleased to have returned to substantially more on-campus activities this fall and appreciate everything our students, staff, and faculty are doing to avoid catching or spreading COVID-19, which is still circulating in our communities. Among our tools, vaccination and boosting have proved to be successful in reducing the severity of symptoms, and we encourage you to get the bivalent booster recently authorized by the U.S. Food and Drug Administration and recommended by the Centers for Disease Control and Prevention if you are eligible." I would like to go one step further to note that among our tools, masking has proved to be successful in limiting the spread of COVID-19. 
 
-Lastly, my role as your mentor and advisor will be to participate in discussions with the broader JHU leadership and communicate new developments and emerging policies to you promptly. We anticipate that a full re-opening of the lab will be taken in a stage-wise and phased format. 
+In general, I hope that we have fostered a lab environment where we care about not only the education and development but also health and welfare of fellow lab members. I certainly care about the health and welfare of you all and take it as my responsibility to minimize the risk factors that may contribute to you getting sick (be it with COVID, burn-out, or etc) while pursuing your research and educational goals. Particularly as I am being asked to engage in more travel and dinner events, I would feel quite irresponsible if I create an environment where I unwittingly transmit any sickness to you all. 
+
+As such, our lab will continue to adhere to indoor masking during formal lab events (lab meetings, one-on-ones, etc). Masks will be provided to lab members who do not have access.
+
+If you have any thoughts, questions, or concerns regarding this lab policy, I'd be happy to find a time to discuss further.
+
+Thanks in advance to you all.
+
+Sincerely,
+Prof. Fan
 
 ---
 
