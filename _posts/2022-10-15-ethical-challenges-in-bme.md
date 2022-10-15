@@ -5,15 +5,15 @@ comments: true
 tags: [workshop, notes, journal club]
 ---
 
-I recently contributed to the design of a new course for first year biomedical engineering PhD students at Johns Hopkins on Ethical Challenges in Biomedical Engineering and taught the first module on Data Collection, Analysis, and Interpretation, focusing on a particular case study involving women in the biomedical sciences. Below is a reflection on my motivations behind the course, the materials for my module of the course, and my hopes for its impact.
+I recently contributed to the design of a new course for first year biomedical engineering PhD students at Johns Hopkins on Ethical Challenges in Biomedical Engineering. I also taught the first module on Data Collection, Analysis, and Interpretation, focusing on a particular case study involving women in the biomedical sciences. Below is a reflection on my motivations behind the course, the materials for my module of the course, and my hopes for the course's impact.
 
 ---
 
 ## Course background and motivations
 
-The Ethical Challenge in Biomedical Engineering course is modeled after the discussions around ethical challenges in biomedical data analysis I would hold in my own lab meetings. I started holding these discussions in my lab meetings after noticing how our current course offerings in science, technology, engineering, and math (STEM) education was preparing our students with the hard quantitative skills to address challenging biomedical engineering problems but appeared to be lacking in terms of preparing our students with the intellectual framework for evaluating whether a problem is worth tackling in the first place and the ethical and moral considerations in the choices we must make in tackling these problems. 
+The Ethical Challenge in Biomedical Engineering course is a semester-long course forst first year biomedical engineering PhD students. It is modeled after the discussions around ethical challenges in biomedical data analysis I would hold in my own lab meetings. I started holding these discussions in my lab meetings after noticing how our current course offerings in science, technology, engineering, and math (STEM) education was preparing our students with the hard quantitative skills to address challenging biomedical engineering problems but appeared to be lacking in terms of preparing our students with the intellectual framework for evaluating whether a problem is worth tackling in the first place and the ethical and moral considerations in the choices we must make in tackling these problems. Therefore, my goal for these discussions is to provide students with the space to begin exploring ethical gray areas that impact biomedical engineering through guided discussion and case studies.
 
-Therefore, my goal for both these discussions and this subsequent course was to provide students with the space to begin exploring ethical gray areas that impact biomedical engineering through guided discussion and case studies. A side goal for the course was for students to get acquainted with faculty, make new friends with each other, and eat pizza together on a Monday evening. 
+As faculty, we hold the power and responsibility to teach in the context of our labs as well as the classroom. So when the BME department was looking to offer a new class for first years, I pitched to expand these discussions beyond my lab and into the bigger classroom. A side goal for the course in the classroom setting was for students to get acquainted with faculty, make new friends with each other, and eat pizza together on a Monday evening. 
 
 ---
 
@@ -81,7 +81,7 @@ What communities do they serve?</blockquote>
 <div align="center">
 <img src="/assets/blog/ethical-challenges-questions.png" width="50%">
 <br>
-<sub>I made this cute quote poster using <a href="https://www.canva.com" target="_blank">Canva</a></sub>
+<sub>(made using <a href="https://www.canva.com" target="_blank">Canva</a>)</sub>
 </div>
 
 ---
