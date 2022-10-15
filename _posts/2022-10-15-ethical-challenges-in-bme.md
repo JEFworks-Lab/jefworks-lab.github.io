@@ -78,9 +78,16 @@ In general, my hope is that through these discussions, these first year PhD stud
 For whom are we producing this knowledge?<br>
 What communities do they serve?</blockquote>
 
+<div align="center">
+<img src="/assets/blog/ethical-challenges-questions.png" width="50%">
+<br>
+<sub>I made this cute quote poster using <a href="https://www.canva.com" target="_blank">Canva</a></sub>
+</div>
+
 ---
 
 ## Try it out for yourself!
 
 - Discuss these questions in your own class or lab!
 - What ethical gray areas impact your field or subfield of study?
+
