@@ -2,7 +2,7 @@
 title: Ethical Challenges in Biomedical Engineering - Data Collection, Analysis, and Interpretation
 layout: post
 comments: true
-tags: [workshop, notes, journal club]
+tags: [class, journal club]
 ---
 
 I recently contributed to the design of a new course for first year biomedical engineering PhD students at Johns Hopkins on Ethical Challenges in Biomedical Engineering. I also taught the first module on Data Collection, Analysis, and Interpretation, focusing on a particular case study involving women in the biomedical sciences. Below is a reflection on my motivations behind the course, the materials for my module of the course, and my hopes for the course's impact.
@@ -11,9 +11,9 @@ I recently contributed to the design of a new course for first year biomedical e
 
 ## Course background and motivations
 
-The Ethical Challenge in Biomedical Engineering course is a semester-long course forst first year biomedical engineering PhD students. It is modeled after the discussions around ethical challenges in biomedical data analysis I would hold in my own lab meetings. I started holding these discussions in my lab meetings after noticing how our current course offerings in science, technology, engineering, and math (STEM) education was preparing our students with the hard quantitative skills to address challenging biomedical engineering problems but appeared to be lacking in terms of preparing our students with the intellectual framework for evaluating whether a problem is worth tackling in the first place and the ethical and moral considerations in the choices we must make in tackling these problems. Therefore, my goal for these discussions is to provide students with the space to begin exploring ethical gray areas that impact biomedical engineering through guided discussion and case studies.
+The Ethical Challenge in Biomedical Engineering course is a semester-long course for first year biomedical engineering PhD students. It is modeled after the discussions around ethical challenges in biomedical data analysis I would hold in my own lab meetings. I started holding these discussions in my lab meetings after noticing how our current course offerings in science, technology, engineering, and math (STEM) education was preparing our students with the hard quantitative skills to address challenging biomedical engineering problems but appeared to be lacking in terms of preparing our students with the intellectual framework for evaluating whether a problem is worth tackling in the first place and the ethical and moral considerations in the choices we must make in tackling these problems. Therefore, my goal for these discussions is to provide students with the space to begin exploring ethical gray areas that impact biomedical engineering through guided discussion and case studies.
 
-As faculty, [we hold the power and responsibility to teach in the context of our labs as well as the classroom](https://jean.fan/2022/06/16/academias-value-proposition.html). So when the BME department was looking to offer a new class for first years, I pitched to expand these discussions of ethical gray areas beyond my lab and into the bigger classroom. A side goal for the course in the classroom setting was for first year students to get acquainted with faculty, make new friends with each other, and eat pizza together on a Monday evening. 
+As faculty, [we hold the power and responsibility to teach in the context of our labs as well as the classroom](https://jean.fan/2022/06/16/academias-value-proposition.html). So when the BME department was looking to offer a new class for first years, I pitched to expand these discussions of ethical gray areas beyond my lab and into the bigger classroom. With additional discussions and organization led by [Rachel Karchin](https://www.bme.jhu.edu/people/faculty/rachel-karchin/), we streamlined the course structure and established additional side goals for the course in the classroom setting for first year students to get acquainted with faculty, make new friends with each other, and eat pizza together on a Monday evening. 
 
 ---
 
@@ -73,10 +73,7 @@ With regards in particular to “the association between early career informal m
 
 ## Hopes for impact
 
-In general, my hope is that through these discussions, these first year PhD students (and all students pursuing academia) will come to appreciate that they are becoming producers of knowledge in academic spaces. The knowledge produced in academic spaces have and continue to be used in a myriad of ways. So as these producers of knowledge, in the words of [Prof. Chandra Talpade Mohanty](https://thecollege.syr.edu/people/faculty/mohanty-chandra-talpade/), we must ask ourselves:
-<blockquote>Why are we producing this knowledge?<br>
-For whom are we producing this knowledge?<br>
-What communities do they serve?</blockquote>
+In general, my hope is that through these discussions, these first year PhD students (and all students pursuing academia) will come to appreciate that they are becoming producers of knowledge in academic spaces. The knowledge produced in academic spaces have and continue to be used in a myriad of ways. So as these producers of knowledge, in the words of [Prof. Chandra Talpade Mohanty](https://thecollege.syr.edu/people/faculty/mohanty-chandra-talpade/), we must ask ourselves: Why are we producing this knowledge? For whom are we producing this knowledge? What communities do they serve?
 
 <div align="center">
 <img src="/assets/blog/ethical-challenges-questions.png" width="50%">
@@ -88,6 +85,6 @@ What communities do they serve?</blockquote>
 
 ## Try it out for yourself!
 
-- Discuss these questions in your own class or lab!
 - What ethical gray areas impact your field or subfield of study?
+- Discuss these questions in your own class or lab!
 
