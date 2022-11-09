@@ -19,8 +19,9 @@ animate a 3D brain using the `rgl` package in `R`.
 
 ## Getting the data
 
-The Allen Brain Atlas offers downloads of their 3D structural
-annotations. Let’s get the one corresponding to the adult mouse brain at
+The Allen Brain Atlas offers downloads of 3D annotations of brain structure
+registered to their  Mouse Common Coordinate Framework (CCF). 
+Let’s get the brain structure annotations corresponding to the adult mouse brain CCF at
 50um resolution.
 
 ``` r
@@ -81,8 +82,8 @@ head(struc)
     ## [1]   0 959  97 735 836 873
 
 The Allen Brain Atlas also has a mapping of all these structure IDs to
-acronyms as well as colors used in their [interactive atlas viewer](https://atlas.brain-map.org/atlas?atlas=602630314).
-Let’s parse through to get the information in a table format.
+acronyms as well as colors used in their [interactive atlas viewer](https://atlas.brain-map.org/atlas?atlas=602630314)
+and other info. We cam parse through to get the acronym and color information corresponding to structure IDs info in a table format.
 
 ``` r
 url <- 'http://api.brain-map.org/api/v2/structure_graph_download/1.json'
@@ -237,9 +238,15 @@ movie3d(spin3d(axis = c(0, 1, 0)), duration = 15, dir = getwd())
 
 <div align="center"><img src="/assets/blog/movie_slice.gif"></div>
 
-# Try it out for yourself
+## Try it out for yourself
 
 -   Visualize a different brain structure.
 -   Visualize a different coronal slice.
 -   What if we use a higher resolution structural annotation to begin
     with?
+-   How do we integrate with meshes instead of discrete points?
+
+## Additional resources
+
+-  [https://github.com/alleninstitute/cocoframer](https://github.com/alleninstitute/cocoframer)
+-  [https://github.com/natverse/mouselightr](https://github.com/natverse/mouselightr)
