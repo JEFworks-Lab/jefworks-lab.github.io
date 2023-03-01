@@ -7,7 +7,8 @@ image: /img/teaching.jpg
 ---
 
 # COURSES AT JHU
-- [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization/) Spring 2022
+- [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2023/) Spring 2022
+- [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2022/) Spring 2022
 
 <hr>
 
