@@ -8,6 +8,7 @@ image: /img/teaching.jpg
 
 # COURSES AT JHU
 - [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2023/) Spring 2023
+- [EN.580.710 Ethical Challenges in Biomedical Engineering](https://jef.works/blog/2022/10/15/ethical-challenges-in-bme/) (guest lecture) Fall 2022
 - [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2022/) Spring 2022
 
 <hr>
