@@ -4,3 +4,5 @@ title: Rafael dos Santos Peixoto successfully completes his rotations and will j
 ---
 
 Check out our <a href="/team">team page</a> for more details.
+
+![](/assets/news/lab_photo_IMG_20230217_160758262.jpg)
