@@ -74,7 +74,7 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We accept current PhD rotation students in Biomedical Engineering, Computer Science, and Neuroscience at Johns Hopkins University. We also accept current PhD rotation students from other departments at Johns Hopkins University. If you are interested in rotating in this lab, we recommend this guide:
+We accept current PhD rotation students in Biomedical Engineering, Computer Science, and Neuroscience at Johns Hopkins University. We may also accept current PhD rotation students from other departments at Johns Hopkins University. We are generally unable to accept PhD students directly without a rotation (a brief period of around 2 to 3 months in which a student works full time on a small project in a lab to get a sense for the lab’s working environment and research direction). If you are interested in rotating in this lab, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “PhD Rotation Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are and why you are interested in this lab. This serves as your ‘cover letter.’
@@ -147,7 +147,7 @@ We are unable to accept prospective PhD or Master's students directly. Prospecti
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, or volunteer research experiences. If you are interested in applying as an undergraduate research assistant, we recommend this guide:
+We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, volunteer part-time research experiences during the school year, or compensated full-time research experiences during the summer with compensation rates established by the university. If you are interested in applying as an undergraduate research assistant, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Undergrad RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, your major, your intended level of time commitment, and why you are interested in this lab. This serves as your ‘cover letter.’
@@ -163,6 +163,7 @@ Successful applicants will have:
 - Strong interest in applying to the Provost’s Undergraduate Research Award for Freshmen, Sophomores, and Juniors, and the NSF Graduate Research Fellowships Program (GRFP) for Seniors.
 
 Exceptions are always considered for highly motivated and phenomenal applicants!
+
 </div>
       </p></div>
     </div>
