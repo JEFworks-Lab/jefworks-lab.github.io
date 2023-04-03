@@ -10,17 +10,19 @@ This is a living document and subject to modifications. Please feel free to [for
 
 # Lab policy regarding COVID-19 
 
-(as of Sept 2022)
+(as of May 2023)
 
 Dear lab,
 
-I wanted to clarify our lab's policy regarding COVID-19 since it appears to have deviated from the university's policies and may be causing some confusion. 
+I wanted to clarify our lab’s policy regarding COVID-19 since it appears to have deviated from the university’s policies and may be causing some confusion.
 
 First and foremost, I agree with the official university statement in that "We are pleased to have returned to substantially more on-campus activities this fall and appreciate everything our students, staff, and faculty are doing to avoid catching or spreading COVID-19, which is still circulating in our communities. Among our tools, vaccination and boosting have proved to be successful in reducing the severity of symptoms, and we encourage you to get the bivalent booster recently authorized by the U.S. Food and Drug Administration and recommended by the Centers for Disease Control and Prevention if you are eligible." I would like to go one step further to note that among our tools, masking has proved to be successful in limiting the spread of COVID-19. 
 
-In general, I hope that we have fostered a lab environment where we care about not only the education and development but also health and welfare of fellow lab members. I certainly care about the health and welfare of you all and take it as my responsibility to minimize the risk factors that may contribute to you getting sick (be it with COVID, burn-out, or etc) while pursuing your research and educational goals. Particularly as I am being asked to engage in more travel and dinner events, I would feel quite irresponsible if I create an environment where I unwittingly transmit any sickness to you all. 
+In general, I hope that we have fostered a lab environment where we care about not only the education and development but also health and welfare of fellow lab members. I certainly care about the health and welfare of you all and take it as my responsibility to minimize the risk factors that may contribute to you getting sick (be it with COVID, burn-out, or etc) while pursuing your research and educational goals.
 
-As such, our lab will continue to adhere to indoor masking during formal lab events (lab meetings, one-on-ones, etc). Masks will be provided to lab members who do not have access.
+We will continue to adhere to indoor masking during group lab meetings where there is a large number of lab members. However, we will be moving to masking optional for students (and visitors) for one-on-one meetings. In general, the ventilation in the Wyman building appears quite good. With the weather improving, we may also open windows to improve air circulation and even have lab meetings outside one of these days when the weather is nicer.
+
+We will continue to support flexible working hours and hybrid meetings to accommodate people who are sick. Sarah has also purchased more masks, which will be made available.
 
 If you have any thoughts, questions, or concerns regarding this lab policy, I'd be happy to find a time to discuss further.
 
