@@ -2,6 +2,7 @@
 layout: paper
 title: A Universal Method for Crossing Molecular and Atlas Modalities using Simplex-Based Image Varifolds and Quadratic Programming
 authors: Kaitlin M. Stouffer, Alain Trouvé, Laurent Younes, Michael Kunst, Lydia Ng, Hongkui Zeng, *Manjari Anant*, *Jean Fan*, Yongsoo Kim, Michael I. Miller
+abstract: This paper explicates a solution to the problem of building correspondences between molecular-scale transcriptomics and tissue-scale atlases. The central model represents spatial transcriptomics as generalized functions encoding molecular position and high-dimensional transcriptomic-based (gene, cell type) identity. We map onto low-dimensional atlas ontologies by modeling each atlas compartment as a homogeneous random field with unknown transcriptomic feature distribution. The algorithm presented solves simultaneously for the minimizing geodesic diffeomorphism of coordinates and latent atlas transcriptomic feature fractions by alternating LDDMM optimization for coordinate transformations and quadratic programming for the latent transcriptomic variables. We demonstrate the universality of the algorithm in mapping tissue atlases to gene-based and cell-based MERFISH datasets as well as to other tissue scale atlases. The joint estimation of diffeomorphisms and latent feature distributions allows integration of diverse molecular and cellular datasets into a single coordinate system and creates an avenue of comparison amongst atlas ontologies for continued future development.
 journal: bioRxiv
-journalurl: https://www.biorxiv.org/content/10.1101/2020.12.07.414060v1
+journalurl: https://www.biorxiv.org/content/10.1101/2023.03.28.534622v1
 ---
