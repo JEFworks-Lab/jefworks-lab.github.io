@@ -8,7 +8,7 @@ github: https://www.github.com/bmill3r
 twitter: https://www.twitter.com/bf_miller_
 linkedin: https://www.linkedin.com/in/brendan-f-miller
 profile: /img/brendanprofile.jpg
-alumni: July 15, 2022 - April 14, 2023
+alumni: July 15, 2020 - April 14, 2023
 alumni-date: 2023-04-14
 ---
 
