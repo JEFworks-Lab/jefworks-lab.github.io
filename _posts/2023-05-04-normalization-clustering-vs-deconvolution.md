@@ -191,3 +191,7 @@ vizAllTopics(deconProp2, spotpos)
 cor(pct, deconProp2)
 cor(deconProp, deconProp2)
 ```
+
+## Other related posts
+- [Deconvolution vs Clustering Analysis: An exploration via simulation](https://jef.works/blog/2022/07/11/deconvolution-vs-clustering-2/)
+- [Deconvolution vs Clustering Analysis for Multi-cellular Pixel-Resolution Spatially Resolved Transcriptomics Data](https://jef.works/blog/2022/05/03/deconvolution-vs-clustering/)
