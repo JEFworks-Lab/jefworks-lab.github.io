@@ -10,6 +10,7 @@ sectionid: software
 ---
 
 # BIOINFORMATICS SOFTWARE
+- [STalign](https://jef.works/STalign) - Python tool for alignment of spatial transcriptomics (ST) data using diffeomorphic metric mapping
 - [STdeconvolve](https://jef.works/STdeconvolve/) - R package for reference-free cell-type deconvolution of multi-cellular spatially resolved transcriptomics data
 - [MERINGUE](https://jef.works/MERINGUE/) - R package for characterizing spatial gene expression heterogeneity in spatially resolved single-cell transcriptomics data with non-uniform cellular densities
 - [VeloViz](https://jef.works/veloviz/) - R package for creating RNA-velocity-informed 2D embeddings for single cell transcriptomics data
@@ -25,5 +26,5 @@ sectionid: software
 ---
 
 # FUN STUFF
-- [aRt with code](https://jean.fan/art-with-code/) - generate custom art using R
+- [aRt with code](https://jefworks.github.io/art-with-code/) - generate custom art using R
 - [cuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
