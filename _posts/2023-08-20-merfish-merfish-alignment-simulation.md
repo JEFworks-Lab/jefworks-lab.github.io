@@ -117,7 +117,7 @@ ax.legend(markerscale = 10)
 
 Now let's say we have a second ST dataset of the same tissue. In this case, we will just use the original cell coordinates for this second ST dataset. 
 
-This represents, in my opinion, a somewhat overly idealistic scenario since, in reality, two real ST datasets will never have perfect single-cell resolution correspondence. This is because real ST datasets can come from different individuals/animals with their own biological variation. Real ST datasets can also come from serial sections of the same tissue block from the same individual/animal but even in that case, there is still generally not a perfect one-to-one match for every cell at every location across the tissue (particularly for mamallian tissues). But let's try it anyway. 
+<b>This represents, in my opinion, a somewhat overly idealistic scenario since, in reality, two real ST datasets will never have perfect single-cell resolution correspondence. This is because real ST datasets can come from different individuals/animals with their own biological variation. Real ST datasets can also come from serial sections of the same tissue block from the same individual/animal but even in that case, there is still generally not a perfect one-to-one match for every cell at every location across the tissue (particularly for mamallian tissues).</b> But let's try it anyway. 
 
 
 ```python
@@ -285,7 +285,7 @@ I am running this on my Macbook laptop using the CPU. This alignment would be mu
 
 
 ```python
-# get necessary assets/stalign_ variables
+# get necessary output variables
 A = out[0]
 v = out[1]
 xv = out[2]
