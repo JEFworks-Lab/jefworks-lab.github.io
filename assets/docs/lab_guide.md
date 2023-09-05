@@ -4,7 +4,7 @@ layout: default
 
 # JEFworks Lab Guide
 
-This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified Sept 2022.
+This is a living document and subject to modifications. Please feel free to [fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/lab_code_of_conduct.md) to introduce new policies or modify old ones. This document was last modified Sept 2023.
 
 ---
 
@@ -57,10 +57,10 @@ Permission for holiday or other notable absenses is rarely required, but please 
 For all communication methods, please respect people’s working patterns, and remember that other people will have different priorities and focus. Please give consideration to the timing of your correspondence with respect to what the recipient needs to do. No lab members are required nor should feel obliged to reply to messages outside of their typical work hours. Seeking out in-person discussions is strongly encouraged for urgent matters requiring immediate attention.
 
 ## Group meetings
-Weekly lab meetings will be held on either at the beginning or at the end of the work day with the specific day of the week to be determined to best accomodate the schedules of the majority of current lab members. We expect all lab members to attend and contribute to group meeting and journal club discussions if they are not otherwise engaged in research business (e.g. at conference, attending training or a lecture, or using a core facility). 
+Weekly lab meetings will be held at a time to be determined to best accomodate the schedules of the majority of current lab members based on class schedules. We expect all lab members to attend and contribute to group meeting and journal club discussions if they are not otherwise engaged in research business (e.g. at conference, attending training or a lecture, or using a core facility). 
 
 ## One-on-one meetings
-Weekly one-on-one meetings will be held on Fridays (Interaction days) with specific timing to be established for each member when they join the lab and modified as needed. Lab members are expected to be proactive in requesting additional one-on-one beyond typically scheduled meetings as needed by marking on the group scheduling calendar. 
+Weekly one-on-one meetings will be held with specific timing to be established for each member when they join the lab and modified as needed. Lab members are expected to be proactive in requesting additional one-on-one beyond typically scheduled meetings as needed by discussing with Prof. Fan and marking on the group scheduling calendar. 
 
 We strive to respect the ability of fellow lab members to engage in distraction-free deep thinking and long periods of uninterrupted work. 
 
@@ -74,7 +74,7 @@ Lab members are encouraged to seek out and identify biological labs and clinical
 
 We expect all data, code, and relevant lab materials to be shared upon publication and to the [Open Access](http://bit.ly/OpenGlossaryEditing) standard to the best of our abilities. 
 
-Unpublished lab materials, including but not limited to software, data, manuscript drafts, and grants can be presented and shared with others outside the lab as along as prior approval is given by Prof. Fan and <i>all collaborators</i> on the project. 
+Unpublished lab materials, including but not limited to software, data, manuscript drafts, and grants can be presented and shared with others outside the lab with approval from Prof. Fan and other corresponding author collaborators (if any) on the project. 
 
 ---
 

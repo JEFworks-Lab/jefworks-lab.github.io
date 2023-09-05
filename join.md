@@ -147,7 +147,7 @@ We are unable to accept prospective PhD or Master's students directly. Prospecti
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, volunteer part-time research experiences during the school year, or compensated full-time research experiences during the summer with compensation rates established by the university. If you are interested in applying as an undergraduate research assistant, we recommend this guide:
+We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, the SMILE work-study program, or volunteer part-time research experiences during the school year, or compensated full-time research experiences during the summer with compensation rates established by the university. If you are interested in applying as an undergraduate research assistant, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Undergrad RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, your major, your intended level of time commitment, and why you are interested in this lab. This serves as your ‘cover letter.’
@@ -193,8 +193,6 @@ We welcome local highschool students as computational research interns over summ
 2. If we like your application, we will reach out and set up a time for a video conference call. This will take 45 minutes to 1 hour and involve discussing items in your resume as well as your educational goals and interests. At this stage, Prof. Fan will also reach out directly to your references.
 
 3. If we think you are a good fit, we will invite you to an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with. If we think you are a good fit and you are interested in the telework experience, we will set up additional video conference calls between you and others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
-
-   *COVID-19 UPDATE*: Due to concerns for health and safety, we will be suspending on-site visits until further notice. Alternatively, additional Zoom teleconferences will be set up with others in the lab to give you a better sense of who you may be working with.  
 
 4. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
