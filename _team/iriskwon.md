@@ -6,6 +6,8 @@ description: I’m an undergraduate student at Johns Hopkins University from Seo
 github: https://github.com/kwoniris
 linkedin: https://www.linkedin.com/in/iriskwon/
 profile: /img/irisprofile.jpg
+alumni: May 22, 2023 - July 21, 2023
+alumni-date: 2023-07-21
 ---
 
 Additional info for indexing
