@@ -7,7 +7,7 @@ sectionid: about
 
 # JEAN FAN
 
-(last updated September 2021)
+(last updated September 2023)
 
 ## Bio
 
@@ -31,12 +31,13 @@ I am currently an NCI F99/K00 post-doctoral fellow in the lab of [Dr. Xiaowei Zh
 - Bachelors of Science in [Biomedical Engineering](http://www.bme.jhu.edu/) and [Applied Math](http://engineering.jhu.edu/ams/), Johns Hopkins University, Whiting School of Engineering (Aug 2009 - May 2013)
 - High School Diploma, [Magnet Program, Montgomery Blair High School](https://mbhs.edu/departments/magnet/) (Aug 2005 - May 2009)
 
-## GRANTS (PI)
-- NIH NIGMS MIRA R35GM142889, Computational methods for delineating subcellular and cellular spatial transcriptional heterogeneity along developmental trajectories. (September 2021 - Present)
-- [NSF CAREER #2047611, Statistical approaches and computational tools for analyzing spatially-resolved single-cell transcriptomics data](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2047611) (July 2021 - Present)
-- [NIH NCI F99/K00 F99CA222750, Statistical Methods for Characterizing Tumor Heterogeneity at the Single Cell Level](https://grants.uberresearch.com/100000054/F99CA222750/Statistical-Methods-for-Characterizing-Tumor-Heterogeneity-at-the-Single-Cell-Level) (July 2017 - June 2020)
-- [NIH NCI F31 F31CA206236, Computational Analysis of Subclonal Evolution in Chronic Lymphocytic Leukemia](https://grants.uberresearch.com/100000054/F31CA206236/Computational-Analysis-of-Subclonal-Evolution-in-Chronic-Lymphocytic-Leukemia) (Sept 2016 - July 2017)
-- NSF GRFP DGE144152 (June 2013 - Sept 2016)
+## GRANTS 
+- NIH Human BioMolecular Atlas Program (HuBMAP) Integration, Visualization & Engagement (HIVE) Collaboratory OT2OD033760 (Co-I, PI: Rahul Satija), Comprehensive reference atlas construction, geolocation, and data integration. (September 2022 - Present) 
+- NIH NIGMS MIRA R35GM142889 (PI), Computational methods for delineating subcellular and cellular spatial transcriptional heterogeneity along developmental trajectories. (September 2021 - Present)
+- [NSF CAREER #2047611 (PI), Statistical approaches and computational tools for analyzing spatially-resolved single-cell transcriptomics data](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2047611) (July 2021 - Present)
+- [NIH NCI F99/K00 F99CA222750 (PI), Statistical Methods for Characterizing Tumor Heterogeneity at the Single Cell Level](https://grants.uberresearch.com/100000054/F99CA222750/Statistical-Methods-for-Characterizing-Tumor-Heterogeneity-at-the-Single-Cell-Level) (July 2017 - June 2020)
+- [NIH NCI F31 F31CA206236 (PI), Computational Analysis of Subclonal Evolution in Chronic Lymphocytic Leukemia](https://grants.uberresearch.com/100000054/F31CA206236/Computational-Analysis-of-Subclonal-Evolution-in-Chronic-Lymphocytic-Leukemia) (Sept 2016 - July 2017)
+- NSF GRFP DGE144152 (PI), A Bayesian Network Approach for Assessing Factors in Complex Disease Etiology (June 2013 - Sept 2016)
 
 ## WORK AND RESEARCH EXPERIENCE
 - Post-doctoral Fellow, Mentored by [Xiaowei Zhuang](http://zhuang.harvard.edu/), Department of Chemistry and Chemical Biology, Harvard University (Mar 2018 - June 2020)
