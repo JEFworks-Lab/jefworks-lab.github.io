@@ -1,12 +1,7 @@
 ---
 layout: team
 name: Mayling Chen
-title: Highschool Student
-description: I'm a high school senior at Walter Johnson High School. I love learning about statistics and am interested in becoming a programmer one day. I also have a keen interest in photography and film.
-instagram: https://instagram.com/mayling_54/
-github: https://github.com/M8ling 
-linkedin: https://www.linkedin.com/in/mayling-chen-418b4b200
+title: Undergraduate Student
+description: I'm a first-year Biomedical Engineering student at Johns Hopkins University. I have previously worked in this lab to learn how to increase the scalability of spatial omics data analysis and I'm excited to help make this method more accessible to others. Outside of school, I enjoy listening to music, watching documentaries, and making matcha latte for my friends. 
 profile: /img/maylingchen.png
-alumni: June 20, 2022 - August 19, 2022
-alumni-date: 2022-08-19
 ---
