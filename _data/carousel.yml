@@ -1,8 +1,9 @@
 images:
+  - image: /assets/news/ice_skating_2024.jpg
+  - image: /assets/news/csh_single_cell_analysis_2023-2.jpg
+  - image: /assets/news/lab_retreat_fall2023.gif
   - image: /assets/news/feiyang_farewell_05192023.jpeg
   - image: /assets/news/farewell_brendan_041423.gif
-  - image: /assets/news/lab_event_033123.jpeg
-  - image: /assets/news/lab_photo_IMG_20230217_160758262.jpg
   - image: /assets/news/lab_holiday_mug_2022.gif
   - image: /assets/news/PTD_2022.jpg
   - image: /assets/news/lab_retreat_summer2022.jpg
@@ -10,5 +11,4 @@ images:
   - image: /assets/news/lab_event_062022.jpg
   - image: /assets/news/lab_brunch_05182022.jpeg
   - image: /assets/news/lab_hike_D3S6934.jpg
-  - image: /assets/news/lab_photo_summer2021.jpg
   
