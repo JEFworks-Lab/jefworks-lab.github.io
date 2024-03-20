@@ -210,7 +210,7 @@ anim
 <img src="{{ site.url }}/assets/blog/chatgpt_rvest_anim.gif"> 
 
 
-Indeed, we see a clear 'boom' or rise in the number of research papers containing obviously LLM-generated text in 2022 when these models were made more broadly accessible. And of course, we're only a few months into 2024 so the number of publications in 2024 currently represents only these few months while all other years represent the whole year. 
+Indeed, we see a clear 'boom' or rise in the number of research papers containing obviously LLM-generated text in 2022 when these models were made more broadly accessible. Of course, we're only a few months into 2024 so the number of publications in 2024 currently represents only these few months while all other years represent the whole year. Likewise, of course we are only identifying research papers containing obvious LLM-generated text based on perfect string matching, which presents limitations. More sophisticated approaches for identifying text likely to be substantially modified or produced by LLMs can be found in works such as [Liang et al, "Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews", arXiv 2024](https://arxiv.org/abs/2403.07183) for example.
 
 ---
 
@@ -220,3 +220,4 @@ While it is indeed true that at least 100s of published research papers that are
 
 In my opinion, the existence of these papers brings to light a deeper, systemic issue regarding the publish-or-perish pressure that academics may feel, often under time pressure with limited resources, leading some to such dubious use of LLM models. As such, the prevelance of research papers containing obviously LLM-generated text may warrant further monitoring as well a deeper reflection by institutions, funding agencies, peer reviewers, and researchers themselves on potential mechanisms for promoting a culture of integrity in scientific publishing and enforcing consequences when such integrity is violated. 
 
+PS: If you do try to run this code too many times, you may encounter a temporary error "Response code 429. Google is rate limiting you for making too many requests too quickly." 
