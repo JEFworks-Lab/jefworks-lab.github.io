@@ -9,7 +9,7 @@ tags: [fun, computer-aided discovery, tutorial, R, web scraping]
 
 A number of posts on my social media feed has noted the rise of research papers containing obviously LLM-generated text, often using tools such as ChatGPT: 
 
-<img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot1.png"> <img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot3.png"> <img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot2.png"> <img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot4.png">
+<img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot1.png"><img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot3.png"><img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot2.png"><img src="{{ site.url }}/assets/blog/chatgpt_rvest_screenshot4.png">
 
 I sought to quantify the extent of the issue. So in this blog post, I will demonstrate how to use [`rvest`](https://github.com/hadley/rvest), a web-scraping tool in `R`, to query Google Scholar to quantify the number of publications that contain obviously LLM-generated text. The code, of course, can be modified for other queries as well. Feel free to try it out for yourself!
 
