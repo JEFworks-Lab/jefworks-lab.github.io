@@ -1,3 +1,10 @@
+---
+title: Spatial Transcriptomics Analysis Of Xenium Lymph Node
+layout: post
+comments: false
+tags: [R, tutorial, spatial transcriptomics]
+---
+
 # SEraster + MERINGUE identifies spatially variable genes in the human lymph node assayed by 10X Xenium spatial transcriptomics platform 
 
 In this blog post, I will identify spatially variable genes in a spatial
