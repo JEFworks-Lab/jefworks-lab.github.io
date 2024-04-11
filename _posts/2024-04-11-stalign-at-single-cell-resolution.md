@@ -1,9 +1,11 @@
 ---
-title: Aligning two images from different modalities of the same tissue at single-cell resolution with STalign
+title: Cross modality image alignment at single cell resolution with STalign
 layout: post
 comments: false
 tags: [python, tutorial, spatial transcriptomics]
 ---
+
+# Aligning fluorescence and histological images from the same tissue section at single-cell resolution with `STalign`
 
 Computational methods frequently apply mathematical models tailored to address specific problems. In our recent paper ["STalign: Alignment of spatial transcriptomics data using diffeomorphic metric mapping"](https://www.nature.com/articles/s41467-023-43915-7), we presented a computational method called STalign that builds on the mathematics of large deformation diffeomorphic metric mapping (LDDMM) to structurally align spatial transcriptomics data. In our paper as well as via various tutorials, we demonstrate how to structurally align:  
 * [two MERFISH spatial transcriptomics datasets of corodonal sections of the mouse brain from different animals](https://jef.works/STalign/notebooks/merfish-merfish-alignment.html)
@@ -15,7 +17,7 @@ However, by understanding the mathematical underpinnings of these computational 
 
 ---
 
-# Simulating images for alignment
+## Simulating images for alignment
 
 For the purposes of this demonstration, I will simulate two images of lung tissue [using this H&E image taken from Wikipedia](https://en.wikipedia.org/wiki/Histology). I will invert and greyscale to simulate what I might get if I subjected the tissue to some type of fluorescence imaging. I will also crop and zoom a little for the H&E image to simulate how different imaging modalities may often capture different extents of the tissue. I could also rotate or distort the images further to simulate common transformations induced during the data collection process, but that will be left as an exercise to the students. 
 
@@ -26,7 +28,7 @@ The general idea is to create two tissue images that I know can be aligned perfe
 
 ---
 
-# Processing images for STalign
+## Processing images for `STalign`
 
 I have already installed `STalign` and its associated dependencies so I will use a `jupyter` notebook to run the following Python code. 
 
@@ -111,7 +113,7 @@ plt.show()
  
 ---
 
-# Landmark-based affine transformation
+## Landmark-based affine transformation with `STalign`
 
 As a point of comparison, we will first perform a landmark-based affine transformation. I will manually place some points that visually corresponds to matched landmarks in my source and target images. As such, if I am able to find a transformation that when applied to the landmark points in our source, minimizes the distance with corresponding landmark points in our target, I can apply the transformation to align my source and target images. 
 
@@ -210,7 +212,7 @@ As we can see, the landmark-based affine transformation is not perfect; we do no
 
 ---
 
-# Automated alignment by affine and LDDMM
+## Automated alignment by affine and LDDMM with `STalign`
 
 So we will instead seek to use a gradient descent to minimize a specific error function that captures the disimilarity between the `source` and `target` image subject to regularization constraints:
 
@@ -281,7 +283,7 @@ Hum, this is not great either! What's going on? Perhaps it is because we are not
 
 There are many things we can try, but in this case, by understanding the mathematical underpinnings, we can figure out the "correct" approach much more quickly. 
 
-# Creating a smooth image representation
+## Creating a smooth image representation for `STalign`
 
 In the [original publication](https://www.nature.com/articles/s41467-023-43915-7), `STalign` was applied to single-cell resolution ST technologies where both the source and target ST datasets are represented as (x,y) coordinates of cellular positions. Solving the alignment with respect to single cells has quadratic complexity and is computationally intractable, so STalign applies a rasterization approach that models the single cell positions as a marginal space measure that is convolved with a Gaussian kernel to obtain the smooth image. This smooth image representation is useful in the gradient descent for learning the transformation that can then be applied back to the original source cellular positions to achieve alignment with the target. 
 
@@ -393,13 +395,13 @@ plt.show()
 
 ---
 
-# Conclusion
+## Conclusion
 
 Although in our original publication, we did not demonstrate how `STalign` could be used to align images from the same tissue at single-cell resolution, by understanding the mathematical underpinnings, we were able to successfully apply `STalign` to align simulated partially-matched fluorescence and H&E images from the same tissue section at single-cell resolution. I anticipate that real fluorescence and H&E images from the same tissue section will present many more challenges but this demonstration using simulated data is a first step to suggest that such alignment could be feasible using the same underlying mathematical framework!
 
 ---
 
-# Try it out for yourself
+## Try it out for yourself
 - Download the images, rotate an image, and see if you can still align them.
 - Try placing more/better manual landmarks. 
 - Change hyperparameters and see what happens.
