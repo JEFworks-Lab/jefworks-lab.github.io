@@ -2,7 +2,7 @@
 title: Alignment of Xenium and Visium spatial transcriptomics data using STalign
 layout: post
 comments: false
-tags: [R, tutorial, spatial transcriptomics]
+tags: [python, tutorial, spatial transcriptomics]
 ---
 
 # Introduction
