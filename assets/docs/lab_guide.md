@@ -10,26 +10,25 @@ This is a living document and subject to modifications. Please feel free to [for
 
 # Lab policy regarding COVID-19 
 
-(as of May 2023)
+(as of April 2024)
 
 Dear lab,
 
-I wanted to clarify our lab’s policy regarding COVID-19 since it appears to have deviated from the university’s policies and may be causing some confusion.
+I wanted to provide an update on the lab masking/sick-leave policy as it has been a year since we deviated from the university’s policy. First of all, I wanted to thank you all for helping make our lab space an accessible environment that supports the health and welfare of all lab members.
 
-First and foremost, I agree with the official university statement in that "We are pleased to have returned to substantially more on-campus activities this fall and appreciate everything our students, staff, and faculty are doing to avoid catching or spreading COVID-19, which is still circulating in our communities. Among our tools, vaccination and boosting have proved to be successful in reducing the severity of symptoms, and we encourage you to get the bivalent booster recently authorized by the U.S. Food and Drug Administration and recommended by the Centers for Disease Control and Prevention if you are eligible." I would like to go one step further to note that among our tools, masking has proved to be successful in limiting the spread of COVID-19. 
+Covid/flu/rsv levels based on wastewater monitoring has finally reached a low level in our community. We will be moving to masking-optional during group lab meetings where there is a large number of lab members and continuing with masking optional for students (and visitors) for one-on-one meetings.
 
-In general, I hope that we have fostered a lab environment where we care about not only the education and development but also health and welfare of fellow lab members. I certainly care about the health and welfare of you all and take it as my responsibility to minimize the risk factors that may contribute to you getting sick (be it with COVID, burn-out, or etc) while pursuing your research and educational goals.
+That being said, I still do take it as my responsibility to minimize the risk factors that may contribute to you getting sick (be it with COVID, burn-out, or etc) while pursuing your research and educational goals.
 
-We will continue to adhere to indoor masking during group lab meetings where there is a large number of lab members. However, we will be moving to masking optional for students (and visitors) for one-on-one meetings. In general, the ventilation in the Wyman building appears quite good. With the weather improving, we may also open windows to improve air circulation and even have lab meetings outside one of these days when the weather is nicer.
+We will continue to support lab members with unlimited sick days. Lab members will continue to be asked to stay at home if you feel acutely sick; your one-on-one meetings will be canceled and lab meeting attendance (including virtual) will be strongly discouraged for sick lab members to focus on recovery. We will continue to support flexible working hours and hybrid meetings in instances of more prolonged recovery periods.
 
-We will continue to support flexible working hours and hybrid meetings to accommodate people who are sick. Sarah has also purchased more masks, which will be made available.
+The lab will continue to provide access to high quality masks for your general and personal use; please feel free to take them for your day-to-day activities, travels, hospital visits, or other events that may expose vulnerable populations.
 
-If you have any thoughts, questions, or concerns regarding this lab policy, I'd be happy to find a time to discuss further.
+The lab will also continue to prioritize outdoor group events.
+
+I will continue to actively monitor the public health situation and encourage you all to do so as well. If you have any thoughts, questions, or concerns regarding this lab policy, I’d be happy to find a time to discuss further.
 
 Thanks in advance to you all.
-
-Sincerely,
-Prof. Fan
 
 ---
 
