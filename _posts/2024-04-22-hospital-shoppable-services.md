@@ -5,7 +5,7 @@ comments: false
 tags: [R, tutorial, fun, health insurance]
 ---
 
-As part of my teaching philosophy, I aim to demonstrate by example to my students how coding is an immensely useful and transferable skill for lots of other fun things beyond the spatial transcriptomics data analysis and research we do in lab. In this blog post, I use coding in `R` to (try to) figure out which hospital I should go to for shoppable medical services by comparing costs through analyzing hospital data from a for-profit hospital system, a non-profit health system, and a non-profit academic medical center.
+As part of my teaching philosophy, I aim to demonstrate by example to my students how coding is an immensely useful and transferable skill for lots of other fun things beyond the spatial transcriptomics data analysis and research we do in lab. In this blog post, I use coding in `R` to (try to) figure out which hospital I should go to for shoppable medical services by comparing costs through analyzing hospital data from a for-profit hospital system, an integrated managed care consortium, and a non-profit academic medical center.
 
 ---
 
@@ -25,11 +25,11 @@ Thanks to the CMS, every hospital is required by law to provide a "pricing trans
 
 I identified 3 hospitals near me and downloaded their prices for shoppable services, which I was generally able to find on a page about "federal price transparency regulations":
 
-1. The Johns Hopkins Hospital, a non-profit academic medical center associated with Johns Hopkins University: [https://www.hopkinsmedicine.org/patient-care/patients-visitors/billing-insurance/pay-bill/charges-fees](https://www.hopkinsmedicine.org/patient-care/patients-visitors/billing-insurance/pay-bill/charges-fees)
+1. [The Johns Hopkins Hospital](https://trustees.jhu.edu/relationship-between-jhu-jhm/), a non-profit academic medical center associated with Johns Hopkins University: [https://www.hopkinsmedicine.org/patient-care/patients-visitors/billing-insurance/pay-bill/charges-fees](https://www.hopkinsmedicine.org/patient-care/patients-visitors/billing-insurance/pay-bill/charges-fees)
 
-2. Kaiser Permenante, a leading non-profit health system with its own insurance, hospitals, and integrated medical records: [https://healthy.kaiserpermanente.org/washington/doctors-locations/price-transparency](https://healthy.kaiserpermanente.org/washington/doctors-locations/price-transparency)
+2. [Kaiser Permenante](https://en.wikipedia.org/wiki/Kaiser_Permanente), an American integrated managed care consortium with its own insurance, hospitals, and integrated medical records: [https://healthy.kaiserpermanente.org/washington/doctors-locations/price-transparency](https://healthy.kaiserpermanente.org/washington/doctors-locations/price-transparency)
 
-3. Dominion Hospital, part of HCA Health System, which is [America’s largest for-profit hospital system](https://www.youtube.com/watch?v=C6Rk9WtO554): [https://www.hcavirginia.com/patient-resources/patient-financial-resources/pricing-transparency-cms-required-file-of-standard-charges](https://www.hcavirginia.com/patient-resources/patient-financial-resources/pricing-transparency-cms-required-file-of-standard-charges)
+3. Dominion Hospital, part of [HCA Health System](https://www.youtube.com/watch?v=C6Rk9WtO554), which is America’s largest for-profit hospital system: [https://www.hcavirginia.com/patient-resources/patient-financial-resources/pricing-transparency-cms-required-file-of-standard-charges](https://www.hcavirginia.com/patient-resources/patient-financial-resources/pricing-transparency-cms-required-file-of-standard-charges)
 
 ---
 
@@ -48,7 +48,7 @@ head(hca)
 ```
 
 ```r
-## JHU non-profit hospital 
+## JHU 
 jhu <- read.csv('520591656_JohnsHopkinsHospital_standardcharges.csv', sep="|") # some reason uses | as the delimiter?
 head(jhu) # super large file
 ```
@@ -58,7 +58,7 @@ head(jhu) # super large file
 ```
 
 ```r
-## Kaiser non-profit hospital 
+## Kaiser 
 kp <- read.csv('910511770-central-hospital-standard-charges-wa-en.csv', skip=2) # skip 2 header
 head(kp)
 ```
