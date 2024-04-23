@@ -73,9 +73,9 @@ I am going to assume that the `Description` column from `hca` matched the `Proc_
 
 Likewise, because I am interested the cost of medical services, I am going to assume that the number in the `Gross.Charge` column from `hca` is the actual price of the service, for example. However, keep in mind that as a patient with health insurance, the amount that I pay is largely determined by my health insurance coverage. Side note: it looks like JHU has a different entry for each different 'payer' (ie. insurance provider) along with their associated expected reimbursement `Exp_Reimbursement`. 
 
-For the sake of comparison, let's consider a patient that does not have health insurance and paying in cash. So their financial liability will be determined by the uninsured discount, which I am assuming is associated with the `Discounted.Cash.Price..Gross.Charges.` column in `hca`, the `CashPrice` column for `jhu`, and the `standard_charge.discounted_cash` column for `kp. 
+For the sake of comparison, let's consider a patient that does not have health insurance and paying in cash. So their financial liability will be determined by the uninsured discount, which I am assuming is associated with the `Discounted.Cash.Price..Gross.Charges.` column in `hca`, the `CashPrice` column for `jhu`, and the `standard_charge.discounted_cash` column for `kp`. 
 
-Let's subset to these columns for the sake of browsing. 
+Let's subset to these columns for the sake of browsing the data. 
 
 ```r
 hca_sub <- hca[, c('Description', 'Discounted.Cash.Price..Gross.Charges.')]
@@ -89,7 +89,7 @@ jhu_sub <- dplyr::distinct(jhu_sub)
 kp_sub <- dplyr::distinct(kp_sub)
 ```
 
-Now we more readily look at the most expensive procedures offered at each hospital. 
+Now, we can more readily look at the most expensive procedures offered at each hospital. 
 
 ```r
 head(hca_sub[order(as.numeric(hca_sub$Price), decreasing=TRUE),])
@@ -342,7 +342,7 @@ And more philosophically:
 - Who do we expect to be able to exercise this choice?
 - Is it really a choice? Can it really be a choice? Should it be a choice?
 
-Of course, with any set of summary statistics like ranges, we should take a look back at the raw data and double check to ensure there have not been any misinterpretations of the data or propagation of errors such as typos from data entry and all the other caveats that come with data encoding. 
+Of course, with any set of summary statistics like averages, we should take a look back at the raw data and double check to ensure there have not been any misinterpretations of the data or propagation of errors such as typos from data entry and all the other caveats that come with data encoding.  
 
 Likewise, keep in mind that just because a hospital service is more expensive, that may not necessarily be bad if the more expensive service is associated with improved outcomes. However, this discrepancy of healthcare costs by for-profit versus non-profit hospitals has been the subject of much research. For example, [Rosenau and Linder in their scientific manuscript "Two Decades of Research Comparing For-Profit and Nonprofit Health Provider Performance in the United States" in 2003](https://onlinelibrary.wiley.com/doi/10.1111/1540-6237.8402001) performed "a systematic review of data-based, peer-reviewed scientific assessments of performance differences between private for-profit and private nonprofit U.S. health care providers published since 1980" to find that "the nonprofits were judged superior 59 percent of the time, the for-profits superior only 12 percent of the time, and for the rest (29 percent), no difference was found or results were mixed." In addition, [Devereaux et al in their scientific manuscript "Payments for care at private for-profit and private not-for-profit hospitals: a systematic review and meta-analysis" in 2004](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC419772/) used "eight observational studies, involving more than 350 000 patients altogether and a median of 324 hospitals" and found that "[p]rivate for-profit hospitals result in higher payments for care than private not-for-profit hospitals."
 
