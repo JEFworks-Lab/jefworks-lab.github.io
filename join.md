@@ -147,7 +147,9 @@ We are unable to accept prospective PhD or Master's students directly. Prospecti
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, the SMILE work-study program, or volunteer part-time research experiences during the school year, or compensated full-time research experiences during the summer with compensation rates established by the university. If you are interested in applying as an undergraduate research assistant, we recommend this guide:
+We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, the SMILE work-study program, and stipend-based compensated research experiences. Undergraduate research assistants will be provided with a fixed stipend for part-time 16-week work for each semester or full-time 8-week work during the summer. Provided stipends start at $4200 and increases depending on previous computational research experience. 
+
+If you are interested in applying as an undergraduate research assistant, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Undergrad RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, your major, your intended level of time commitment, and why you are interested in this lab. This serves as your ‘cover letter.’
