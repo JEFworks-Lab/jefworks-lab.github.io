@@ -50,16 +50,18 @@ My role as your mentor and advisor is to help you develop, refine, and progress 
 The exact hours members of the lab choose to work is up to them. We believe in each lab member's ability to best manage their own schedules in a manner that enables them to efficiently and effectively meet their research goals and advance their careers. However, being on campus between 9:00am and 5:00pm most days will help facilitate collaborative working and lead to a more fulfilling research experience. 
 
 ## Holidays or notable absenses
-Permission for holiday or other notable absenses is rarely required, but please respect key deadlines and respect that we work as a research team. It is important to take holidays, respect weekends (or time in lieu) and establish a sustainable work-life balance. But it is also important to respect the time and efforts of others, including collaborators, publishing editors, funders, and so forth, and to note that effective working will improve the quality of your research and career potential. Please mark your days out of lab on a lab calendar as a courtesy to Prof. Fan and other lab members so that we can anticipate your absense. 
+Permission for holiday or other notable absenses is rarely required, but please respect key deadlines and respect that we work as a research team. It is important to take holidays, respect weekends (or time in lieu) and establish a sustainable work-life balance. But it is also important to respect the time and efforts of others, including collaborators, publishing editors, funders, and so forth, and to note that effective working will improve the quality of your research and career potential.
+
+Please discuss your planned holidays or other notable absences with Prof. Fan for coordination purposes (in order to cancel one-on-ones, etc) and mark your days out of lab on a lab calendar as a courtesy to Prof. Fan and other lab members so that we can anticipate your absence and refrain from disturbing you.
 
 ## Communication
 For all communication methods, please respect people’s working patterns, and remember that other people will have different priorities and focus. Please give consideration to the timing of your correspondence with respect to what the recipient needs to do. No lab members are required nor should feel obliged to reply to messages outside of their typical work hours. Seeking out in-person discussions is strongly encouraged for urgent matters requiring immediate attention.
 
 ## Group meetings
-Weekly lab meetings will be held at a time to be determined to best accomodate the schedules of the majority of current lab members based on class schedules. We expect all lab members to attend and contribute to group meeting and journal club discussions if they are not otherwise engaged in research business (e.g. at conference, attending training or a lecture, or using a core facility). 
+Weekly lab meetings will be held in person at a time to be determined to best accomodate the schedules of the majority of current lab members based on class schedules. We expect all lab members to attend and contribute to group meeting and journal club discussions if they are not otherwise engaged in research business (e.g. at conference, attending training or a lecture, or using a core facility). We ask for all lab members to participate in lab meetings and lab events in person. Hybrid options may be provided under special circumstances. Please discuss with Prof. Fan further if you need to join a lab meeting virtually.
 
 ## One-on-one meetings
-Weekly one-on-one meetings will be held with specific timing to be established for each member when they join the lab and modified as needed. Lab members are expected to be proactive in requesting additional one-on-one beyond typically scheduled meetings as needed by discussing with Prof. Fan and marking on the group scheduling calendar. 
+Weekly one-on-one meetings will be held in person with specific timing to be established for each member when they join the lab and modified as needed. Lab members are expected to be proactive in requesting additional one-on-one beyond typically scheduled meetings as needed by discussing with Prof. Fan and marking on the group scheduling calendar. Hybrid options may be provided under special circumstances. Please discuss with Prof. Fan further if you need to join a one-on-one meeting virtually.
 
 We strive to respect the ability of fellow lab members to engage in distraction-free deep thinking and long periods of uninterrupted work. 
 
@@ -83,7 +85,17 @@ Group members are expected to complete a check-list document for each manuscript
 
 ## Authorship
 
-Authorship on any manuscript or presentation will be openly discussed in lab meetings and we aim to be inclusive of everyone who has made a significant contribution. A “significant contribution” can include, but is not limited to, interpretations of primary data and development of ideas presented in the work, data generation, data analysis, and/or financial contribution to the work undertaken. Please see [ICMJE’s Uniform Requirements for Manuscripts Submitted to Biomedical Journals](http://www.icmje.org/recommendations/) for more information. 
+We aim for authorship to be inclusive of everyone who has made a substantial contributions to the conception or design of the work or the acquisition, analysis, or interpretation of data for the work AND upholds their responsibility in drafting the work or reviewing it critically for important intellectual content, approving the final version to be published, and agreeing to be accountable for all aspects of the work in ensuring that questions related to the accuracy or integrity of any part of the work are appropriately investigated and resolved.
+
+A “substantial contributions” can include, but is not limited to:
+- generating data where data generation requires understanding the project aims and tailored batch designs (beyond standard lab chores such as mouse colony maintenance)
+- analyzing data where data analysis requires understanding the project aims and custom scripts (beyond standard lab chores such as server maintenance)
+- providing software support through the development of new functionalities beyond previously published functionalities
+- providing cell-type annotations by incorporating expert biological domain knowledge
+
+Contributions that do not meet the criteria of ‘substantial contributions’ can still be acknowledged. Alternatively, contributions that do meet the criteria of ‘substantial contributions’ can be moved to acknowledgements at the request of the contributor if they are not interesting in upholding additional responsibilities such as drafting the work, approval the final version, etc. Students are advised to discuss their contributions to various projects and collaborations in their regular one-on-one meetings for Prof. Fan’s awareness.
+
+Please see [ICMJE’s Uniform Requirements for Manuscripts Submitted to Biomedical Journals](http://www.icmje.org/recommendations/) for more information. 
 
 ---
 
