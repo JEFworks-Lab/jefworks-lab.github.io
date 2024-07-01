@@ -149,6 +149,8 @@ We are unable to accept prospective PhD or Master's students directly. Prospecti
 <div markdown="1">
 We welcome current undergraduate students at Johns Hopkins University throughout the school year either as a part of Independent Research (credited course), Research Experience for Undergraduates (REU) programs, the SMILE work-study program, and stipend-based compensated research experiences. Undergraduate research assistants will be provided with a fixed stipend for part-time 16-week work for each semester or full-time 8-week work during the summer. Provided stipends start at $4200 and increases depending on previous computational research experience. 
 
+<i>Due to the large number of undergraduate students applying, we are currently unable to reply to all emails. Please feel free to reach out and follow up to express your interest and we will reach out to you as positions becomes available.</i>
+
 If you are interested in applying as an undergraduate research assistant, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Undergrad RA Application: [your name]”. Include in the body of the email: 
@@ -183,7 +185,11 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We welcome local highschool students as computational research interns over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time, to their research projects. Students will be provided with a $4000 stipend for their work through the [CCB Summer Internship Fund](https://ccb.jhu.edu/internship.shtml). If you are interested in applying as a highschool-level computational research assistant, we recommend this guide:
+We welcome local highschool students as computational research interns over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time in-person, to their research projects. Students will be provided with a $4000 stipend for their work through the [CCB Summer Internship Fund](https://ccb.jhu.edu/internship.shtml).
+
+<i>Due to the large number of highschool students applying, we are currently unable to reply to all emails. Please feel free to reach out and follow up to express your interest and we will reach out to you as positions becomes available. We are unable to accomodate remote, hybrid, or part-time research experiences.</i>
+
+If you are interested in applying as a highschool-level computational research assistant, we recommend this guide:
 
 1. Email Prof. Fan with the subject line “Highschool RA Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are, where you go to school, and why you are interested in this lab. This serves as your ‘cover letter.’
