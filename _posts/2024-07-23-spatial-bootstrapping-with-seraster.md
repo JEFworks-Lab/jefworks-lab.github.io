@@ -224,7 +224,7 @@ ggplot(df, aes(x = x, y = y, color = ct)) +
   theme_bw()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/plot-1.png) If we
+![](/assets/blog/SEraster_spatial_bootstrap/plot-1.png) If we
 estimate the cell-type proportions from this whole tissue, we can
 appreciate that roughly 38% of the cells are `Hep.4` cells, 5% are
 `Stellate.cells`, 4% are `CD3+.alpha.beta.T.cells` cells, 2% are
@@ -301,7 +301,7 @@ SEraster::plotRaster(rastCt, name = "Total Cells")
     ## Coordinate system already present. Adding new coordinate system, which will
     ## replace the existing one.
 
-![](/assets/blog/seraster_spatial_bootstrap/seraster-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/seraster-1.png)
 
 Note that `SEraster` outputs a `SpatialExperiment` object. Let’s take a
 closer look at the `colData` slot of this object.
@@ -352,7 +352,7 @@ ggplot(dfsub, aes(x = x, y = y, color = ct)) +
   theme_bw()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/sanity-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/sanity-1.png)
 
 ``` r
 ## in whole tissue by setting cells not in hexagonal to NA
@@ -365,7 +365,7 @@ ggplot(df, aes(x = x, y = y, color = ctsub)) +
   theme_bw()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/sanity-2.png)
+![](/assets/blog/SEraster_spatial_bootstrap/sanity-2.png)
 
 ``` r
 ## 100th pixel
@@ -378,7 +378,7 @@ ggplot(df, aes(x = x, y = y, color = ct)) +
   theme_bw()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/sanity-3.png)
+![](/assets/blog/SEraster_spatial_bootstrap/sanity-3.png)
 
 ``` r
 ## in whole tissue by setting cells not in hexagonal to NA
@@ -391,7 +391,7 @@ ggplot(df, aes(x = x, y = y, color = ctsub)) +
   theme_bw()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/sanity-4.png)
+![](/assets/blog/SEraster_spatial_bootstrap/sanity-4.png)
 
 Note we have 109 such pixels.
 
@@ -539,7 +539,7 @@ ggplot(dfLong, aes(x = Sample, y = Proportion, fill = CellType)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size=5))
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/plotfinal-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/plotfinal-1.png)
 
 There are definitely some hexagonal pixels that have very distinct
 cell-type proportions. Let’s see which ones are the most different from
@@ -611,7 +611,7 @@ ggplot(df, aes(x = x, y = y, color = ct)) +
   theme_bw()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/pixel-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/pixel-1.png)
 
 ``` r
 ## in whole tissue by setting cells not in hexagonal to NA
@@ -624,7 +624,7 @@ ggplot(df, aes(x = x, y = y, color = ctsub)) +
   theme_bw()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/pixel-2.png)
+![](/assets/blog/SEraster_spatial_bootstrap/pixel-2.png)
 
 If we look at the total number of cells per hexagonal pixel versus how
 different their cell-type proportion estimate is from the global
@@ -639,7 +639,7 @@ df <- data.frame(num_cell = colData(rastCt)$num_cell, diff = diff)
 ggplot(df, aes(x=num_cell, y=diff)) + geom_point() + scale_x_log10() + scale_y_log10()
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/relationship-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/relationship-1.png)
 
 If we restrict to hexagonal pixels with more than 3000 cells, we can
 confirm these pixels are not on the edge of the tissue section.
@@ -650,7 +650,7 @@ hist(colData(rastCt)$num_cell)
 abline(v = 3000, col='red')
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/conclude-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/conclude-1.png)
 
 ``` r
 ## get pixels with more than 3000 cells
@@ -673,7 +673,7 @@ SEraster::plotRaster(rastCt[, goodPixels], name = "Total Cells")
     ## Coordinate system already present. Adding new coordinate system, which will
     ## replace the existing one.
 
-![](/assets/blog/seraster_spatial_bootstrap/conclude-2.png)
+![](/assets/blog/SEraster_spatial_bootstrap/conclude-2.png)
 
 And now, we can see a pretty consistent cell-type proportion
 distribution compared to our original global estimate.
@@ -692,7 +692,7 @@ ggplot(dfLong, aes(x = Sample, y = Proportion, fill = CellType)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size=5))
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/conclude2-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/conclude2-1.png)
 
 We can even focus on just one cell-type, for example the
 `Stellate.cells`, and fit a gaussian distribution to all the estimates
@@ -722,7 +722,7 @@ ggplot(df, aes(x = x)) +
   geom_line(data = fit, aes(x = x, y = y), color = "red", linewidth = 1)
 ```
 
-![](/assets/blog/seraster_spatial_bootstrap/conclude3-1.png)
+![](/assets/blog/SEraster_spatial_bootstrap/conclude3-1.png)
 
 According to
 [Wikipedia](https://en.wikipedia.org/wiki/Hepatic_stellate_cell), which
