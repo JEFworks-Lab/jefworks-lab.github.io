@@ -2,7 +2,7 @@
 layout: team
 name: Caleb Hallinan
 title: Graduate Student
-description: I am currently a first-year PhD student in the Biomedical Engineering Department at Hopkins. My ultimate goal is to develop user-friendly computational software specifically tailored for biologists who may not be as tech-savvy. My research focus lies in deciphering the intricate connection between spatial gene expression and tissue architecture in 2D, with the goal of broadening these insights into 3D applications. When I'm not busy with research, you'll find me playing/watching sports, hanging out with friends, or watching movies :) 
+description: I am currently a second-year PhD student in the Biomedical Engineering Department at Hopkins. My research focuses on exploring the connection between spatial gene expression and tissue architecture in 2D, with the aim of extending these insights to 3D applications. I am also excited to develop my teaching ability in the hope of one day teaching the next generation of students. Outside of research, I enjoy playing and watching sports, spending time with friends, and watching movies :)
 home: https://calebhallinan.github.io/
 github: https://github.com/calebhallinan
 linkedin: https://www.linkedin.com/in/calebhallinan/
