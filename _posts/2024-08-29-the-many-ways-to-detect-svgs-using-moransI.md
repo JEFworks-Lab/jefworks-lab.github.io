@@ -27,9 +27,9 @@ Recent technological advances have enabled high-throughput spatially resolved pr
 
 We may expect SVGs (genes with coordinated spatial variability in their gene expression patterns) to exhibit significantly higher than expected spatial autocorrelation that can be evaluated using Moran's I.
 
-However, as we note in our [manuscript](https://genome.cshlp.org/content/31/10/1843), even in context of spatial transcriptomics data analysis, there are actually many different ways to compute a Moran's I statistic for a gene. In particular, how we define and mathematically encode whether two cells are close in space can influence results. In particular, we showed how using a binary spatial weight matrix derived from a Voronoi tesselation-based approach offers better performance compared to a distance-based spatial weight matrix for tissues where there is large variations in cell density that may confounder the spatial gene expression pattern. Again, please refer to the [manuscript for more details](https://genome.cshlp.org/content/31/10/1843). 
+However, as we note in our [manuscript](https://genome.cshlp.org/content/31/10/1843), even in context of spatial transcriptomics data analysis, there are actually many different ways to compute a Moran's I statistic for a gene. In particular, how we define and mathematically encode whether two cells are close in space can influence results. We showed how using a binary spatial weight matrix derived from a Voronoi tesselation-based approach offers better performance compared to a distance-based spatial weight matrix for tissues where there is large variations in cell density that may confounder the spatial gene expression pattern. Again, please refer to the [manuscript for more details](https://genome.cshlp.org/content/31/10/1843). 
 
-However, recently, one of my students presented a preprint in our lab journal club that claimed Moran's I performed poorly (only 19% accuracy!) for identifying SVGs based on simulated spatial transcriptomics data (where they simulated noise and true spatially patterned genes). Even in looking at their simulated data, I was surprised how Moran's I could perform so poorly. Especially as we and many others have noted how Moran's I performs well for identifying SVGs, the result was very suspicious to me. They did not use our `MERINGUE` implementation, but rather another tool that relied on implementations in `Rfast2` and `ape`. 
+However, recently, one of my students presented a bioRxiv preprint as part of our lab's journal club that claimed Moran's I performed poorly (only 19% accuracy!) for identifying SVGs based on simulated spatial transcriptomics data (where they simulated noise and true spatially patterned genes). Even in looking at their simulated data, I was surprised how Moran's I could perform so poorly. Especially as we and many others have noted how Moran's I performs well for identifying SVGs, the result was very suspicious to me. They did not use our `MERINGUE` implementation, but rather another tool that relied on implementations in `Rfast2` and `ape`. 
 
 So I decided to spend some time comparing 4 different implementations of Moran's I ([`MERINGUE`](https://github.com/JEFworks-Lab/MERINGUE), [`Rfast2`](https://github.com/RfastOfficial/Rfast2), [`ape`](https://github.com/emmanuelparadis/ape), and [`spdep`](https://github.com/r-spatial/spdep)) on some real spatial transcriptomics data to see if I could demonstrate a potential source of the discrepancy. 
 
@@ -604,9 +604,9 @@ spdep::moran.test(x, mat2listw(w, style="W"))
 	## Moran I statistic       Expectation          Variance 
 	##       0.040913838      -0.003861004       0.001349578 
 
-Lastly, it may also be that the preprint used a different spatial encoding for `w` that impacted the performance (without the original code and data, it is hard to say for certain...)
+Lastly, it may also be that the preprint used a different spatial encoding for `w` that impacted the performance (without the original code, it is hard to say for certain...)
 
-Based on this exploration, it's clear that just because a paper says they're using Moran's I to detect SVGs, they can actually mean many different things! A well described methods section (or ideally code) should help clarify the exact `w` and sided-test they used. 
+Based on this exploration, I hope it's clear that just because a paper says they're using Moran's I to detect SVGs, they can actually mean many different things! A well described methods section (or ideally code) should help clarify the exact `w` and sided-test they used. 
 
 ---
 
