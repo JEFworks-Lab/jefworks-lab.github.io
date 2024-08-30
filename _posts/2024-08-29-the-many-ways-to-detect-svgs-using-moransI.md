@@ -23,7 +23,11 @@ Recent technological advances have enabled high-throughput spatially resolved pr
 
 [Moran's I is a measure of spatial autocorrelation ie. a correlation in a signal's intensity among nearby locations in space](https://en.wikipedia.org/wiki/Moran%27s_I). In this cartoon, consider a grid of cells. For 5 example genes, high expression is visualized in black and low expression is denoted in white. 
 
+<figure align="center">
 <img src="/assets/blog/moransI/moran-0.png" width="100%">
+<figcaption><a href="https://www.researchgate.net/figure/llustration-of-how-map-clustering-affects-Morans-I-score-Image-adapted-from-Kirkegaard_fig3_362864897"><i>(image source)</i></a></figcaption>
+<br>
+</figure>
 
 We may expect SVGs (genes with coordinated spatial variability in their gene expression patterns) to exhibit significantly higher than expected spatial autocorrelation that can be evaluated using Moran's I.
 
