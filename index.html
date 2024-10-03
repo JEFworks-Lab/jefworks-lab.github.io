@@ -18,11 +18,13 @@ desc: Welcome to the JEFworks Lab,<br> where Prof. Jean Fan and team work on com
 	      {% for pub in site.team %}
 	      {% if pub.alumni == nil %}
 	      {% if pub.name != 'You!' %}
+	      {% if pub.name != 'Remy' %}
 		<div class="col-xs-4 col-md-2">
 		    <a href="team">
 			<img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}" style="padding: 15px 5px">
 		    </a>
 		</div>
+		{% endif %}
 		{% endif %}
 		{% endif %}
 		{% endfor %}
