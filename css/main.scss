@@ -104,5 +104,9 @@ body {
 }
 
 blockquote {
-    font-size: 13px;
+  font-size: 13px;
+}
+
+pre code{
+  white-space: pre; //make code scroll x
 }
