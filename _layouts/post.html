@@ -42,7 +42,7 @@ layout: default
 		    </a> on {{post.date | date_to_long_string }}</li>
                     {% endfor %}
                 </ul>
-                <a href="{{ "/allposts" | prepend: site.baseurl }}">All posts ...</a>
+                <a href="{{ "/blog" | prepend: site.baseurl }}">All posts ...</a>
             </div>
 	    <div class="well">
 		<h4>TAGS</h4>
@@ -88,7 +88,8 @@ layout: default
 	    <div class="well">
 		<h4>EXPLORE MORE POSTS</h4>
                 <a href="{{ "/tags" | prepend: site.baseurl }}">by Tags</a> | 
-                <a href="{{ "/archive" | prepend: site.baseurl }}">by Date</a>		
+                <a href="{{ "/archive" | prepend: site.baseurl }}">by Date</a> |		
+                <a href="{{ "/blog" | prepend: site.baseurl }}">View All</a>		
 	    </div>
         </div>
 

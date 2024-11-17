@@ -6,11 +6,8 @@ sectionid: join
 image: /img/hopkins.jpg
 ---
 
-<h2>We are focused on creating computational and statistical approaches that help broaden our understanding of cellular development and disease. Our team members share a drive to deliver innovative open-source software solutions that enable discoveries in biology and medicine. Our culture is fast-paced, rigorous, pedagogical, and highly collaborative. We are committed to attracting and nurturing the best aspiring scientists, who will in turn drive our collective growth and further our scientific mission.</h2>
-
-<hr>
-
-We are actively looking for team members at all levels. If you are interested in joining our team, please follow the guidelines below. We look forward to hearing from you!
+<h2>We are committed to training the next generation of biomedical data scientists who will in turn drive our collective growth and further our <a href="mission">scientific mission.</a> If you are interested in joining our team, please follow the guidelines below. We look forward to hearing from you!</h2>
+<br>
 
 <div class="accordion" id="accordionExample">
 
@@ -32,7 +29,7 @@ We are always looking for highly motivated post-docs interested in furthering th
 - Optional: The following filled out [Individual Development Plan (IDP) interview form](/assets/docs/interview_form.docx) 
 - Contact information (both email and phone number) for 2 to 4 references  
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again.
-<br><br>  
+<br><br>
 2. If we like your application, we will set up a time for a video conference call. This will take 30 minutes to an hour. At this stage, Prof. Fan will also reach out directly to your references.
 
 3. If we think you may be a good fit, we will invite you out for an on-site interview. The on-site interview will likely take up an entire day. It will involve an hour presentation in addition to one-on-one discussions with Prof. Fan as well as others in the department, including faculty, post-docs, as well as graduate students and even undergraduate students. The purpose of this visit is to assess fit. Not every post-doc, no matter how talented, will be the best fit in every lab. You should also take this visit as an opportunity to assess whether you will be able to be happy and productive in this lab for the next few years of your life. 
@@ -79,9 +76,10 @@ We accept current PhD rotation students in Biomedical Engineering, Computer Scie
 1. Email Prof. Fan with the subject line “PhD Rotation Application: [your name]”. Include in the body of the email: 
 - A few sentences about who you are and why you are interested in this lab. This serves as your ‘cover letter.’
 - A copy of your CV (with the filename as [your last name]\_[your first name]\_CV.pdf)
+<br>
 If Prof. Fan does not respond within a week, candidates are highly encouraged to followup and email again. 
 <br><br>
-2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
+2. If we like your application, we will reach out and set up a time for an on-site visit. The on-site visit will take 30 minutes to an hour and will allow you to see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and other undergraduate students to give you a better sense of who you may be working with.
 
 3. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
@@ -129,7 +127,9 @@ We currently do not have the bandwidth to mentor Master's students.
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
-We are unable to accept prospective PhD or Master's students directly. Prospective PhD and Master's students should apply formally through [the Johns Hopkins University graduate admissions portal](https://engineering.jhu.edu/graduate-admissions/). Prospective PhD and Master's student are encouraged to email Prof. Fan with the subject line “Prospective PhD student: [your name]” or "Prospective Master's student: [your name]" along with a copy of your CV (with the filename as [your last name]\_[your first name]\_CV.pdf) to help increase the likelihood that the appropriate recruitment commitee members will see your application. 
+We are unable to accept prospective PhD or Master's students directly. Prospective PhD and Master's students should apply formally through [the Johns Hopkins University graduate admissions portal](https://engineering.jhu.edu/graduate-admissions/). Prospective PhD and Master's student are encouraged to email Prof. Fan with the subject line “Prospective PhD student: [your name]” or "Prospective Master's student: [your name]" along with a copy of your CV (with the filename as [your last name]\_[your first name]\_CV.pdf) to help increase the likelihood that the appropriate recruitment commitee members will see your application.
+
+<i>Due to the large number of prospective students, we are currently unable to reply to all emails. Please feel free to reach out and follow up to express your interest.</i>
 </div>
       </p></div>
     </div>
@@ -185,6 +185,11 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
       <div class="card-body"><p>
 <div markdown="1">
+
+We currently do not have the bandwidth to mentor highschool students. Highschool students interested in 'getting their feet wet' in bioinformatics research are encouraged to apply to <a href="https://www.bme.jhu.edu/academics/pre-college/apply-to-ispeed-bme/">the Immersive Summer Program for Education, Enrichment, and Distinction (ISPEED) in Biomedical Engineering</a> instead. 
+
+
+<!--- 
 We welcome local highschool students as computational research interns over summer break in order to 'get their feet wet' in bioinformatics research. Highschool students are expected to dedicate a minimum of 8 weeks, full-time in-person, to their research projects. Students will be provided with a $4000 stipend for their work through the [CCB Summer Internship Fund](https://ccb.jhu.edu/internship.shtml).
 
 <i>Due to the large number of highschool students applying, we are currently unable to reply to all emails. Please feel free to reach out and follow up to express your interest and we will reach out to you as positions becomes available. We are unable to accomodate remote, hybrid, or part-time research experiences.</i>
@@ -200,7 +205,7 @@ If you are interested in applying as a highschool-level computational research a
 <br><br>
 2. If we like your application, we will reach out and set up a time for a video conference call. This will take 45 minutes to 1 hour and involve discussing items in your resume as well as your educational goals and interests. At this stage, Prof. Fan will also reach out directly to your references.
 
-3. If we think you are a good fit, we will invite you to an on-site visit. The on-site visit will take 1 to 2 hours and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with. If we think you are a good fit and you are interested in the telework experience, we will set up additional video conference calls between you and others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
+3. If we think you are a good fit, we will invite you to an on-site visit. The on-site visit will take 30 minutes to an hour and will allow you to experience your commute, see the lab space, and have one-on-one discussions with Prof. Fan as well as others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with. If we think you are a good fit and you are interested in the telework experience, we will set up additional video conference calls between you and others in the lab including post-docs, graduate students and undergraduate students to give you a better sense of who you may be working with.
 
 4. Finally, Prof. Fan will solicit feedback from everyone you spoke with. She will then reach out with an offer or encourage you to keep looking. She will also provide a proposed onboarding date, rotation project, and background reading so that you can hit the ground running.
 
@@ -210,6 +215,8 @@ Successful applicants will have:
 - Interest in applying to The Regeneron Science Talent Search (Regeneron STS) or other competitions
 
 Exceptions are always considered for highly motivated and phenomenal applicants!
+--->
+
 </div>
       </p></div>
     </div>

@@ -4,13 +4,15 @@ layout: default
 
 # JEFworks Lab Transparency in Resource Allocation
 
-Prof. Fan seeks to provide greater transparency in allocation of lab resources in order to [mitigate gender and race-specific disparities and help ensure that all lab members are treated fairly](https://science.sciencemag.org/content/366/6466/692). This is a living document and subject to modifications. Please feel [free to fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/transparency.md) to introduce new policies or modify old ones. This document was last modified July 2022.
+Prof. Fan seeks to provide greater transparency in allocation of lab resources in order to [mitigate gender and race-specific disparities and help ensure that all lab members are treated fairly](https://science.sciencemag.org/content/366/6466/692). This is a living document and subject to modifications. Please feel [free to fork, modify, and make pull requests](https://github.com/JEFworks/JEFworks.github.io/blob/master/assets/docs/transparency.md) to introduce new policies or modify old ones.
+
+This document was last modified Nov 2024.
 
 ---
 
 ## Compensation (Wages/Stipends/Benefits)
 
-For **Post-doc Associates and Fellows**, compensation levels start at $68,500 and is commensurate with years of post-doctoral experience at rates consistent with University Guidelines. A one-time relocation package of up to $1,500 will be provided to assist with reasonable moving costs per IRS guidelines. In addition, post-docs will be provided with health and dental insurance benefits through University Health Services. 
+For **Post-doc Associates and Fellows**, compensation levels start at $70,000 and is commensurate with years of post-doctoral experience at rates consistent with University Guidelines. A one-time relocation package of up to $1,500 will be provided to assist with reasonable moving costs per IRS guidelines. In addition, post-docs will be provided with health and dental insurance benefits through University Health Services. 
 
 Post-docs are strongly encouraged to apply for fellowships as a part of their career development. If the fellowship’s compensation level falls below those provided in the lab and/or does not include comparable benefits, additional compensation and benefits will be provided to ensure that final compensation and benefit levels are matched to those of other post-docs in the lab. No additional compensation or benefit will be provided on the basis of fellowships alone in order to maintain fairness, particularly among US and international students. Likewise, in order to mitigate gender and race-specific disparities, compensation levels are non-negotiable with the following exception: negotiations to increase compensation by one post-doc will be considered on the basis that commensurate increases in compensation will be provided for all post-docs in the lab to maintain fairness. 
 
@@ -34,6 +36,6 @@ Increases in travel allowances will be considered on a case-by-case basis to bes
 
 ## Lab Outings
 
-Expenses associated with formal lab outings such as lab dinners and retreats, including reasonable associated child-care expenses for attending lab members, will be covered in full.
+Expenses associated with formal lab outings such as lab dinners and retreats, including cost of transportation and reasonable associated child-care expenses for attending lab members, will be covered in full.
 
 Expenses associated with informal lab outings organized by other lab members can be reimbursed up to $20 per lab member without approval and increased with approval from Prof. Fan. 
