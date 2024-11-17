@@ -8,6 +8,7 @@ linkedin: https://www.linkedin.com/in/arpan-sahoo
 profile: /img/arpanprofile.jpg
 alumni: June 1, 2020 - May 20, 2022
 alumni-date: 2022-05-20
+current: MD student at the University of South Florida
 ---
 
 

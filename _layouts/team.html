@@ -19,7 +19,11 @@
 	{% endif %}
 	
 	{% if page.alumni != null %}
-	Lab Member: {{ page.alumni }}
+	Lab Member: {{ page.alumni }}	
+	{% if page.current != null %}
+	<br>
+	Current: {{ page.current }}
+	{% endif %}
 	<br><br>
 	{% endif %}
 	

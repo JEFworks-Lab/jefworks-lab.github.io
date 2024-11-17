@@ -6,6 +6,7 @@ description: I am a senior Biomedical Engineering undergraduate student at Johns
 profile: /img/gohtaprofile.jpg
 alumni: Jan 27, 2023 - June 28, 2024
 alumni-date: 2024-06-28
+current: PhD student at Caltech
 ---
 
 Additional info for indexing
