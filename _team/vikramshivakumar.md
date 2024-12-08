@@ -6,5 +6,6 @@ description: I am a graduate student in the Biomedical Engineering department. I
 profile: /img/vikramprofile.jpeg
 alumni: April 4, 2022 - June 3, 2022
 alumni-date: 2022-06-03
+core: FALSE
 ---
 

@@ -1,12 +1,13 @@
 ---
-layout: default
+layout: default2
 title: Teaching
+desc: Our Courses
 permalink: /teaching/
 sectionid: teaching
-image: /img/teaching.jpg
+image: /assets/banners/labphotoshoot_D3S2452.jpg
 ---
 
-# COURSES AT JHU
+# Current Undergraduate/Graduate Courses at Johns Hopkins University
 - [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2024/) Spring 2024
 - [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2023/) Spring 2023
 - [EN.580.710 Ethical Challenges in Biomedical Engineering](https://jef.works/blog/2022/10/15/ethical-challenges-in-bme/) (guest lecture) Fall 2022
@@ -14,7 +15,7 @@ image: /img/teaching.jpg
 
 <hr>
 
-# FORMER TEACHING
+# Former Courses
 - Teaching Assistant, [Summer Institute in Biomedical Informatics DBMI/HST](https://dbmi.hms.harvard.edu/education/dbmi/hst-summer-institute-biomedical-informatics), Harvard Medical School (June 2017 - Aug. 2017)
 - Lead Instructor, Intro to Computer Programming through Web Development with Social Entrepreneurship, [The Innovation Insitute](http://theinnovationinstitute.org/) (Sept. 2016 - June 2017)
 - Teaching Fellow, [Single Cell Workshop 2016](http://hms-dbmi.github.io/scw/), Harvard Stem Cell Institute (Nov. 2016)
@@ -26,14 +27,8 @@ image: /img/teaching.jpg
 
 <hr>
 
-# TEACHING STATEMENT
-In addition to achieving excellence in research, we believe every scientist has an obligation to help train the next generation of scientists who will carry on and effectuate the same vision and mission. Thus, a strong teaching component that promotes the well-being of all students, but in particular those who have been historically disadvantaged or undermined, is integral. We seek to ensure that all students, be they in grade school or graduate school, explore and develop their capacity through challenging and purposeful project-driven learning. The tenants of our teaching philosophy can be summarized by the following:
+# <a href="https://jean.fan/2023/11/25/teaching-statement.html">Teaching Statement</a>
 
-1. *Inspire education beyond the classroom.*
-Mastering any subject takes time. Class or lab time alone will always be insufficient in order to truly master a subject. Therefore, we strive to provide engaging and applicable real-world problems that capture students' interests and inspire them to work further beyond their time in the classroom. In modeling by example, we emphasize to students how statistics and computer science are fun and can be used to address real-world problems in creative ways.
-
-2. *Hold students to high expectations but normalize failure.* 
-All students must develop the capacity for self-generation of ideas, self-direction, and self-monitoring. However, such a developmental process is often challenging, not only on an intellectual level, but an emotional one as well. While many of us have personally experienced how this process can be particularly strenuous for women and minority students due to the added impacts of unconscious biases and imposter syndrome, we believe all students, regardless of background, must be held to high expectations and be provided with educational resources and social support so that they may try, fail, try again, and eventually succeed. 
-
-3. *Encourage an interdisciplinary perspective and vocabulary.*
-"If you can't explain it simply, you don't understand it well enough." Indeed, as fields become more interdisciplinary, bioinformaticians must be able to explain their work and ideas not only to other bioinformaticians, but also biologists, statisticians, and even the general public. Thus, students must be able to explain their work and ideas in everyday language and be provided with opportunities to practice through grant-style writing as well as presentations. We strive to take a pedogogical approach in communicating with each other, collaborators, reviewers, students, as well as the general public.
+<div align="center">
+<iframe width="100%" height="500px" src="https://www.youtube.com/embed/Jco1r6hk6Z4?si=HvggztBygIw-v6uV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>

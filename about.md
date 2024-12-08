@@ -1,6 +1,6 @@
 ---
-layout: default
-title: About
+layout: default2
+title: About Prof. Fan
 permalink: /about/
 sectionid: about
 ---

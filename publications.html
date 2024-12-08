@@ -4,33 +4,51 @@ layout: default
 sectionid: publications
 ---
 
-<h1>PUBLICATIONS (<a href="https://orcid.org/0000-0002-0212-5451">ORCID</a> | <a href="https://scholar.google.com/citations?user=EEX1uGwAAAAJ&hl=en">GOOGLE SCHOLAR</a>)</h1>
+<div class="container page-pad">
 
-We are <a href="https://www.nature.com/articles/d41586-023-01440-z">committed to open access</a>. If you find a manuscript that we have co-authored but is not available here, please <a href="/contact">contact us</a> directly and we will be happy to send you an electronic copy.
+    <h1>Publications (<a href="https://orcid.org/0000-0002-0212-5451">ORCiD</a> | <a href="https://scholar.google.com/citations?user=EEX1uGwAAAAJ&hl=en">Google Scholar</a>)</h1>
 
-<br><br>
+    We are <a href="https://www.nature.com/articles/d41586-023-01440-z">committed to open access</a>. If you find a manuscript that we have co-authored but is not available here, please <a href="/contact">contact us</a> directly and we will be happy to send you an electronic copy.
 
-<i>* Denotes equal contribution</i><br>
-<i>^ Denotes corresponding author</i><br>
-<i><u>JEFworks lab trainees</u> are underlined</i>
-
-<div class="container" id="toc">
     <hr>
-    <h2>Table of Contents</h2>
-    <ul class="post-list-container">
-                {% assign items = site.papers | reverse %}
-                {% for post in items %}
-                <li>{{ post.date | date_to_long_string }} - <a href="{{ site.baseurl }}/publications#{{ post.url }}">{{ post.title }}</a></li>
-                {% endfor %}
-    </ul>
+
+    <p>
+    <i>* Denotes equal contribution</i><br>
+    <i>^ Denotes corresponding author</i><br>
+    <i><u>JEFworks lab members</u> are underlined</i>
+    </p>
+
 </div>
 
-<div class="container">
-    <hr>
+<div class="bg-light">
+    <div class="container page-pad" id="toc">
+        <h2>Table of Contents</h2>
+        <ul class="post-list-container">
+                    {% assign items = site.papers | reverse %}
+                    {% for post in items %}
+                    <li>{{ post.date | date_to_long_string }} - <a href="{{ site.baseurl }}/publications#{{ post.url }}">{{ post.title }}</a></li>
+                    {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="container page-pad">
     {% for pub in site.papers reversed %}
     <div class="row" id={{pub.id}}/><div class="col-md-12">
 	{{ pub }}
     </div></div>
     <hr>
     {% endfor %}
+</div>
+
+<div class="container">
+<button type="button" class="btn btn-warning btn-block" onclick="scrollToTop()">Scroll to Top</button>
+<script>
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+</script>
 </div>

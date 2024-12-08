@@ -8,6 +8,7 @@ linkedin: https://www.linkedin.com/in/iriskwon/
 profile: /img/irisprofile.jpg
 alumni: May 22, 2023 - July 21, 2023
 alumni-date: 2023-07-21
+core: FALSE
 ---
 
 Additional info for indexing

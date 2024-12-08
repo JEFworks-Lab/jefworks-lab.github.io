@@ -1,11 +1,11 @@
 ---
-layout: default
+layout: default2
 title: Search
 permalink: /search/
 sectionid: search
 ---
 
-## SEARCH BLOG POSTS
+# Search Blog Posts
 
 <form id="search-form">
     <div id="search-container" class="form-group">
@@ -16,7 +16,7 @@ sectionid: search
 
 <hr>
 
-## SEARCH RESULTS
+# Search Results
 
 <ul id="search-box-results">
 <li>Type in the search box to get started</li>

@@ -6,4 +6,5 @@ description: I'm a senior in the Math/Science/Computer Science Magnet at Montgom
 profile: /img/leelaprofile.jpg
 alumni: June 22, 2021 - August 22, 2021
 alumni-date: 2021-08-22
+core: FALSE
 ---

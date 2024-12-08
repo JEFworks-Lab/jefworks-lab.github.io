@@ -6,6 +6,7 @@ twitter: https://www.twitter.com/TobiAdelajaMD
 profile: /img/tobiprofile.jpg
 alumni: September 8, 2020 - March 26, 2021
 alumni-date: 2021-03-26
+core: FALSE
 ---
 
 

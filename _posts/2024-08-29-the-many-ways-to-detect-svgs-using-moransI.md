@@ -1,5 +1,6 @@
 ---
 title: "The many ways to calculate Moran's I for identifying spatially variable genes in spatial transcriptomics data "
+author: Prof. Jean Fan
 layout: post
 comments: false
 tags: [R, tutorial, spatial transcriptomics, spatial omics]

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: default2
 ---
 
 # How to give a scientific talk

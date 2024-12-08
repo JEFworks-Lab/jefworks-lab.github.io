@@ -1,15 +1,17 @@
 ---
-layout: default
-title: Software
+layout: default2
+title: Our Software
+desc: Our Open-Source Bioinformatics Software
 permalink: /software/
 sectionid: software
+image: /assets/banners/labphotoshoot_D3S2436.jpg
 ---
 
-# For a full list of our software, please see our [Github](https://github.com/JEFworks-Lab) page
+For a full list of our lab's open-source bioinformatics software, please see our [Github](https://github.com/JEFworks-Lab) page
 
 ---
 
-# BIOINFORMATICS SOFTWARE
+# Bioinformatics Software
 - [scatterbar](https://jef.works/scatterbar) - R package for visualizing proportional data across many spatially resolved coordinates
 - [SEraster](https://jef.works/SEraster) - R package for rasterization preprocessing of spatial omics data
 - [CRAWDAD](https://jef.works/CRAWDAD) - R package for characterizing cell-type spatial relationships across length scales
@@ -28,6 +30,6 @@ sectionid: software
 
 ---
 
-# FUN STUFF
+# Fun Software / Hobby Projects
 - [aRt with code](https://jefworks.github.io/art-with-code/) - generate custom art using R
-- [cuSTEMized](https://custemized.org/) - generate personalized STEM storybooks
+- [cuSTEMized](https://custemized.org/) - generate personalized STEM picture storybooks for kids

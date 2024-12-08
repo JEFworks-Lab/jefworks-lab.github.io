@@ -10,4 +10,5 @@ mail: isinha1@jhmi.edu
 profile: /img/irikasinhaprofile.JPG
 alumni: December 7, 2021 -  March 10, 2022
 alumni-date: 2022-03-10
+core: FALSE
 ---

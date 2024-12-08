@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: default2
 ---
 
 # JEFworks Lab Transparency in Resource Allocation

@@ -1,19 +1,20 @@
 ---
-layout: default
+layout: default2
 title: Join Us
+desc: Join the JEFworks Lab
 permalink: /join/
 sectionid: join
-image: /img/hopkins.jpg
+image: /assets/banners/labphotoshoot_D3S2482.jpg
 ---
 
-<h2>We are committed to training the next generation of biomedical data scientists who will in turn drive our collective growth and further our <a href="mission">scientific mission.</a> If you are interested in joining our team, please follow the guidelines below. We look forward to hearing from you!</h2>
+<h2>We are committed to training the next generation of biomedical data scientists who will in turn drive our collective growth and further our <a href="/mission">scientific mission.</a> If you are interested in joining our team, please follow the guidelines below. We look forward to hearing from you!</h2>
 <br>
 
 <div class="accordion" id="accordionExample">
 
   <div class="card">
     <div class="card-header" id="headingOne">
-      <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="btn btn-lg btn-warning btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 	For post-docs
       </button>
     </div>
@@ -63,7 +64,7 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
 
   <div class="card">
     <div class="card-header" id="headingTwo">
-      <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+      <button class="btn btn-lg btn-warning btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       For current PhD students
       </button>
     </div>
@@ -100,7 +101,7 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
 
   <div class="card">
     <div class="card-header" id="headingTest">
-      <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTest" aria-expanded="true" aria-controls="collapseTest">
+      <button class="btn btn-lg btn-warning btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTest" aria-expanded="true" aria-controls="collapseTest">
       For current Master's students
       </button>
     </div>
@@ -119,7 +120,7 @@ We currently do not have the bandwidth to mentor Master's students.
 
   <div class="card">
     <div class="card-header" id="headingThree">
-      <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+      <button class="btn btn-lg btn-warning btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
       For prospective PhD and Master's students
       </button>
     </div>
@@ -139,7 +140,7 @@ We are unable to accept prospective PhD or Master's students directly. Prospecti
 
   <div class="card">
     <div class="card-header" id="headingFour">
-      <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+      <button class="btn btn-lg btn-warning btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
       For undergraduate students
       </button>
     </div>
@@ -177,7 +178,7 @@ Exceptions are always considered for highly motivated and phenomenal applicants!
 
   <div class="card">
     <div class="card-header" id="headingFive">
-      <button class="btn btn-lg btn-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+      <button class="btn btn-lg btn-warning btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
       For highschool students 
       </button>
     </div>

@@ -6,6 +6,7 @@ description: I am a computer science and economics student. I am interested in a
 profile: /img/joseprofile.jpg
 alumni: September 20, 2021 - December 8, 2021 (ICR Internship)
 alumni-date: 2021-12-08
+core: FALSE
 ---
 
 [Introduction to Computing Research (ICR) internship](http://computingresearch.org/)

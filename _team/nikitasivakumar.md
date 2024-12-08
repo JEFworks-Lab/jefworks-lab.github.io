@@ -6,6 +6,7 @@ description: Hi! I'm a first year Biomedical Engineering PhD student. I am fasci
 profile: /img/nikitaprofile.jpeg
 alumni: August 30, 2022 - October 21, 2022
 alumni-date: 2022-10-21
+core: FALSE
 ---
 
 Additional info for indexing

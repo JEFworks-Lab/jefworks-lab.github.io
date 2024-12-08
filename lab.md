@@ -1,8 +1,10 @@
 ---
-layout: default
+layout: default2
 title: Lab Resources
+desc: Lab Resources
 permalink: /lab/
 sectionid: lab
+image: /assets/banners/labphotoshoot_D3S2465.jpg
 ---
 
 # Lab Guides

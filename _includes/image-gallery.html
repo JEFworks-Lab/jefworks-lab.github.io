@@ -3,11 +3,11 @@
     .image-gallery {overflow: auto; margin-left: -5%!important;}
     .image-gallery li {float: left; display: block; margin: 0 0 1% 1%; width: 32%;}
     .image-gallery img {
-	width: 300px;
-	height: 300px;
-	align: center;
-	object-fit: cover;
-	border-radius: 9px;
+  width: 300px;
+  height: 300px;
+  align: center;
+  object-fit: cover;
+  border-radius: 9px;
     }
     .image-gallery li a {text-align: center; text-decoration: none!important; color: #777;}
     .image-gallery li a img {width: 100%; display: block;}
@@ -17,8 +17,13 @@
   {% for item in site.data.carousel.images %}
   <li>
     <a href="{{ item.image }}">
-      <img src="{{ item.image }}"/>
+      <img src="{{ item.image }}">
     </a>
   </li>
   {% endfor %}
 </ul>
+
+
+<!-- lightbox -->
+<script type="text/javascript" src="/js/lightbox.js"></script>
+<link rel="stylesheet" href="/css/lightbox.css">

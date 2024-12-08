@@ -1,9 +1,10 @@
 ---
-layout: default
-title: Mission
+layout: default2
+title: Our Mission
+desc: Our Mission
 permalink: /mission/
 sectionid: mission
-image: /img/nih.jpg
+image: /assets/banners/labphotoshoot_D3S2417.jpg
 ---
 
 # What do we do?
@@ -20,7 +21,7 @@ Through addressing purposeful questions in molecular biology and biomedicine tow
 <br>
   
 <a href="/join">
-<button class="btn btn-lg btn-primary btn-block" type="button">
+<button class="btn btn-warning btn-block btn-lg" type="button">
 Want to get involved? Join us!
 </button>
 </a>

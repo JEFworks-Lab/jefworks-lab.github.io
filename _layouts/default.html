@@ -10,7 +10,7 @@
     {% if page.image != null %}
     <div class='banner' style="
 			      background: url('/img/pattern.png') top left repeat,
-			      url( {{ page.image }}) top center / cover no-repeat;
+			      url( {{ page.image }}) center center / cover no-repeat;
 			      position: relative;
 			      ">
 	{% if page.desc != null %}
@@ -20,22 +20,18 @@
 				   top: 50%;
 				   transform: translateY(-50%);
 				   ">
-	    <div class="container"><div class="row"><div class="col-sm-12">
-		<h1 class="display-1">{{ page.desc }}</h1>
-	    </div></div></div>
+	    <div class="container center-container">
+			<div class="col-xs-12 col-md-9">
+				<h1>{{ page.desc }}</h1>
+	    	</div>
+		</div>
 	</div>
 	{% endif %}	
     </div>
     {% endif %}
 
     <div class="page-content">
-        <div class="wrapper">
-	    <div class="container">
-		<div class="row"><div class="col-sm-12">
-		    {{ content }}
-		</div></div>
-	    </div>
-        </div>
+		{{ content }}
     </div>
 
     {% include footer.html %}

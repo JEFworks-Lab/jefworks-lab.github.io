@@ -2,16 +2,51 @@
 layout: default
 ---
 
-<div class="container">
+<div class="bg-light">
+<div class="container page-pad">
+<div class="row">
+
+	<div class="col-sm-3">
+		<p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} <br>by {{ page.author }}{% endif %}{% if page.meta %} <br> {{ page.meta }}{% endif %}</p>
+	</div>
+
+	<div class="col-sm-3" align="center">
+	Explore more posts <br>
+                <a href="{{ "/tags" | prepend: site.baseurl }}">by Tags</a> | 
+                <a href="{{ "/archive" | prepend: site.baseurl }}">by Date</a> |		
+                <a href="{{ "/blog" | prepend: site.baseurl }}">View All</a>		
+	</div>
+
+	<div class="col-sm-3" align="center">
+		Keep up to date <br>
+			<a href="https://www.twitter.com/jefworks" target="_blank"><li class="fa fa-fw fa-2x fa-twitter"></li></a>
+            <a href="https://bsky.app/profile/jef.works" target="_blank"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#18BC9C" d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"/></svg></a>
+        	<a href="https://www.youtube.com/JEFworks" target="_blank"><li class="fa fa-fw fa-2x fa-youtube"></li></a>
+	</div>	
+
+	<div class="col-sm-3">
+		<a href="{{ site.baseurl }}/search/">
+			<button class="btn btn-warning btn-block">
+				<i class="fa fa-lg fa-search"></i> Search
+			</button>
+		</a>
+	</div>
+
+</div>
+</div>
+</div>
+
+<div class="container page-pad">
     <div class="row">
+    	<h1>{{ page.title }}</h1>  
+    	<hr>
+            <div  id="markdown-content-container">{{ content }}</div>            
+    </div>
+</div>
 
-
-        <div class="col-md-9">
-	    <h1>{{ page.title }}</h1>
-            <p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} <br>by {{ page.author }}{% endif %}{% if page.meta %} <br> {{ page.meta }}{% endif %}</p>
-	    <hr>
-            <div  id="markdown-content-container">{{ content }}</div>
-            <hr>
+<div class="bg-light">
+<div class="container page-pad">
+	<div class="row">
             <ul class="pager">
                 {% if page.previous %}
                 <li class="previous">
@@ -27,35 +62,24 @@ layout: default
                 </li>
                 {% endif %}
             </ul>
-        </div>
+	</div>
+</div>
+</div>
 
-	<div class="col-md-3">
-            <div class="well">
-                <h4><a href="{{ site.baseurl }}/search/"><i class="fa fa-lg fa-search"></i> SEARCH</a></h4>
-	    </div>
-            <div class="well">
-                <h4>RECENT POSTS</h4>
+<div class="container page-pad">
+<div class="row">
+	<div class="col-sm-4">            
+                <h4>Recent Posts</h4>
                 <ul class="post-list-container">
-                    {% for post in site.posts limit:10 %}
+                    {% for post in site.posts limit:5 %}
                     <li><a href="{{ post.url | prepend: site.baseurl }}" {% if page.title==post.title %} class="active" {% endif %}>
 			{{ post.title }}
 		    </a> on {{post.date | date_to_long_string }}</li>
                     {% endfor %}
                 </ul>
-                <a href="{{ "/blog" | prepend: site.baseurl }}">All posts ...</a>
-            </div>
-	    <div class="well">
-		<h4>TAGS</h4>
-		<span class="post-meta__tags">
-		    | {% for tag in page.tags %}
-		    <a href="{{ site.baseurl }}/tags#{{ tag }}">
-			{{ tag }}
-		    </a> |
-		    {% endfor %}
-		</span>
-	    </div>
-            <div class="well">
-                <h4>RELATED POSTS</h4>
+    </div>
+	<div class="col-sm-4">
+        <h4>Related Posts</h4>
 		<ul class="post-list-container">
 		    {% assign maxRelated = 4 %}
 		    {% assign minCommonTags =  2 %}
@@ -84,14 +108,20 @@ layout: default
 
 		    {% endfor %}
 		</ul>		
-            </div>	    
-	    <div class="well">
-		<h4>EXPLORE MORE POSTS</h4>
-                <a href="{{ "/tags" | prepend: site.baseurl }}">by Tags</a> | 
-                <a href="{{ "/archive" | prepend: site.baseurl }}">by Date</a> |		
-                <a href="{{ "/blog" | prepend: site.baseurl }}">View All</a>		
-	    </div>
-        </div>
-
     </div>
+    <div class="col-sm-4">
+		<h4>Tags</h4>
+		<span class="post-meta__tags">
+		    | {% for tag in page.tags %}
+		    <a href="{{ site.baseurl }}/tags#{{ tag }}">
+			{{ tag }}
+		    </a> |
+		    {% endfor %}
+		</span>
+
+		<hr>
+
+        <a href="{{ "/blog" | prepend: site.baseurl }}"><button class="btn btn-warning btn-block">All blog posts</button></a>
+	</div>
+</div>
 </div>

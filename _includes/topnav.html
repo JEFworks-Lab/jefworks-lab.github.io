@@ -1,103 +1,86 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<header class="navbar navbar-fixed-top" role="navigation">
     <div class="container navbar-container">
+	
 	<div class="navbar-header">
-	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		<span class="sr-only">Toggle navigation</span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
+	    
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="color:#fff">
+		<i class="fa fa-bars"></i>
 	    </button>
+
 	    <a class="navbar-brand" href="{{ site.baseurl }}/">
-		<span><img src="{{site.baseurl}}/img/logonav.png"></span> {{ site.title }}
+		<span><img src="{{site.baseurl}}/assets/logo/jefworks_logo_white.svg"></span> {{ site.title }}
 	    </a>
+
 	</div>
-	<div id="navbar" class="collapse navbar-collapse">
-	    <ul class="nav navbar-nav navbar-right">
-		<li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			About Us
-		    </a>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div id="navbar" class="collapse navbar-collapse navbar-right navbar-main-collapse">
+	    <ul class="nav navbar-nav">
+
+	    	<li class="dropdown">
+			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				About Us <b class="caret"></b>
+			    </a>
+			    <ul class="dropdown-menu">
+					<li align="right">
+					    <a href="{{ site.baseurl }}/mission">
+						Our Mission
+					    </a>
+					    <a href="{{ site.baseurl }}/team">
+						Meet the Team
+					    </a>
+					    <a href="{{ site.baseurl }}/lab">
+						Lab Resources
+					    </a>
+					</li>
+			    </ul>
+			</li>
+
+			<li>
+			    <a href="{{ site.baseurl }}/publications">
+			    Publications
+			    </a>
+			</li>
+
+		<li class="dropdown">
+		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				Contributions <b class="caret"></b>
+			</a>
 		    <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDropdown">
-			<li {% if page.sectionid=='mission' %} class="active" {% endif %}>
-			    <a class="dropdown-item" href="{{ site.baseurl }}/mission">
-				Our Mission
-			    </a>
-			</li>
-			<li {% if page.sectionid=='team' %} class="active" {% endif %}>
-			    <a class="dropdown-item" href="{{ site.baseurl }}/team">
-				Our Team
-			    </a>
-			</li>
-			<li {% if page.sectionid=='lab' %} class="active" {% endif %}>
-			    <a class="dropdown-item" href="{{ site.baseurl }}/lab">
-				Our Lab
-			    </a>
-			</li>			   
+				<li align="right">
+				    <a class="dropdown-item" href="{{ site.baseurl }}/software">
+					Software
+				    </a>
+				    <a class="dropdown-item" href="{{ site.baseurl }}/teaching">
+					Courses
+				    </a>
+				    <a class="dropdown-item" href="{{ site.baseurl }}/talks">
+					Talks
+				    </a>
+				</li>
 		    </ul>
 		</li>
-		
-		<li {% if page.sectionid=='publications' %} class="active" {% endif %}>
-		    <a href="{{ site.baseurl }}/publications">
-			Our Publications
+
+		<li>
+		    <a href="{{ site.baseurl }}/join">
+			Join
 		    </a>
 		</li>
 
-		<li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Our Contributions
-		    </a>
-		    <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDropdown">
-			<li {% if page.sectionid=='software' %} class="active" {% endif %}>
-			    <a class="dropdown-item" href="{{ site.baseurl }}/software">
-				Our Software
-			    </a>
-			</li>
-			<li {% if page.sectionid=='teaching' %} class="active" {% endif %}>
-			    <a class="dropdown-item" href="{{ site.baseurl }}/teaching">
-				Our Courses
-			    </a>
-			</li>
-			<li {% if page.sectionid=='talks' %} class="active" {% endif %}>
-			    <a class="dropdown-item" href="{{ site.baseurl }}/talks">
-				Our Talks
-			    </a>
-			</li>
-		    </ul>
-		</li>		
-		
-		<li {% if page.sectionid=='blog' %} class="active" {% endif %}>
-		    <a href="{{ site.posts.first.url | prepend: site.baseurl }}">Blog</a>
-		</li>
-
-		<li {% if page.sectionid=='contact' %} class="active" {% endif %}>
+		<li>
 		    <a href="{{ site.baseurl }}/contact">
 			Contact
 		    </a>
 		</li>
-		
-		<li style="margin:-13px 0px">
-		    <a href="{{ site.baseurl }}/join">
-			<button type="button" 
-				{% if page.sectionid=='join' %}
-				class="btn btn-primary"
-				{% elsif page.section != 'join' %}
-				class="btn btn-warning"
-				{% endif %}
-			>Join Us</button>
-		    </a>
-		</li>
-		
-	    </ul>
-	    <!---
-		 <div class="navbar-right">
-		 <form class="navbar-form navbar-left">
-		 <div class="form-group has-feedback">
-                 <input id="search-box" type="text" class="form-control" placeholder="Search...">
-                 <i class="fa fa-search form-control-feedback"></i>
-		 </div>
-		 </form>
-		 </div>
-	       --->
+
+		<li>
+		    <a href="{{ site.posts.first.url | prepend: site.baseurl }}">
+		    Blog
+			</a>
+		</li>		
+
+		</ul>
 	</div>
-    </div>
-</nav>
+</div>
+</header>
+

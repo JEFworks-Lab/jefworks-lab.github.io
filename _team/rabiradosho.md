@@ -6,6 +6,7 @@ description: Hello there! I'm an incoming junior at Montgomery Blair Highschool 
 profile: /img/Rabira.jpg
 alumni: July 3, 2023 - July 28, 2023
 alumni-date: 2023-07-28
+core: FALSE
 ---
 
 Additional info for indexing
