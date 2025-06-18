@@ -25,6 +25,7 @@ image: /assets/banners/labphotoshoot_D3S2465.jpg
   - [A Guide to Scientific Peer Review](/blog/2020/03/23/a-guide-to-scientific-peer-review/)
 - [Write a paper](/assets/docs/write_a_paper)
   - [How to write an abstract](/blog/2019/09/24/how-to-write-an-abstract/)
+  - [How to make high quality figures](https://www.youtube.com/watch?v=L9qo2XZiQ4Y)
 - [Revise a paper](/assets/docs/revise_a_paper)
   - [A Guide to Responding to Scientific Peer Review](/blog/2020/06/17/responding-to-scientific-peer-review/)
 - [Write a grant](/assets/docs/write_a_grant)
