@@ -6,4 +6,8 @@ description: I am a first-year PhD student in the XDBio program at the Johns Hop
 home: https://chloesheen.com/
 github: https://github.com/chloesheen
 profile: /img/chloeprofile.png
+alumni: September 27, 2024 - December 10, 2024
+alumni-date: 2024-12-10
+core: FALSE
 ---
+
