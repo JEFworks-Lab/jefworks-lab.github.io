@@ -4,7 +4,7 @@ title: Join Us
 desc: Join the JEFworks Lab
 permalink: /join/
 sectionid: join
-image: /assets/banners/labphotoshoot_D3S2482.jpg
+image: /assets/banners/willkirk_JHU2372.JPG
 ---
 
 <h2>We are committed to training the next generation of biomedical data scientists who will in turn drive our collective growth and further our <a href="/mission">scientific mission.</a> If you are interested in joining our team, please follow the guidelines below. We look forward to hearing from you!</h2>
