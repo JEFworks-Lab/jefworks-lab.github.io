@@ -4,7 +4,7 @@ title: Teaching
 desc: Our Courses
 permalink: /teaching/
 sectionid: teaching
-image: /assets/banners/labphotoshoot_D3S2452.jpg
+image: /assets/banners/willkirk_JHZ1999.JPG
 ---
 
 # Current Undergraduate/Graduate Courses at Johns Hopkins University
