@@ -2,9 +2,9 @@
 layout: team
 name: Roujin An
 title: PhD Rotation Student
-description: I’m a third-year PhD candidate in Johns Hopkins Biomedical Engineering with a hybrid wet-lab + computational background. I’m building toward developing widely adaptable platforms, scalable methods and deep-learning enabled tools that translate sequencing-driven discoveries into actionable therapies. I previously worked with and applied genomics-to-function workflows across in silico, in vitro, and in vivo systems, combining single-cell multi-omics and spatial transcriptomics with iPSC models, CRISPRi/gene perturbation, lineage tracing, and animal disease models to link variants to mechanisms and validate/prioritize therapeutic targets in atherosclerosis, cancer, and retinal development. 
+description: I'm a third year PhD Candidate in Biomedical Engineering at Johns Hopkins, with a hybrid wet-lab/comp background in bio-pharmaceutical science, molecular and computational biology. I am passionate about engineering adaptable platforms, deep-learning-enabled tools and scalable methods to bridge the gap between sequencing/image data and actionable therapeutic insights. My research employs a multidisciplinary approach, combining single-cell multi-omics & spatial transcriptomics & functional genomics with CRISPR perturbation, iPSC models, and in vivo validation to elucidate disease mechanisms, with applications in cardiovascular disease, oncology, and developmental biology. In my free time I enjoy stand-up comedy.
 
-profile: /img/RoujinAn.JPG
+profile: /img/RoujinAn.jpg
 ---
 
 Additional info for indexing
