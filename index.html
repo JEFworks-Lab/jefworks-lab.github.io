@@ -18,14 +18,12 @@ desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128px"><br/><br/>
 		    </div>
 		    {% for pub in site.team %}
 		    {% if pub.alumni == nil %}
-		    {% if pub.name != 'Remy' %}
 		    {% if pub.name != 'You!' %}
 			<div class="col-xs-3 col-md-2">
 			    <a href="team">
 					<img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}" style="padding: 15px 5px">
 			    </a>
 			</div>
-			{% endif %}
 			{% endif %}
 			{% endif %}
 			{% endfor %}
