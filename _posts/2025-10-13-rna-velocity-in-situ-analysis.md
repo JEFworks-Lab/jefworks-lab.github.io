@@ -1,5 +1,6 @@
 ---
 title: RNA velocity in situ infers gene expression dynamics using spatial transcriptomics data
+author: Prof. Jean Fan
 layout: post
 comments: false
 tags: [rna velocity, spatial transcriptomics]
