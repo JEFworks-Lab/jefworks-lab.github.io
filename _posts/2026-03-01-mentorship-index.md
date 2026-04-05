@@ -80,4 +80,10 @@ But I don't think the answer is to abandon metrics altogether. That's neither pr
 
 ## Try it out for yourself!
 
-So, what do you care about? What do you think we should reward and recognize? See if you can design a metric around what you believe is important. 
+So, what do you care about? What do you think we should reward and recognize? See if you can design a metric around what you believe is important.
+
+---
+
+## Update
+
+Check out this article from The Scientist profiling our development of this Mentorship Index: <a href ="https://www.the-scientist.com/the-m-index-a-new-metric-puts-mentorship-in-the-spotlight-74280"> The M-Index: A New Metric Puts Mentorship in the Spotlight </a>
