@@ -12,7 +12,7 @@ In this blog post, I will walk through how I went from a question regarding gas 
 
 ## It starts with a question
 
-Soooo gas prices are going up. I live in Maryland. The gas station price near my house is currently \$4.59. That price is higher than last week or last month. But frankly I can't recall if the price was higher a few years ago. Especially since I had moved to Maryland within the past couple years. In other parts of the US like California, \$4.59 would be somewhat typical, at least in my memories. So I curious: how *have* gas prices been changing in different geographical locations across the US over time?
+Soooo gas prices are going up. I live in Maryland. The gas station price near my house is currently \$4.59. That price is higher than last week or last month. But frankly I can't recall if the price was higher a few years ago, especially since I had moved to Maryland within the past couple years. In other parts of the US like California, \$4.59 would be somewhat typical, at least in my memories. So I got curious: how *have* gas prices been changing in different geographical locations across the US over time?
 
 ---
 
@@ -40,7 +40,7 @@ Response:
 
 > The Gasoline and Diesel Fuel Update is a weekly snapshot of U.S. regular retail prices. The main table is mostly PADD regions (East Coast, Midwest, Gulf Coast, etc.), plus a short list of states and cities in the expandable “States” section—not all 50 states on one table. From the content you shared, the states called out there are things like California, Colorado, Florida, Massachusetts, Minnesota, New York, Ohio, Texas, Washington (plus cities). That matches how this product works: it is built from the weekly retail gasoline survey (EIA-878), which publishes defined cities/states, not necessarily a separate weekly series for every state. So: you do not get “each state” as 50 parallel weekly series from that single summary page alone, unless EIA publishes a series for that state.
 
-Based on this response, I decided to pivot to focus on region rather than expending more effort and tokens to try to get data for every state. 
+Based on this response, I decided to pivot to focus on region rather than expending more time, effort, and tokens to try to get data for every state. 
 
 ---
 
@@ -64,21 +64,25 @@ Result:
 A great start! From this, I realized there was a lot more data than what I wanted to visualize. I only wanted to visualize certain regions. So I used [this map](https://www.eia.gov/petroleum/gasdiesel/gas_geographies.php#statesmap) to figure out what states corresponded to what regions. From experience, I know specifying the states will be needed later for our map visualization. So eventhough I anticipate the AI could've limited to the correct columns of data without the state information, I gave it the state information anyway in anticipation. 
 
 > Instead of all columns, focus on just the following regions, which are comprised of states (abbreviated names provided):
-
-```
-West Coast = WA, OR, NV, CA, AZ, HI, AK
-Rocky Mountain = MT, ID, WY, UT, CO
-Gulf Coast = NM, TX, AR, LA, MS, AL
-Midwest = ND, SD, NE, KS, OK, MN, IA, MO, WI, IL, MI, IN, OH, KY, TN
-New England = ME, VT, NH, MA, CT, RI
-Central Atlantic = NY, PA, NJ, MD, DE
-East Coast = WV, VA, NC, SC, GA, FL
-```
+> 
+> West Coast = WA, OR, NV, CA, AZ, HI, AK
+> 
+> Rocky Mountain = MT, ID, WY, UT, CO
+> 
+> Gulf Coast = NM, TX, AR, LA, MS, AL
+> 
+> Midwest = ND, SD, NE, KS, OK, MN, IA, MO, WI, IL, MI, IN, OH, KY, TN
+> 
+> New England = ME, VT, NH, MA, CT, RI
+> 
+> Central Atlantic = NY, PA, NJ, MD, DE
+> 
+> East Coast = WV, VA, NC, SC, GA, FL
 
 <div align="center"><img src="/assets/blog/gas_prices/gasoline_regions_since_2024_v2.png" width="60%"></div>
 <br>
 
-Now we're ready to animate. I basically describe the same options I [used previous to visualize ICE arrest trends over time](https://jef.works/blog/2025/09/27/analyzing-ice-detention-data-2/). Except now, instead of specifying specific parameters/options (like `transition_reveal`), I can conveniently use the English language. It's still very helpful to know what parameters/options are available though. 
+Now we're ready to animate. I basically describe the same animation options I [used previous to visualize ICE arrest trends over time](https://jef.works/blog/2025/09/27/analyzing-ice-detention-data-2/). Except now, instead of specifying specific parameters/options (like `transition_reveal`), I can conveniently use the English language. It's still very helpful to know what parameters/options are available though. 
 
 > Now use `gganimate` to visualize an animation of the line plot. Add a `geom_point` to mark the beginning of the line. Transition reveal by week. Enter and exit fade. Use a view follow with flexible y-axis that tracks the moving line. 
 
@@ -92,11 +96,11 @@ The animated line plot looks good. So we can add in a map.
 <div align="center"><img src="/assets/blog/gas_prices/gasoline_regions_since_2024_v4.gif" width="60%"></div>
 <br>
 
-I actually have no idea what happened here. I tried to use AI to debug but it did not improve the result and kept making the same end plot. 
+Ok I actually have no idea what happened here. I tried to use AI to debug but it did not improve the result and kept making the same end plot...
 
 > Keep the background white, not transparent. Do not use view follow. Fix the axes to keep the plot sizes consistent to avoid jittering in the animation from frame to frame. 
 
-Since the individual line plot animation looked good, I figured something about trying to combine the two animations was causing issues. So at this point, I decided to pivot just make two separate plots. 
+Since the individual line plot animation looked good, I figured something about trying to combine the two animations was causing issues. So at this point, I decided to pivot just make two separate plots rather than expending more time, effort, and tokens. 
 
 > Create two separate gifs instead of one. Flatten the background to avoid transparency. Move the legend to the bottom. Omit the `lab_sub_static` and subtitle. Pause for 5 seconds on the last frame for the most recent date. 
 
