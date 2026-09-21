@@ -7,4 +7,7 @@ twitter: https://twitter.com/kalen_clifton
 github: https://github.com/kpclifton
 linkedin: https://www.linkedin.com/in/kalen-clifton
 profile: /img/KalenC.jpeg
+alumni: March 21, 2022 - May 20, 2026
+alumni-date: 2026-05-20
 ---
+
