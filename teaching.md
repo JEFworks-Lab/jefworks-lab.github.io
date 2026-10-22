@@ -8,6 +8,8 @@ image: /assets/banners/willkirk_JHZ1999.JPG
 ---
 
 # Current Undergraduate/Graduate Courses at Johns Hopkins University
+- [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2026/) Spring 2026
+- [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2025/) Spring 2025
 - [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2024/) Spring 2024
 - [EN.580.428 Genomic Data Visualization](https://jef.works/genomic-data-visualization-2023/) Spring 2023
 - [EN.580.710 Ethical Challenges in Biomedical Engineering](https://jef.works/blog/2022/10/15/ethical-challenges-in-bme/) (guest lecture) Fall 2022
