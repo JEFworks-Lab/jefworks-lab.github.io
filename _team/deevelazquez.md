@@ -6,7 +6,7 @@ description: I majored in computer science and chemical & biomolecular engineeri
 profile: /img/deeprofile.jpeg
 alumni: Aug 29, 2023 - Oct 5, 2026
 alumni-date: 2026-10-05
-current: Computational Staff Associate at Dumitrascu Lab @ Columbia University
+current: Computational Staff Associate at Columbia University
 home: https://dvelazq.github.io/
 github: https://github.com/dvelazq
 linkedin: https://www.linkedin.com/in/deevelazquez/
