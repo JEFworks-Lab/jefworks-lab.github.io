@@ -1,11 +1,19 @@
 images:
   - image: /assets/news/2026_babyshower.jpg
+    alt: Lab baby shower, 2026
   - image: /assets/news/escape_room.jpg
+    alt: Lab outing to an escape room
   - image: /assets/news/bmes_group1.jpg
+    alt: Lab members at the BMES conference
   - image: /assets/news/lab_bbq_05032024.jpg
+    alt: Lab barbecue, May 2024
   - image: /assets/news/csh_single_cell_analysis_2023-2.jpg
+    alt: Cold Spring Harbor single cell analysis course, 2023
   - image: /assets/news/lab_retreat_fall2023.gif
+    alt: Lab retreat, fall 2023
   - image: /assets/news/farewell_brendan_041423.gif
+    alt: Farewell celebration for Brendan, April 2023
   - image: /assets/news/bioeng22_team.jpeg
+    alt: Lab team at Bioengineering Day 2022
   - image: /assets/news/lab_hike_D3S6934.jpg
-  
+    alt: Lab hike

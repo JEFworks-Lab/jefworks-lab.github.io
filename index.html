@@ -3,25 +3,26 @@ title: Welcome to the JEFworks Lab
 layout: default
 sectionid: home
 image: /assets/banners/bg.jpg
-desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128px"><br/><br/>Welcome to the JEFworks Lab, <br/>where Prof. Jean Fan and team work on statistical analysis approaches and machine learning tools for analyzing big spatially resolved omics data to better understand the molecular and spatial-contextual factors shaping cellular identity and heterogeneity in the context of human health and disease.
+desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128" alt="JEFworks Lab logo"><br/><br/>Welcome to the JEFworks Lab, <br/>where Prof. Jean Fan and team work on statistical analysis approaches and machine learning tools for analyzing big spatially resolved omics data to better understand the molecular and spatial-contextual factors shaping cellular identity and heterogeneity in the context of human health and disease.
 ---
 
+<div class="home">
 <div class="bg-light">
 	<div class="container page-pad" align="center">
       	<h2>We are a bioinformatics research lab in the <a href="https://ccb.jhu.edu/">Center for Computational Biology</a> and the <a href="https://www.bme.jhu.edu/">Department of Biomedical Engineering</a> at Johns Hopkins University. <a href="team">Meet our team!</a></h2>
 
 		<div class="row">
-		    <div class="col-xs-3 col-md-2">
+		    <div class="col-xs-4 col-sm-3 col-md-2 team-thumb">
 				<a href="team">
-					<img src="/img/profile.jpg" class="img-responsive img-circle" alt="Prof. Jean Fan" style="padding: 15px 5px">
+					<img src="/img/profile.jpg" class="img-responsive img-circle" alt="Prof. Jean Fan" loading="lazy">
 				</a>
 		    </div>
 		    {% for pub in site.team %}
 		    {% if pub.alumni == nil %}
 		    {% if pub.name != 'You!' %}
-			<div class="col-xs-3 col-md-2">
+			<div class="col-xs-4 col-sm-3 col-md-2 team-thumb">
 			    <a href="team">
-					<img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}" style="padding: 15px 5px">
+					<img src="{{ pub.profile }}" class="img-responsive img-circle" alt="{{ pub.name }}" loading="lazy">
 			    </a>
 			</div>
 			{% endif %}
@@ -44,7 +45,7 @@ desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128px"><br/><br/>
 
 		</div>
 
-		<a href="join"><button type="button" class="btn btn-warning btn-block btn-lg">Learn how you can join us!</button></a> 
+		<a href="join" class="btn btn-warning btn-block btn-lg">Learn how you can join us!</a>
 
 	</div>
 </div>
@@ -73,14 +74,14 @@ desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128px"><br/><br/>
 		</ul>
 	    </div>
 	    <div class="col-md-5">
-		<img src="assets/papers/Atta_et_al-2021-Nature_Communications.png" width="100%">
+		<img src="assets/papers/Atta_et_al-2021-Nature_Communications.png" class="section-img" alt="Overview of spatially resolved transcriptomics: imaging and capture-plus-sequencing technologies, and analyses including spatial pattern identification, joint spatial and gene expression clustering, pixel deconvolution, and cell-cell communication inference" loading="lazy">
 	    </div>
 	</div>
 
 	<div align="center"><h2>We apply these bioinformatics methods to better understand the role of cellular heterogeneity in disease.</h2></div>
 	<div class="row">
 	    <div class="col-md-6">
-		<img src="img/main1.jpg" width="100%">
+		<img src="img/main1.jpg" class="section-img" alt="Illustration of tumor heterogeneity: interacting neoplastic subpopulations and non-neoplastic immune and stromal cells, tumor evolution across samples, and a single-cell gene expression heatmap" loading="lazy">
 	    </div>
 	    <div class="col-md-6">
 		<p>Advancements in high-throughput sequencing and imaging technologies have uncovered tremendous genetic, epigenetic, transcriptional, and spatial heterogeneity in various diseases but their impact on clinical outcomes is not well understood. We establish close collaborations with clinical collaborators to develop and apply bioinformatics methods that contribute to a more complete understanding of how cellular heterogeneity impacts disease progression and clinical prognosis.</p>
@@ -97,14 +98,13 @@ desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128px"><br/><br/>
 		</ul>
 	    </div>
 	</div>
-    </div>
 </div>
 
 <div class="bg-light">
 <div class="container page-pad">
-    <div class="row">
-	<div class="col-sm-4">
-	    <h1 class="text-center"><i class="fa fa-book" aria-hidden="true"></i></h1>
+    <div class="row feed-row">
+	<div class="col-sm-4 feed-col">
+	    <div class="h1 text-center"><i class="fa fa-book" aria-hidden="true"></i></div>
 	    <h2 class="text-center">Latest Publications</h2>
 	    <ul class="post-list-container">
 		{% assign items = site.papers | reverse %}
@@ -112,64 +112,42 @@ desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128px"><br/><br/>
 		<li><a href="{{ site.baseurl }}/publications#{{ post.url }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
 		{% endfor %}
 	    </ul>
+	    <a href="{{ site.baseurl }}/publications" class="btn btn-primary btn-block">More Publications</a>
 	</div>
-	<div class="col-sm-4">
-	    <h1 class="text-center"><i class="fa fa-rss-square" aria-hidden="true"></i></h1>
+	<div class="col-sm-4 feed-col">
+	    <div class="h1 text-center"><i class="fa fa-rss-square" aria-hidden="true"></i></div>
 	    <h2 class="text-center">Latest News</h2>
 	    <ul class="post-list-container">
 		{% assign items = site.news | reverse %}
 		{% for post in items limit:5 %}
 		<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string}}</li>
 		{% endfor %}
-	    </ul>	    
+	    </ul>
+	    <a href="{{ site.baseurl }}/news" class="btn btn-primary btn-block">More News</a>
 	</div>
-	<div class="col-sm-4">
-	    <h1 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h1>
+	<div class="col-sm-4 feed-col">
+	    <div class="h1 text-center"><i class="fa fa-pencil" aria-hidden="true"></i></div>
 	    <h2 class="text-center">Latest Blog Posts</h2>
 	    <ul class="post-list-container">
 		{% for post in site.posts limit:5 %}
 		<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> on {{ post.date | date_to_long_string }}</li>
 		{% endfor %}
 	    </ul>
+	    <a href="{{ site.baseurl }}/blog" class="btn btn-primary btn-block">More Blog Posts</a>
 	</div>
     </div>
-
-
-    <div class="row">
-	<div class="col-sm-4">
-    	<a href="{{ site.baseurl }}/publications">
-		<button type="button" class="btn btn-primary btn-block">
-		    More Publications
-		</button>
-	    </a>
-	</div>
-	<div class="col-sm-4">
-		<a href="{{ site.baseurl }}/news">
-		<button type="button" class="btn btn-primary btn-block">
-		    More News
-		</button>
-	    </a>
-	</div>
-	<div class="col-sm-4">
-		<a href="{{ site.baseurl }}/blog"> 
-		<button type="button" class="btn btn-primary btn-block">
-		    More Blog Posts
-		</button>
-	    </a>
-	</div>
-	</div>
 
 	<br>
 
 </div>
 </div>
 
-<div class="bg-dark"><div class="container page-pad" align="center">
+<div class="bg-dark"><div class="container page-pad social-links" align="center">
 	<h3>Follow us on social media for the latest updates on our blog posts, code tutorials, software tools, and more!</h3>
 
-	<a href="https://www.twitter.com/jefworks" target="_blank"><li class="fa fa-fw fa-2x fa-twitter"></li></a>
-            <a href="https://bsky.app/profile/jef.works" target="_blank"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#18BC9C" d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"/></svg></a>
-        	<a href="https://www.youtube.com/JEFworks" target="_blank"><li class="fa fa-fw fa-2x fa-youtube"></li></a>
+	<a href="https://www.twitter.com/jefworks" target="_blank" rel="noopener" aria-label="JEFworks on Twitter (opens in a new tab)"><i class="fa fa-fw fa-2x fa-twitter" aria-hidden="true"></i></a>
+	<a href="https://bsky.app/profile/jef.works" target="_blank" rel="noopener" aria-label="JEFworks on Bluesky (opens in a new tab)"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#18BC9C" d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"/></svg></a>
+	<a href="https://www.youtube.com/JEFworks" target="_blank" rel="noopener" aria-label="JEFworks on YouTube (opens in a new tab)"><i class="fa fa-fw fa-2x fa-youtube" aria-hidden="true"></i></a>
 </div></div>
 
 <div class="container page-pad">
@@ -177,5 +155,6 @@ desc: <img src="/assets/logo/jefworks_lab_logo_hex.svg" width="128px"><br/><br/>
 		<h2>Latest Lab Fun</h2>
 	{% include image-gallery.html %}
     </div></div>
+</div>
 </div>
 

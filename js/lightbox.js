@@ -101,7 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 var filename = href.split('/').pop();
                 var split = filename.split(".");
                 var name = split[0];
-                element.setAttribute('title',name);
+                var img = element.querySelector('img');
+                element.setAttribute('title', img && img.alt ? img.alt : name);
             }
         }
     });
